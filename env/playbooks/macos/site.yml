@@ -1,0 +1,9 @@
+- name: macos setup
+  hosts: 'local'
+  become: no
+  roles:
+    - { role: 'base', tags: [base] }
+    - { role: 'homebrew', tags: [homebrew] }
+    - { role: 'homebrew_cask', tags: [homebrew_cask] }
+
+# ansible-playbook -i hosts site.yml

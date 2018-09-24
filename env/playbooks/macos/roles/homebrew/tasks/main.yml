@@ -1,0 +1,14 @@
+---
+
+- name: update brew
+  register: result
+  ignore_errors: True
+  command: >
+    brew update
+
+- name: 'homebrew packages installation'
+  homebrew:
+    name: '{{ item.name }}'
+    state: "{{ item.state|default('present') }}"
+  with_items: "{{ homebrew_packages }}"
+

@@ -1,0 +1,20 @@
+homebrew_packages:
+  - name: ansible
+  - name: autoconf
+  - name: awscli
+  - name: azure-cli
+  - name: bat
+  - name: brew-cask-completion
+  - name: carthage
+  - name: direnv
+  - name: freetype
+  - name: go
+  - name: hugo
+  - name: jq
+  - name: mackerelio/mackerel-agent/mackerel-agent
+  - name: nodebrew
+  - name: rbenv
+  - name: ruby-build
+  - name: swiftlint
+  - name: tree
+

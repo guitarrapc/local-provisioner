@@ -1,0 +1,14 @@
+homebrew_cask_packages:
+  - name: google-chrome
+  - name: google-cloud-sdk
+  - name: google-japanese-ime
+  - name: gitkraken
+  - name: kindle
+  - name: microsoft-teams
+  - name: ngrok
+  - name: powershell
+  - name: sequel-pro
+  - name: slack
+  - name: sourcetree
+  - name: visual-studio-code
+
