@@ -5,5 +5,6 @@
     - { role: 'base', tags: [base] }
     - { role: 'homebrew', tags: [homebrew] }
     - { role: 'homebrew_cask', tags: [homebrew_cask] }
+    - { role: 'bash_completion', tags: [bash_completion] }
 
 # ansible-playbook -i hosts site.yml

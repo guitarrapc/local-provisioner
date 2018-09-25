@@ -1,4 +1,6 @@
 homebrew_cask_packages:
+  - name: cd-to-terminal
+  - name: docker
   - name: google-chrome
   - name: google-cloud-sdk
   - name: google-japanese-ime
