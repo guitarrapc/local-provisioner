@@ -1,0 +1,14 @@
+---
+
+- name: check bash-completion exists
+  stat:
+    path: /usr/local/etc/bash_completion
+  register: stat_result
+
+- name: 'docker : bash-completion symlink setup'
+  file:
+    src: '{{ item.src }}'
+    dest: '{{ item.dest }}'
+    state: link
+  with_items: "{{ bash_completion_packages }}"
+  when: stat_result.stat.exists
