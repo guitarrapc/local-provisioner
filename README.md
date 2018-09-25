@@ -24,11 +24,13 @@ macOS
 
 Roles | Descriptions
 ---- | ----
-base | macos defaults
 bash_completion | bash completion symlinks
+defaults | macos defaults
+dotfiles | dotfiles
 homebrew | homebrew packages
 homebrew-cask | homebrew packages for GUI App
 python | python environment setup. using pyenv and pyvirtualenv.
+terraform | terraform environment setup. using tfenv.
 
 Windows
 

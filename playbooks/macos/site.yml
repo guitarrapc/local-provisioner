@@ -2,7 +2,7 @@
   hosts: 'local'
   become: no
   roles:
-    - { role: 'base', tags: [base] }
+    - { role: 'defaults', tags: [defaults] }
     - { role: 'dotfiles', tags: [dotfiles] }
     - { role: 'homebrew', tags: [homebrew] }
     - { role: 'homebrew_cask', tags: [homebrew_cask] }
