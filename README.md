@@ -70,7 +70,7 @@ Run following to configure ansible_spec.
 
 run test at env.
 
-``shell
+```shell
 cd playbooks/macos
 # check tests
 bundle exec rake -T
