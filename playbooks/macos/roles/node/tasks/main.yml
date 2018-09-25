@@ -32,3 +32,9 @@
   when: nodebrew_npm_update
   changed_when: npm_updated.stdout != ''
   register: npm_updated
+
+- name: install npm packges
+  npm:
+    name: "{{ item.name }}"
+    global: "{{ item.global|default('yes') }}"
+  with_items: "{{ npm_pacakges }}"

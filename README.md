@@ -51,7 +51,7 @@ defaults | macos defaults
 dotfiles | dotfiles
 homebrew | homebrew packages
 homebrew-cask | homebrew packages for GUI App
-node | node.js/npm environment setup. using nodebrew.
+node | node.js/npm/npmpackages setup. using nodebrew/npm.
 python | python environment setup. using pyenv and pyvirtualenv.
 terraform | terraform environment setup. using tfenv.
 
