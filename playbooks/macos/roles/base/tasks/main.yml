@@ -1,14 +1,5 @@
 ---
 
-- name: 'Set OSX Defaults'
-  osx_defaults:
-    domain: "{{ item.domain }}"
-    key: "{{ item.key }}"
-    type: "{{ item.type }}"
-    value: "{{ item.value }}"
-    state: "{{ item.state|default('present') }}"
-  with_items: "{{ osx_settings }}"
-
 - name: 'Set Screen Defaults'
   osx_defaults:
     domain: "{{ item.domain }}"

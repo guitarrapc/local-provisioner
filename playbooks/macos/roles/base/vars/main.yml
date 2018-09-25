@@ -1,11 +1,3 @@
-osx_settings:
-  - {
-      domain: NSGlobalDomain,
-      key: AppleShowAllExtensions,
-      type: bool,
-      value: true
-  }
-
 # screen
 screen_settings:
   - {
