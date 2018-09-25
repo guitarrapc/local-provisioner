@@ -5,40 +5,9 @@ Dev environment setup with Ansible Playbook.
 - [x] macOS (Mojave, High Sierra)
 - [ ] Windows 10
 
-## How to run
+## How to Run
 
-Move to env, then run ansible-playbook.
-
-```shell
-cd playbooks/macos
-ansible-playbook -i hosts site.yml
-```
-
-![](/readme_images/ansible_macos.png)
-
-## Modification
-
-Open `<ROLE>/vars/main.yml` then add your additional modification.
-
-## Support status
-
-macOS
-
-Roles | Descriptions
----- | ----
-bash_completion | bash completion symlinks
-defaults | macos defaults
-dotfiles | dotfiles
-homebrew | homebrew packages
-homebrew-cask | homebrew packages for GUI App
-python | python environment setup. using pyenv and pyvirtualenv.
-terraform | terraform environment setup. using tfenv.
-
-Windows
-
-[TODO]
-
-## Prerequisite
+### Prerequisites
 
 macOS, Run following to configure ansible.
 
@@ -49,5 +18,43 @@ macOS, Run following to configure ansible.
 ```
 
 Windows, not yet.
+
+[TODO]
+
+### Run Provisioner
+
+Move to `playbooks/<env>`, then run ansible-playbook.
+
+```shell
+cd playbooks/macos
+ansible-playbook -i hosts site.yml
+```
+
+![](/readme_images/ansible_macos.png)
+
+### How to modify
+
+Folk this repository.
+
+* Modify parameters by open `playbooks/<env>/<role>/vars/main.yml`.
+* Modify logic by open `playbooks/<env>/<role>/tasks/main.yml`.
+
+
+## Support status
+
+macOS
+
+Role | Descriptions
+---- | ----
+bash_completion | bash completion symlinks
+defaults | macos defaults
+dotfiles | dotfiles
+homebrew | homebrew packages
+homebrew-cask | homebrew packages for GUI App
+node | node.js/npm environment setup. using nodebrew.
+python | python environment setup. using pyenv and pyvirtualenv.
+terraform | terraform environment setup. using tfenv.
+
+Windows
 
 [TODO]
