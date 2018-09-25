@@ -16,6 +16,7 @@ homebrew_packages:
   - name: jq
   - name: mackerelio/mackerel-agent/mackerel-agent
   - name: nodebrew
+  - name: pyenv
   - name: rbenv
   - name: ruby-build
   - name: swiftlint
