@@ -14,6 +14,8 @@ cd playbooks/macos
 ansible-playbook -i hosts site.yml
 ```
 
+![](/readme_images/ansible_macos.png)
+
 ## Modification
 
 Open `<ROLE>/vars/main.yml` then add your additional modification.
