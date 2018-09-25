@@ -1,3 +1,13 @@
+# interface
+# remove value if you want to reset
+interface_settings:
+  - {
+      domain: NSGlobalDomain,
+      key: AppleInterfaceStyle,
+      type: string,
+      value: Dark
+  }
+
 # screen
 screen_settings:
   - {
@@ -13,13 +23,13 @@ screen_settings:
       value: 0
   }
   - {
-      domain: com.apple.dock,
-      key: wvous-bl-corner,
-      type: int,
-      value: 5
+      domain: com.apple.screencapture,
+      key: disable-shadow,
+      type: bool,
+      value: true
   }
 
-# screen current host
+# trackpad
 trackpad_settings:
   # Disable Natural scroll
   - {

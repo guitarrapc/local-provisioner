@@ -2,7 +2,7 @@
 
 Dev environment setup with Ansible Playbook.
 
-- [x] macOS High Sierra
+- [x] macOS (Mojave, High Sierra)
 - [ ] Windows 10
 
 ## How to run
@@ -43,6 +43,7 @@ Windows
 macOS, Run following to configure ansible.
 
 ```shell
+. ./scripts/macos/install_commandlinetools.sh
 . ./scripts/macos/install_homebrew.sh
 . ./scripts/macos/install_ansible.sh
 ```
