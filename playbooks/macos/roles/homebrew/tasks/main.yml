@@ -1,10 +1,11 @@
 ---
 
 - name: update brew
-  register: result
-  ignore_errors: True
   command: >
     brew update
+  register: result
+  ignore_errors: True
+  changed_when: result.stdout != 'Already up-to-date.'
 
 - name: 'homebrew packages installation'
   homebrew:
