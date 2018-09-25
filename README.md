@@ -10,7 +10,7 @@ Dev environment setup with Ansible Playbook.
 Move to env, then run ansible-playbook.
 
 ```shell
-cd macos
+cd playbooks/macos
 ansible-playbook -i hosts site.yml
 ```
 
@@ -39,8 +39,8 @@ Windows
 macOS, Run following to configure ansible.
 
 ```shell
-/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-brew install ansible
+. ./scripts/macos/install_homebrew.sh
+. ./scripts/macos/install_ansible.sh
 ```
 
 Windows, not yet.
