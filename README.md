@@ -39,7 +39,6 @@ Folk this repository.
 * Modify parameters by open `playbooks/<env>/<role>/vars/main.yml`.
 * Modify logic by open `playbooks/<env>/<role>/tasks/main.yml`.
 
-
 ## Support status
 
 macOS
@@ -59,3 +58,22 @@ terraform | terraform environment setup. using tfenv.
 Windows
 
 [TODO]
+
+## Spec
+
+If you need spec, use ansible_spec.
+Run following to configure ansible_spec.
+
+```shell
+. ./scripts/macos/init_ansiblespec.sh
+```
+
+run test at env.
+
+``shell
+cd playbooks/macos
+# check tests
+bundle exec rake -T
+# run all tests
+bundle exec rake all
+```

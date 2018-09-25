@@ -27,7 +27,6 @@
     state: "{{ item.state|default('present') }}"
   with_items: "{{ trackpad_settings }}"
 
-
 - name: 'Set Finder Defaults'
   osx_defaults:
     domain: "{{ item.domain }}"
