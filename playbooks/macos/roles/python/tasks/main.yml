@@ -11,11 +11,7 @@
   register: pyenv_version
   changed_when: false
   ignore_errors: yes
-  args:
-    executable: /bin/bash
 
 - name: install python
   shell: pyenv install {{ python_version }}
   when: pyenv_version is failed
-  args:
-    executable: /bin/bash

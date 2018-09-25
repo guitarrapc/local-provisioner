@@ -20,5 +20,6 @@ homebrew_packages:
   - name: rbenv
   - name: ruby-build
   - name: swiftlint
+  - name: tfenv
   - name: tree
 
