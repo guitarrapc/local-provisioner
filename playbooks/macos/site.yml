@@ -7,8 +7,9 @@
     - { role: 'homebrew', tags: [homebrew] }
     - { role: 'homebrew_cask', tags: [homebrew_cask] }
     - { role: 'bash_completion', tags: [bash_completion] }
-    - { role: 'python', tags: [python] }
     - { role: 'node', tags: [node] }
+    - { role: 'python', tags: [python] }
+    - { role: 'ruby', tags: [ruby] }
     - { role: 'terraform', tags: [terraform] }
 
 # ansible-playbook -i hosts site.yml

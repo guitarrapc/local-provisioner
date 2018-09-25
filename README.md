@@ -53,6 +53,7 @@ homebrew | homebrew packages
 homebrew-cask | homebrew packages for GUI App
 node | node.js/npm/npmpackages setup. using nodebrew/npm.
 python | python environment setup. using pyenv and pyvirtualenv.
+ruby | ruby environment setup. using rbenv and just install bundler.
 terraform | terraform environment setup. using tfenv.
 
 Windows
