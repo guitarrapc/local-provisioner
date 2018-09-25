@@ -1,8 +1,15 @@
 # interface
-# remove value if you want to reset
+# Dock Dark Mode since High Sierra (remove value if you want to reset)
 interface_settings:
   - {
       domain: NSGlobalDomain,
+      key: AppleInterfaceStyle,
+      type: string,
+      value: Dark
+  }
+  # Mojave whole Dark Theme (remove value if you want to reset)
+  - {
+      domain: 'Apple Global Domain',
       key: AppleInterfaceStyle,
       type: string,
       value: Dark
