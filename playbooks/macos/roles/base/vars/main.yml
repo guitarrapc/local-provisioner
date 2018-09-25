@@ -65,6 +65,12 @@ finder_settings:
   }
   - {
       domain: com.apple.finder,
+      key: ShowTabView,
+      type: bool,
+      value: true
+  }
+  - {
+      domain: com.apple.finder,
       key: ShowPathbar,
       type: bool,
       value: true
