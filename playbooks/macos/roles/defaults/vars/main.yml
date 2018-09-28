@@ -126,3 +126,79 @@ finder_settings:
       type: string,
       value: Nlsv
   }
+
+# dock
+dock_settings:
+  # Minimize windows into their application’s icon
+  - {
+      domain: com.apple.dock,
+      key: minimize-to-application,
+      type: bool,
+      value: true
+  }
+  # Show indicator lights for open applications in the Dock
+  - {
+      domain: com.apple.dock,
+      key: show-process-indicators,
+      type: bool,
+      value: true
+  }
+  # Automatically hide and show the Dock
+  - {
+      domain: com.apple.dock,
+      key: autohide,
+      type: bool,
+      value: false
+  }
+
+    # Hot corners
+    # Possible values:
+    #  0: no-op
+    #  2: Mission Control
+    #  3: Show application windows
+    #  4: Desktop
+    #  5: Start screen saver
+    #  6: Disable screen saver
+    #  7: Dashboard
+    # 10: Put display to sleep
+    # 11: Launchpad
+    # 12: Notification Center
+    # Top left screen corner → Mission Control
+#   - {
+#       domain: com.apple.dock,
+#       key: wvous-tl-corner,
+#       type: int,
+#       value: 2
+#   }
+#   - {
+#       domain: com.apple.dock,
+#       key: wvous-tl-modifier,
+#       type: int,
+#       value: 0
+#   }
+#   # Top right screen corner → Desktop
+#   - {
+#       domain: com.apple.dock,
+#       key: wvous-tr-corner,
+#       type: int,
+#       value: 4
+#   }
+#   - {
+#       domain: com.apple.dock,
+#       key: wvous-tr-modifier,
+#       type: int,
+#       value: 0
+#   }
+  # Bottom left screen corner → Start screen saver
+#   - {
+#       domain: com.apple.dock,
+#       key: wvous-bl-corner,
+#       type: int,
+#       value: 5
+#   }
+#   - {
+#       domain: com.apple.dock,
+#       key: wvous-bl-modifier,
+#       type: int,
+#       value: 0
+#   }

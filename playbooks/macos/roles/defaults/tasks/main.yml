@@ -36,3 +36,11 @@
     state: "{{ item.state|default('present') }}"
   with_items: "{{ finder_settings }}"
 
+- name: 'Set Dock Defaults'
+  osx_defaults:
+    domain: "{{ item.domain }}"
+    key: "{{ item.key }}"
+    type: "{{ item.type }}"
+    value: "{{ item.value }}"
+    state: "{{ item.state|default('present') }}"
+  with_items: "{{ dock_settings }}"
