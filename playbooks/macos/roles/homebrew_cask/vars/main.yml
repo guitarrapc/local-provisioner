@@ -1,6 +1,7 @@
 homebrew_cask_packages:
   - name: cd-to-terminal
   - name: docker
+  - name: dotnet-sdk
   - name: duet
   - name: google-chrome
   - name: google-cloud-sdk
@@ -10,6 +11,7 @@ homebrew_cask_packages:
   - name: microsoft-teams
   - name: ngrok
   - name: powershell
+  - name: rescuetime
   - name: sequel-pro
   - name: slack
   - name: sourcetree

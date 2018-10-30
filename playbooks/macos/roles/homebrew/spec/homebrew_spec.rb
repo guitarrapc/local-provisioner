@@ -23,5 +23,6 @@ describe command("brew list -l") do
     its(:stdout) { should match "swiftlint" }
     its(:stdout) { should match "tfenv" }
     its(:stdout) { should match "tree" }
+    its(:stdout) { should match "zlib" }
 end
 

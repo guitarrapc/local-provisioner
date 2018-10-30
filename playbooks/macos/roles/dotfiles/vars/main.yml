@@ -25,4 +25,8 @@ symlinks:
     src: ~/github/guitarrapc/dotfiles/macos/.gitignore_global,
     dest: ~/.gitignore_global
   }
+  - { 
+    src: ~/github/guitarrapc/dotfiles/macos/.gitprompt.sh,
+    dest: ~/.gitprompt.sh
+  }
   

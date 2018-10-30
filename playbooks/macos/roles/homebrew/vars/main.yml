@@ -12,6 +12,7 @@ homebrew_packages:
   - name: docker
   - name: freetype
   - name: go
+  - name: hub
   - name: hugo
   - name: jq
   - name: mackerelio/mackerel-agent/mackerel-agent
@@ -22,4 +23,4 @@ homebrew_packages:
   - name: swiftlint
   - name: tfenv
   - name: tree
-
+  - name: zlib
