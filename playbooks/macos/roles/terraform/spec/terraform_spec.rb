@@ -6,5 +6,5 @@ describe command("which tfenv") do
 end
 
 describe command("tfenv list") do
-    its(:stdout) { should match "0.11.8" }
+    its(:stdout) { should match "0.11.10" }
 end
