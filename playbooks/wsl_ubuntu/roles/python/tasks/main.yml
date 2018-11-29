@@ -80,7 +80,7 @@
       export PYENV_ROOT="{{ pyenv_root }}"
       export PATH="{{ pyenv_root }}/shims:{{ pyenv_root }}/bin:$PATH"
       eval "$(pyenv init -)"
-      eval "$(pyenv virtualenv-init -)" 
+      eval "$(pyenv virtualenv-init -)"
   notify: source bashrc
 
 # debug
