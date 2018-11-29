@@ -15,6 +15,7 @@
   become: no
   blockinfile:
     create: yes
+    follow: yes
     insertafter: EOF
     dest: "{{ ansible_home }}/bashrc"
     marker: "# {mark} ANSIBLE MANAGED BLOCK : direnv"

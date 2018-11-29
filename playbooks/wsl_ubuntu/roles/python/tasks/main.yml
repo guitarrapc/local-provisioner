@@ -61,6 +61,7 @@
 - name: set bashprofile
   become: no
   blockinfile:
+    follow: yes
     create: yes
     insertafter: EOF
     dest: "{{ ansible_home }}/.bash_profile"
@@ -70,6 +71,7 @@
 - name: set bashrc
   become: no
   blockinfile:
+    follow: yes
     create: yes
     insertafter: EOF
     dest: "{{ ansible_home }}/bashrc"
