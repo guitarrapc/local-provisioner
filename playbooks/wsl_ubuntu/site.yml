@@ -10,6 +10,7 @@
       shell: 'getent passwd "{{ansible_user_id}}" | cut -d: -f6'
       register: ansible_home_result
       changed_when: false
+      always_run: true
       tags: always
     - name: Set the fact for the other scripts to use
       set_fact: ansible_home='{{ansible_home_result.stdout}}'
