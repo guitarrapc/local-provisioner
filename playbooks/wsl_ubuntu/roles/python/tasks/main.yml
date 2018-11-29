@@ -83,16 +83,6 @@
       eval "$(pyenv virtualenv-init -)" 
   notify: source bashrc
 
-- name: permission bashrc
-  file:
-    path: "{{ ansible_home }}/bashrc"
-    mode: 0777
-
-- name: permission .bash_profile
-  file:
-    path: "{{ ansible_home }}/.bash_profile"
-    mode: 0777
-
 # debug
 - name: check PATH
   become: no
