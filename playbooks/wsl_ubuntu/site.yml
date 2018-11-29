@@ -14,6 +14,7 @@
       debug:
         msg: "{{ ansible_home }}"
   roles:
+    - { role: 'dotfiles', tags: [dotfiles] }
     - { role: 'direnv', tags: [direnv] }
     - { role: 'awscli', tags: [awscli] }
     - { role: 'azcli', tags: [azcli] }
@@ -21,6 +22,5 @@
     - { role: 'terraform', tags: [terraform] }
     - { role: 'docker', tags: [docker] }
     - { role: 'tools', tags: [tools] }
-    - { role: 'dotfiles', tags: [dotfiles] }
 
 # ansible-playbook -i hosts site.yml --ask-sudo-pass
