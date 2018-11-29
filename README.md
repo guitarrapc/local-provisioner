@@ -27,6 +27,7 @@ Windows, not yet.
 Ubuntu : Bash on WSL.
 
 ```shell
+bash
 . ./scripts/wsl_ubuntu/install_ansible.sh
 ```
 
@@ -50,6 +51,7 @@ Windows, not yet.
 Ubuntu : Bash on WSL.
 
 ```shell
+bash
 cd playbooks/wsl_ubuntu
 ansible-playbook -i hosts site.yml --ask-sudo-pass
 ```
