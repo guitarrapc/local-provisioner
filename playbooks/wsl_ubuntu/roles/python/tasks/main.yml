@@ -1,0 +1,135 @@
+---
+
+# apt-get
+- name: Update and upgrade apt packages
+  become: yes
+  apt:
+    upgrade: dist
+    update_cache: yes
+
+- name: install python build required packages
+  become: yes
+  apt:
+    pkg: [
+      git,
+      gcc,
+      make,
+      openssl,
+      libssl-dev,
+      libbz2-dev,
+      libreadline-dev,
+      libsqlite3-dev,
+    ]
+
+# main
+- name: Set the fact for pyenv path
+  set_fact: pyenv_root="{{ ansible_home }}/pyenv"
+
+- name: clone pyenv repository
+  become: no
+  git:
+    repo: https://github.com/pyenv/pyenv.git
+    dest: "{{ pyenv_root }}"
+    accept_hostkey: yes
+
+- name: create pyenv versions directory
+  become: yes
+  file: path="{{ pyenv_root }}/versions" state=directory owner=root group=root mode=0777
+
+- name: create pyenv shims directory
+  become: yes
+  file: path="{{ pyenv_root }}/shims" state=directory owner=root group=root mode=0777
+
+- name: check for pyenv version exists   
+  stat: path="{{ pyenv_root }}/version"
+  register: stat_pyenv_version_file
+
+- name: create pyenv version file
+  become: no
+  file: path="{{ pyenv_root }}/version" state=touch
+  register: touch_file
+  when: not stat_pyenv_version_file.stat.exists
+
+- name: clone pyenv-virtualenv repository
+  become: no
+  git:
+    repo: https://github.com/pyenv/pyenv-virtualenv.git
+    dest: "{{ pyenv_root }}/plugins/pyenv-virtualenv"
+    accept_hostkey: yes
+
+# pyenv bashrc and .bash_profile
+- name: set bashprofile
+  become: no
+  blockinfile:
+    create: yes
+    insertafter: EOF
+    dest: "{{ ansible_home }}/.bash_profile"
+    block: |
+      source "{{ ansible_home }}/bashrc"
+- name: set bashrc
+  become: no
+  blockinfile:
+    create: yes
+    insertafter: EOF
+    dest: "{{ ansible_home }}/bashrc"
+    marker: "# {mark} ANSIBLE MANAGED BLOCK : pyenv"
+    block: |
+      export PYENV_ROOT="{{ pyenv_root }}"
+      export PATH="{{ pyenv_root }}/shims:{{ pyenv_root }}/bin:$PATH"
+      eval "$(pyenv init -)"
+      eval "$(pyenv virtualenv-init -)" 
+  notify: source bashrc
+
+- name: permission bashrc
+  file:
+    path: "{{ ansible_home }}/bashrc"
+    mode: 0777
+
+- name: permission .bash_profile
+  file:
+    path: "{{ ansible_home }}/.bash_profile"
+    mode: 0777
+
+# debug
+- name: ls
+  become: no
+  shell:  echo $PATH
+  register: ls_items
+  changed_when: false
+  ignore_errors: yes
+  args:
+    executable: /bin/bash
+
+- debug:
+    msg: "{{ ls_items.stdout_lines }}"
+
+# pyenv execution
+- name: pickup installed python versions
+  become: no
+  shell: pyenv versions | grep {{ version }}
+  register: pyenv_version
+  changed_when: false
+  ignore_errors: yes
+  args:
+    executable: /bin/bash
+
+- name: install python
+  become: no
+  shell: pyenv install {{ version }}
+  when: pyenv_version is failed
+  args:
+    executable: /bin/bash
+ 
+- name: install virtualenv
+  become: no
+  shell: pyenv virtualenv {{ version }} {{ app_name }}
+  when: pyenv_version is failed
+  args:
+    executable: /bin/bash
+
+- name: install app to global
+  become: no
+  shell: pyenv global {{ app_name }}
+  when: pyenv_version is failed
+  args:
+    executable: /bin/bash

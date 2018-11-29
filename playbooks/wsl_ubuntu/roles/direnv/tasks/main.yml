@@ -1,0 +1,23 @@
+---
+
+- name: Update and upgrade apt packages
+  become: yes
+  apt:
+    upgrade: dist
+    update_cache: yes
+
+- name: install direnv
+  become: yes
+  apt:
+    pkg: direnv
+
+- name: set bashrc
+  become: no
+  blockinfile:
+    create: yes
+    insertafter: EOF
+    dest: "{{ ansible_home }}/bashrc"
+    marker: "# {mark} ANSIBLE MANAGED BLOCK : direnv"
+    block: |
+      export EDITOR=vim
+      eval $(direnv hook bash)

@@ -1,0 +1,4 @@
+- name: source bashrc
+  shell: source "{{ ansible_home}}/bashrc"
+  args:
+    executable: /bin/bash

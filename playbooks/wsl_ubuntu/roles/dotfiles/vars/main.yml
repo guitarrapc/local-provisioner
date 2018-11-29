@@ -1,0 +1,15 @@
+base_path: ~/github/guitarrapc
+repository: 
+  - {
+    repo: "git@github.com:guitarrapc/dotfiles.git",
+    dest: ~/github/guitarrapc/dotfiles
+  }
+symlinks:
+  - { 
+    src: ~/github/guitarrapc/dotfiles/wsl/.bash_profile,
+    dest: ~/.bash_profile
+  }
+  - { 
+    src: ~/github/guitarrapc/dotfiles/wsl/bashrc,
+    dest: ~/bashrc
+  }

@@ -1,0 +1,40 @@
+---
+
+- name: Update and upgrade apt packages
+  become: yes
+  apt:
+    upgrade: dist
+    update_cache: yes
+
+- name: install unzip
+  become: yes
+  apt:
+    pkg: unzip
+
+- name: confirm terraform exists
+  stat:
+    path: /usr/local/bin/terraform
+    get_checksum: false
+    get_md5: false
+  register: terraform_exists
+
+- name: Download terraform
+  get_url:
+    url: https://releases.hashicorp.com/terraform/${version}/terraform_{{ version }}_linux_amd64.zip
+    dest: "{{ ansible_home }}/terraform_{{ version }}_linux_amd64.zip"
+  register: download_terraform
+  when: not terraform_exists.stat.exists
+
+- name: unzip terraform_{{ version }}_linux_amd64.zip
+  become: yes
+  unarchive:
+    src: "{{ ansible_home }}/terraform_{{ version }}_linux_amd64.zip"
+    dest: /usr/local/bin
+    remote_src: yes
+  when: not terraform_exists.stat.exists and download_terraform
+
+- name: remove terraform tmp
+  file:
+    path: "{{ ansible_home }}/terraform_${version}_linux_amd64.zip"
+    state: absent
+  when: not terraform_exists.stat.exists and download_terraform
