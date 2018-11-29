@@ -66,6 +66,7 @@
     dest: "{{ ansible_home }}/.bash_profile"
     block: |
       source "{{ ansible_home }}/bashrc"
+
 - name: set bashrc
   become: no
   blockinfile:
@@ -91,7 +92,7 @@
     mode: 0777
 
 # debug
-- name: ls
+- name: check PATH
   become: no
   shell:  echo $PATH
   register: ls_items
