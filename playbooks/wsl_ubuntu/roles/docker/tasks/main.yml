@@ -11,15 +11,16 @@
   apt:
     pkg: docker.io
 
-# - name: set bashrc
-#   become: no
-#   blockinfile:
-#     create: yes
-#     follow: yes
-#     insertafter: EOF
-#     dest: "{{ ansible_home }}/bashrc"
-#     marker: "# {mark} ANSIBLE MANAGED BLOCK : docker"
-#     block: |
-#       sudo cgroupfs-mount
-#       sudo usermod -aG docker $USER
-#       sudo service docker start
+- name: set bashrc
+  become: no
+  when: update_bashrc
+  blockinfile:
+    create: yes
+    follow: yes
+    insertafter: EOF
+    dest: "{{ ansible_home }}/bashrc"
+    marker: "# {mark} ANSIBLE MANAGED BLOCK : docker"
+    block: |
+      sudo cgroupfs-mount
+      sudo usermod -aG docker $USER
+      sudo service docker start
