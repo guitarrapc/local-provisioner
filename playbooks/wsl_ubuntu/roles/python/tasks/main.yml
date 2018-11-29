@@ -57,31 +57,31 @@
     dest: "{{ pyenv_root }}/plugins/pyenv-virtualenv"
     accept_hostkey: yes
 
-# pyenv bashrc and .bash_profile
-- name: set bashprofile
-  become: no
-  blockinfile:
-    follow: yes
-    create: yes
-    insertafter: EOF
-    dest: "{{ ansible_home }}/.bash_profile"
-    block: |
-      source "{{ ansible_home }}/bashrc"
+# # pyenv bashrc and .bash_profile
+# - name: set bashprofile
+#   become: no
+#   blockinfile:
+#     follow: yes
+#     create: yes
+#     insertafter: EOF
+#     dest: "{{ ansible_home }}/.bash_profile"
+#     block: |
+#       source "{{ ansible_home }}/bashrc"
 
-- name: set bashrc
-  become: no
-  blockinfile:
-    follow: yes
-    create: yes
-    insertafter: EOF
-    dest: "{{ ansible_home }}/bashrc"
-    marker: "# {mark} ANSIBLE MANAGED BLOCK : pyenv"
-    block: |
-      export PYENV_ROOT="{{ pyenv_root }}"
-      export PATH="{{ pyenv_root }}/shims:{{ pyenv_root }}/bin:$PATH"
-      eval "$(pyenv init -)"
-      eval "$(pyenv virtualenv-init -)"
-  notify: source bashrc
+# - name: set bashrc
+#   become: no
+#   blockinfile:
+#     follow: yes
+#     create: yes
+#     insertafter: EOF
+#     dest: "{{ ansible_home }}/bashrc"
+#     marker: "# {mark} ANSIBLE MANAGED BLOCK : pyenv"
+#     block: |
+#       export PYENV_ROOT="{{ pyenv_root }}"
+#       export PATH="{{ pyenv_root }}/shims:{{ pyenv_root }}/bin:$PATH"
+#       eval "$(pyenv init -)"
+#       eval "$(pyenv virtualenv-init -)"
+#   notify: source bashrc
 
 # debug
 - name: check PATH
