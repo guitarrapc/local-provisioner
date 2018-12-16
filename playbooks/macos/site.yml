@@ -4,6 +4,7 @@
   roles:
     - { role: 'defaults', tags: [defaults] }
     - { role: 'dotfiles', tags: [dotfiles] }
+    - { role: 'pam', tags: [pam] }
     - { role: 'homebrew', tags: [homebrew] }
     - { role: 'homebrew_cask', tags: [homebrew_cask] }
     - { role: 'bash_completion', tags: [bash_completion] }
@@ -12,4 +13,4 @@
     - { role: 'ruby', tags: [ruby] }
     - { role: 'terraform', tags: [terraform] }
 
-# ansible-playbook -i hosts site.yml
+# ansible-playbook -i hosts site.yml --ask-become-pass
