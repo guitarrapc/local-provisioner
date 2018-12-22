@@ -27,4 +27,4 @@
     - { role: 'docker', tags: [docker] }
     - { role: 'tools', tags: [tools] }
 
-# ansible-playbook -i hosts site.yml --ask-sudo-pass
+# ansible-playbook -i hosts site.yml --ask-become-pass

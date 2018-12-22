@@ -1,5 +1,4 @@
 homebrew_packages:
-  - name: ansible
   - name: autoconf
   - name: awscli
   - name: azure-cli
