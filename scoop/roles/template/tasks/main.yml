@@ -1,0 +1,11 @@
+- name: "Install linux tools"
+  scoop_install:
+    - gow
+
+- name: "Install windows tools"
+  scoop_install:
+    - 7zip
+
+- name: "UnInstall windows tools"
+  scoop_uninstall:
+    - 7zip

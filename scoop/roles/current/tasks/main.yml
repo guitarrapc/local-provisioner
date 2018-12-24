@@ -1,0 +1,18 @@
+- name: "Install linux tools"
+  scoop_install:
+    - cmake
+    - gcc
+    - gow
+    - sudo
+    - unzip
+
+- name: "Install windows tools"
+  scoop_install:
+    - 7zip
+    - bat
+    - chromedriver
+    - docker
+    - docker-compose
+    - git
+    - nvm
+    - terraform
