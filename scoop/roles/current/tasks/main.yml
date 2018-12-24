@@ -1,18 +1,30 @@
+# https://github.com/lukesampson/scoop/tree/master/bucket
 - name: "Install linux tools"
   scoop_install:
     - cmake
     - gcc
     - gow
+    - jq
     - sudo
+    - time
     - unzip
 
 - name: "Install windows tools"
   scoop_install:
     - 7zip
+    - aws
     - bat
     - chromedriver
     - docker
     - docker-compose
     - git
-    - nvm
+    - git-lfs
+    - pwsh
     - terraform
+
+- name: "Install Programming Languages"
+  scoop_install:
+    - dotnet-sdk
+    - go
+    - nvm
+    - python

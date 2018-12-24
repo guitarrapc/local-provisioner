@@ -27,7 +27,8 @@ function Prerequisites {
     $pathExists = ($env:PATH -split ";") | where {$_ -match "scoop"} | Measure-Object
     if ($pathExists.Count -gt 0) {
         return $true
-    } else {
+    }
+    else {
         Write-Error "scoop not exists in PATH!!"
         return $false
     }
@@ -69,10 +70,12 @@ function RunMain {
                 if ($containsInstall) {
                     Write-Host -ForeGroundColor Cyan "running [$($def.name)]"
                     ScoopInstall -TaskDef $def -Tag $item
-                } elseif ($containsUninstall) {
+                }
+                elseif ($containsUninstall) {
                     Write-Host -ForeGroundColor Cyan "running [$($def.name)]"
                     ScoopUninstall -TaskDef $def -Tag $item
-                } else {
+                }
+                else {
                     Write-Host -ForeGroundColor Cyan "skipped [$($def.name)]"
                     continue
                 }   
@@ -105,18 +108,23 @@ function ScoopInstall {
             $installedLine = $output -match "Installed"
             if ($installedLine -match "No") {
                 Write-Host -ForeGroundColor Yellow "$installedLine"
-            } elseif ($installedLine -match "Yes") {
+            }
+            elseif ($installedLine -match "Yes") {
                 Write-Host -ForeGroundColor DarkGray "$installedLine"
-            } else {
+            }
+            else {
                 return 1
             }
-        } else {
+        }
+        else {
             $output = scoop info $tool
             $installedLine = $output -match "Installed"
             if ($installedLine -match "No") {
                 Write-Host "$Tag [$([Keywords]::scoop_install): $tool] ==========================="
                 scoop install $tool
-            } else {
+            }
+            else {
+                Write-Host -ForeGroundColor DarkGray "$Tag [$([Keywords]::scoop_install): $tool] already installed, updating ==========================="
                 scoop update $tool
             }
         }
@@ -147,12 +155,15 @@ function ScoopUninstall {
             $installedLine = $output -match "Installed"
             if ($installedLine -match "Yes") {
                 Write-Host -ForeGroundColor Yellow "$installedLine"
-            } elseif ($installedLine -match "No") {
+            }
+            elseif ($installedLine -match "No") {
                 Write-Host -ForeGroundColor DarkGray "$installedLine"
-            } else {
+            }
+            else {
                 return 1
             }
-        } else {
+        }
+        else {
             Write-Host "$Tag [$([Keywords]::scoop_uninstall): $tool] ==========================="
             scoop uninstall $tool
         }
@@ -162,7 +173,8 @@ function ScoopUninstall {
 # prerequisites
 if ($Mode -eq [RunMode]::update_scoop.ToString()) {
     scoop update
-} else {
+}
+else {
     $ok = Prerequisites
     if (!$?) { return 1 }
     if (!$ok) { return 1 }
