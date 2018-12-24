@@ -9,7 +9,7 @@ param (
 
 Set-StrictMode -Version Latest
 
-enum Keywords {name; scoop_install; scoop_uninstall; }
+enum Keywords {name; scoop_install; scoop_uninstall; scoop_install_extras; }
 enum RunMode {check; run; update_scoop; }
 
 # setup
@@ -76,15 +76,26 @@ function RunMain {
                 $containsInstall = $def.Contains([Keywords]::scoop_install.ToString())
                 # task contains "scoop_uninstall" check
                 $containsUninstall = $def.Contains([Keywords]::scoop_uninstall.ToString())
+                # task contains "scoop_install_extras" check
+                $containsExtraInstall = $def.Contains([Keywords]::scoop_install_extras.ToString())
                 if ($containsInstall) {
                     $marker = "*" * ($lineWidth - "TASK [$item : $name]".Length)
                     Write-Host "TASK [$item : $($name)] $marker"
-                    ScoopInstall -TaskDef $def
+                    $tag = [Keywords]::scoop_install.ToString()
+                    ScoopInstall -TaskDef $def -Tag $tag
                 }
                 elseif ($containsUninstall) {
                     $marker = "*" * ($lineWidth - "TASK [$item : $name]".Length)
                     Write-Host "TASK [$item : $($name)] $marker"
-                    ScoopUninstall -TaskDef $def
+                    $tag = [Keywords]::scoop_uninstall.ToString()
+                    ScoopUninstall -TaskDef $def -Tag $tag
+                }
+                elseif ($containsExtraInstall) {
+                    $marker = "*" * ($lineWidth - "TASK [$item : $name]".Length)
+                    Write-Host "TASK [$item : $($name)] $marker"
+                    scoop bucket add extras
+                    $tag = [Keywords]::scoop_install_extras.ToString()
+                    ScoopInstall -TaskDef $def -Tag $tag
                 }
                 else {
                     $marker = "*" * ($lineWidth - "skipped: TASK [$item : $name]".Length)
@@ -104,7 +115,7 @@ function ScoopInstall {
         [string]$Tag
     )
 
-    $tools = $TaskDef.scoop_install
+    $tools = $TaskDef[$Tag]
     if ($null -eq $tools) {
         return
     }
@@ -116,7 +127,7 @@ function ScoopInstall {
         }
 
         if ($check -eq [RunMode]::check) {
-            Write-Host "check: [$([Keywords]::scoop_install): $tool]"
+            Write-Host "check: [${Tag}: $tool]"
             $output = scoop info $tool
             $installedLine = $output -match "Installed"
             if ($installedLine -match "No") {
@@ -147,10 +158,11 @@ function ScoopInstall {
 function ScoopUninstall {
     [OutputType([int])]
     param(
-        [HashTable]$TaskDef
+        [HashTable]$TaskDef,
+        [string]$Tag
     )
 
-    $tools = $TaskDef.scoop_uninstall
+    $tools = $TaskDef[$Tag]
     if ($null -eq $tools) {
         return
     }
@@ -162,7 +174,7 @@ function ScoopUninstall {
         }
 
         if ($check -eq [RunMode]::check) {
-            Write-Host "check: [$([Keywords]::scoop_uninstall): $tool]"
+            Write-Host "check: [${Tag}: $tool]"
             $output = scoop info $tool
             $installedLine = $output -match "Installed"
             if ($installedLine -match "Yes") {
@@ -176,7 +188,7 @@ function ScoopUninstall {
             }
         }
         else {
-            Write-Host -ForegroundColor Yellow "changed: [$([Keywords]::scoop_uninstall): $tool]"
+            Write-Host -ForegroundColor Yellow "changed: [${Tag}: $tool]"
             scoop uninstall $tool
         }
     }
