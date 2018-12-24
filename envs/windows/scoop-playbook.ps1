@@ -18,13 +18,14 @@ if ($Mode -eq [RunMode]::check) {
     Write-Host -ForeGroundColor Yellow "Run with $Mode mode"
     $check = [RunMode]::check.ToString()
 }
+$lineWidth = 83
 
 function Prerequisites {
     [OutputType([bool])]
     param ()
 
     # scoop status
-    $pathExists = ($env:PATH -split ";") | where {$_ -match "scoop"} | Measure-Object
+    $pathExists = ($env:PATH -split ";") | Where-Object {$_ -match "scoop"} | Measure-Object
     if ($pathExists.Count -gt 0) {
         return $true
     }
@@ -50,8 +51,14 @@ function RunMain {
     )
     
     $definitions = Get-Content -LiteralPath $BaseYaml -Raw | ConvertFrom-Yaml
+    $playbookName = $definitions["name"]
+    $roles = $definitions["roles"].ToArray()
+
     # BaseYaml's role existstance check
-    foreach ($item in ($definitions.Values.ToArray())) {
+    $marker = "*" * ($lineWidth - "PLAY [$playbookName]".Length)
+    Write-Host "PLAY [$playbookName] $marker"
+    Write-Output ""
+    foreach ($item in $roles) {
         $tasks = Get-ChildItem -LiteralPath "roles/$item/tasks/" -Include *.yml -File
         if ($null -eq $tasks) {
             continue
@@ -59,26 +66,32 @@ function RunMain {
 
         # role's Task check and run
         foreach ($task in $tasks.FullName) {
-            Write-Host -ForeGroundColor Green "Role [$item] from [$task]"
+            Write-Verbose "Read from [$task]"
             $taskDef = Get-Content -LiteralPath $task -Raw | ConvertFrom-Yaml
+
             # role
             foreach ($def in $taskDef) {
+                $name = $def.name
                 # task contains "scoop_install" check
                 $containsInstall = $def.Contains([Keywords]::scoop_install.ToString())
                 # task contains "scoop_uninstall" check
                 $containsUninstall = $def.Contains([Keywords]::scoop_uninstall.ToString())
                 if ($containsInstall) {
-                    Write-Host -ForeGroundColor Cyan "running [$($def.name)]"
-                    ScoopInstall -TaskDef $def -Tag $item
+                    $marker = "*" * ($lineWidth - "TASK [$item : $name]".Length)
+                    Write-Host "TASK [$item : $($name)] $marker"
+                    ScoopInstall -TaskDef $def
                 }
                 elseif ($containsUninstall) {
-                    Write-Host -ForeGroundColor Cyan "running [$($def.name)]"
-                    ScoopUninstall -TaskDef $def -Tag $item
+                    $marker = "*" * ($lineWidth - "TASK [$item : $name]".Length)
+                    Write-Host "TASK [$item : $($name)] $marker"
+                    ScoopUninstall -TaskDef $def
                 }
                 else {
-                    Write-Host -ForeGroundColor Cyan "skipped [$($def.name)]"
+                    $marker = "*" * ($lineWidth - "skipped: TASK [$item : $name]".Length)
+                    Write-Host DarkCyan "skipped: TASK [$item : $($name)] $marker"
                     continue
-                }   
+                }
+                Write-Output ""
             }
         }
     }
@@ -103,7 +116,7 @@ function ScoopInstall {
         }
 
         if ($check -eq [RunMode]::check) {
-            Write-Host "[$check]$Tag [$([Keywords]::scoop_install): $tool] ==========================="
+            Write-Host "check: [$([Keywords]::scoop_install): $tool]"
             $output = scoop info $tool
             $installedLine = $output -match "Installed"
             if ($installedLine -match "No") {
@@ -120,11 +133,11 @@ function ScoopInstall {
             $output = scoop info $tool
             $installedLine = $output -match "Installed"
             if ($installedLine -match "No") {
-                Write-Host "$Tag [$([Keywords]::scoop_install): $tool] ==========================="
+                Write-Host "changed: [$([Keywords]::scoop_install): $tool]"
                 scoop install $tool
             }
             else {
-                Write-Host -ForeGroundColor DarkGray "$Tag [$([Keywords]::scoop_install): $tool] already installed, updating ==========================="
+                Write-Host -ForeGroundColor Green "ok: [$([Keywords]::scoop_install): $tool]"
                 scoop update $tool
             }
         }
@@ -134,8 +147,7 @@ function ScoopInstall {
 function ScoopUninstall {
     [OutputType([int])]
     param(
-        [HashTable]$TaskDef,
-        [string]$Tag
+        [HashTable]$TaskDef
     )
 
     $tools = $TaskDef.scoop_uninstall
@@ -150,7 +162,7 @@ function ScoopUninstall {
         }
 
         if ($check -eq [RunMode]::check) {
-            Write-Host "[$check]$Tag [$([Keywords]::scoop_uninstall): $tool] ==========================="
+            Write-Host "check: [$([Keywords]::scoop_uninstall): $tool]"
             $output = scoop info $tool
             $installedLine = $output -match "Installed"
             if ($installedLine -match "Yes") {
@@ -164,7 +176,7 @@ function ScoopUninstall {
             }
         }
         else {
-            Write-Host "$Tag [$([Keywords]::scoop_uninstall): $tool] ==========================="
+            Write-Host -ForegroundColor Yellow "changed: [$([Keywords]::scoop_uninstall): $tool]"
             scoop uninstall $tool
         }
     }

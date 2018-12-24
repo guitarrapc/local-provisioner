@@ -1,10 +1,12 @@
 # local-provisioner
 
-Dev environment setup with Ansible Playbook.
+Dev environment setup.
 
-- [x] macOS (Mojave, High Sierra)
-- [x] Windows 10
-- [x] Ubuntu : Bash on Windows Subsystem for Linux (WSL)
+Status | Environment | Method
+---- | ---- | ----
+done | macOS (Mojave, High Sierra) | Ansible Playbook
+done | Windows 10 | scoop
+done | Ubuntu : Bash on Windows Subsystem for Linux (WSL) | Ansible Playbook
 
 ## How to Run
 
@@ -15,15 +17,15 @@ before run provisioner, make sure you have installed ansible.
 macOS.
 
 ```shell
-. ./scripts/macos/install_commandlinetools.sh
-. ./scripts/macos/install_homebrew.sh
-. ./scripts/macos/install_ansible.sh
+. ./prerequisites/macos/install_commandlinetools.sh
+. ./prerequisites/macos/install_homebrew.sh
+. ./prerequisites/macos/install_ansible.sh
 ```
 
 Windows.
 
 ```shell
-. ./scripts/windows/install_scoop.ps1
+. ./prerequisites/windows/install_scoop.ps1
 ```
 
 
@@ -31,34 +33,35 @@ Ubuntu : Bash on WSL.
 
 ```shell
 bash
-. ./scripts/wsl_ubuntu/install_ansible.sh
+. ./prerequisites/wsl_ubuntu/install_ansible.sh
 ```
 
 ### Run Provisioner
 
-Move to `playbooks/<env>`, then run ansible-playbook.
 
-macOS.
+macOS, run ansible-playbook.
 
 ```shell
-cd playbooks/macos
+cd envs/macos
 ansible-playbook -i hosts site.yml
 ```
 
 ![](/readme_images/ansible_macos.png)
 
-Windows.
+Windows, run scoop.
 
 ```shell
-cd scoop
+cd envs/windows
 ./scoop-playbook.ps1
 ```
 
-Ubuntu : Bash on WSL.
+![](/readme_images/scoop_windows.png)
+
+Ubuntu, Bash on WSL, run ansible-playbook.
 
 ```shell
 bash
-cd playbooks/wsl_ubuntu
+cd envs/wsl_ubuntu
 ansible-playbook -i hosts site.yml --ask-sudo-pass
 ```
 
@@ -66,14 +69,19 @@ ansible-playbook -i hosts site.yml --ask-sudo-pass
 
 Folk this repository.
 
-macOS / Ubuntu will change by modify followings.
+macOS will change by modify followings.
 
-* Modify parameters by open `playbooks/<env>/roles/<role>/vars/main.yml`.
-* Modify logic by open `playbooks/<env>/roles/<role>/tasks/main.yml`.
+* Modify parameters by open `envs/macos/roles/<role>/vars/main.yml`.
+* Modify logic by open `envs/macos/roles/<role>/tasks/main.yml`.
 
 Windows will change by modify followings.
 
-* Modify parameters by open `scoop/roles/<role>/tasks/main.yml`.
+* Modify parameters by open `envs/windows/roles/<role>/tasks/main.yml`.
+
+macOS / Ubuntu will change by modify followings.
+
+* Modify parameters by open `envs/wsl_ubuntu/roles/<role>/vars/main.yml`.
+* Modify logic by open `envs/wsl_ubuntu/roles/<role>/tasks/main.yml`.
 
 ## Support status
 
@@ -120,13 +128,13 @@ If you need spec, use ansible_spec.
 Run following to configure ansible_spec.
 
 ```shell
-. ./scripts/macos/init_ansiblespec.sh
+. ./prerequisites/macos/init_ansiblespec.sh
 ```
 
 run test at env.
 
 ```shell
-cd playbooks/macos
+cd envs/macos
 # check tests
 bundle exec rake -T
 # run all tests
