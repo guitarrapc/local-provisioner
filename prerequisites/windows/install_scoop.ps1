@@ -6,3 +6,5 @@ scoop update
 
 # yaml required
 Install-Module PowerShell-Yaml -Scope CurrentUser
+# Module
+Install-Module ScoopPlaybook -Scope CurrentUser

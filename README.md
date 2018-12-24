@@ -28,7 +28,6 @@ Windows.
 . ./prerequisites/windows/install_scoop.ps1
 ```
 
-
 Ubuntu : Bash on WSL.
 
 ```shell
@@ -36,8 +35,7 @@ bash
 . ./prerequisites/wsl_ubuntu/install_ansible.sh
 ```
 
-### Run Provisioner
-
+### Run
 
 macOS, run ansible-playbook.
 
@@ -48,11 +46,11 @@ ansible-playbook -i hosts site.yml
 
 ![](/readme_images/ansible_macos.png)
 
-Windows, run scoop.
+Windows, run scoop-playbook.
 
 ```shell
 cd envs/windows
-./scoop-playbook.ps1
+scoop-playbook
 ```
 
 ![](/readme_images/scoop_windows.png)
@@ -65,7 +63,7 @@ cd envs/wsl_ubuntu
 ansible-playbook -i hosts site.yml --ask-sudo-pass
 ```
 
-### How to modify
+## How to modify
 
 Folk this repository.
 
@@ -82,6 +80,14 @@ macOS / Ubuntu will change by modify followings.
 
 * Modify parameters by open `envs/wsl_ubuntu/roles/<role>/vars/main.yml`.
 * Modify logic by open `envs/wsl_ubuntu/roles/<role>/tasks/main.yml`.
+
+## Out of scope
+
+Windows will not handle followings.
+
+* Docker for Windows.
+* Google Chrome
+* Visual Studio 2017 or higher.
 
 ## Support status
 

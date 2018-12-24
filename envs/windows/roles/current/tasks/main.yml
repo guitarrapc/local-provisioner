@@ -15,8 +15,6 @@
     - aws
     - bat
     - chromedriver
-    - docker
-    - docker-compose
     - git
     - git-lfs
     - pwsh
@@ -28,3 +26,4 @@
     - go
     - nvm
     - python
+
