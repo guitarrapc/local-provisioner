@@ -3,7 +3,7 @@
 Dev environment setup with Ansible Playbook.
 
 - [x] macOS (Mojave, High Sierra)
-- [ ] Windows 10
+- [x] Windows 10
 - [x] Ubuntu : Bash on Windows Subsystem for Linux (WSL)
 
 ## How to Run
@@ -20,9 +20,12 @@ macOS.
 . ./scripts/macos/install_ansible.sh
 ```
 
-Windows, not yet.
+Windows.
 
-[TODO]
+```shell
+. ./scripts/windows/install_scoop.ps1
+```
+
 
 Ubuntu : Bash on WSL.
 
@@ -44,9 +47,12 @@ ansible-playbook -i hosts site.yml
 
 ![](/readme_images/ansible_macos.png)
 
-Windows, not yet.
+Windows.
 
-[TODO]
+```shell
+cd scoop
+./scoop-playbook.ps1
+```
 
 Ubuntu : Bash on WSL.
 
@@ -60,8 +66,14 @@ ansible-playbook -i hosts site.yml --ask-sudo-pass
 
 Folk this repository.
 
-* Modify parameters by open `playbooks/<env>/<role>/vars/main.yml`.
-* Modify logic by open `playbooks/<env>/<role>/tasks/main.yml`.
+macOS / Ubuntu will change by modify followings.
+
+* Modify parameters by open `playbooks/<env>/roles/<role>/vars/main.yml`.
+* Modify logic by open `playbooks/<env>/roles/<role>/tasks/main.yml`.
+
+Windows will change by modify followings.
+
+* Modify parameters by open `scoop/roles/<role>/tasks/main.yml`.
 
 ## Support status
 
@@ -81,9 +93,13 @@ terraform | terraform environment setup. using tfenv.
 
 Windows.
 
-[TODO]
+Role | Descriptions
+---- | ----
+[dotfiles] | **NOT YET**
+scoop_current | install app via scoop's `current` bucket
+scoop_current | install app via scoop's `extras` bucket
 
-Ubuntu : Bash on WSL.
+Ubuntu : (Bash on WSL)
 
 Role | Descriptions
 ---- | ----
@@ -97,6 +113,8 @@ terraform | terraform environment setup. using tfenv.
 tools | miscellaneous tools setup.
 
 ## Spec
+
+### macOS / WSL only!!
 
 If you need spec, use ansible_spec.
 Run following to configure ansible_spec.
