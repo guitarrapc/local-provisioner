@@ -1,14 +1,16 @@
 # https://github.com/lukesampson/scoop-extras
 - name: "Install Extra tools"
   scoop_install_extras:
-    - azure-cli
-    - azure-functions-core-tools
-    - dnspy
-    - everything
-    - gitkraken
-    - heidisql
-    - kdiff3
-    - linqpad
-    - ngrok
-    - slack
-    - vscode
+    state: present
+    name:
+      - azure-cli
+      - azure-functions-core-tools
+      - dnspy
+      - everything
+      - gitkraken
+      - heidisql
+      - kdiff3
+      - linqpad
+      - ngrok
+      - slack
+      - vscode
