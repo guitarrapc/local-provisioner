@@ -28,6 +28,5 @@
   scoop_install:
     state: present
     name:
-      - dotnet-sdk
       - go
       - nvm
