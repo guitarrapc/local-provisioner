@@ -7,6 +7,9 @@ scoop install git
 # update scoop
 scoop update
 
+# check scoop status
+scoop checkup
+
 # yaml required
 Install-Module PowerShell-Yaml -Scope CurrentUser
 # Module
