@@ -13,6 +13,6 @@ scoop update
 scoop checkup
 
 # yaml required
-Install-Module PowerShell-Yaml -Scope CurrentUser
+Install-Module PowerShell-Yaml -Scope CurrentUser -Force
 # Module
-Install-Module ScoopPlaybook -Scope CurrentUser
+Install-Module ScoopPlaybook -Scope CurrentUser -Force
