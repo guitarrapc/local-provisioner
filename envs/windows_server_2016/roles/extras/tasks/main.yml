@@ -1,0 +1,8 @@
+# https://github.com/lukesampson/scoop-extras
+- name: "Install Extra tools"
+  scoop_install_extras:
+    state: present
+    name:
+      - azure-cli
+      - vscode
+      - chromium

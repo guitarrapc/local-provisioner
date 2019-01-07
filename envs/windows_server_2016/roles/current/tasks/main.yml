@@ -1,0 +1,8 @@
+# https://github.com/lukesampson/scoop/tree/master/bucket
+- name: "Install windows tools"
+  scoop_install:
+    state: present
+    name:
+      - 7zip
+      - git
+      - pwsh

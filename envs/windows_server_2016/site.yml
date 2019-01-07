@@ -1,0 +1,4 @@
+name: Windows Setup
+roles:
+  - current
+  - extras
