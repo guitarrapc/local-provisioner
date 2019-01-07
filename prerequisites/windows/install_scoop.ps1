@@ -1,5 +1,7 @@
 Set-ExecutionPolicy RemoteSigned -scope CurrentUser
-iex (new-object net.webclient).downloadstring('https://get.scoop.sh')
+if ($nul -eq (Get-Command scoop)) {
+    iex (new-object net.webclient).downloadstring('https://get.scoop.sh')
+}
 
 # git to update scoop
 scoop install git
