@@ -23,6 +23,7 @@
       - git-lfs
       - pwsh
       - terraform
+      - gibo
 
 - name: "Install Programming Languages"
   scoop_install:
