@@ -7,6 +7,7 @@
       - azure-functions-core-tools
       - dnspy
       - everything
+      - fiddler
       - gitkraken
       - heidisql
       - kdiff3
