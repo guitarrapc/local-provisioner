@@ -21,6 +21,7 @@
       - chromedriver
       - git
       - git-lfs
+      - ngrok
       - pwsh
       - terraform
       - gibo
