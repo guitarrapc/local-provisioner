@@ -8,3 +8,6 @@ if [ $? -ne 0 ]; then
     #brew upgrade --all
     brew doctor
 fi
+
+brew tap caskroom/cask
+brew tap caskroom/fonts

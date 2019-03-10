@@ -1,0 +1,8 @@
+---
+
+- name: 'homebrew cask fonts installation'
+  homebrew_cask:
+    name: '{{ item.name }}'
+    state: "{{ item.state|default('present') }}"
+  with_items: "{{ homebrew_cask_fonts }}"
+
