@@ -10,6 +10,7 @@ homebrew_packages:
   - name: direnv
   - name: docker
   - name: freetype
+  - name: gibo
   - name: go
   - name: hub
   - name: hugo
