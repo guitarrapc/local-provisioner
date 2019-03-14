@@ -1,9 +1,6 @@
 - name: local-dev ubuntu setup
   hosts: 'local'
   become: no
-  vars:
-    - update_bashrc: false
-    - update_bashprofile: false
   pre_tasks:
     - name: Get ansible_user home directory
       become: no

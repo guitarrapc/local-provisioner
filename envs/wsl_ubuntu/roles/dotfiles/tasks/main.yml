@@ -5,11 +5,12 @@
     path: "{{ base_path }}"
     state: directory
 
-- name: Clone dotfiles
+- name: Clone & Fetch dotfiles
   git:
     repo: "{{ item.repo }}"
     dest: "{{ item.dest }}"
   with_items: "{{ repository }}"
+  when: repository is defined
 
 - name: Create symlinks
   file:
@@ -17,3 +18,13 @@
     dest: "{{ item.dest }}"
     state: link
   with_items: "{{ symlinks }}"
+  when: symlinks is defined
+
+- name: Create profile symlinks
+  become: yes
+  file:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    state: link
+  with_items: "{{ profile_symlinks }}"
+  when: profile_symlinks is defined

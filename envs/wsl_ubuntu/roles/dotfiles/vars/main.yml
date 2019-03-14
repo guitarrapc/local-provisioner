@@ -4,12 +4,12 @@ repository:
     repo: "https://github.com/guitarrapc/dotfiles.git",
     dest: ~/github/guitarrapc/dotfiles
   }
-symlinks:
+profile_symlinks:
   - { 
-    src: ~/github/guitarrapc/dotfiles/wsl/.bash_profile,
-    dest: ~/.bash_profile
+    src: '{{ ansible_home }}/github/guitarrapc/dotfiles/wsl/profile_ansible_init_direnv.sh',
+    dest: /etc/profile.d/profile_ansible_init_direnv.sh
   }
   - { 
-    src: ~/github/guitarrapc/dotfiles/wsl/bashrc,
-    dest: ~/bashrc
+    src: '{{ ansible_home }}/github/guitarrapc/dotfiles/wsl/profile_ansible_init_docker.sh',
+    dest: /etc/profile.d/profile_ansible_init_docker.sh
   }
