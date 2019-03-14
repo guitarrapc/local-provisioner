@@ -22,7 +22,6 @@
     - { role: 'direnv', tags: [direnv] }
     - { role: 'awscli', tags: [awscli] }
     - { role: 'azcli', tags: [azcli] }
-    - { role: 'python', tags: [python] }
     - { role: 'terraform', tags: [terraform] }
     - { role: 'docker', tags: [docker] }
     - { role: 'tools', tags: [tools] }
