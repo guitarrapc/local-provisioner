@@ -20,7 +20,7 @@
 
 - name: Download terraform
   get_url:
-    url: https://releases.hashicorp.com/terraform/${version}/terraform_{{ version }}_linux_amd64.zip
+    url: https://releases.hashicorp.com/terraform/{{ version }}/terraform_{{ version }}_linux_amd64.zip
     dest: "{{ ansible_home }}/terraform_{{ version }}_linux_amd64.zip"
   register: download_terraform
   when: not terraform_exists.stat.exists
