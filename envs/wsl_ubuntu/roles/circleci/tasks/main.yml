@@ -1,0 +1,46 @@
+---
+
+- name: Update and upgrade apt packages
+  become: yes
+  apt:
+    upgrade: dist
+    update_cache: yes
+
+- name: confirm circleci exists
+  stat:
+    path: /usr/local/bin/circleci
+    get_checksum: false
+    get_md5: false
+  register: circleci_exists
+
+- name: Download circleci
+  get_url:
+    url: https://circle.ci/cli
+    dest: "{{ ansible_home }}/ciecleci_install.sh"
+  when: not circleci_exists.stat.exists
+
+- name: confirm terraform temp zip exists
+  stat:
+    path: "{{ ansible_home }}/ciecleci_install.sh"
+    get_checksum: false
+    get_md5: false
+  register: circleci_sh_exists
+
+- name: chmod installer
+  file:
+    path: "{{ ansible_home }}/ciecleci_install.sh"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: a+x
+  when: circleci_sh_exists.stat.exists
+
+- name: Execute the circleci installation
+  become: yes
+  shell: "{{ ansible_home }}/ciecleci_install.sh"
+  when: circleci_sh_exists.stat.exists
+
+- name: Remove the circlecci installation
+  file:
+    path: "{{ ansible_home }}/ciecleci_install.sh"
+    state: absent
+  when: circleci_sh_exists.stat.exists
