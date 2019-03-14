@@ -19,7 +19,7 @@
     dest: "{{ ansible_home }}/ciecleci_install.sh"
   when: not circleci_exists.stat.exists
 
-- name: confirm terraform temp zip exists
+- name: confirm installer exists
   stat:
     path: "{{ ansible_home }}/ciecleci_install.sh"
     get_checksum: false
