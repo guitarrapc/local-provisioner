@@ -20,6 +20,7 @@
     get_checksum: false
     get_md5: false
   register: ngrok_zip_exists
+  when: not ngrok_exists.stat.exists
 
 - name: unzip {{ ansible_home }}/ngrok-stable-linux-amd64.zip
   become: yes
@@ -27,7 +28,7 @@
     src: "{{ ansible_home }}/ngrok-stable-linux-amd64.zip"
     dest: /usr/local/bin
     remote_src: yes
-  when: not ngrok_exists.stat.exists and ngrok_zip_exists.stat.exists
+  when: ngrok_zip_exists.stat.exists
 
 - name: remove ngrok tmp
   file:
