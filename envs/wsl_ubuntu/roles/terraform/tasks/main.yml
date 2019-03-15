@@ -18,7 +18,7 @@
     get_md5: false
   register: terraform_exists
 
-- name: Download terraform
+- name: download terraform
   get_url:
     url: https://releases.hashicorp.com/terraform/{{ version }}/terraform_{{ version }}_linux_amd64.zip
     dest: "{{ ansible_home }}/terraform_{{ version }}_linux_amd64.zip"
