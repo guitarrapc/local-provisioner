@@ -12,6 +12,11 @@ scoop update
 # check scoop status
 scoop checkup
 
+# exclude scoop
+scoop install sudo
+sudo Add-MpPreference -ExclusionPath "$env:UserProfile\scoop"
+sudo Add-MpPreference -ExclusionPath 'C:\ProgramData\scoop'
+
 # yaml required
 Install-Module PowerShell-Yaml -Scope CurrentUser -Force
 # Module
