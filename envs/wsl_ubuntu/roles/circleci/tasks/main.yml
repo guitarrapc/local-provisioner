@@ -13,7 +13,7 @@
     get_md5: false
   register: circleci_exists
 
-- name: Download circleci
+- name: download circleci
   get_url:
     url: https://circle.ci/cli
     dest: "{{ ansible_home }}/ciecleci_install.sh"
