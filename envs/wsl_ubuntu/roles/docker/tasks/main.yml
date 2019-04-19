@@ -25,6 +25,7 @@
   when: not dockercompose_exists.stat.exists
 
 - name: chmod docker-compose
+  become: yes
   file:
     path: /usr/local/bin/docker-compose
     mode: a+x

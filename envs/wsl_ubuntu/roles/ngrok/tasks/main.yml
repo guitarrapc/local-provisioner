@@ -20,7 +20,6 @@
     get_checksum: false
     get_md5: false
   register: ngrok_zip_exists
-  when: not ngrok_exists.stat.exists
 
 - name: unzip {{ ansible_home }}/ngrok-stable-linux-amd64.zip
   become: yes
