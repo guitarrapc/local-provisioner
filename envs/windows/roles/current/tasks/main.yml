@@ -10,6 +10,7 @@
       - sudo
       - time
       - unzip
+      - openssl
 
 - name: "Install windows tools"
   scoop_install:
