@@ -11,16 +11,21 @@
   apt:
     pkg: docker.io
 
-- name: set bashrc
-  become: no
-  when: update_bashrc
-  blockinfile:
-    create: yes
-    follow: yes
-    insertafter: EOF
-    dest: "{{ ansible_home }}/bashrc"
-    marker: "# {mark} ANSIBLE MANAGED BLOCK : docker"
-    block: |
-      sudo cgroupfs-mount
-      sudo usermod -aG docker $USER
-      sudo service docker start
+- name: confirm docker-compose exists
+  stat:
+    path: /usr/local/bin/docker-compose
+    get_checksum: false
+    get_md5: false
+  register: dockercompose_exists
+
+- name: download docker-compose
+  become: yes
+  shell: >
+    curl -L "https://github.com/docker/compose/releases/download/1.24.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+  when: not dockercompose_exists.stat.exists
+
+- name: chmod docker-compose
+  become: yes
+  file:
+    path: /usr/local/bin/docker-compose
+    mode: a+x
