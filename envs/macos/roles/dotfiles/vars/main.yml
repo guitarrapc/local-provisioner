@@ -1,32 +1,7 @@
-base_path: ~/github/guitarrapc
+base_path: /Users/guitarrapc/github/guitarrapc
 repository: 
   - {
     repo: "git@github.com:guitarrapc/dotfiles.git",
-    dest: ~/github/guitarrapc/dotfiles
+    dest: "/Users/guitarrapc/github/guitarrapc/dotfiles"
   }
-symlinks:
-  - { 
-    src: ~/github/guitarrapc/dotfiles/macos/.ansible.cfg,
-    dest: ~/.ansible.cfg
-  }
-  - { 
-    src: ~/github/guitarrapc/dotfiles/macos/.bashrc,
-    dest: ~/.bashrc
-  }
-  - { 
-    src: ~/github/guitarrapc/dotfiles/macos/.bash_profile,
-    dest: ~/.bash_profile
-  }
-  - { 
-    src: ~/github/guitarrapc/dotfiles/macos/.gitconfig,
-    dest: ~/.gitconfig
-  }
-  - { 
-    src: ~/github/guitarrapc/dotfiles/macos/.gitignore_global,
-    dest: ~/.gitignore_global
-  }
-  - { 
-    src: ~/github/guitarrapc/dotfiles/macos/.gitprompt.sh,
-    dest: ~/.gitprompt.sh
-  }
-  
+run_dotfiles: cd /Users/guitarrapc/github/guitarrapc/dotfiles && ./setup.sh
