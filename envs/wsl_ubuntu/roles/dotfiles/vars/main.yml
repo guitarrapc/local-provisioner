@@ -1,15 +1,7 @@
 base_path: ~/github/guitarrapc
 repository: 
   - {
-    repo: "https://github.com/guitarrapc/dotfiles.git",
-    dest: ~/github/guitarrapc/dotfiles
+    repo: "https://github.com/guitarrapc/dotfiles-linux.git",
+    dest: ~/github/guitarrapc/dotfiles-linux
   }
-profile_symlinks:
-  - { 
-    src: '{{ ansible_home }}/github/guitarrapc/dotfiles/wsl/profile_ansible_init_direnv.sh',
-    dest: /etc/profile.d/profile_ansible_init_direnv.sh
-  }
-  - { 
-    src: '{{ ansible_home }}/github/guitarrapc/dotfiles/wsl/profile_ansible_init_docker.sh',
-    dest: /etc/profile.d/profile_ansible_init_docker.sh
-  }
+run_dotfiles: cd /home/guitarrapc/github/guitarrapc/dotfiles-linux && ./setup.sh
