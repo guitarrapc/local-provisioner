@@ -17,22 +17,20 @@ before run provisioner, make sure you have installed ansible.
 macOS.
 
 ```shell
-. ./prerequisites/macos/install_commandlinetools.sh
-. ./prerequisites/macos/install_homebrew.sh
-. ./prerequisites/macos/install_ansible.sh
+. ./prerequisites/macos/install.sh
 ```
 
 Windows.
 
 ```shell
-. ./prerequisites/windows/install_scoop.ps1
+. ./prerequisites/windows/install.ps1
 ```
 
-Ubuntu : Bash on WSL.
+Ubuntu & Bash on WSL (ubuntu)
 
 ```shell
 bash
-. ./prerequisites/wsl_ubuntu/install_ansible.sh
+. ./prerequisites/ubuntu/install.sh
 ```
 
 ### Run
