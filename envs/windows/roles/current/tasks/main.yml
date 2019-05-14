@@ -2,6 +2,7 @@
 - name: "Install linux tools"
   scoop_install:
     state: present
+    bucket: main
     name:
       - cmake
       - gcc
@@ -15,6 +16,7 @@
 - name: "Install windows tools"
   scoop_install:
     state: present
+    bucket: main
     name:
       - 7zip
       - aws
@@ -30,6 +32,7 @@
 - name: "Install Programming Languages"
   scoop_install:
     state: present
+    bucket: main
     name:
       - go
       - nvm

@@ -1,17 +1,20 @@
 - name: "Install linux tools"
   scoop_install:
     state: present
+    bucket: main
     name:
       - gow
 
 - name: "Install windows tools"
   scoop_install_extras:
     state: present
+    bucket: main
     name:
       - 7zip
 
 - name: "UnInstall windows tools"
   scoop_install:
     state: absent
+    bucket: main
     name:
       - 7zip

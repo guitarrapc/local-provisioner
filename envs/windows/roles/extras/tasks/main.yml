@@ -1,7 +1,13 @@
 # https://github.com/lukesampson/scoop-extras
-- name: "Install Extra tools"
-  scoop_install_extras:
+- name: "Install exstra bucket"
+  scoop_bucket_install:
     state: present
+    bucket: extras
+
+- name: "Install Extra tools"
+  scoop_install:
+    state: present
+    bucket: extras
     name:
       - azure-cli
       - azure-functions-core-tools
