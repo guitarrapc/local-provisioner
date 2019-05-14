@@ -1,4 +1,6 @@
 name: Windows Setup
 roles:
-  - current
+  - main
   - extras
+  - ba230t
+  - dorado

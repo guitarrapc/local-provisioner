@@ -1,10 +1,10 @@
 # https://github.com/lukesampson/scoop-extras
-- name: "Install exstra bucket"
+- name: "Install extras bucket"
   scoop_bucket_install:
     state: present
     bucket: extras
 
-- name: "Install Extra tools"
+- name: "Install extras tools"
   scoop_install:
     state: present
     bucket: extras
@@ -22,3 +22,4 @@
       - linqpad
       - slack
       - vscode
+      - vswhere
