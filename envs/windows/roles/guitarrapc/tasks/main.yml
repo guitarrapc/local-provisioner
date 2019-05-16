@@ -1,0 +1,12 @@
+- name: "Install guitarrapc bucket"
+  scoop_bucket_install:
+    state: present
+    bucket: guitarrapc
+    source: https://github.com/guitarrapc/scoop-bucket.git
+
+- name: "Install guitarrapc tools"
+  scoop_install:
+    state: present
+    bucket: guitarrapc
+    name:
+      - DejaVuSansMono-Bront
