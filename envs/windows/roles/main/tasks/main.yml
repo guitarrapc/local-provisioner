@@ -36,3 +36,4 @@
     name:
       - go
       - nvm
+      - yarn
