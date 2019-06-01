@@ -23,4 +23,5 @@ homebrew_packages:
   - name: swiftlint
   - name: tfenv
   - name: tree
+  - name: yarn
   - name: zlib
