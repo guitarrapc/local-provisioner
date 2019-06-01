@@ -6,6 +6,7 @@ describe command("brew cask list -1") do
     its(:stdout) { should match "docker" }
     its(:stdout) { should match "duet" }
     its(:stdout) { should match "fork" }
+    its(:stdout) { should match "goland" }
     its(:stdout) { should match "google-chrome" }
     its(:stdout) { should match "google-cloud-sdk" }
     its(:stdout) { should match "google-japanese-ime" }

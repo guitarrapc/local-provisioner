@@ -4,6 +4,7 @@ homebrew_cask_packages:
   - name: dotnet-sdk
   - name: duet
   - name: fork
+  - name: goland
   - name: google-chrome
   - name: google-cloud-sdk
   - name: google-japanese-ime
