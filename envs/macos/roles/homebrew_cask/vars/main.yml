@@ -3,6 +3,7 @@ homebrew_cask_packages:
   - name: docker
   - name: dotnet-sdk
   - name: duet
+  - name: fork
   - name: google-chrome
   - name: google-cloud-sdk
   - name: google-japanese-ime
