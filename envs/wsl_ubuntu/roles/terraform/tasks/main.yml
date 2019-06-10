@@ -1,47 +1,36 @@
 ---
 
-- name: Update and upgrade apt packages
-  become: yes
-  apt:
-    upgrade: dist
-    update_cache: yes
+- name: Clone & Fetch dotfiles
+  git:
+    repo: "{{ item.repo }}"
+    dest: "{{ item.dest }}"
+  with_items: "{{ repository }}"
+  when: repository is defined
 
-- name: install unzip
-  become: yes
-  apt:
-    pkg: unzip
+- name: Create local bin directory
+  file:
+    path: "~/.local/bin/"
+    state: directory
 
-- name: confirm terraform exists
+- name: Create symlinks
+  file:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    state: link
+  with_items: "{{ symlink }}"
+  when: repository is defined
+
+- name: confirm docker-compose exists
   stat:
-    path: /usr/local/bin/terraform
+    path: "{{ item.dest}}/tfenv"
     get_checksum: false
     get_md5: false
+  with_items: "{{ item.dest }}"
   register: terraform_exists
 
-- name: download terraform
-  get_url:
-    url: https://releases.hashicorp.com/terraform/{{ version }}/terraform_{{ version }}_linux_amd64.zip
-    dest: "{{ ansible_home }}/terraform_{{ version }}_linux_amd64.zip"
-  register: download_terraform
-  when: not terraform_exists.stat.exists
+- name: install terraform
+  command: tfenv install {{ version }}
+  when: terraform_exists.stat.exists
+  register: terraform
 
-- name: confirm terraform temp zip exists
-  stat:
-    path: "{{ ansible_home }}/terraform_{{ version }}_linux_amd64.zip"
-    get_checksum: false
-    get_md5: false
-  register: terraform_zip_exists
-
-- name: unzip terraform_{{ version }}_linux_amd64.zip
-  become: yes
-  unarchive:
-    src: "{{ ansible_home }}/terraform_{{ version }}_linux_amd64.zip"
-    dest: /usr/local/bin
-    remote_src: yes
-  when: not terraform_exists.stat.exists and terraform_zip_exists.stat.exists
-
-- name: remove terraform tmp
-  file:
-    path: "{{ ansible_home }}/terraform_{{ version }}_linux_amd64.zip"
-    state: absent
-  when: terraform_zip_exists.stat.exists
+- debug: msg="{{ terraform.stdout_lines }}"
