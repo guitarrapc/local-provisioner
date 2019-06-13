@@ -7,12 +7,8 @@
   with_items: "{{ repository }}"
   when: repository is defined
 
-- name: Create local bin directory
-  file:
-    path: "~/.local/bin/"
-    state: directory
-
 - name: Create symlinks
+  become: yes
   file:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
@@ -20,17 +16,8 @@
   with_items: "{{ symlink }}"
   when: repository is defined
 
-- name: confirm docker-compose exists
-  stat:
-    path: "{{ item.dest}}/tfenv"
-    get_checksum: false
-    get_md5: false
-  with_items: "{{ item.dest }}"
-  register: terraform_exists
-
 - name: install terraform
   command: tfenv install {{ version }}
-  when: terraform_exists.stat.exists
   register: terraform
 
 - debug: msg="{{ terraform.stdout_lines }}"
