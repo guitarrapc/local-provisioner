@@ -39,3 +39,4 @@
   when: terraform_version is failed
 
 - debug: msg="{{ terraform.stdout_lines }}"
+  when: terraform is failed
