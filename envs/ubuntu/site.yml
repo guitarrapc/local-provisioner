@@ -4,7 +4,7 @@
   pre_tasks:
     - name: Get ansible_user home directory
       become: no
-      shell: getent passwd '{{ ansible_user_id }}' | cut -d: -f6
+      shell: "getent passwd {{ ansible_user_id }} | cut -d: -f6"
       register: ansible_home_result
       changed_when: false
       check_mode: no
