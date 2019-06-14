@@ -1,5 +1,20 @@
 ---
 
+- name: Update and upgrade apt packages
+  become: yes
+  apt:
+    upgrade: dist
+    update_cache: yes
+
+- name: apt-get install azcli
+  become: yes
+  apt:
+    pkg: [
+      unzip,
+    ]
+    state: present
+    update_cache: yes
+
 - name: Clone & Fetch dotfiles
   git:
     repo: "{{ item.repo }}"
