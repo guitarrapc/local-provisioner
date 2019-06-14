@@ -27,8 +27,15 @@
   with_items: "{{ symlink }}"
   when: repository is defined
 
+- name: pickup installed terraform versions
+  shell: tfenv list | grep {{ version }}
+  register: terraform_version
+  changed_when: false
+  ignore_errors: yes
+
 - name: install terraform
   command: tfenv install {{ version }}
   register: terraform
+  when: terraform_version is failed
 
 - debug: msg="{{ terraform.stdout_lines }}"
