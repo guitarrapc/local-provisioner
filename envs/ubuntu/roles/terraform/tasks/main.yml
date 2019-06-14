@@ -6,14 +6,10 @@
     upgrade: dist
     update_cache: yes
 
-- name: apt-get install azcli
+- name: install unzip
   become: yes
   apt:
-    pkg: [
-      unzip,
-    ]
-    state: present
-    update_cache: yes
+    pkg: unzip
 
 - name: Clone & Fetch dotfiles
   git:
