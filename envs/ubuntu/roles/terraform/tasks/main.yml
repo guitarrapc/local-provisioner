@@ -1,5 +1,16 @@
 ---
 
+- name: Update and upgrade apt packages
+  become: yes
+  apt:
+    upgrade: dist
+    update_cache: yes
+
+- name: install unzip
+  become: yes
+  apt:
+    pkg: unzip
+
 - name: Clone & Fetch dotfiles
   git:
     repo: "{{ item.repo }}"
@@ -16,8 +27,16 @@
   with_items: "{{ symlink }}"
   when: repository is defined
 
+- name: pickup installed terraform versions
+  shell: tfenv list | grep {{ version }}
+  register: terraform_version
+  changed_when: false
+  ignore_errors: yes
+
 - name: install terraform
   command: tfenv install {{ version }}
   register: terraform
+  when: terraform_version is failed
 
 - debug: msg="{{ terraform.stdout_lines }}"
+  when: terraform is failed

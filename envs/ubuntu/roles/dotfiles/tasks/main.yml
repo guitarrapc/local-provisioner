@@ -13,6 +13,7 @@
   when: repository is defined
 
 - name: Create symlinks
+  become: yes
   command: bash -lc "{{ run_dotfiles }}"
   changed_when: False
   register: dotfiles
