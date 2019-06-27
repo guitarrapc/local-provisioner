@@ -12,7 +12,7 @@ if ($null -eq (Get-Command scoop.ps1*)) {
 }
 
 PrintInfo -message "install/update required scoop package"
-foreach ($item in @("git", "innounp", "dark", "sudo")) {
+foreach ($item in @("git", "innounp", "dark", "sudo", "dark")) {
     scoop install $item
     scoop update $item
 }
