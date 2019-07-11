@@ -20,6 +20,6 @@ if (!$currentPrincipal.IsInRole([Security.Principal.WindowsBuiltInRole]::Adminis
 }
 
 # WSL for ubuntu
-Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
+sudo Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
 # Hyper-V for Docker
-Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All
+sudo Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All
