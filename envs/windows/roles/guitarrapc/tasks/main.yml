@@ -10,3 +10,4 @@
     bucket: guitarrapc
     name:
       - DejaVuSansMono-Bront
+      - ecs-cli
