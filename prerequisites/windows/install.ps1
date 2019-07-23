@@ -15,7 +15,7 @@ PrintInfo -message "install/update required scoop package"
 foreach ($item in @("git", "innounp", "dark", "sudo", "dark")) {
     scoop install $item
     scoop update $item
-    if (!?) {
+    if (!$?) {
         PrintInfo -message "COULD NOT COMPLETE INSTALLATION $item. please run 'scoop uninstall $item' then run again."
         return
     }
