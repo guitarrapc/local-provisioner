@@ -1,5 +1,6 @@
 ---
 
+# kubectl
 - name: confirm kubectl exists
   stat:
     path: /usr/local/bin/kubectl
@@ -32,3 +33,26 @@
   file:
     path: /usr/local/bin/kubectl
     mode: '0755'
+
+# kubeadm
+- name: add kube apt
+  become: yes
+  apt_repository:
+    repo: deb http://apt.kubernetes.io/ kubernetes-xenial main
+    state: present
+
+- name: add kubeadm apt_key
+  become: yes
+  apt_key:
+    url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
+
+- name: Update and upgrade apt packages
+  become: yes
+  apt:
+    upgrade: dist
+    update_cache: yes
+
+- name: install kubeadm
+  become: yes
+  apt:
+    pkg: kubeadm
