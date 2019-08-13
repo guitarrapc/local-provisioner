@@ -9,5 +9,4 @@
 - name: install tools
   become: yes
   apt:
-    pkg: "{{ item }}"
-  with_items: "{{ tools }}"
+    pkg: "{{ tools }}"

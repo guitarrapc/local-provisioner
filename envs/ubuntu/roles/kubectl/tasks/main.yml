@@ -1,0 +1,34 @@
+---
+
+- name: confirm kubectl exists
+  stat:
+    path: /usr/local/bin/kubectl
+    get_checksum: false
+    get_md5: false
+  register: kubectl_exists
+  
+- name: download kubectl
+  get_url:
+    url: https://storage.googleapis.com/kubernetes-release/release/{{ kubectl_version }}/bin/linux/amd64/kubectl
+    dest: "{{ ansible_home }}/kubectl"
+  register: download_kubectl
+  when: not kubectl_exists.stat.exists
+
+- name: copy kubectl
+  become: yes
+  copy:
+    src: "{{ ansible_home }}/kubectl"
+    dest: /usr/local/bin
+  when: not kubectl_exists.stat.exists
+
+- name: remove kubectl
+  file:
+    state: absent
+    path: "{{ ansible_home }}/kubectl"
+  when: download_kubectl is succeeded
+
+- name: change file permissions
+  become: yes
+  file:
+    path: /usr/local/bin/kubectl
+    mode: '0755'
