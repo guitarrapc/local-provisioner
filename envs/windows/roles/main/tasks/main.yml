@@ -12,6 +12,7 @@
       - time
       - unzip
       - openssl
+      - apache
 
 - name: "Install windows tools"
   scoop_install:
