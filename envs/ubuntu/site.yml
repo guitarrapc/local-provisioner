@@ -20,6 +20,7 @@
   roles:
     - { role: 'dotfiles', tags: [dotfiles] }
     - { role: 'direnv', tags: [direnv] }
+    - { role: 'pip', tags: [pip] }
     - { role: 'awscli', tags: [awscli] }
     - { role: 'azcli', tags: [azcli] }
     - { role: 'terraform', tags: [terraform] }

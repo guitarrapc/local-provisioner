@@ -10,3 +10,10 @@
   become: yes
   apt:
     pkg: awscli
+
+- name: install awscli pip3
+  pip:
+    name: awscli
+    executable: pip3
+    extra_args: --upgrade --user
+    state: latest
