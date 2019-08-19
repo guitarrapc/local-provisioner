@@ -68,22 +68,42 @@
 - name: download helm
   get_url:
     url: https://get.helm.sh/helm-{{ helm_version }}-linux-amd64.tar.gz
-    dest: "{{ ansible_home }}/helm"
+    dest: "{{ ansible_home }}/helm.tar.gz"
   register: download_helm
+  when: not helm_exists.stat.exists
+
+- name: unarchive helm
+  unarchive:
+    src: "{{ ansible_home }}/helm.tar.gz"
+    dest: "{{ ansible_home }}/helm"
+  register: unarchive_helm
   when: not helm_exists.stat.exists
 
 - name: copy helm
   become: yes
   copy:
-    src: "{{ ansible_home }}/helm"
+    src: "{{ ansible_home }}/helm/helm"
+    dest: /usr/local/bin
+  when: not helm_exists.stat.exists
+
+- name: copy tiller
+  become: yes
+  copy:
+    src: "{{ ansible_home }}/helm/tiller"
     dest: /usr/local/bin
   when: not helm_exists.stat.exists
 
 - name: remove helm
   file:
     state: absent
-    path: "{{ ansible_home }}/helm"
+    path: "{{ ansible_home }}/helm.tar.gz"
   when: download_helm is succeeded
+
+- name: remove helm
+  file:
+    state: absent
+    path: "{{ ansible_home }}/helm"
+  when: unarchive_helm is succeeded
 
 - name: change file permissions
   become: yes
