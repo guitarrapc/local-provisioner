@@ -56,3 +56,37 @@
   become: yes
   apt:
     pkg: kubeadm
+
+# helm
+- name: confirm helm exists
+  stat:
+    path: /usr/local/bin/helm
+    get_checksum: false
+    get_md5: false
+  register: helm_exists
+  
+- name: download helm
+  get_url:
+    url: https://get.helm.sh/helm-{{ helm_version }}-linux-amd64.tar.gz
+    dest: "{{ ansible_home }}/helm"
+  register: download_helm
+  when: not helm_exists.stat.exists
+
+- name: copy helm
+  become: yes
+  copy:
+    src: "{{ ansible_home }}/helm"
+    dest: /usr/local/bin
+  when: not helm_exists.stat.exists
+
+- name: remove helm
+  file:
+    state: absent
+    path: "{{ ansible_home }}/helm"
+  when: download_helm is succeeded
+
+- name: change file permissions
+  become: yes
+  file:
+    path: /usr/local/bin/helm
+    mode: '0755'
