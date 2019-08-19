@@ -74,6 +74,8 @@
 
 - name: unarchive helm
   command: tar -zxvf "{{ ansible_home }}/helm.tar.gz"
+  args:
+    chdir: "{{ ansible_home }}/"
   register: unarchive_helm
   when: not helm_exists.stat.exists
 
