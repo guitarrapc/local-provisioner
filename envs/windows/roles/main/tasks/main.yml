@@ -29,6 +29,7 @@
       - pwsh
       - terraform
       - gibo
+      - helm
 
 - name: "Install Programming Languages"
   scoop_install:
