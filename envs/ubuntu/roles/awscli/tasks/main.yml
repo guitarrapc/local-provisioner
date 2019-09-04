@@ -29,13 +29,13 @@
 
 - name: download eksctl
   shell: >
-    curl -L "https://github.com/weaveworks/eksctl/releases/download/latest_release/eksctl_$(uname -s)_amd64.tar.gz" -o /tmp/eksctl_$(uname -s)_amd64.tar.gz
+    curl -L "https://github.com/weaveworks/eksctl/releases/download/latest_release/eksctl_$(uname -s)_amd64.tar.gz" -o /tmp/eksctl_amd64.tar.gz
   when: not eksctl_exists.stat.exists
 
 - name: unzip eksctl
   become: yes
   unarchive:
-    src: /tmp/eksctl_$(uname -s)_amd64.tar.gz
+    src: /tmp/eksctl_amd64.tar.gz
     dest: /usr/local/bin
     remote_src: yes
   when: not eksctl_exists.stat.exists
