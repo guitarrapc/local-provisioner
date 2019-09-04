@@ -131,3 +131,37 @@
     src: "{{ ansible_home }}/github/kubectx/kubectx"
     dest: "/usr/local/bin/kubectx"
     state: link
+
+# stern
+- name: confirm stern exists
+  stat:
+    path: /usr/local/bin/stern
+    get_checksum: false
+    get_md5: false
+  register: stern_exists
+  
+- name: download stern
+  get_url:
+    url: https://github.com/wercker/stern/releases/download/{{ stern_version }}/stern_linux_amd64
+    dest: "{{ ansible_home }}/stern"
+  register: download_stern
+  when: not stern_exists.stat.exists
+
+- name: copy stern
+  become: yes
+  copy:
+    src: "{{ ansible_home }}/stern"
+    dest: /usr/local/bin
+  when: not stern_exists.stat.exists
+
+- name: remove stern
+  file:
+    state: absent
+    path: "{{ ansible_home }}/stern"
+  when: download_stern is succeeded
+
+- name: change file permissions
+  become: yes
+  file:
+    path: /usr/local/bin/stern
+    mode: '0755'
