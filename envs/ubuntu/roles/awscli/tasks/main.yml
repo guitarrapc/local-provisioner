@@ -59,13 +59,13 @@
     path: /usr/local/bin/aws-iam-authenticator
     get_checksum: false
     get_md5: false
-  register: aws-iam-authenticator_exists
+  register: aws_iam_authenticator_exists
 
 - name: download aws-iam-authenticator
   become: yes
   shell: >
     curl -L "https://amazon-eks.s3-us-west-2.amazonaws.com/1.13.7/2019-06-11/bin/linux/amd64/aws-iam-authenticator" -o /usr/local/bin/aws-iam-authenticator
-  when: not aws-iam-authenticator_exists.stat.exists
+  when: not aws_iam_authenticator_exists.stat.exists
 
 - name: chmod aws-iam-authenticator
   become: yes
