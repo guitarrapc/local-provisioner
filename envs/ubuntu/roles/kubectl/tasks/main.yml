@@ -124,7 +124,6 @@
     repo: https://github.com/ahmetb/kubectx.git
     dest: "{{ ansible_home}}/github/kubectx"
     accept_hostkey: yes
-  when: not check_repos.stat.exists
 
 - name: create kubectx symlinks
   become: yes

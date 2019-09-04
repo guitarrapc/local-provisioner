@@ -28,9 +28,22 @@
   register: eksctl_exists
 
 - name: download eksctl
-  become: yes
   shell: >
-    curl -L "https://github.com/weaveworks/eksctl/releases/download/latest_release/eksctl_$(uname -s)_amd64.tar.gz" -o /usr/local/bin/eksctl
+    curl -L "https://github.com/weaveworks/eksctl/releases/download/latest_release/eksctl_$(uname -s)_amd64.tar.gz" -o /tmp/eksctl_$(uname -s)_amd64.tar.gz
+  when: not eksctl_exists.stat.exists
+
+- name: unzip eksctl
+  become: yes
+  unarchive:
+    src: /tmp/eksctl_$(uname -s)_amd64.tar.gz
+    dest: /usr/local/bin
+    remote_src: yes
+  when: not eksctl_exists.stat.exists
+
+- name: remove eksctl tmp
+  file:
+    path: /tmp/eksctl_$(uname -s)_amd64.tar.gz
+    state: absent
   when: not eksctl_exists.stat.exists
 
 - name: chmod eksctl
