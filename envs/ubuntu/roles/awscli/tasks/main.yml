@@ -1,5 +1,6 @@
 ---
 
+# awscli
 - name: Update and upgrade apt packages
   become: yes
   apt:
@@ -17,3 +18,23 @@
     executable: pip3
     extra_args: --upgrade --user
     state: latest
+
+# eksctl
+- name: confirm eksctl exists
+  stat:
+    path: /usr/local/bin/eksctl
+    get_checksum: false
+    get_md5: false
+  register: eksctl_exists
+
+- name: download eksctl
+  become: yes
+  shell: >
+    curl -L "https://github.com/weaveworks/eksctl/releases/download/latest_release/eksctl_$(uname -s)_amd64.tar.gz" -o /usr/local/bin/eksctl
+  when: not eksctl_exists.stat.exists
+
+- name: chmod eksctl
+  become: yes
+  file:
+    path: /usr/local/bin/eksctl
+    mode: a+x
