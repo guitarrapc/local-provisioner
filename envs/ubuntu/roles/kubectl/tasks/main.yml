@@ -131,4 +131,3 @@
     src: "{{ ansible_home }}/github/kubectx/kubectx"
     dest: "/usr/local/bin/kubectx"
     state: link
-
