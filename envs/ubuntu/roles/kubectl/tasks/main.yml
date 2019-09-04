@@ -128,7 +128,7 @@
 - name: create kubectx symlinks
   become: yes
   file:
-    src: "{{ ansible_home}}/github/kubectx/kubectx"
+    src: "{{ ansible_home }}/github/kubectx/kubectx"
     dest: "/usr/local/bin/kubectx"
     state: link
 
