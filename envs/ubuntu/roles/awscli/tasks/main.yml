@@ -1,11 +1,5 @@
 ---
 # awscli
-- name: install awscli
-  become: yes
-  apt:
-    pkg: awscli
-    update_cache: yes
-
 - name: install awscli pip3
   pip:
     name: awscli

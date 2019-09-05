@@ -1,6 +1,0 @@
----
-- name: install direnv
-  become: yes
-  apt:
-    pkg: direnv
-    update_cache: yes

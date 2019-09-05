@@ -1,6 +1,0 @@
----
-- name: install python3-pip
-  become: yes
-  apt:
-    pkg: python3-pip
-    update_cache: yes

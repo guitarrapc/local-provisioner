@@ -1,5 +1,5 @@
 - name: local-dev ubuntu setup
-  hosts: 'local'
+  hosts: "local"
   become: no
   pre_tasks:
     - name: Get ansible_user home directory
@@ -18,16 +18,13 @@
       debug:
         msg: "{{ ansible_user }}"
   roles:
-    - { role: 'dotfiles', tags: [dotfiles] }
-    - { role: 'direnv', tags: [direnv] }
-    - { role: 'pip', tags: [pip] }
-    - { role: 'awscli', tags: [awscli] }
-    - { role: 'azcli', tags: [azcli] }
-    - { role: 'terraform', tags: [terraform] }
-    - { role: 'docker', tags: [docker] }
-    - { role: 'tools', tags: [tools] }
-    - { role: 'circleci', tags: [circleci] }
-    - { role: 'ngrok', tags: [ngrok] }
-    - { role: 'kubectl', tags: [kubectl] }
-
+    - { role: "dotfiles", tags: [dotfiles] }
+    - { role: "tools", tags: [tools] }
+    - { role: "awscli", tags: [awscli] }
+    - { role: "azcli", tags: [azcli] }
+    - { role: "terraform", tags: [terraform] }
+    - { role: "docker", tags: [docker] }
+    - { role: "circleci", tags: [circleci] }
+    - { role: "ngrok", tags: [ngrok] }
+    - { role: "kubectl", tags: [kubectl] }
 # ansible-playbook -i hosts site.yml --ask-become-pass

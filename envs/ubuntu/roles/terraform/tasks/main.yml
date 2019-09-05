@@ -1,9 +1,4 @@
 ---
-- name: install unzip
-  become: yes
-  apt:
-    pkg: unzip
-
 - name: Clone & Fetch dotfiles
   git:
     repo: "{{ item.repo }}"

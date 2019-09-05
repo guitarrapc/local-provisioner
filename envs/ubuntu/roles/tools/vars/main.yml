@@ -1,2 +1,5 @@
 tools:
+  - direnv
+  - python3-pip
   - tree
+  - unzip
