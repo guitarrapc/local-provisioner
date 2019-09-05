@@ -1,12 +1,6 @@
 ---
-
-- name: Update and upgrade apt packages
-  become: yes
-  apt:
-    upgrade: dist
-    update_cache: yes
-
 - name: install direnv
   become: yes
   apt:
     pkg: direnv
+    update_cache: yes
