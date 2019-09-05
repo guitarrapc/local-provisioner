@@ -1,16 +1,10 @@
 ---
-
 # awscli
-- name: Update and upgrade apt packages
-  become: yes
-  apt:
-    upgrade: dist
-    update_cache: yes
-
 - name: install awscli
   become: yes
   apt:
     pkg: awscli
+    update_cache: yes
 
 - name: install awscli pip3
   pip:

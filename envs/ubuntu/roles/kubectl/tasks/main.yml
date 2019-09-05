@@ -1,5 +1,4 @@
 ---
-
 # kubectl
 - name: confirm kubectl exists
   stat:
@@ -7,7 +6,7 @@
     get_checksum: false
     get_md5: false
   register: kubectl_exists
-  
+
 - name: download kubectl
   get_url:
     url: https://storage.googleapis.com/kubernetes-release/release/{{ kubectl_version }}/bin/linux/amd64/kubectl
@@ -32,7 +31,7 @@
   become: yes
   file:
     path: /usr/local/bin/kubectl
-    mode: '0755'
+    mode: "0755"
 
 # kubeadm
 - name: add kube apt
@@ -46,16 +45,11 @@
   apt_key:
     url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
 
-- name: Update and upgrade apt packages
-  become: yes
-  apt:
-    upgrade: dist
-    update_cache: yes
-
 - name: install kubeadm
   become: yes
   apt:
     pkg: kubeadm
+    update_cache: yes
 
 # helm
 - name: confirm helm exists
@@ -64,7 +58,7 @@
     get_checksum: false
     get_md5: false
   register: helm_exists
-  
+
 - name: download helm
   get_url:
     url: https://get.helm.sh/helm-{{ helm_version }}-linux-amd64.tar.gz
@@ -109,13 +103,13 @@
   become: yes
   file:
     path: /usr/local/bin/helm
-    mode: '0755'
+    mode: "0755"
 
 - name: change file permissions
   become: yes
   file:
     path: /usr/local/bin/tiller
-    mode: '0755'
+    mode: "0755"
 
 # kubectx
 - name: clone kubectx
@@ -139,7 +133,7 @@
     get_checksum: false
     get_md5: false
   register: stern_exists
-  
+
 - name: download stern
   get_url:
     url: https://github.com/wercker/stern/releases/download/{{ stern_version }}/stern_linux_amd64
@@ -164,4 +158,4 @@
   become: yes
   file:
     path: /usr/local/bin/stern
-    mode: '0755'
+    mode: "0755"

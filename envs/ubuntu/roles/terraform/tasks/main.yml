@@ -1,11 +1,4 @@
 ---
-
-- name: Update and upgrade apt packages
-  become: yes
-  apt:
-    upgrade: dist
-    update_cache: yes
-
 - name: install unzip
   become: yes
   apt:
