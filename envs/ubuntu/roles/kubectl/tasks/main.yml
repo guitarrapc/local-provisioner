@@ -34,16 +34,16 @@
     mode: "0755"
 
 # kubeadm
+- name: add kubeadm apt_key
+  become: yes
+  apt_key:
+    url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
+
 - name: add kube apt
   become: yes
   apt_repository:
     repo: deb http://apt.kubernetes.io/ kubernetes-xenial main
     state: present
-
-- name: add kubeadm apt_key
-  become: yes
-  apt_key:
-    url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
 
 - name: install kubeadm
   become: yes
