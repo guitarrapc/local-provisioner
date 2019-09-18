@@ -26,5 +26,5 @@
     - { role: "docker", tags: [docker] }
     - { role: "circleci", tags: [circleci] }
     - { role: "ngrok", tags: [ngrok] }
-    - { role: "kubectl", tags: [kubectl] }
+    - { role: "kubernetes", tags: [kubernetes] }
 # ansible-playbook -i hosts site.yml --ask-become-pass
