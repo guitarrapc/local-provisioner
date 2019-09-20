@@ -159,3 +159,36 @@
   file:
     path: /usr/local/bin/stern
     mode: "0755"
+
+# kubergrunt
+- name: pickup installed kubergrunt versions
+  shell: kubergrunt version | grep {{ kubergrunt_version }}
+  register: kubergrunt_version
+  changed_when: false
+  ignore_errors: yes
+
+- name: download kubergrunt
+  get_url:
+    url: https://github.com/gruntwork-io/kubergrunt/releases/download/v{{ kubergrunt_version }}/kubergrunt_linux_amd64
+    dest: "{{ ansible_home }}/kubergrunt"
+  register: download_kubergrunt
+  when: kubergrunt_version is failed
+
+- name: copy kubergrunt
+  become: yes
+  copy:
+    src: "{{ ansible_home }}/kubergrunt"
+    dest: /usr/local/bin
+  when: kubergrunt_version is failed
+
+- name: remove kubergrunt
+  file:
+    state: absent
+    path: "{{ ansible_home }}/kubergrunt"
+  when: download_kubergrunt is succeeded
+
+- name: change file permissions
+  become: yes
+  file:
+    path: /usr/local/bin/kubergrunt
+    mode: "0755"
