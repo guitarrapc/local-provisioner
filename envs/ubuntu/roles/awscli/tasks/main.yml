@@ -51,7 +51,7 @@
 
 - name: download aws-iam-authenticator
   become: yes
-  shell: curl -L "https://amazon-eks.s3-us-west-2.amazonaws.com/{{ aws-iam-authenticator_version }}/{{ authenticator_date }}/bin/linux/amd64/aws-iam-authenticator" -o /usr/local/bin/aws-iam-authenticator
+  shell: curl -L "https://amazon-eks.s3-us-west-2.amazonaws.com/{{ aws_iam_authenticator_version }}/{{ aws_iam_authenticator_date }}/bin/linux/amd64/aws-iam-authenticator" -o /usr/local/bin/aws-iam-authenticator
   when: not aws_iam_authenticator_exists.stat.exists
 
 - name: chmod aws-iam-authenticator
