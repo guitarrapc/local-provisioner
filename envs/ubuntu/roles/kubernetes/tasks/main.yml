@@ -126,6 +126,13 @@
     dest: "/usr/local/bin/kubectx"
     state: link
 
+- name: create kubens symlinks
+  become: yes
+  file:
+    src: "{{ ansible_home }}/github/kubectx/kubens"
+    dest: "/usr/local/bin/kubens"
+    state: link
+
 # stern
 - name: confirm stern exists
   stat:
