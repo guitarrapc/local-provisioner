@@ -1,25 +1,24 @@
 ---
 # kubectl
-- name: confirm kubectl exists
-  stat:
-    path: /usr/local/bin/kubectl
-    get_checksum: false
-    get_md5: false
+- name: pickup installed kubectl versions
+  shell: kubectl version | grep {{ kubectl_version }}
   register: kubectl_exists
+  changed_when: false
+  ignore_errors: yes
 
 - name: download kubectl
   get_url:
     url: https://storage.googleapis.com/kubernetes-release/release/{{ kubectl_version }}/bin/linux/amd64/kubectl
     dest: "{{ ansible_home }}/kubectl"
   register: download_kubectl
-  when: not kubectl_exists.stat.exists
+  when: kubectl_exists is failed
 
 - name: copy kubectl
   become: yes
   copy:
     src: "{{ ansible_home }}/kubectl"
     dest: /usr/local/bin
-  when: not kubectl_exists.stat.exists
+  when: kubectl_exists is failed
 
 - name: remove kubectl
   file:
@@ -52,40 +51,39 @@
     update_cache: yes
 
 # helm
-- name: confirm helm exists
-  stat:
-    path: /usr/local/bin/helm
-    get_checksum: false
-    get_md5: false
+- name: pickup installed helm versions
+  shell: helm version | grep {{ helm_version }}
   register: helm_exists
+  changed_when: false
+  ignore_errors: yes
 
 - name: download helm
   get_url:
     url: https://get.helm.sh/helm-{{ helm_version }}-linux-amd64.tar.gz
     dest: "{{ ansible_home }}/helm.tar.gz"
   register: download_helm
-  when: not helm_exists.stat.exists
+  when: helm_exists is failed
 
 - name: unarchive helm
   command: tar -zxvf "{{ ansible_home }}/helm.tar.gz"
   args:
     chdir: "{{ ansible_home }}/"
   register: unarchive_helm
-  when: not helm_exists.stat.exists
+  when: helm_exists is failed
 
 - name: copy helm
   become: yes
   copy:
     src: "{{ ansible_home }}/linux-amd64/helm"
     dest: /usr/local/bin
-  when: not helm_exists.stat.exists
+  when: helm_exists is failed
 
 - name: copy tiller
   become: yes
   copy:
     src: "{{ ansible_home }}/linux-amd64/tiller"
     dest: /usr/local/bin
-  when: not helm_exists.stat.exists
+  when: helm_exists is failed
 
 - name: remove helm
   file:
@@ -134,26 +132,25 @@
     state: link
 
 # stern
-- name: confirm stern exists
-  stat:
-    path: /usr/local/bin/stern
-    get_checksum: false
-    get_md5: false
+- name: pickup installed stern versions
+  shell: stern --version | grep {{ stern_version }}
   register: stern_exists
+  changed_when: false
+  ignore_errors: yes
 
 - name: download stern
   get_url:
     url: https://github.com/wercker/stern/releases/download/{{ stern_version }}/stern_linux_amd64
     dest: "{{ ansible_home }}/stern"
   register: download_stern
-  when: not stern_exists.stat.exists
+  when: stern_exists is failed
 
 - name: copy stern
   become: yes
   copy:
     src: "{{ ansible_home }}/stern"
     dest: /usr/local/bin
-  when: not stern_exists.stat.exists
+  when: stern_exists is failed
 
 - name: remove stern
   file:
