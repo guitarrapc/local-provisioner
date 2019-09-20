@@ -34,6 +34,7 @@
 
 - name: confirm kubectl exists
   shell: ls /usr/local/bin/kubectl && kubectl version | grep {{ kubectl_version }}
+  changed_when: false
 
 # kubeadm
 - name: add kubeadm apt_key
@@ -114,6 +115,7 @@
 
 - name: confirm helm exists
   shell: ls /usr/local/bin/helm && helm version | grep {{ helm_version }}
+  changed_when: false
 
 # kubectx
 - name: clone kubectx
@@ -172,6 +174,7 @@
 
 - name: confirm stern exists
   shell: ls /usr/local/bin/stern && stern --version | grep {{ stern_version }}
+  changed_when: false
 
 # kubergrunt
 - name: pickup installed kubergrunt versions
@@ -208,3 +211,4 @@
 
 - name: confirm kubergrunt exists
   shell: ls /usr/local/bin/kubergrunt && kubergrunt --version | grep {{ kubergrunt_version }}
+  changed_when: false
