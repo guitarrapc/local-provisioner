@@ -32,6 +32,9 @@
     path: /usr/local/bin/kubectl
     mode: "0755"
 
+- name: confirm kubectl exists
+  shell: ls /usr/local/bin/kubectl && kubectl version | grep {{ kubectl_version }}
+
 # kubeadm
 - name: add kubeadm apt_key
   become: yes
@@ -109,6 +112,9 @@
     path: /usr/local/bin/tiller
     mode: "0755"
 
+- name: confirm helm exists
+  shell: ls /usr/local/bin/helm && helm version | grep {{ helm_version }}
+
 # kubectx
 - name: clone kubectx
   become: yes
@@ -164,9 +170,12 @@
     path: /usr/local/bin/stern
     mode: "0755"
 
+- name: confirm stern exists
+  shell: ls /usr/local/bin/stern && stern --version | grep {{ stern_version }}
+
 # kubergrunt
 - name: pickup installed kubergrunt versions
-  shell: kubergrunt version | grep {{ kubergrunt_version }}
+  shell: kubergrunt --version | grep {{ kubergrunt_version }}
   register: kubergrunt_exists
   changed_when: false
   ignore_errors: yes
@@ -196,3 +205,6 @@
   file:
     path: /usr/local/bin/kubergrunt
     mode: "0755"
+
+- name: confirm kubergrunt exists
+  shell: ls /usr/local/bin/kubergrunt && kubergrunt --version | grep {{ kubergrunt_version }}
