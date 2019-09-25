@@ -245,12 +245,18 @@
   copy:
     src: "{{ ansible_home }}/istio-{{ istioctl_version }}/bin/istioctl"
     dest: /usr/local/bin
-  when: istioctl_exists is failed
+  when: download_istioctl is succeeded
 
-- name: remove istioctl
+- name: remove istioctl from bin/
   file:
     state: absent
     path: "{{ ansible_home }}/istio-{{ istioctl_version }}/bin/"
+  when: download_istioctl is succeeded
+
+- name: remove istioctl sh
+  file:
+    state: absent
+    path: "{{ ansible_home }}/istio_install.sh"
   when: download_istioctl is succeeded
 
 - name: change file permissions
@@ -258,6 +264,7 @@
   file:
     path: /usr/local/bin/istioctl
     mode: "0755"
+  when: download_istioctl is succeeded
 
 - name: confirm istioctl exists
   shell: ls /usr/local/bin/istioctl && istioctl version | grep {{ istioctl_version }}
