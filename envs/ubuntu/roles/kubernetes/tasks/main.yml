@@ -234,7 +234,7 @@
   when: istioctl_exists is failed
 
 - name: install istioctl sh
-  shell: ISTIO_VERSION={{ istioctl_version }} ./istio_install.sh
+  shell: ISTIO_VERSION={{ istioctl_version }} . ./istio_install.sh
   args:
     chdir: "{{ ansible_home }}/"
   when: download_istioctl is succeeded
