@@ -89,16 +89,22 @@
     dest: /usr/local/bin
   when: helm_exists is failed
 
-- name: remove helm
+- name: remove helm.tar.gz
   file:
     state: absent
     path: "{{ ansible_home }}/helm.tar.gz"
   when: download_helm is succeeded
 
-- name: remove helm
+- name: remove helm.tar.gz
   file:
     state: absent
     path: "{{ ansible_home }}/helm"
+  when: unarchive_helm is succeeded
+
+- name: remove helm dir
+  file:
+    state: absent
+    path: "{{ ansible_home }}/linux-amd64"
   when: unarchive_helm is succeeded
 
 - name: change file permissions
@@ -211,4 +217,48 @@
 
 - name: confirm kubergrunt exists
   shell: ls /usr/local/bin/kubergrunt && kubergrunt --version | grep {{ kubergrunt_version }}
+  changed_when: false
+
+# istioctl
+- name: pickup installed istioctl versions
+  shell: istioctl version | grep {{ istioctl_version }}
+  register: istioctl_exists
+  changed_when: false
+  ignore_errors: yes
+
+- name: download istioctl
+  get_url:
+    url: https://git.io/getLatestIstio
+    dest: "{{ ansible_home }}/istio_install.sh"
+  register: download_istioctl
+  when: istioctl_exists is failed
+
+- name: install istioctl sh
+  shell: ISTIO_VERSION={{ istioctl_version }} ./istio_install.sh
+  args:
+    chdir: "{{ ansible_home }}/"
+  when: download_istioctl is succeeded
+  changed_when: false
+
+- name: copy istioctl
+  become: yes
+  copy:
+    src: "{{ ansible_home }}/istio-{{ istioctl_version }}/bin/istioctl"
+    dest: /usr/local/bin
+  when: istioctl_exists is failed
+
+- name: remove istioctl
+  file:
+    state: absent
+    path: "{{ ansible_home }}/istio-{{ istioctl_version }}/bin/"
+  when: download_istioctl is succeeded
+
+- name: change file permissions
+  become: yes
+  file:
+    path: /usr/local/bin/istioctl
+    mode: "0755"
+
+- name: confirm istioctl exists
+  shell: ls /usr/local/bin/istioctl && istioctl version | grep {{ istioctl_version }}
   changed_when: false
