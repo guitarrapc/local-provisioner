@@ -17,6 +17,9 @@
     - name: debug user
       debug:
         msg: "{{ ansible_user }}"
+    - name: debug distribution
+      debug:
+        msg: "{{ ansible_distribution_release }}"
   roles:
     - { role: "dotfiles", tags: [dotfiles] }
     - { role: "tools", tags: [tools] }
