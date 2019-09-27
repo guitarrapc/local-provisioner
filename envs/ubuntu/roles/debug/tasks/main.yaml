@@ -1,0 +1,28 @@
+---
+# "ansible_home" may be: /home/guitarrapc
+# "ansible_user" may be: guitarrapc
+- name: debug home path
+  debug:
+    msg: "{{ ansible_home }}"
+- name: debug user
+  debug:
+    msg: "{{ ansible_user }}"
+
+# "ansible_distribution" may be: "Debian", "SLES", "Ubuntu", "CentOS"
+# "ansible_distribution_version" may be: "9.0", "12.2", "18.04", "7.3.1611"
+# "ansible_distribution_major_version" may be: "9", "12", 18.04"
+# "ansible_distribution_release" may be: "bionic"
+# "ansible_os_family" may be: "Debian", "RedHat", "Suse"
+# Upper/lower case is important, you can change UPPER or lower via `|uppper` or `|lower`
+- name: debug distribution
+  debug:
+    msg: "{{ ansible_distribution }}"
+- name: debug distribution lower case
+  debug:
+    msg: "{{ ansible_distribution|lower }}"
+- name: debug distribution version
+  debug:
+    msg: "{{ ansible_distribution_version }}"
+- name: debug distribution release
+  debug:
+    msg: "{{ ansible_distribution_release }}"

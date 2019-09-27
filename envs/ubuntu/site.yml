@@ -11,22 +11,8 @@
       tags: always
     - name: Set the fact for the other scripts to use
       set_fact: ansible_home='{{ ansible_home_result.stdout }}'
-    - name: debug home path
-      debug:
-        msg: "{{ ansible_home }}"
-    - name: debug user
-      debug:
-        msg: "{{ ansible_user }}"
-    - name: debug distribution
-      debug:
-        msg: "{{ ansible_distribution }}"
-    - name: debug distribution version
-      debug:
-        msg: "{{ ansible_distribution_version }}"
-    - name: debug distribution release
-      debug:
-        msg: "{{ ansible_distribution_release }}"
   roles:
+    - { role: "debug", tags: [debug] }
     - { role: "dotfiles", tags: [dotfiles] }
     - { role: "tools", tags: [tools] }
     - { role: "awscli", tags: [awscli] }
