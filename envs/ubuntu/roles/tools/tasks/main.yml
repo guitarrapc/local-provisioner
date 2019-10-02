@@ -5,7 +5,9 @@
     pkg: "{{ apt_tools }}"
     update_cache: yes
 
-- name: install snap tools
-  become: yes
-  snap:
-    name: "{{ snap_tools }}"
+# snap not yet supported on WSL
+# - name: install snap tools
+#   become: yes
+#   snap:
+#     name: "{{ snap_tools }}"
+

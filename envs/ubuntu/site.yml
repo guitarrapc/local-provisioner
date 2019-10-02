@@ -15,6 +15,7 @@
     - { role: "debug", tags: [debug] }
     - { role: "dotfiles", tags: [dotfiles] }
     - { role: "tools", tags: [tools] }
+    - { role: "yq", tags: [yq] }
     - { role: "awscli", tags: [awscli] }
     - { role: "azcli", tags: [azcli] }
     - { role: "terraform", tags: [terraform] }

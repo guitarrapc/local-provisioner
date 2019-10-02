@@ -1,0 +1,7 @@
+---
+# yq
+- name: install yq pip3
+  pip:
+    name: yq
+    executable: pip3
+    state: latest

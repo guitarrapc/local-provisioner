@@ -4,7 +4,3 @@ apt_tools:
   - python3-pip
   - tree
   - unzip
-
-snap_tools:
-  - yq
- 
