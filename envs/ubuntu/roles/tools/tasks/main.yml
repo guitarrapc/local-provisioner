@@ -8,5 +8,4 @@
 - name: install snap tools
   become: yes
   snap:
-    pkg: "{{ snap_tools }}"
-    update_cache: yes
+    name: "{{ snap_tools }}"
