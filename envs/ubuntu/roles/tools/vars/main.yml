@@ -1,5 +1,10 @@
-tools:
+apt_tools:
   - direnv
+  - jq
   - python3-pip
   - tree
   - unzip
+
+snap_tools:
+  - yq
+ 

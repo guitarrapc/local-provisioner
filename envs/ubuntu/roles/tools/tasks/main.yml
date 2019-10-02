@@ -1,6 +1,12 @@
 ---
-- name: install tools
+- name: install apt tools
   become: yes
   apt:
-    pkg: "{{ tools }}"
+    pkg: "{{ apt_tools }}"
+    update_cache: yes
+
+- name: install snap tools
+  become: yes
+  snap:
+    pkg: "{{ snap_tools }}"
     update_cache: yes
