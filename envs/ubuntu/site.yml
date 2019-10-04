@@ -24,5 +24,4 @@
     - { role: "ngrok", tags: [ngrok] }
     - { role: "kubernetes", tags: [kubernetes] }
     - { role: "dotnetsdk", tags: [dotnetsdk] }
-    - { role: "envsubst", tags: [envsubst] }
 # ansible-playbook -i hosts site.yml --ask-become-pass
