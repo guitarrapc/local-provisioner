@@ -1,0 +1,36 @@
+# https://github.com/a8m/envsubst/releases/download/v1.1.0/envsubst-Linux-x86_64
+- name: pickup installed envsubst versions
+  shell: envsubst --version | grep {{ envsubst_version }}
+  register: envsubst_exists
+  changed_when: false
+  ignore_errors: yes
+
+- name: download envsubst
+  get_url:
+    url: https://github.com/wercker/envsubst/releases/download/v{{ envsubst_download_version }}/envsubst-Linux-x86_64
+    dest: "{{ ansible_home }}/envsubst"
+  register: download_envsubst
+  when: envsubst_exists is failed
+
+- name: copy envsubst
+  become: yes
+  copy:
+    src: "{{ ansible_home }}/envsubst"
+    dest: /usr/local/bin
+  when: envsubst_exists is failed
+
+- name: remove envsubst
+  file:
+    state: absent
+    path: "{{ ansible_home }}/envsubst"
+  when: download_envsubst is succeeded
+
+- name: change file permissions
+  become: yes
+  file:
+    path: /usr/local/bin/envsubst
+    mode: "0755"
+
+- name: confirm envsubst exists
+  shell: ls /usr/local/bin/envsubst && envsubst --version | grep {{ envsubst_download_version }}
+  changed_when: false
