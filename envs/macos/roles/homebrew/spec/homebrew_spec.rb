@@ -13,7 +13,10 @@ describe command("brew list -l") do
     its(:stdout) { should match "direnv" }
     its(:stdout) { should match "docker" }
     its(:stdout) { should match "freetype" }
+    its(:stdout) { should match "gibo" }
+    its(:stdout) { should match "git-lfs" }
     its(:stdout) { should match "go" }
+    its(:stdout) { should match "hub" }
     its(:stdout) { should match "hugo" }
     its(:stdout) { should match "mackerel-agent" }
     its(:stdout) { should match "nodebrew" }
