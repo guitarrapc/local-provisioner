@@ -26,4 +26,5 @@ homebrew_packages:
   - name: tfenv
   - name: tree
   - name: yarn
+  - name: yq
   - name: zlib
