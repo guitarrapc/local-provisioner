@@ -1,1 +1,2 @@
-python_version: "3.6.5"
+python3_version: "3.6.5"
+python2_version: "2.7.6"

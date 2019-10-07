@@ -6,12 +6,25 @@
     dest: ~/.pyenv/plugins/pyenv-virtualenv
     accept_hostkey: yes
 
-- name: pickup installed python versions
-  shell: pyenv versions | grep {{ python_version }}
-  register: pyenv_version
+- name: pickup installed python3 versions
+  shell: pyenv versions | grep {{ python3_version }}
+  register: pyenv3_version
   changed_when: false
   ignore_errors: yes
 
-- name: install python
-  shell: pyenv install {{ python_version }}
-  when: pyenv_version is failed
+- name: install python3
+  shell: pyenv install {{ python3_version }}
+  when: pyenv3_version is failed
+
+- name: pickup installed python2 versions
+  shell: pyenv versions | grep {{ python2_version }}
+  register: pyenv2_version
+  changed_when: false
+  ignore_errors: yes
+
+- name: install python2
+  shell: CFLAGS="-I$(xcrun --show-sdk-path)/usr/include" pyenv install {{ python2_version }}
+  when: pyenv2_version is failed
+
+- name: pyenv global set {{ python3_version }} & {{ python2_version }}
+  shell: pyenv global {{ python3_version }} {{ python2_version }}

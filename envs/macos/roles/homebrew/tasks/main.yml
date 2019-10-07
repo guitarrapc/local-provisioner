@@ -1,8 +1,7 @@
 ---
 
 - name: update brew
-  command: >
-    brew update
+  command: brew update
   register: result
   ignore_errors: True
   changed_when: result.stdout != 'Already up-to-date.'
