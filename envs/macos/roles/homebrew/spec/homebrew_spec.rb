@@ -27,6 +27,7 @@ describe command("brew list -l") do
     its(:stdout) { should match "pyenv" }
     its(:stdout) { should match "rbenv" }
     its(:stdout) { should match "ruby-build" }
+    its(:stdout) { should match "stern" }
     its(:stdout) { should match "swiftlint" }
     its(:stdout) { should match "tfenv" }
     its(:stdout) { should match "tree" }
