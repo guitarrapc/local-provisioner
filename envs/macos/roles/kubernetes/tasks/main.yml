@@ -1,6 +1,2 @@
 ---
 
-# helm
-- name: initialize helm
-  shell: helm init --history-max 200
-
