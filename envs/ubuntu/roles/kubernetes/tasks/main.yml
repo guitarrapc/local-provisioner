@@ -275,3 +275,40 @@
   changed_when: false
 
 # kubesec
+- name: pickup installed kubesec versions
+  shell: kubesec --version | grep {{ kubesec_version }}
+  register: kubesec_exists
+  changed_when: false
+  ignore_errors: yes
+
+- name: download kubesec
+  get_url:
+    url: https://github.com/shyiko/kubesec/releases/download/{{ kubesec_version }}/kubesec-{{ kubesec_version }}-linux-amd64
+    dest: "{{ ansible_home }}/kubesec"
+  register: download_kubesec
+  when: kubesec_exists is failed
+
+- name: copy kubesec
+  become: yes
+  copy:
+    src: "{{ ansible_home }}/kubesec"
+    dest: /usr/local/bin
+  when:
+    - kubesec_exists is failed
+
+- name: remove kubesec
+  file:
+    state: absent
+    path: "{{ ansible_home }}/kubesec"
+  when: download_kubesec is succeeded
+
+- name: change file permissions
+  become: yes
+  file:
+    path: /usr/local/bin/kubesec
+    mode: "0755"
+  when: download_kubesec is succeeded
+
+- name: confirm kubesec exists
+  shell: ls /usr/local/bin/kubesec && kubesec --version | grep {{ kubesec_version }}
+  changed_when: false
