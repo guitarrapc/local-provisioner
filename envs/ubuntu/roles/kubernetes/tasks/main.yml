@@ -238,7 +238,6 @@
   args:
     chdir: "{{ ansible_home }}/"
   when:
-    - istioctl_exists is failed
     - download_istioctl is succeeded
   changed_when: false
 
@@ -248,7 +247,6 @@
     src: "{{ ansible_home }}/istio-{{ istioctl_version }}/bin/istioctl"
     dest: /usr/local/bin
   when:
-    - istioctl_exists is failed
     - download_istioctl is succeeded
 
 - name: remove istioctl from bin/
