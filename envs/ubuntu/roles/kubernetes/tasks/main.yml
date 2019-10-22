@@ -273,3 +273,5 @@
 - name: confirm istioctl exists
   shell: ls /usr/local/bin/istioctl && istioctl version | grep {{ istioctl_version }}
   changed_when: false
+
+# kubesec
