@@ -42,7 +42,7 @@ cd envs/macos
 ansible-playbook -i hosts site.yml
 ```
 
-![](/readme_images/ansible_macos.png)
+![image](https://user-images.githubusercontent.com/3856350/67872838-dda78700-fb75-11e9-9073-a4cc0f37e6d1.png)
 
 Windows, run scoop-playbook.
 
@@ -51,7 +51,7 @@ cd envs/windows
 scoop-playbook
 ```
 
-![](/readme_images/scoop_windows.png)
+![image](https://user-images.githubusercontent.com/3856350/67872580-84d7ee80-fb75-11e9-8c1c-e7d25fc94892.png)
 
 Ubuntu, Bash on WSL, run ansible-playbook.
 
@@ -60,6 +60,8 @@ bash
 cd envs/wsl_ubuntu
 ansible-playbook -i hosts site.yml --ask-sudo-pass
 ```
+
+![image](https://user-images.githubusercontent.com/3856350/67872931-0465bd80-fb76-11e9-8700-bdc0e861f556.png)
 
 ## How to modify
 
