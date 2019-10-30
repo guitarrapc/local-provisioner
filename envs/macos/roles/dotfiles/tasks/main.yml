@@ -15,7 +15,7 @@
 
 - name: Create symlinks
   command: bash -lc "{{ run_dotfiles }}"
-  changed_when: False
+  changed_when: false
   register: dotfiles
 
 - debug: msg="{{ dotfiles.stdout_lines }}"
