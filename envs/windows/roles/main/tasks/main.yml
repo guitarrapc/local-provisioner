@@ -30,6 +30,7 @@
       - terraform
       - gibo
       - helm
+      - mysql-workbench
 
 - name: "Install Programming Languages"
   scoop_install:
