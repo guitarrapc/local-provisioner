@@ -34,6 +34,6 @@
 
 - name: remove pulumi tmp directory
   file:
-    path: {{ ansible_home }}/pulumi/
+    path: "{{ ansible_home }}/pulumi/"
     state: absent
   when: not pulumi_exists.stat.exists
