@@ -25,7 +25,11 @@
 
 - name: copy pulumi
   become: yes
-  shell: cp "{{ ansible_home }}/pulumi/*" /usr/local/bin/
+  copy:
+    src: "{{ item }}"
+    dest: /usr/local/bin/
+  with_fileglob:
+    - "{{ ansible_home }}/pulumi/*"
   when: not pulumi_exists.stat.exists
 
 - name: remove pulumi tmp
