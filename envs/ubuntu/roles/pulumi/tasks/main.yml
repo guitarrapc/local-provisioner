@@ -14,7 +14,9 @@
   when: not pulumi_exists.stat.exists
 
 - name: unzip pulumi
-  shell: tar -zxvf /tmp/pulumi-linux-x64.tar.gz "{{ ansible_home }}/"
+  shell: tar -zxvf /tmp/pulumi-linux-x64.tar.gz
+  args:
+    chdir: "{{ ansible_home }}/"
   when: not pulumi_exists.stat.exists
 
 - name: copy pulumi
