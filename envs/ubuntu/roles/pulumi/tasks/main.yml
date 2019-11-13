@@ -20,7 +20,7 @@
   when: not pulumi_exists.stat.exists
 
 - name: chmod pulumi dir
-  shell: chmod "{{ ansible_home }}/pulumi"
+  shell: chmod 777 "{{ ansible_home }}/pulumi"
   when: not pulumi_exists.stat.exists
 
 - name: copy pulumi
