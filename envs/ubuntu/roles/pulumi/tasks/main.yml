@@ -20,7 +20,8 @@
   when: not pulumi_exists.stat.exists
 
 - name: copy pulumi
-  shell: cp "{{ ansible_home }}/pulumi/*" /usr/local/bin/.
+  becode: yes
+  shell: cp "{{ ansible_home }}/pulumi/*" /usr/local/bin/
   when: not pulumi_exists.stat.exists
 
 - name: remove pulumi tmp
