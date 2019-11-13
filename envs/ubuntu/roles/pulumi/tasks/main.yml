@@ -1,0 +1,29 @@
+---
+
+- name: confirm pulumi exists
+  stat:
+    path: /usr/local/bin/pulumi
+    get_checksum: false
+    get_md5: false
+  register: pulumi_exists
+
+# https://www.pulumi.com/docs/get-started/install/versions/
+- name: download pulumi
+  shell: >
+    curl -L "https://get.pulumi.com/releases/sdk/pulumi-v{{ pulumi_version }}-linux-x64.tar.gz" -o /tmp/pulumi-linux-x64.tar.gz
+  when: not pulumi_exists.stat.exists
+
+- name: unzip pulumi
+  become: yes
+  unarchive:
+    src: /tmp/pulumi-linux-x64.tar.gz
+    dest: /usr/local/bin
+    remote_src: yes
+  when: not pulumi_exists.stat.exists
+
+- name: remove pulumi tmp
+  file:
+    path: /tmp/pulumi-linux-x64.tar.gz
+    state: absent
+  when: not pulumi_exists.stat.exists
+
