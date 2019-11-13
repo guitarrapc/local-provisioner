@@ -19,6 +19,10 @@
     chdir: "{{ ansible_home }}/"
   when: not pulumi_exists.stat.exists
 
+- name: chmod pulumi dir
+  shell: chmod "{{ ansible_home }}/pulumi"
+  when: not pulumi_exists.stat.exists
+
 - name: copy pulumi
   become: yes
   shell: cp "{{ ansible_home }}/pulumi/*" /usr/local/bin/
