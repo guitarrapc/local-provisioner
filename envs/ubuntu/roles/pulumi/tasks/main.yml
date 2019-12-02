@@ -1,11 +1,10 @@
 ---
 
-- name: confirm pulumi exists
-  stat:
-    path: /usr/local/bin/pulumi
-    get_checksum: false
-    get_md5: false
+- name: pickup installed pulumi versions
+  shell: pulumi version | grep v{{ pulumi_version }}
   register: pulumi_exists
+  changed_when: false
+  ignore_errors: yes
 
 # https://www.pulumi.com/docs/get-started/install/versions/
 - name: download pulumi
