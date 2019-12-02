@@ -38,4 +38,4 @@
   file:
     path: "{{ ansible_home }}/pulumi/"
     state: absent
-  when: pulumi_exists is failedg
+  when: pulumi_exists is failed
