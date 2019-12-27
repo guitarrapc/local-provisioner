@@ -1,23 +1,22 @@
 ---
 
-- name: confirm pulumi exists
-  stat:
-    path: /usr/local/bin/pulumi
-    get_checksum: false
-    get_md5: false
+- name: pickup installed pulumi versions
+  shell: pulumi version | grep v{{ pulumi_version }}
   register: pulumi_exists
+  changed_when: false
+  ignore_errors: yes
 
 # https://www.pulumi.com/docs/get-started/install/versions/
 - name: download pulumi
   shell: >
     curl -L "https://get.pulumi.com/releases/sdk/pulumi-v{{ pulumi_version }}-linux-x64.tar.gz" -o /tmp/pulumi-linux-x64.tar.gz
-  when: not pulumi_exists.stat.exists
+  when: pulumi_exists is failed
 
 - name: unzip pulumi
   shell: tar -zxvf /tmp/pulumi-linux-x64.tar.gz
   args:
     chdir: "{{ ansible_home }}/"
-  when: not pulumi_exists.stat.exists
+  when: pulumi_exists is failed
 
 - name: copy pulumi
   become: yes
@@ -27,16 +26,16 @@
     mode: a+x
   with_fileglob:
     - "{{ ansible_home }}/pulumi/*"
-  when: not pulumi_exists.stat.exists
+  when: pulumi_exists is failed
 
 - name: remove pulumi tmp
   file:
     path: /tmp/pulumi-linux-x64.tar.gz
     state: absent
-  when: not pulumi_exists.stat.exists
+  when: pulumi_exists is failed
 
 - name: remove pulumi tmp directory
   file:
     path: "{{ ansible_home }}/pulumi/"
     state: absent
-  when: not pulumi_exists.stat.exists
+  when: pulumi_exists is failed
