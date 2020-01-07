@@ -57,8 +57,8 @@ Ubuntu, Bash on WSL, run ansible-playbook.
 
 ```shell
 bash
-cd envs/wsl_ubuntu
-ansible-playbook -i hosts site.yml --ask-sudo-pass
+cd envs/ubuntu
+ansible-playbook -i hosts site.yml --ask-become-pass
 ```
 
 ![image](https://user-images.githubusercontent.com/3856350/67872931-0465bd80-fb76-11e9-8700-bdc0e861f556.png)
