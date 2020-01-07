@@ -12,9 +12,11 @@
   with_items: "{{ repository }}"
   when: repository is defined
 
+# must use shell, instead of command.
+# ref: https://stackoverflow.com/questions/56989048/issue-in-ansible-playbook-command/56991314
 - name: Create symlinks
   become: yes
-  command: bash -lc "{{ run_dotfiles }}"
+  shell: bash -lc "{{ run_dotfiles }}"
   changed_when: False
   register: dotfiles
 
