@@ -12,4 +12,4 @@ symlink:
     src: "{{ ansible_home }}/.tfenv/bin/tfenv",
     dest: "/usr/local/bin/tfenv"
   }
-version: "0.12.18"
+version: "0.12.19"
