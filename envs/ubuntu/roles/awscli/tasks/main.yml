@@ -19,10 +19,16 @@
     curl -L "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o /tmp/awscliv2.zip
   when: not aws2_exists.stat.exists
 
+- name: ensure tmp aws directory exists
+  file:
+    path: /tmp/aws
+    state: directory
+  when: not aws2_exists.stat.exists
+
 - name: unzip aws2
   unarchive:
     src: /tmp/awscliv2.zip
-    dest: /tmp/awscliv2
+    dest: /tmp/aws
     remote_src: yes
   when: not aws2_exists.stat.exists
 
@@ -31,7 +37,7 @@
 - name: install aws2
   become: yes
   shell: >
-    ./aws/install --update
+    ./tmp/aws/install --update
   when: not aws2_exists.stat.exists
 
 # eksctl
