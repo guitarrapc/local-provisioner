@@ -1,10 +1,38 @@
 ---
 # awscli
-- name: install awscli pip3
-  pip:
-    name: awscli
-    executable: pip3
-    state: latest
+# - name: install awscli pip3
+#   pip:
+#     name: awscli
+#     executable: pip3
+#     state: latest
+
+# aws2
+- name: confirm aws2 exists
+  stat:
+    path: /usr/local/bin/aws
+    get_checksum: false
+    get_md5: false
+  register: aws2_exists
+
+- name: download aws2
+  shell: >
+    curl -L "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o /tmp/awscliv2.zip
+  when: not aws2_exists.stat.exists
+
+- name: unzip aws2
+  unarchive:
+    src: /tmp/awscliv2.zip
+    dest: /tmp/awscliv2
+    remote_src: yes
+  when: not aws2_exists.stat.exists
+
+# install to /usr/local/aws by default.
+# symlink to /usr/local/bin by default.
+- name: install aws2
+  become: yes
+  shell: >
+    ./aws/install --update
+  when: not aws2_exists.stat.exists
 
 # eksctl
 - name: confirm eksctl exists
