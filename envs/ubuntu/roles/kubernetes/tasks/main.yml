@@ -123,6 +123,62 @@
   shell: ls /usr/local/bin/helm && helm version | grep {{ helm_version }}
   changed_when: false
 
+# helm3
+- name: pickup installed helm3 versions
+  shell: helm3 version | grep {{ helm3_version }}
+  register: helm3_exists
+  changed_when: false
+  ignore_errors: yes
+
+- name: download helm3
+  get_url:
+    url: https://get.helm.sh/helm-{{ helm3_version }}-linux-amd64.tar.gz
+    dest: "{{ ansible_home }}/helm3.tar.gz"
+  register: download_helm3
+  when: helm3_exists is failed
+
+- name: unarchive helm3
+  command: tar -zxvf "{{ ansible_home }}/helm3.tar.gz"
+  args:
+    chdir: "{{ ansible_home }}/"
+  register: unarchive_helm3
+  when: helm3_exists is failed
+
+- name: copy helm3
+  become: yes
+  copy:
+    src: "{{ ansible_home }}/linux-amd64/helm3"
+    dest: /usr/local/bin
+  when: helm3_exists is failed
+
+- name: remove helm3.tar.gz
+  file:
+    state: absent
+    path: "{{ ansible_home }}/helm3.tar.gz"
+  when: download_helm3 is succeeded
+
+- name: remove helm3.tar.gz
+  file:
+    state: absent
+    path: "{{ ansible_home }}/helm3"
+  when: unarchive_helm3 is succeeded
+
+- name: remove helm3 dir
+  file:
+    state: absent
+    path: "{{ ansible_home }}/linux-amd64"
+  when: unarchive_helm3 is succeeded
+
+- name: change file permissions
+  become: yes
+  file:
+    path: /usr/local/bin/helm3
+    mode: "0755"
+
+- name: confirm helm3 exists
+  shell: ls /usr/local/bin/helm3 && helm3 version | grep {{ helm3_version }}
+  changed_when: false
+
 # kubectx
 - name: clone kubectx
   become: yes
