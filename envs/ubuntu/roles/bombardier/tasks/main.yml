@@ -1,0 +1,32 @@
+# bombardier
+- name: confirm bombardier exists
+  stat:
+    path: /usr/local/bin/bombardier
+    get_checksum: false
+    get_md5: false
+  register: bombardier_exists
+
+- name: download bombardier
+  shell: >
+    curl -L "https://github.com/codesenberg/bombardier/releases/download/{{ bombardier_version }}/bombardier-linux-amd64" -o /tmp/bombardier
+  register: download_bombardier
+  when: not bombardier_exists.stat.exists
+
+- name: copy bombardier
+  become: yes
+  copy:
+    src: "{{ ansible_home }}/bombardier"
+    dest: /usr/local/bin
+  when: download_bombardier is succeeded
+
+- name: remove kubectl
+  file:
+    state: absent
+    path: "/tmp/bombardier"
+  when: download_bombardier is succeeded
+
+- name: chmod bombardier
+  become: yes
+  file:
+    path: /usr/local/bin/bombardier
+    mode: a+x
