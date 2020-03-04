@@ -9,7 +9,7 @@
   shell: >
     curl -L "https://github.com/codesenberg/bombardier/releases/download/{{ bombardier_version }}/bombardier-linux-amd64" -o /tmp/bombardier
   register: download_bombardier
-  when: not bombardier_exists.stat.exists
+  when: bombardier_exists is failed
 
 - name: copy bombardier
   become: yes
