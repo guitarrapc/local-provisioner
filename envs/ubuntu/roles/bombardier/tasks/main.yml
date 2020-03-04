@@ -1,10 +1,9 @@
 # bombardier
-- name: confirm bombardier exists
-  stat:
-    path: /usr/local/bin/bombardier
-    get_checksum: false
-    get_md5: false
+- name: pickup installed bombardier versions
+  shell: bombardier version | grep {{ bombardier_version }}
   register: bombardier_exists
+  changed_when: false
+  ignore_errors: yes
 
 - name: download bombardier
   shell: >
@@ -15,7 +14,7 @@
 - name: copy bombardier
   become: yes
   copy:
-    src: "{{ ansible_home }}/bombardier"
+    src: /tmp/bombardier
     dest: /usr/local/bin
   when: download_bombardier is succeeded
 
