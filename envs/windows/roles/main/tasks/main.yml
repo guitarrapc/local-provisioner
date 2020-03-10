@@ -4,8 +4,6 @@
     state: present
     bucket: main
     name:
-      - cmake
-      - gcc
       - gow
       - jq
       - sudo
@@ -21,7 +19,6 @@
     name:
       - 7zip
       - aws
-      - bat
       - chromedriver
       - git
       - git-lfs
