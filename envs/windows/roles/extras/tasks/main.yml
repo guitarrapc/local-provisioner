@@ -11,11 +11,11 @@
     name:
       - azure-cli
       - azure-functions-core-tools
+      - chromium
       - dnspy
       - everything
       - fiddler
       - gitkraken
-      - googlechrome
       - hack-font
       - heidisql
       - kdiff3
