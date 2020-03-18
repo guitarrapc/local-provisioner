@@ -11,6 +11,7 @@
       - unzip
       - openssl
       - apache
+      - netcat
 
 - name: "Install windows tools"
   scoop_install:
