@@ -372,7 +372,7 @@
 
 - name: download kubeval
   get_url:
-    url: https://github.com/instrumenta/kubeval/releases/download/{{ kubeval_version }}/kubeval-{{ kubeval_version }}-linux-amd64.tar.gz
+    url: https://github.com/instrumenta/kubeval/releases/download/{{ kubeval_version }}/kubeval-linux-amd64.tar.gz
     dest: "{{ ansible_home }}/kubeval.tar.gz"
   register: download_kubeval
   when: kubeval_exists is failed
