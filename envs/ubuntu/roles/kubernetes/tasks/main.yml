@@ -362,3 +362,52 @@
 - name: confirm kubesec exists
   shell: ls /usr/local/bin/kubesec && kubesec --version | grep {{ kubesec_version }}
   changed_when: false
+
+# kubeval
+- name: pickup installed kubeval versions
+  shell: kubeval --version | grep {{ kubeval_version }}
+  register: kubeval_exists
+  changed_when: false
+  ignore_errors: yes
+
+- name: download kubeval
+  get_url:
+    url: https://github.com/instrumenta/kubeval/releases/download/{{ kubeval_version }}/kubeval-{{ kubeval_version }}-linux-amd64.tar.gz
+    dest: "{{ ansible_home }}/kubeval.tar.gz"
+  register: download_kubeval
+  when: kubeval_exists is failed
+
+- name: unarchive kubeval
+  command: tar -zxvf "{{ ansible_home }}/kubeval.tar.gz"
+  args:
+    chdir: "{{ ansible_home }}/"
+  register: unarchive_kubeval
+  when: kubeval_exists is failed
+
+- name: copy kubeval
+  become: yes
+  copy:
+    src: "{{ ansible_home }}/kubeval"
+    dest: /usr/local/bin/kubeval
+  when: unarchive_kubeval is success
+
+- name: remove kubeval files
+  file:
+    state: absent
+    path: "{{ ansible_home }}/{{ item }}"
+  with_items:
+    - kubeval.tar.gz
+    - LICENSE
+    - README.md
+    - kubeval
+  when: unarchive_kubeval is succeeded
+
+- name: change file permissions
+  become: yes
+  file:
+    path: /usr/local/bin/kubeval
+    mode: "0755"
+
+- name: confirm kubeval exists
+  shell: ls /usr/local/bin/kubeval && kubeval --version | grep {{ kubeval_version }}
+  changed_when: false
