@@ -1,4 +1,13 @@
 # https://github.com/lukesampson/scoop/tree/master/bucket
+- name: "Install fundamentals"
+  scoop_install:
+    state: present
+    bucket: main
+    name:
+      - git
+      - 7zip
+      - sudo
+
 - name: "Install linux tools"
   scoop_install:
     state: present
@@ -6,7 +15,6 @@
     name:
       - gow
       - jq
-      - sudo
       - time
       - unzip
       - openssl
@@ -18,17 +26,16 @@
     state: present
     bucket: main
     name:
-      - 7zip
       - aws
       - chromedriver
-      - git
+      - gibo
       - git-lfs
+      - helm
+      - kubeval
+      - mysql-workbench
       - ngrok
       - pwsh
       - terraform
-      - gibo
-      - helm
-      - mysql-workbench
 
 - name: "Install Programming Languages"
   scoop_install:
