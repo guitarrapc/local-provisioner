@@ -319,14 +319,14 @@
   args:
     chdir: "{{ ansible_home }}/"
   register: unarchive_kubeval
-  when: kubeval_exists is failed
+  when: download_kubeval is succeeded
 
 - name: copy kubeval
   become: yes
   copy:
     src: "{{ ansible_home }}/kubeval"
     dest: /usr/local/bin/kubeval
-  when: unarchive_kubeval is success
+  when: unarchive_kubeval is succeeded
 
 - name: remove kubeval files
   file:
