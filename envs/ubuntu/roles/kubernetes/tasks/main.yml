@@ -319,14 +319,14 @@
   args:
     chdir: "{{ ansible_home }}/"
   register: unarchive_kubeval
-  when: download_kubeval is succeeded
+  when: kubeval_exists is failed
 
 - name: copy kubeval
   become: yes
   copy:
     src: "{{ ansible_home }}/kubeval"
     dest: /usr/local/bin/kubeval
-  when: unarchive_kubeval is succeeded
+  when: kubeval_exists is failed
 
 - name: remove kubeval files
   file:
@@ -337,14 +337,16 @@
     - LICENSE
     - README.md
     - kubeval
-  when: unarchive_kubeval is succeeded
+  when: kubeval_exists is failed
 
 - name: change file permissions
   become: yes
   file:
     path: /usr/local/bin/kubeval
     mode: "0755"
+  when: kubeval_exists is failed
 
 - name: confirm kubeval exists
   shell: ls /usr/local/bin/kubeval && kubeval --version | grep {{ kubeval_version }}
   changed_when: false
+  when: kubeval_exists is failed
