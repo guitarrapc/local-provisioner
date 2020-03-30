@@ -54,79 +54,16 @@
     pkg: kubeadm
     update_cache: yes
 
-# helm
-- name: pickup installed helm versions
-  shell: helm version | grep {{ helm_version }}
-  register: helm_exists
-  changed_when: false
-  ignore_errors: yes
-
-- name: download helm
-  get_url:
-    url: https://get.helm.sh/helm-{{ helm_version }}-linux-amd64.tar.gz
-    dest: "{{ ansible_home }}/helm.tar.gz"
-  register: download_helm
-  when: helm_exists is failed
-
-- name: unarchive helm
-  command: tar -zxvf "{{ ansible_home }}/helm.tar.gz"
-  args:
-    chdir: "{{ ansible_home }}/"
-  register: unarchive_helm
-  when: helm_exists is failed
-
-- name: copy helm
-  become: yes
-  copy:
-    src: "{{ ansible_home }}/linux-amd64/helm"
-    dest: /usr/local/bin
-  when: helm_exists is failed
-
-- name: copy tiller
-  become: yes
-  copy:
-    src: "{{ ansible_home }}/linux-amd64/tiller"
-    dest: /usr/local/bin
-  when: helm_exists is failed
-
-- name: remove helm.tar.gz
-  file:
-    state: absent
-    path: "{{ ansible_home }}/helm.tar.gz"
-  when: download_helm is succeeded
-
-- name: remove helm dir
-  file:
-    state: absent
-    path: "{{ ansible_home }}/linux-amd64"
-  when: unarchive_helm is succeeded
-
-- name: change file permissions
-  become: yes
-  file:
-    path: /usr/local/bin/helm
-    mode: "0755"
-
-- name: change file permissions
-  become: yes
-  file:
-    path: /usr/local/bin/tiller
-    mode: "0755"
-
-- name: confirm helm exists
-  shell: ls /usr/local/bin/helm && helm version | grep {{ helm_version }}
-  changed_when: false
-
 # helm3
 - name: pickup installed helm3 versions
-  shell: helm3 version | grep {{ helm3_version }}
+  shell: helm version | grep {{ helm_version }}
   register: helm3_exists
   changed_when: false
   ignore_errors: yes
 
 - name: download helm3
   get_url:
-    url: https://get.helm.sh/helm-{{ helm3_version }}-linux-amd64.tar.gz
+    url: https://get.helm.sh/helm-{{ helm_version }}-linux-amd64.tar.gz
     dest: "{{ ansible_home }}/helm3.tar.gz"
   register: download_helm3
   when: helm3_exists is failed
@@ -142,7 +79,7 @@
   become: yes
   copy:
     src: "{{ ansible_home }}/linux-amd64/helm"
-    dest: /usr/local/bin/helm3
+    dest: /usr/local/bin
   when: helm3_exists is failed
 
 - name: remove helm3.tar.gz
@@ -160,11 +97,11 @@
 - name: change file permissions
   become: yes
   file:
-    path: /usr/local/bin/helm3
+    path: /usr/local/bin/helm
     mode: "0755"
 
-- name: confirm helm3 exists
-  shell: ls /usr/local/bin/helm3 && helm3 version | grep {{ helm3_version }}
+- name: confirm helm exists
+  shell: ls /usr/local/bin/helm && helm version | grep {{ helm_version }}
   changed_when: false
 
 # kubectx
