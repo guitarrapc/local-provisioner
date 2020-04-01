@@ -10,6 +10,7 @@ homebrew_cask_packages:
   - name: google-japanese-ime
   - name: gitkraken
   - name: kindle
+  - name: krisp
   - name: microsoft-teams
   - name: ngrok
   - name: powershell

@@ -20,7 +20,6 @@ describe command("brew list -l") do
     its(:stdout) { should match "go" }
     its(:stdout) { should match "hub" }
     its(:stdout) { should match "hugo" }
-    its(:stdout) { should match "krisp" }
     its(:stdout) { should match "kubectx" }
     its(:stdout) { should match "kubernetes-helm" }
     its(:stdout) { should match "mackerel-agent" }
