@@ -18,9 +18,10 @@ homebrew_packages:
   - name: hub
   - name: hugo
   - name: jq
-  - name: mackerelio/mackerel-agent/mackerel-agent
+  - name: krisp
   - name: kubectx
   - name: kubernetes-helm
+  - name: mackerelio/mackerel-agent/mackerel-agent
   - name: nodebrew
   - name: pyenv
   - name: rbenv
