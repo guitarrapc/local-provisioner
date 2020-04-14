@@ -27,6 +27,7 @@
     bucket: main
     name:
       - aws
+      - bazel
       - chromedriver
       - gibo
       - git-lfs
@@ -44,4 +45,5 @@
     name:
       - go
       - nvm
+      - python
       - yarn
