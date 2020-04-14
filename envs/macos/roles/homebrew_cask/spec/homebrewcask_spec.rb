@@ -12,6 +12,7 @@ describe command("brew cask list -1") do
     its(:stdout) { should match "google-japanese-ime" }
     its(:stdout) { should match "gitkraken" }
     its(:stdout) { should match "kindle" }
+    its(:stdout) { should match "krisp" }
     its(:stdout) { should match "microsoft-teams" }
     its(:stdout) { should match "ngrok" }
     its(:stdout) { should match "powershell" }
