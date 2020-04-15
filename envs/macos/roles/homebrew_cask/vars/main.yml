@@ -18,5 +18,6 @@ homebrew_cask_packages:
   - name: sequel-pro
   - name: slack
   - name: sourcetree
+  - name: unity-hub
   - name: visual-studio-code
 

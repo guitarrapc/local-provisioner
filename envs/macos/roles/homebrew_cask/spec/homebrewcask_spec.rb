@@ -19,6 +19,7 @@ describe command("brew cask list -1") do
     its(:stdout) { should match "sequel-pro" }
     its(:stdout) { should match "slack" }
     its(:stdout) { should match "sourcetree" }
+    its(:stdout) { should match "unity-hub" }
     its(:stdout) { should match "visual-studio-code" }
 end
 
