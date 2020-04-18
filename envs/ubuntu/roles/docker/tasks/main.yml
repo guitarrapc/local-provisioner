@@ -2,7 +2,7 @@
 - name: make sure docker prerequisites are supported by apt
   become: yes
   apt:
-    pkg: "{{ prerequisites }}"
+    pkg: "{{ docker_prerequisites }}"
     update_cache: yes
 
 - name: import Docker APT key
