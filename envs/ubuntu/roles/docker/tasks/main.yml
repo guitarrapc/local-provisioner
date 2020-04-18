@@ -1,8 +1,29 @@
 ---
+- name: make sure docker prerequisites are supported by apt
+  become: yes
+  apt:
+    pkg: "{{ prerequisites }}"
+    update_cache: yes
+
+- name: import Docker APT key
+  become: yes
+  apt_key:
+    url: "{{ docker_repo_gpg_key_url }}"
+    state: present
+
+- name: add repo for Ubuntu
+  become: yes
+  apt_repository:
+    # $(lsb_release -cs) = {{ ansible_distribution_release }}
+    repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable
+    filename: "dotnetdev"
+    state: present
+    update_cache: yes
+
 - name: install docker
   become: yes
   apt:
-      pkg: docker.io
+      pkg: "{{ docker_pkgs }}"
       update_cache: yes
 
 - name: confirm docker-compose exists
@@ -23,3 +44,4 @@
   file:
       path: /usr/local/bin/docker-compose
       mode: a+x
+
