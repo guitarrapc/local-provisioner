@@ -1,6 +1,6 @@
 # bombardier
 - name: pickup installed bombardier versions
-  shell: bombardier --version | grep {{ bombardier_version }}
+  shell: bombardier --version 2>&1 | head -n 1 | grep {{ bombardier_version }}
   register: bombardier_exists
   changed_when: false
   ignore_errors: yes
