@@ -13,6 +13,7 @@ homebrew_packages:
   - name: docker
   - name: freetype
   - name: gibo
+  - name: git
   - name: git-lfs
   - name: go
   - name: hub
