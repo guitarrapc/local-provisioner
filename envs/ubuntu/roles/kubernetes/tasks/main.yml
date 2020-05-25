@@ -350,3 +350,43 @@
   shell: ls /usr/local/bin/kubeval && kubeval --version | grep {{ kubeval_version }}
   changed_when: false
   when: kubeval_exists is failed
+
+# mozilla/sops
+
+- name: pickup installed sops versions
+  shell: sops --version | grep {{ sops_version }}
+  register: sops_exists
+  changed_when: false
+  ignore_errors: yes
+
+- name: download sops
+  get_url:
+    url: https://github.com/mozilla/sops/releases/download/v{{ sops_version }}/sops-v{{ sops_version }}.linux
+    dest: "{{ ansible_home }}/sops"
+  register: download_sops
+  when: sops_exists is failed
+
+- name: copy kubeval
+  become: yes
+  copy:
+    src: "{{ ansible_home }}/sops"
+    dest: /usr/local/bin/sops
+  when: sops_exists is failed
+
+- name: remove sops files
+  file:
+    state: absent
+    path: "{{ ansible_home }}/sops"
+  when: sops_exists is failed
+
+- name: change file permissions
+  become: yes
+  file:
+    path: /usr/local/bin/sops
+    mode: "0755"
+  when: sops_exists is failed
+
+- name: confirm sops exists
+  shell: ls /usr/local/bin/sops && sops --version | grep {{ sops_version }}
+  changed_when: false
+  when: sops_exists is failed
