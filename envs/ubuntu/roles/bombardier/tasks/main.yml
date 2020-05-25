@@ -16,13 +16,13 @@
   copy:
     src: /tmp/bombardier
     dest: /usr/local/bin
-  when: download_bombardier is succeeded
+  when: bombardier_exists is failed
 
 - name: remove kubectl
   file:
     state: absent
     path: "/tmp/bombardier"
-  when: download_bombardier is succeeded
+  when: bombardier_exists is failed
 
 - name: chmod bombardier
   become: yes
