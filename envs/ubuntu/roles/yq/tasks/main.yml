@@ -1,6 +1,7 @@
 ---
 # yq
 - name: install yq
-  become: yes
-  snap:
+  pip:
     name: yq
+    executable: pip3
+    state: latest
