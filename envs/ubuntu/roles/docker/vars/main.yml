@@ -4,7 +4,7 @@ docker_prerequisites:
   - curl
   - gnupg-agent
   - software-properties-common
-docker_repo_gpg_key_url : "https://download.docker.com/linux/ubuntu/gpg"
+docker_repo_gpg_key_url: "https://download.docker.com/linux/ubuntu/gpg"
 docker_pkgs:
   - docker-ce
   - docker-ce-cli
