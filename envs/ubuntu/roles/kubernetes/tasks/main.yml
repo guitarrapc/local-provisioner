@@ -11,7 +11,7 @@
 - name: link kubectl to snap
   become: yes
   file:
-    src: /snap/bin/kubctl
+    src: /snap/kubctl
     dest: /usr/local/bin/kubectl
     owner: root
     group: root
