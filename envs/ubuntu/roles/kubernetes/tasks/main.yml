@@ -9,6 +9,7 @@
     classic: yes
 
 - name: link kubectl to snap
+  become: yes
   file:
     src: /snap/bin/kubctl
     dest: /usr/local/bin/kubectl
