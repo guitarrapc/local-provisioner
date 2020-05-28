@@ -1,15 +1,9 @@
-repository: 
-  - {
-    repo: "https://github.com/tfutils/tfenv.git",
-    dest: ~/.tfenv
-  }
+repository:
+  - { repo: "https://github.com/tfutils/tfenv.git", dest: ~/.tfenv }
 symlink:
   - {
-    src: "{{ ansible_home }}/.tfenv/bin/terraform",
-    dest: "/usr/local/bin/terraform"
-  }
-  - {
-    src: "{{ ansible_home }}/.tfenv/bin/tfenv",
-    dest: "/usr/local/bin/tfenv"
-  }
-version: "0.12.19"
+      src: "{{ ansible_home }}/.tfenv/bin/terraform",
+      dest: "/usr/local/bin/terraform",
+    }
+  - { src: "{{ ansible_home }}/.tfenv/bin/tfenv", dest: "/usr/local/bin/tfenv" }
+version: "0.12.24"
