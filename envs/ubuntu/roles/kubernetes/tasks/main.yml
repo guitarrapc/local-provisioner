@@ -5,6 +5,7 @@
   become: yes
   snap:
     name: kubectl
+    channel: "{{ kubectl_channel }}"
     classic: yes
 
 # kubeadm
