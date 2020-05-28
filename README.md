@@ -10,54 +10,38 @@ done | Ubuntu : Bash on Windows Subsystem for Linux (WSL) | Ansible Playbook
 
 ## How to Run
 
-### Prerequisites
-
-before run provisioner, make sure you have installed ansible.
-
-macOS.
-
-```shell
-. ./prerequisites/macos/install.sh
-```
-
-Windows.
-
-```shell
-. ./prerequisites/windows/install.ps1
-```
-
-Ubuntu & Bash on WSL (ubuntu)
-
-```shell
-bash
-. ./prerequisites/ubuntu/install.sh
-```
-
 ### Run
+
+> make sure you have installed ansible. it can be accomplished via prerequisites.
 
 macOS, run ansible-playbook.
 
 ```shell
 cd envs/macos
+. ./prerequisites.sh
 ansible-playbook -i hosts site.yml
 ```
 
 ![image](https://user-images.githubusercontent.com/3856350/67872838-dda78700-fb75-11e9-9073-a4cc0f37e6d1.png)
 
-Windows, run scoop-playbook.
+Windows 2004 and higher, run scoop-playbook.
 
 ```shell
 cd envs/windows
+. ./prerequisites.ps1
 scoop-playbook
 ```
 
 ![image](https://user-images.githubusercontent.com/3856350/67872580-84d7ee80-fb75-11e9-8c1c-e7d25fc94892.png)
 
-Ubuntu, Bash on WSL, run ansible-playbook.
+Ubuntu, Bash on WSL2, run ansible-playbook.
+
+> WSL2 is required to use snap.
 
 ```shell
 bash
 cd envs/ubuntu
+. ./prerequisites.sh
 ansible-playbook -i hosts site.yml --ask-become-pass
 ```
 
