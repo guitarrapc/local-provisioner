@@ -17,6 +17,16 @@
     group: root
     state: link
 
+- name: stat default kubectl
+  become: yes
+  stat:
+    path: /usr/bin/kubectl
+  register: default_kubctl_stat
+
+- name: Move default kubectl to _kubectl
+  command: mv /usr/bin/kubectl /usr/bin/_kubectl
+  when: default_kubctl_stat.stat.exists
+
 # kubeadm
 - name: add kubeadm apt_key
   become: yes
