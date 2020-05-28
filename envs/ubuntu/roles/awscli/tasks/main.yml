@@ -1,11 +1,4 @@
 ---
-# awscli
-# - name: install awscli pip3
-#   pip:
-#     name: awscli
-#     executable: pip3
-#     state: latest
-
 # aws2
 - name: confirm aws2 exists
   stat:
