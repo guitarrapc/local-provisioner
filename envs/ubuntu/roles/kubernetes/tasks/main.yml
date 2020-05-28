@@ -5,7 +5,7 @@
   become: yes
   snap:
     name: kubectl
-    classis: yes
+    classic: yes
 
 # kubeadm
 - name: add kubeadm apt_key
