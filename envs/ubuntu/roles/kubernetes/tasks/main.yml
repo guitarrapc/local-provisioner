@@ -8,6 +8,14 @@
     channel: "{{ kubectl_channel }}"
     classic: yes
 
+- name: link kubectl to snap
+  file:
+    src: /snap/bin/kubctl
+    dest: /usr/local/bin/kubectl
+    owner: root
+    group: root
+    state: link
+
 # kubeadm
 - name: add kubeadm apt_key
   become: yes
