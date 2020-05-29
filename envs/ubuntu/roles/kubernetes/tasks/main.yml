@@ -15,29 +15,26 @@
 
 - name: copy kubectl
   become: yes
-  snap:
-    name: kubectl
-    channel: "{{ kubectl_channel }}"
-    classic: yes
+  copy:
+    src: "{{ ansible_home }}/kubectl"
+    dest: /usr/local/bin
+  when: kubectl_exists is failed
 
-- name: link kubectl to snap
+- name: remove kubectl
+  file:
+    state: absent
+    path: "{{ ansible_home }}/kubectl"
+  when: download_kubectl is succeeded
+
+- name: change file permissions
   become: yes
   file:
-    src: /snap/kubectl/1519/kubectl
-    dest: /usr/local/bin/kubectl
-    owner: root
-    group: root
-    state: link
+    path: /usr/local/bin/kubectl
+    mode: "0755"
 
-- name: stat default kubectl
-  become: yes
-  stat:
-    path: /usr/bin/kubectl
-  register: default_kubctl_stat
-
-- name: Move default kubectl to _kubectl
-  command: mv /usr/bin/kubectl /usr/bin/_kubectl
-  when: default_kubctl_stat.stat.exists
+- name: confirm kubectl exists
+  shell: ls /usr/local/bin/kubectl && kubectl version | grep {{ kubectl_version }}
+  changed_when: false
 
 # kubeadm
 - name: add kubeadm apt_key

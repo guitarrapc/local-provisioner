@@ -4,10 +4,3 @@
   apt:
     pkg: "{{ apt_tools }}"
     update_cache: yes
-
-# snap not yet supported on WSL
-# - name: install snap tools
-#   become: yes
-#   snap:
-#     name: "{{ snap_tools }}"
-
