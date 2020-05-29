@@ -1,7 +1,19 @@
 ---
 # kubectl
-# sudo snap install kubectl --classic
-- name: install kubectl
+- name: pickup installed kubectl versions
+  shell: kubectl version | grep {{ kubectl_version }}
+  register: kubectl_exists
+  changed_when: false
+  ignore_errors: yes
+
+- name: download kubectl
+  get_url:
+    url: https://storage.googleapis.com/kubernetes-release/release/{{ kubectl_version }}/bin/linux/amd64/kubectl
+    dest: "{{ ansible_home }}/kubectl"
+  register: download_kubectl
+  when: kubectl_exists is failed
+
+- name: copy kubectl
   become: yes
   snap:
     name: kubectl
