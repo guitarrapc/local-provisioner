@@ -36,10 +36,7 @@ scoop-playbook
 
 Ubuntu, Bash on WSL2, run ansible-playbook.
 
-> WSL2 is required to use snap.
-
 ```shell
-bash
 cd envs/ubuntu
 . ./prerequisites.sh
 ansible-playbook -i hosts site.yml --ask-become-pass
