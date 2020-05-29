@@ -10,6 +10,15 @@ done | Ubuntu : Bash on Windows Subsystem for Linux (WSL) | Ansible Playbook
 
 ## How to Run
 
+setup.
+
+```shell
+mkdir -p ~/github/guitarapc
+cd ~/github/guitarapc
+git clone https://github.com/guitarrapc/local-provisioner
+cd local-provisioner
+```
+
 ### Run
 
 > make sure you have installed ansible. it can be accomplished via prerequisites.
