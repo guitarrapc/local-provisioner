@@ -45,10 +45,3 @@
   file:
     path: /usr/local/bin/docker-compose
     mode: a+x
-
-- name: create docker-credential-desktop.exe symlinks
-  become: yes
-  file:
-    src: "/mnt/c/Program\ Files/Docker/Docker/resources/bin/docker-credential-desktop.exe"
-    dest: "/usr/bin/docker-credential-desktop.exe"
-    state: link
