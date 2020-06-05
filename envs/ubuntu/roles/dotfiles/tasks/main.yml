@@ -15,7 +15,7 @@
 # ref: https://stackoverflow.com/questions/56989048/issue-in-ansible-playbook-command/56991314
 - name: Create symlinks
   become: yes
-  become_user: "{{ ansible_env.username }}"
+  become_user: "{{ lookup('env','USER') }}"
   shell: bash -lc "{{ run_dotfiles }}"
   changed_when: False
   register: dotfiles

@@ -10,7 +10,7 @@
 - name: debug env.User
   debug:
     msg: "{{ lookup('env','USER') }}"
-- name: debug env.User
+- name: debug become env.User
   become: yes
   debug:
     msg: "{{ lookup('env','USER') }}"
