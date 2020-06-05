@@ -1,12 +1,15 @@
 ---
 # "ansible_home" may be: /home/guitarrapc
 # "ansible_user" may be: guitarrapc
-- name: debug home path
+- name: debug ansible_home
   debug:
     msg: "{{ ansible_home }}"
-- name: debug user
+- name: debug ansible_user
   debug:
     msg: "{{ ansible_user }}"
+- name: debug ansible_env.username
+  debug:
+    msg: "{{ ansible_env.username }}"
 
 # "ansible_distribution" may be: "Debian", "SLES", "Ubuntu", "CentOS"
 # "ansible_distribution_version" may be: "9.0", "12.2", "18.04", "7.3.1611"
