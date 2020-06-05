@@ -7,9 +7,13 @@
 - name: debug ansible_user
   debug:
     msg: "{{ ansible_user }}"
-- name: debug ansible_env.username
+- name: debug env.User
   debug:
-    msg: "{{ ansible_env.username }}"
+    msg: "{{ lookup('env','USER') }}"
+- name: debug env.User
+  become: yes
+  debug:
+    msg: "{{ lookup('env','USER') }}"
 
 # "ansible_distribution" may be: "Debian", "SLES", "Ubuntu", "CentOS"
 # "ansible_distribution_version" may be: "9.0", "12.2", "18.04", "7.3.1611"
