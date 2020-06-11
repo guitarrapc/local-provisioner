@@ -3,6 +3,6 @@ roles:
   - main
   - extras
   - ba230t
-  #- bear # qttabar not working through scoop?
+  - bear
   - guitarrapc
 # see: https://github.com/rasa/scoop-directory/blob/master/by-apps.md
