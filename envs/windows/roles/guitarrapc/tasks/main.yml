@@ -13,3 +13,5 @@
       - ecs-cli
       - bombardier
       - py
+      - qttabbar
+      - qttabbar-patch

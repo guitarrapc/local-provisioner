@@ -3,6 +3,5 @@ roles:
   - main
   - extras
   - ba230t
-  - bear
   - guitarrapc
 # see: https://github.com/rasa/scoop-directory/blob/master/by-apps.md
