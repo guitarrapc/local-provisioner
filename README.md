@@ -2,11 +2,11 @@
 
 Dev environment setup.
 
-Status | Environment | Method
+Environment | Version | Method
 ---- | ---- | ----
-done | macOS (Mojave, High Sierra) | Ansible Playbook
-done | Windows 10 | scoop
-done | Ubuntu : Bash on Windows Subsystem for Linux (WSL) | Ansible Playbook
+macOS | Mojave | Ansible Playbook
+Windows | 10 2020 May Update| scoop
+Ubuntu | 18.04<br/>WSL1<br/>WSL2 | Ansible Playbook
 
 ## Run
 
