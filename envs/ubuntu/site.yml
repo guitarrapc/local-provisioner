@@ -2,15 +2,8 @@
   hosts: "local"
   become: no
   pre_tasks:
-    - name: Get ansible_user home directory
-      become: no
-      shell: "getent passwd {{ ansible_user_id }} | cut -d: -f6"
-      register: ansible_home_result
-      changed_when: false
-      check_mode: no
-      tags: always
-    - name: Set the fact for the other scripts to use
-      set_fact: ansible_home='{{ ansible_home_result.stdout }}'
+    - name: Set ansible_home as execution user.
+      set_fact: ansible_home='{{ lookup('env','HOME') }}'
   roles:
     - { role: "debug", tags: [debug] }
     - { role: "dotfiles", tags: [dotfiles] }
