@@ -7,6 +7,10 @@
 - name: debug ansible_user
   debug:
     msg: "{{ ansible_user }}"
+- name: debug become ansible_user
+  become: yes
+  debug:
+    msg: "{{ ansible_user }}"
 - name: debug env.User
   debug:
     msg: "{{ lookup('env','USER') }}"
