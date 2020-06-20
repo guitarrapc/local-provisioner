@@ -14,7 +14,7 @@
     - name: Preset WSL1 or not
       set_fact: is_wsl1='{{ wsl1_exists.stdout }}'
   roles:
-    - { role: "debug", tags: [debug] }
+    - { role: "debug", tags: [debug], when: is_wsl1 == "1" }
     - { role: "dotfiles", tags: [dotfiles] }
     - { role: "tools", tags: [tools] }
     - { role: "bombardier", tags: [bombardier] }
