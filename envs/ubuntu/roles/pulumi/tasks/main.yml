@@ -1,5 +1,4 @@
 ---
-
 - name: pickup installed pulumi versions
   shell: pulumi version | grep v{{ pulumi_version }}
   register: pulumi_exists
@@ -9,13 +8,13 @@
 # https://www.pulumi.com/docs/get-started/install/versions/
 - name: download pulumi
   shell: >
-    curl -L "https://get.pulumi.com/releases/sdk/pulumi-v{{ pulumi_version }}-linux-x64.tar.gz" -o /tmp/pulumi-linux-x64.tar.gz
+    curl -Ls "https://get.pulumi.com/releases/sdk/pulumi-v{{ pulumi_version }}-linux-x64.tar.gz" -o /tmp/pulumi-linux-x64.tar.gz
   when: pulumi_exists is failed
 
 - name: unzip pulumi
   shell: tar -zxvf /tmp/pulumi-linux-x64.tar.gz
   args:
-    chdir: "{{ ansible_home }}/"
+    chdir: "/tmp/pulumi"
   when: pulumi_exists is failed
 
 - name: copy pulumi
@@ -25,7 +24,7 @@
     dest: /usr/local/bin/
     mode: a+x
   with_fileglob:
-    - "{{ ansible_home }}/pulumi/*"
+    - "/tmp/pulumi/*"
   when: pulumi_exists is failed
 
 - name: remove pulumi tmp
@@ -36,6 +35,6 @@
 
 - name: remove pulumi tmp directory
   file:
-    path: "{{ ansible_home }}/pulumi/"
+    path: "/tmp/pulumi/"
     state: absent
   when: pulumi_exists is failed
