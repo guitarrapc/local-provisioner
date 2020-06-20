@@ -2,8 +2,17 @@
   hosts: "local"
   become: no
   pre_tasks:
-    - name: Set ansible_home as execution user.
+    - name: Preset ansible_home as execution user HOME path
       set_fact: ansible_home='{{ lookup('env','HOME') }}'
+    - name: Get WSL1 or WSL2
+      become: no
+      shell: "cat /proc/version | grep Microsoft | wc -l"
+      register: wsl1_exists
+      changed_when: false
+      check_mode: no
+      tags: always
+    - name: Preset WSL1 or not
+      set_fact: is_wsl1='{{ wsl1_exists.stdout }}'
   roles:
     - { role: "debug", tags: [debug] }
     - { role: "dotfiles", tags: [dotfiles] }

@@ -1,6 +1,5 @@
 ---
 # "ansible_home" may be: /home/guitarrapc
-# "ansible_user" may be: guitarrapc
 - name: debug ansible_home
   debug:
     msg: "{{ ansible_home }}"
@@ -12,6 +11,7 @@
   debug:
     msg: "{{ lookup('env','HOME') }}"
 
+# "ansible_user" may be: guitarrapc
 - name: debug ansible_user
   debug:
     msg: "{{ ansible_user }}"
@@ -45,3 +45,8 @@
 - name: debug distribution release
   debug:
     msg: "{{ ansible_distribution_release }}"
+
+# wsl check
+- name: debug is_wsl1 or not
+  debug:
+    msg: "{{ is_wsl1 }}"
