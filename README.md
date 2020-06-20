@@ -137,5 +137,5 @@ Windows will change by modify followings.
 
 macOS / Ubuntu will change by modify followings.
 
-* Modify parameters by open `envs/wsl_ubuntu/roles/<role>/vars/main.yml`.
-* Modify logic by open `envs/wsl_ubuntu/roles/<role>/tasks/main.yml`.
+* Modify parameters by open `envs/ubuntu/roles/<role>/vars/main.yml`.
+* Modify logic by open `envs/ubuntu/roles/<role>/tasks/main.yml`.
