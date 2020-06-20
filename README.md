@@ -78,7 +78,7 @@ bombardier | simple web benchmark tool.
 circleci | circleci cli.
 debug | ansible status debugger.
 docker | docker installation when it's not WSL2.
-dotfiles | link with [dofiles-linux](https://github.com/guitarrapc/dofiles-linux)
+dotfiles | link with [dofiles-linux](https://github.com/guitarrapc/dotfiles-linux)
 dotnetsdk | install .NET Core SDK.
 envsubst2 | install envsubst for ubuntu.
 kubernets | install kubernetes related.
@@ -94,7 +94,7 @@ Role | Descriptions
 ---- | ----
 bash_completion | bash completion symlinks
 defaults | macos defaults
-dotfiles | dotfiles
+dotfiles | link with [dofiles](https://github.com/guitarrapc/dotfiles)
 homebrew | homebrew packages
 homebrew-cask | homebrew packages for GUI App
 homebrew-cask-fonts | homebrew packages for fonts
@@ -111,7 +111,7 @@ terraform | terraform environment setup. using tfenv.
 
 Role | Descriptions
 ---- | ----
-[dotfiles] | **NOT YET**
+dotfiles | NOT YET. link with [dofiles-win](https://github.com/guitarrapc/dotfiles-win)
 scoop_current | install app via scoop's `current` bucket
 scoop_current | install app via scoop's `extras` bucket
 
