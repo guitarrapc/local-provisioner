@@ -1,11 +1,4 @@
 ---
-# yq
-- name: install yq
-  pip:
-    name: yq
-    executable: pip3
-    state: latest
-
 # sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys CC86BB64
 - name: Add an Apt signing key for yq
   become: yes
