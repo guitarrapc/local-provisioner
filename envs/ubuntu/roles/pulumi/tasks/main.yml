@@ -24,7 +24,7 @@
     dest: /usr/local/bin/
     mode: a+x
   with_fileglob:
-    - "/tmp/pulumi/*"
+    - "/tmp/pulumi/pulumi*"
   when: pulumi_exists is failed
 
 - name: remove pulumi tmp
