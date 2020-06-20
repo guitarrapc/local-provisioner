@@ -5,3 +5,24 @@
     name: yq
     executable: pip3
     state: latest
+
+# sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys CC86BB64
+- name: Add an Apt signing key for yq
+  become: yes
+  apt_key:
+    keyserver: keyserver.ubuntu.com
+    id: CC86BB64
+
+# sudo add-apt-repository ppa:rmescandon/yq
+- name: modify sources list for yq
+  become: yes
+  apt_repository:
+    repo: ppa:rmescandon/yq
+    state: present
+
+- name: apt-get install yq
+  become: yes
+  apt:
+    pkg: yq
+    state: present
+    update_cache: yes
