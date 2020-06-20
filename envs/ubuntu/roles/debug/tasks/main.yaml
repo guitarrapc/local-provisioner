@@ -4,6 +4,14 @@
 - name: debug ansible_home
   debug:
     msg: "{{ ansible_home }}"
+- name: debug env.Home
+  debug:
+    msg: "{{ lookup('env','HOME') }}"
+- name: debug become env.HOME
+  become: yes
+  debug:
+    msg: "{{ lookup('env','HOME') }}"
+
 - name: debug ansible_user
   debug:
     msg: "{{ ansible_user }}"
