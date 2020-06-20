@@ -45,3 +45,15 @@
   file:
     path: /usr/local/bin/docker-compose
     mode: a+x
+
+- name: docker startup profile.d script
+  blockinfile:
+    become: yes
+    create: yes
+    path: /etc/profile.d/profle_ansible_init_docker.sh
+    block: |
+      sudo -S cgroupfs-mount
+      sudo usermod -aG docker $USER
+      sudo service docker start
+      # wsl1 using windows docker-compose. wsl2 don't need this line.
+      export DOCKER_HOST=tcp://localhost:2375

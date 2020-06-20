@@ -14,7 +14,7 @@
     - name: Preset WSL1 or not
       set_fact: is_wsl1='{{ wsl1_exists.stdout }}'
   roles:
-    - { role: "debug", tags: [debug], when: is_wsl1 == "1" }
+    - { role: "debug", tags: [debug] }
     - { role: "dotfiles", tags: [dotfiles] }
     - { role: "tools", tags: [tools] }
     - { role: "bombardier", tags: [bombardier] }
@@ -23,7 +23,7 @@
     - { role: "azcli", tags: [azcli] }
     - { role: "terraform", tags: [terraform] }
     - { role: "pulumi", tags: [pulumi] }
-    #- { role: "docker", tags: [docker] }
+    - { role: "docker", tags: [docker], when: is_wsl1 == "1" } # only wsl1
     - { role: "circleci", tags: [circleci] }
     - { role: "ngrok", tags: [ngrok] }
     - { role: "kubernetes", tags: [kubernetes] }
