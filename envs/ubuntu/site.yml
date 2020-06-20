@@ -23,7 +23,7 @@
     - { role: "azcli", tags: [azcli] }
     - { role: "terraform", tags: [terraform] }
     - { role: "pulumi", tags: [pulumi] }
-    - { role: "docker", tags: [docker], when: is_wsl1 == "1" } # only wsl1
+    - { role: "docker", tags: [docker], when: is_wsl1 != "0" } # when not wsl2
     - { role: "circleci", tags: [circleci] }
     - { role: "ngrok", tags: [ngrok] }
     - { role: "kubernetes", tags: [kubernetes] }
