@@ -6,7 +6,7 @@ Environment | Version | Method
 ---- | ---- | ----
 macOS | Mojave | Ansible Playbook
 Windows | 10 2020 May Update| scoop
-Ubuntu | 18.04<br/>WSL1<br/>WSL2 | Ansible Playbook
+Ubuntu | 20.04<br/>18.04<br/>WSL1<br/>WSL2 | Ansible Playbook
 
 ## Run
 
@@ -19,7 +19,7 @@ git clone https://github.com/guitarrapc/local-provisioner
 cd local-provisioner
 ```
 
-Ubuntu, Bash on WSL2, run ansible-playbook.
+Ubuntu, run ansible-playbook.
 
 ```shell
 cd envs/ubuntu
@@ -68,7 +68,7 @@ bundle exec rake all
 
 ### Ubuntu
 
-include WSL and WSL2
+include Ubuntu 20.04, 18.04 and on WSL1, WSL2.
 
 Role | Descriptions
 ---- | ----
