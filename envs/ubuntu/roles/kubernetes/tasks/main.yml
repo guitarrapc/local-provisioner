@@ -5,7 +5,13 @@
     path: "/mnt/c/Users/guitarrapc/.kube/config"
   register: win_user_stat_result
 
-- name: create kube/.config symlinks
+- name: create ~/kube directory
+  file:
+    path: "{{ ansible_home }}/.kube"
+    state: directory
+    mode: "0755"
+
+- name: create ~/kube/.config symlinks
   file:
     src: "/mnt/c/Users/guitarrapc/.kube/config"
     dest: "{{ ansible_home }}/.kube/config"
