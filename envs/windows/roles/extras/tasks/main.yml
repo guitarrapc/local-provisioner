@@ -10,7 +10,6 @@
     bucket: extras
     name:
       - azure-cli
-      - azure-functions-core-tools
       - dnspy
       - everything
       - fiddler
@@ -18,10 +17,8 @@
       - gitkraken
       - googlechrome
       - hack-font
-      - heidisql
       - kdiff3
       - linqpad
-      - postman
       - slack
       - vscode
       - vswhere
