@@ -6,7 +6,8 @@
       set_fact: ansible_home='{{ lookup('env','HOME') }}'
     - name: Get WSL1 or WSL2
       become: no
-      shell: "cat /proc/version | grep Microsoft | wc -l"
+      shell: >
+        cat /proc/version | grep Microsoft | wc -l
       register: wsl1_exists
       changed_when: false
       check_mode: no
