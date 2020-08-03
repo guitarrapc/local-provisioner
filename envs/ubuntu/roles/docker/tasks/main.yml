@@ -47,8 +47,8 @@
     mode: a+x
 
 - name: docker startup profile.d script
+  become: yes
   blockinfile:
-    become: yes
     create: yes
     path: /etc/profile.d/profle_ansible_init_docker.sh
     block: |
