@@ -13,14 +13,14 @@
     state: present
     bucket: main
     name:
+      - apache
       - gow
       - jq
+      - netcat
+      - openssl
+      - sops
       - time
       - unzip
-      - openssl
-      - apache
-      - netcat
-      - sops
 
 - name: "Install windows tools"
   scoop_install:
@@ -30,6 +30,7 @@
       - aws
       - bazel
       - chromedriver
+      - dive
       - gibo
       - git-lfs
       - helm
