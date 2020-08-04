@@ -14,7 +14,9 @@
 
 - name: download bombardier
   become: yes
-  shell: curl -L "https://github.com/codesenberg/bombardier/releases/download/{{ bombardier_version }}/bombardier-linux-amd64" -o /usr/local/bin/bombardier
+  get_url:
+    url: https://github.com/codesenberg/bombardier/releases/download/{{ bombardier_version }}/bombardier-linux-amd64
+    dest: "/usr/local/bin/bombardier"
   register: download_bombardier
   when: bombardier_exists is failed
 
@@ -31,17 +33,23 @@
   changed_when: false
   ignore_errors: yes
 
-- name: download dive
-  become: yes
-  shell: curl -L "https://github.com/wagoodman/dive/releases/download/v{{ dive_version }}/dive_{{ dive_version }}_linux_amd64.deb" -o /usr/local/bin/dive
+- name: download dive deb
+  get_url:
+    url: https://github.com/wagoodman/dive/releases/download/v{{ dive_version }}/dive_{{ dive_version }}_linux_amd64.deb
+    dest: "{{ ansible_home }}/dive"
   register: download_dive
   when: dive_exists is failed
 
-- name: chmod dive
+- name: install dive
   become: yes
+  apt:
+    deb: "{{ ansible_home }}/dive"
+
+- name: Remove the dive deb
   file:
-    path: /usr/local/bin/dive
-    mode: a+x
+    path: "{{ ansible_home }}/dive"
+    state: absent
+  when: dive_exists is failed
 
 # check at https://github.com/a8m/envsubst/releases
 - name: check envsubst2 exists
