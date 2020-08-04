@@ -26,24 +26,12 @@
   ignore_errors: yes
 
 - name: download kubectl
+  beocome: yes
   get_url:
     url: https://storage.googleapis.com/kubernetes-release/release/{{ kubectl_version }}/bin/linux/amd64/kubectl
-    dest: "{{ ansible_home }}/kubectl"
+    dest: "/usr/local/bin/kubectl"
   register: download_kubectl
   when: kubectl_exists is failed
-
-- name: copy kubectl
-  become: yes
-  copy:
-    src: "{{ ansible_home }}/kubectl"
-    dest: /usr/local/bin
-  when: kubectl_exists is failed
-
-- name: remove kubectl
-  file:
-    state: absent
-    path: "{{ ansible_home }}/kubectl"
-  when: download_kubectl is succeeded
 
 - name: change file permissions
   become: yes
@@ -153,24 +141,12 @@
   ignore_errors: yes
 
 - name: download stern
+  become: yes
   get_url:
     url: https://github.com/wercker/stern/releases/download/{{ stern_version }}/stern_linux_amd64
-    dest: "{{ ansible_home }}/stern"
+    dest: "/usr/local/bin/stern"
   register: download_stern
   when: stern_exists is failed
-
-- name: copy stern
-  become: yes
-  copy:
-    src: "{{ ansible_home }}/stern"
-    dest: /usr/local/bin
-  when: stern_exists is failed
-
-- name: remove stern
-  file:
-    state: absent
-    path: "{{ ansible_home }}/stern"
-  when: download_stern is succeeded
 
 - name: change file permissions
   become: yes
@@ -190,24 +166,12 @@
   ignore_errors: yes
 
 - name: download kubergrunt
+  become: yes
   get_url:
     url: https://github.com/gruntwork-io/kubergrunt/releases/download/v{{ kubergrunt_version }}/kubergrunt_linux_amd64
-    dest: "{{ ansible_home }}/kubergrunt"
+    dest: "/usr/local/bin/kubergrunt"
   register: download_kubergrunt
   when: kubergrunt_exists is failed
-
-- name: copy kubergrunt
-  become: yes
-  copy:
-    src: "{{ ansible_home }}/kubergrunt"
-    dest: /usr/local/bin
-  when: kubergrunt_exists is failed
-
-- name: remove kubergrunt
-  file:
-    state: absent
-    path: "{{ ansible_home }}/kubergrunt"
-  when: download_kubergrunt is succeeded
 
 - name: change file permissions
   become: yes
@@ -288,31 +252,18 @@
   ignore_errors: yes
 
 - name: download kubesec
+  become: yes
   get_url:
     url: https://github.com/shyiko/kubesec/releases/download/{{ kubesec_version }}/kubesec-{{ kubesec_version }}-linux-amd64
-    dest: "{{ ansible_home }}/kubesec"
+    dest: "/usr/local/bin/kubesec"
   register: download_kubesec
   when: kubesec_exists is failed
-
-- name: copy kubesec
-  become: yes
-  copy:
-    src: "{{ ansible_home }}/kubesec"
-    dest: /usr/local/bin
-  when:
-    - kubesec_exists is failed
-
-- name: remove kubesec
-  file:
-    state: absent
-    path: "{{ ansible_home }}/kubesec"
-  when: download_kubesec is succeeded
 
 - name: change file permissions
   become: yes
   file:
     path: /usr/local/bin/kubesec
-    mode: "0755"
+    mode: "a+x"
   when: download_kubesec is succeeded
 
 - name: confirm kubesec exists
@@ -371,7 +322,6 @@
   when: kubeval_exists is failed
 
 # mozilla/sops
-
 - name: pickup installed sops versions
   shell: sops --version | grep {{ sops_version }}
   register: sops_exists
@@ -379,23 +329,11 @@
   ignore_errors: yes
 
 - name: download sops
+  become: yes
   get_url:
     url: https://github.com/mozilla/sops/releases/download/v{{ sops_version }}/sops-v{{ sops_version }}.linux
-    dest: "{{ ansible_home }}/sops"
+    dest: " /usr/local/bin/sops"
   register: download_sops
-  when: sops_exists is failed
-
-- name: copy kubeval
-  become: yes
-  copy:
-    src: "{{ ansible_home }}/sops"
-    dest: /usr/local/bin/sops
-  when: sops_exists is failed
-
-- name: remove sops files
-  file:
-    state: absent
-    path: "{{ ansible_home }}/sops"
   when: sops_exists is failed
 
 - name: change file permissions

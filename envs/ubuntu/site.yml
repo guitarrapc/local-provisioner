@@ -18,6 +18,7 @@
     - { role: "dotfiles", tags: [dotfiles] }
     - { role: "tools", tags: [tools] }
     - { role: "bombardier", tags: [bombardier] }
+    - { role: "dive", tags: [dive] }
     - { role: "yq", tags: [yq] }
     - { role: "awscli", tags: [awscli] }
     - { role: "azcli", tags: [azcli] }

@@ -5,30 +5,18 @@
   register: stat_result
 
 - name: download envsubst2
+  become: yes
   get_url:
     url: https://github.com/a8m/envsubst/releases/download/v{{ envsubst2_download_version }}/envsubst-Linux-x86_64
-    dest: "{{ ansible_home }}/envsubst2"
+    dest: "/usr/local/bin/envsubst2"
   register: download_envsubst2
-  when: not stat_result.stat.exists
-
-- name: copy envsubst2
-  become: yes
-  copy:
-    src: "{{ ansible_home }}/envsubst2"
-    dest: /usr/local/bin
-  when: not stat_result.stat.exists
-
-- name: remove envsubst2
-  file:
-    state: absent
-    path: "{{ ansible_home }}/envsubst2"
   when: not stat_result.stat.exists
 
 - name: change file permissions
   become: yes
   file:
     path: /usr/local/bin/envsubst2
-    mode: "0755"
+    mode: "a+x"
   when: not stat_result.stat.exists
 
 - name: confirm envsubst2 exists
