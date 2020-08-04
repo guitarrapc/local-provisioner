@@ -26,7 +26,7 @@
   ignore_errors: yes
 
 - name: download kubectl
-  beocome: yes
+  become: yes
   get_url:
     url: https://storage.googleapis.com/kubernetes-release/release/{{ kubectl_version }}/bin/linux/amd64/kubectl
     dest: "/usr/local/bin/kubectl"
