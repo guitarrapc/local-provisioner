@@ -17,8 +17,6 @@
     - { role: "debug", tags: [debug] }
     - { role: "dotfiles", tags: [dotfiles] }
     - { role: "tools", tags: [tools] }
-    - { role: "bombardier", tags: [bombardier] }
-    - { role: "dive", tags: [dive] }
     - { role: "yq", tags: [yq] }
     - { role: "awscli", tags: [awscli] }
     - { role: "azcli", tags: [azcli] }
@@ -29,5 +27,4 @@
     - { role: "ngrok", tags: [ngrok] }
     - { role: "kubernetes", tags: [kubernetes] }
     - { role: "dotnetsdk", tags: [dotnetsdk] }
-    - { role: "envsubst2", tags: [envsubst2] }
 # ansible-playbook -i hosts site.yml --ask-become-pass

@@ -19,8 +19,8 @@
   when: win_user_stat_result.stat.exists
 
 # kubectl
-- name: pickup installed kubectl versions
-  shell: kubectl version | grep {{ kubectl_version }}
+- name: check kubectl installed
+  shell: kubectl version --client --short | grep {{ kubectl_version }}
   register: kubectl_exists
   changed_when: false
   ignore_errors: yes
@@ -38,10 +38,6 @@
   file:
     path: /usr/local/bin/kubectl
     mode: "0755"
-
-- name: confirm kubectl exists
-  shell: ls /usr/local/bin/kubectl && kubectl version | grep {{ kubectl_version }}
-  changed_when: false
 
 # kubeadm
 - name: add kubeadm apt_key
@@ -62,8 +58,8 @@
     update_cache: yes
 
 # helm3
-- name: pickup installed helm3 versions
-  shell: helm version | grep {{ helm_version }}
+- name: check helm3 installed
+  shell: helm version --short | grep {{ helm_version }}
   register: helm3_exists
   changed_when: false
   ignore_errors: yes
@@ -107,10 +103,6 @@
     path: /usr/local/bin/helm
     mode: "0755"
 
-- name: confirm helm exists
-  shell: ls /usr/local/bin/helm && helm version | grep {{ helm_version }}
-  changed_when: false
-
 # kubectx
 - name: clone kubectx
   become: yes
@@ -134,7 +126,7 @@
     state: link
 
 # stern
-- name: pickup installed stern versions
+- name: check stern installed
   shell: stern --version | grep {{ stern_version }}
   register: stern_exists
   changed_when: false
@@ -154,12 +146,8 @@
     path: /usr/local/bin/stern
     mode: "0755"
 
-- name: confirm stern exists
-  shell: ls /usr/local/bin/stern && stern --version | grep {{ stern_version }}
-  changed_when: false
-
 # kubergrunt
-- name: pickup installed kubergrunt versions
+- name: check kubergrunt installed
   shell: kubergrunt --version | grep {{ kubergrunt_version }}
   register: kubergrunt_exists
   changed_when: false
@@ -179,12 +167,8 @@
     path: /usr/local/bin/kubergrunt
     mode: "0755"
 
-- name: confirm kubergrunt exists
-  shell: ls /usr/local/bin/kubergrunt && kubergrunt --version | grep {{ kubergrunt_version }}
-  changed_when: false
-
 # istioctl
-- name: pickup installed istioctl versions
+- name: check istioctl installed
   shell: istioctl version | grep {{ istioctl_version }}
   register: istioctl_exists
   changed_when: false
@@ -240,12 +224,8 @@
     - istioctl_exists is failed
     - download_istioctl is succeeded
 
-- name: confirm istioctl exists
-  shell: ls /usr/local/bin/istioctl && istioctl version | grep {{ istioctl_version }}
-  changed_when: false
-
 # kubesec
-- name: pickup installed kubesec versions
+- name: check kubesec installed
   shell: kubesec --version | grep {{ kubesec_version }}
   register: kubesec_exists
   changed_when: false
@@ -266,12 +246,8 @@
     mode: "a+x"
   when: download_kubesec is succeeded
 
-- name: confirm kubesec exists
-  shell: ls /usr/local/bin/kubesec && kubesec --version | grep {{ kubesec_version }}
-  changed_when: false
-
 # kubeval
-- name: pickup installed kubeval versions
+- name: check kubeval installed
   shell: kubeval --version | grep {{ kubeval_version }}
   register: kubeval_exists
   changed_when: false
@@ -316,13 +292,8 @@
     mode: "0755"
   when: kubeval_exists is failed
 
-- name: confirm kubeval exists
-  shell: ls /usr/local/bin/kubeval && kubeval --version | grep {{ kubeval_version }}
-  changed_when: false
-  when: kubeval_exists is failed
-
 # mozilla/sops
-- name: pickup installed sops versions
+- name: check sops installed
   shell: sops --version | grep {{ sops_version }}
   register: sops_exists
   changed_when: false
@@ -341,9 +312,4 @@
   file:
     path: /usr/local/bin/sops
     mode: "0755"
-  when: sops_exists is failed
-
-- name: confirm sops exists
-  shell: ls /usr/local/bin/sops && sops --version | grep {{ sops_version }}
-  changed_when: false
   when: sops_exists is failed

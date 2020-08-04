@@ -1,5 +1,5 @@
 ---
-- name: confirm circleci exists
+- name: check circleci exists
   stat:
     path: /usr/local/bin/circleci
     get_checksum: false
@@ -12,7 +12,7 @@
     dest: "{{ ansible_home }}/ciecleci_install.sh"
   when: not circleci_exists.stat.exists
 
-- name: confirm installer exists
+- name: check installer exists
   stat:
     path: "{{ ansible_home }}/ciecleci_install.sh"
     get_checksum: false

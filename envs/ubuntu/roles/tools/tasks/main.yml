@@ -4,3 +4,62 @@
   apt:
     pkg: "{{ apt_tools }}"
     update_cache: yes
+
+# bombardier
+- name: check bombardier installed
+  shell: bombardier --version 2>&1 | head -n 1 | grep {{ bombardier_version }}
+  register: bombardier_exists
+  changed_when: false
+  ignore_errors: yes
+
+- name: download bombardier
+  become: yes
+  shell: curl -L "https://github.com/codesenberg/bombardier/releases/download/{{ bombardier_version }}/bombardier-linux-amd64" -o /usr/local/bin/bombardier
+  register: download_bombardier
+  when: bombardier_exists is failed
+
+- name: chmod bombardier
+  become: yes
+  file:
+    path: /usr/local/bin/bombardier
+    mode: a+x
+
+# dive
+- name: check dive installed
+  shell: dive --version 2>&1 | head -n 1 | grep {{ dive_version }}
+  register: dive_exists
+  changed_when: false
+  ignore_errors: yes
+
+- name: download dive
+  become: yes
+  shell: curl -L "https://github.com/wagoodman/dive/releases/download/v{{ dive_version }}/dive_{{ dive_version }}_linux_amd64.deb" -o /usr/local/bin/dive
+  register: download_dive
+  when: dive_exists is failed
+
+- name: chmod dive
+  become: yes
+  file:
+    path: /usr/local/bin/dive
+    mode: a+x
+
+# check at https://github.com/a8m/envsubst/releases
+- name: check envsubst2 exists
+  stat:
+    path: /usr/local/bin/envsubst2
+  register: stat_result
+
+- name: download envsubst2
+  become: yes
+  get_url:
+    url: https://github.com/a8m/envsubst/releases/download/v{{ envsubst2_download_version }}/envsubst-Linux-x86_64
+    dest: "/usr/local/bin/envsubst2"
+  register: download_envsubst2
+  when: not stat_result.stat.exists
+
+- name: change file permissions
+  become: yes
+  file:
+    path: /usr/local/bin/envsubst2
+    mode: "a+x"
+  when: not stat_result.stat.exists

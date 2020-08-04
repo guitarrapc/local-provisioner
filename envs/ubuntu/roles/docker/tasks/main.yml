@@ -27,7 +27,7 @@
     pkg: "{{ docker_pkgs }}"
     update_cache: yes
 
-- name: confirm docker-compose exists
+- name: check docker-compose exists
   stat:
     path: /usr/local/bin/docker-compose
     get_checksum: false

@@ -1,6 +1,5 @@
 ---
-
-- name: pickup installed terraform versions
+- name: check  terraform installed
   shell: tfenv list | grep {{ terraform_version }}
   register: tfenv_version
   changed_when: false

@@ -1,12 +1,11 @@
 ---
-
-- name: confirm ngrok exists
+- name: check ngrok installed
   stat:
     path: /usr/local/bin/ngrok
     get_checksum: false
     get_md5: false
   register: ngrok_exists
-  
+
 - name: download ngrok
   get_url:
     url: https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip
@@ -14,7 +13,7 @@
   register: download_ngrok
   when: not ngrok_exists.stat.exists
 
-- name: confirm ngrok temp zip exists
+- name: check ngrok temp zip exists
   stat:
     path: "{{ ansible_home }}/ngrok-stable-linux-amd64.zip"
     get_checksum: false

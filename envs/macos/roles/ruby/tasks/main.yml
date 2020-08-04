@@ -1,6 +1,5 @@
 ---
-
-- name: pickup installed ruby versions
+- name: check  ruby installed
   shell: rbenv versions | grep {{ ruby_version }}
   register: rbenv_version
   changed_when: false

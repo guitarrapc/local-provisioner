@@ -1,5 +1,5 @@
 ---
-- name: pickup installed pulumi versions
+- name: check pulumi installed
   shell: pulumi version | grep v{{ pulumi_version }}
   register: pulumi_exists
   changed_when: false
