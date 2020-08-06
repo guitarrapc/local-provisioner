@@ -44,6 +44,7 @@
   become: yes
   apt:
     deb: "{{ ansible_home }}/dive"
+  when: dive_exists is failed
 
 - name: Remove the dive deb
   file:
