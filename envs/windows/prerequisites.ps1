@@ -27,12 +27,10 @@ scoop checkup
 
 PrintInfo -message "exclude scoop path from Microsoft Defender"
 foreach ($item in @("$env:UserProfile\scoop", "$env:ProgramData\scoop")) {
-  if (!((Get-MpPreference).ExclusionPath -contains $item)) {
-    sudo Add-MpPreference -ExclusionPath $item
-  }
+  sudo Add-MpPreference -ExclusionPath $item
 }
 
-PrintInfo -message "set longpath support"
+PrintInfo -message "enable longpath support"
 if (1 -ne (Get-ItemPropertyValue 'HKLM:\SYSTEM\CurrentControlSet\Control\FileSystem' -Name 'LongPathsEnabled')) {
   sudo Set-ItemProperty 'HKLM:\SYSTEM\CurrentControlSet\Control\FileSystem' -Name 'LongPathsEnabled' -Value 1
 }
@@ -45,4 +43,4 @@ foreach ($item in @("PowerShell-Yaml", "ScoopPlaybook")) {
   }
 }
 
-PrintInfo -message "Install Docker for Windows, and enable WSL2."
+PrintInfo -message "Please install non-scoop apps, Docker for Windows, and enable WSL2."
