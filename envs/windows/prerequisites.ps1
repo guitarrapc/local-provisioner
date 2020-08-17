@@ -1,6 +1,9 @@
 function PrintInfo($message) {
   Write-Host $message -ForegroundColor Cyan
 }
+function PrintError($message) {
+  Write-Host $message -ForegroundColor Red
+}
 
 PrintInfo -message "checking execution policy for current user."
 if ((Get-ExecutionPolicy -Scope CurrentUser) -ne "RemoteSigned") {
@@ -16,7 +19,7 @@ foreach ($item in @("7zip", "dark", "git", "innounp", "sudo")) {
   scoop install $item
   scoop update $item
   if (!$?) {
-    PrintInfo -message "COULD NOT COMPLETE INSTALLATION $item. please run 'scoop uninstall $item' then run again."
+    PrintError -message "Could not complete installation $item. Please run 'scoop uninstall $item' then run again."
     return
   }
 }
