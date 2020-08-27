@@ -307,7 +307,7 @@
   become: yes
   get_url:
     url: https://github.com/mozilla/sops/releases/download/v{{ sops_version }}/sops-v{{ sops_version }}.linux
-    dest: " /usr/local/bin/sops"
+    dest: "/usr/local/bin/sops"
   register: download_sops
   when: sops_exists is failed
 
