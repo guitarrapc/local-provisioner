@@ -21,7 +21,6 @@
   apt_repository:
     # $(lsb_release -cs) = {{ ansible_distribution_release }}
     repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable
-    filename: "dotnetdev"
     state: present
     update_cache: yes
 
