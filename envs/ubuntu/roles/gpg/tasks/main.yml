@@ -1,14 +1,14 @@
 ---
-- name: uninstall gpg
-  become: yes
-  apt:
-    pkg: gpg
-    state: absent
-    update_cache: yes
-
 - name: install gnupg1
   become: yes
   apt:
     pkg: gnupg1
     state: present
+    update_cache: yes
+
+- name: uninstall gpg
+  become: yes
+  apt:
+    pkg: gpg
+    state: absent
     update_cache: yes
