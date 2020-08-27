@@ -1,4 +1,12 @@
 ---
+# sudo apt-get install dirmngr
+- name: Install dirmngr
+  become: yes
+  apt:
+    pkg: dirmngr
+    state: present
+    update_cache: yes
+
 # sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys CC86BB64
 - name: Add an Apt signing key for yq
   become: yes
