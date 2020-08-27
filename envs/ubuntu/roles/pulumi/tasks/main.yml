@@ -8,7 +8,6 @@
 # https://www.pulumi.com/docs/get-started/install/versions/
 - name: download pulumi
   shell: curl -Ls "https://get.pulumi.com/releases/sdk/pulumi-v{{ pulumi_version }}-linux-x64.tar.gz" -o /tmp/pulumi-linux-x64.tar.gz
-  warn: false
   when: pulumi_exists is failed
 
 - name: unzip pulumi
