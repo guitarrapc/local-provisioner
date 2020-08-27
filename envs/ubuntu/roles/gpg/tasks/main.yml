@@ -6,7 +6,7 @@
     state: absent
     update_cache: yes
 
-- name: uninstall gnupg1
+- name: install gnupg1
   become: yes
   apt:
     pkg: gnupg1

@@ -16,8 +16,8 @@
   roles:
     - { role: "debug", tags: [debug] }
     - { role: "dotfiles", tags: [dotfiles] }
-    - { role: "tools", tags: [tools] }
     - { role: "gpg", tags: [gpg], when: is_wsl1 != "0" } # when wsl1
+    - { role: "tools", tags: [tools] }
     - { role: "yq", tags: [yq] }
     - { role: "awscli", tags: [awscli] }
     - { role: "azcli", tags: [azcli] }
