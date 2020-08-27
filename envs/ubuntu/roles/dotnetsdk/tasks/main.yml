@@ -14,7 +14,7 @@
 
 - name: add repo for Ubuntu
   become: yes
-  shell: dpkg -i /tmp/packages-microsoft-prod.deb
+  shell: sudo dpkg -i /tmp/packages-microsoft-prod.deb
 
 - name: install dotnet core ({{ dotnet_package }})
   become: yes
