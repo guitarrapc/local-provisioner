@@ -8,8 +8,8 @@
   register: aws2_exists
 
 - name: download aws2
-  shell: >
-    curl -L "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o /tmp/awscliv2.zip
+  shell: curl -L "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o /tmp/awscliv2.zip
+  warn: false
   when: not aws2_exists.stat.exists
 
 - name: unzip aws2
@@ -42,8 +42,8 @@
   register: eksctl_exists
 
 - name: download eksctl
-  shell: >
-    curl -L "https://github.com/weaveworks/eksctl/releases/download/latest_release/eksctl_$(uname -s)_amd64.tar.gz" -o /tmp/eksctl_amd64.tar.gz
+  shell: curl -L "https://github.com/weaveworks/eksctl/releases/download/latest_release/eksctl_$(uname -s)_amd64.tar.gz" -o /tmp/eksctl_amd64.tar.gz
+  warn: false
   when: not eksctl_exists.stat.exists
 
 - name: unzip eksctl
@@ -79,6 +79,7 @@
 - name: download aws-iam-authenticator
   become: yes
   shell: curl -L "https://amazon-eks.s3-us-west-2.amazonaws.com/{{ aws_iam_authenticator_version }}/{{ aws_iam_authenticator_date }}/bin/linux/amd64/aws-iam-authenticator" -o /usr/local/bin/aws-iam-authenticator
+  warn: false
   when: not aws_iam_authenticator_exists.stat.exists
 
 - name: chmod aws-iam-authenticator

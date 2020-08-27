@@ -48,6 +48,7 @@
 - name: add kubeadm apt key
   become: yes
   shell: curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+  warn: false
 
 - name: add kube apt
   become: yes

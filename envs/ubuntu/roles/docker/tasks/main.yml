@@ -14,6 +14,7 @@
 - name: import Docker apt key
   become: yes
   shell: curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+  warn: false
 
 - name: add repo for Ubuntu
   become: yes
@@ -40,8 +41,8 @@
 
 - name: download docker-compose
   become: yes
-  shell: >
-    curl -L "https://github.com/docker/compose/releases/download/1.24.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+  shell: curl -L "https://github.com/docker/compose/releases/download/1.24.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+  warn: false
   when: not dockercompose_exists.stat.exists
 
 - name: chmod docker-compose
