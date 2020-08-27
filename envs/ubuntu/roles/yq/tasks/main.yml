@@ -1,12 +1,12 @@
 ---
 # sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys CC86BB64
-# - name: Add an Apt signing key for yq
+# - name: Add yq apt key
 #   become: yes
 #   apt_key:
 #     keyserver: keyserver.ubuntu.com
 #     id: CC86BB64
 
-- name: Add an Apt signing key for yq
+- name: Add yq apt key
   become: yes
   shell: apt-key adv --keyserver keyserver.ubuntu.com --recv-keys CC86BB64
 

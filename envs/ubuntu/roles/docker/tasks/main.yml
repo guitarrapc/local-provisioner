@@ -5,13 +5,13 @@
     pkg: "{{ docker_prerequisites }}"
     update_cache: yes
 
-# - name: import Docker APT key
+# - name: import Docker apt key
 #   become: yes
 #   apt_key:
 #     url: "https://download.docker.com/linux/ubuntu/gpg"
 #     state: present
 
-- name: import Docker APT key
+- name: import Docker apt key
   become: yes
   shell: curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 

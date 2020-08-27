@@ -40,10 +40,14 @@
     mode: "0755"
 
 # kubeadm
-- name: add kubeadm apt_key
+# - name: add kubeadm apt key
+#   become: yes
+#   apt_key:
+#     url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
+
+- name: add kubeadm apt key
   become: yes
-  apt_key:
-    url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
+  shell: curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
 
 - name: add kube apt
   become: yes

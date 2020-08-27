@@ -8,19 +8,13 @@
     state: present
     update_cache: yes
 
-- name: import Microsoft APT key
+- name: import Microsoft apt key
   become: yes
-  apt_key:
-    url: "{{ dotnet_debian_repo_gpg_key_url }}"
-    state: present
+  shell: wget https://packages.microsoft.com/config/ubuntu/{{ ansible_distribution_version }}/packages-microsoft-prod.deb -O /tmp/packages-microsoft-prod.deb
 
 - name: add repo for Ubuntu
   become: yes
-  apt_repository:
-    repo: deb [arch=amd64] https://packages.microsoft.com/repos/microsoft-ubuntu-{{ ansible_distribution_release }}-prod {{ ansible_distribution_release }} main
-    filename: "dotnetdev"
-    state: present
-    update_cache: yes
+  shell: dpkg -i /tmp/packages-microsoft-prod.deb
 
 - name: install dotnet core ({{ dotnet_package }})
   become: yes

@@ -20,7 +20,6 @@
     - { role: "tools", tags: [tools] }
     - { role: "yq", tags: [yq] }
     - { role: "awscli", tags: [awscli] }
-    - { role: "azcli", tags: [azcli] }
     - { role: "terraform", tags: [terraform] }
     - { role: "pulumi", tags: [pulumi] }
     - { role: "docker", tags: [docker], when: is_wsl1 != "0" } # when wsl1
