@@ -25,9 +25,15 @@
   changed_when: false
   ignore_errors: yes
 
+- name: remove docker for windows kubectl if exists.
+  file:
+    path: /usr/local/bin/kubectl
+    state: absent
+  when: kubectl_exists is failed
+
 - name: download kubectl
   become: yes
-  shell: curl -L "https://storage.googleapis.com/kubernetes-release/release/{{ kubectl_version }}/bin/linux/amd64/kubectl" -o /usr/local/bin/kubectl
+  shell: curl -Ls "https://storage.googleapis.com/kubernetes-release/release/{{ kubectl_version }}/bin/linux/amd64/kubectl" -o /usr/local/bin/kubectl
   register: download_kubectl
   when: kubectl_exists is failed
 
