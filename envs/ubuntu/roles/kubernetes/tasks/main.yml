@@ -27,9 +27,7 @@
 
 - name: download kubectl
   become: yes
-  get_url:
-    url: https://storage.googleapis.com/kubernetes-release/release/{{ kubectl_version }}/bin/linux/amd64/kubectl
-    dest: "/usr/local/bin/kubectl"
+  shell: curl -L "https://storage.googleapis.com/kubernetes-release/release/{{ kubectl_version }}/bin/linux/amd64/kubectl" -o /usr/local/bin/kubectl
   register: download_kubectl
   when: kubectl_exists is failed
 
