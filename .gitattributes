@@ -1,0 +1,7 @@
+* text=auto
+*.cfg text eol=lf
+*.md text eol=lf
+*.sh text eol=lf
+.yaml text eol=lf
+.yml text eol=lf
+Gemfile text eol=lf
