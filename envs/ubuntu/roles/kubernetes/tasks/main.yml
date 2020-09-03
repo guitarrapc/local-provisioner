@@ -26,6 +26,7 @@
   ignore_errors: yes
 
 - name: remove docker for windows kubectl if exists.
+  become: yes
   file:
     path: /usr/local/bin/kubectl
     state: absent
