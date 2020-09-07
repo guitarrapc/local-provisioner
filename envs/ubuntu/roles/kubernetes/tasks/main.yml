@@ -43,6 +43,7 @@
   file:
     path: /usr/local/bin/kubectl
     mode: "0755"
+  when: kubectl_exists is failed
 
 # kubeadm
 # - name: add kubeadm apt key

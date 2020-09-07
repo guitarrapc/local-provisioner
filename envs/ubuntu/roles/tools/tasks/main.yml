@@ -69,3 +69,4 @@
   file:
     path: /usr/local/bin/ctop
     mode: "a+x"
+  when: not ctop_exists.stat.exists
