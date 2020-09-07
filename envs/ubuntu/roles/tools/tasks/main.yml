@@ -62,11 +62,11 @@
 - name: download ctop
   become: yes
   shell: curl -Ls "https://github.com/bcicen/ctop/releases/download/v{{ ctop_version }}/ctop-{{ ctop_version }}-linux-amd64" -o /usr/local/bin/ctop
-  when: not ctop_exists.stat.exists
+  when: ctop_exists is failed
 
 - name: change ctop file permissions
   become: yes
   file:
     path: /usr/local/bin/ctop
     mode: "a+x"
-  when: not ctop_exists.stat.exists
+  when: ctop_exists is failed
