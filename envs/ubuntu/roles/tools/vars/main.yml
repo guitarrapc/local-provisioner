@@ -7,4 +7,4 @@ apt_tools:
   - unzip
 bombardier_version: v1.2.4
 dive_version: 0.9.2
-envsubst2_download_version: 1.1.0
+ctop_verison: 0.7.3

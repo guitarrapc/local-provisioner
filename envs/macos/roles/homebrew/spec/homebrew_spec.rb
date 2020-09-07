@@ -12,6 +12,7 @@ describe command("brew list -l") do
     its(:stdout) { should match "brew-cask-completion" }
     its(:stdout) { should match "carthage" }
     its(:stdout) { should match "circleci" }
+    its(:stdout) { should match "ctop" }
     its(:stdout) { should match "direnv" }
     its(:stdout) { should match "docker" }
     its(:stdout) { should match "freetype" }

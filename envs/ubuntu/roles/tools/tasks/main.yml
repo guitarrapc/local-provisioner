@@ -52,23 +52,20 @@
     state: absent
   when: dive_exists is failed
 
-# check at https://github.com/a8m/envsubst/releases
-- name: check envsubst2 exists
-  stat:
-    path: /usr/local/bin/envsubst2
-  register: stat_result
+# ctop
+- name: check ctop installed
+  shell: ctop -v 2>&1 | head -n 1 | grep {{ ctop_version }}
+  register: ctop_exists
+  changed_when: false
+  ignore_errors: yes
 
-- name: download envsubst2
+- name: download ctop
   become: yes
-  get_url:
-    url: https://github.com/a8m/envsubst/releases/download/v{{ envsubst2_download_version }}/envsubst-Linux-x86_64
-    dest: "/usr/local/bin/envsubst2"
-  register: download_envsubst2
-  when: not stat_result.stat.exists
+  shell: curl -Ls "https://github.com/bcicen/ctop/releases/download/v{{ ctop_version }}/ctop-{{ ctop_version }}-linux-amd64" -o /usr/local/bin/ctop
+  when: not ctop_exists.stat.exists
 
-- name: change file permissions
+- name: change ctop file permissions
   become: yes
   file:
-    path: /usr/local/bin/envsubst2
+    path: /usr/local/bin/ctop
     mode: "a+x"
-  when: not stat_result.stat.exists
