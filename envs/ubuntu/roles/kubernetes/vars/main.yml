@@ -6,3 +6,4 @@ istioctl_version: 1.5.8
 kubesec_version: 0.9.2
 kubeval_version: 0.15.0
 sops_version: 3.6.0
+argocd_version: 1.7.4
