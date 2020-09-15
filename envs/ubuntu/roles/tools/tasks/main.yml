@@ -70,3 +70,48 @@
     path: /usr/local/bin/ctop
     mode: "a+x"
   when: ctop_exists is failed
+
+# grpcurl
+- name: check grpcurl installed
+  shell: grpcurl --version 2>&1 | head -n 1 | grep {{ grpcurl_version }}
+  register: grpcurl_exists
+  changed_when: false
+  ignore_errors: yes
+
+- name: download grpcurl
+  become: yes
+  get_url:
+    url: https://github.com/fullstorydev/grpcurl/releases/download/v{{ grpcurl_version }}/grpcurl_{{ grpcurl_version }}_linux_x86_64.tar.gz
+    dest: "{{ ansible_home }}/grpcurl.tar.gz"
+  when: grpcurl_exists is failed
+
+- name: unarchive grpcurl
+  command: tar -zxvf "{{ ansible_home }}/grpcurl.tar.gz"
+  args:
+    chdir: "{{ ansible_home }}/"
+  register: unarchive_grpcurl
+  when: grpcurl_exists is failed
+
+- name: copy grpcurl
+  become: yes
+  copy:
+    src: "{{ ansible_home }}/grpcurl"
+    dest: /usr/local/bin/grpcurl
+  when: grpcurl_exists is failed
+
+- name: remove grpcurl files
+  file:
+    state: absent
+    path: "{{ ansible_home }}/{{ item }}"
+  with_items:
+    - grpcurl.tar.gz
+    - LICENSE
+    - grpcurl
+  when: grpcurl_exists is failed
+
+- name: change file permissions
+  become: yes
+  file:
+    path: /usr/local/bin/grpcurl
+    mode: "0755"
+  when: grpcurl_exists is failed
