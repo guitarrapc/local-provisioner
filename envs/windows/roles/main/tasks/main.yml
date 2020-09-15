@@ -13,7 +13,6 @@
     state: present
     bucket: main
     name:
-      - apache
       - gow
       - jq
       - netcat

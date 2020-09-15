@@ -323,3 +323,25 @@
     path: /usr/local/bin/sops
     mode: "0755"
   when: sops_exists is failed
+
+# argocd
+- name: check argocd installed
+  shell: argocd version | grep {{ argocd_version }}
+  register: argocd_exists
+  changed_when: false
+  ignore_errors: yes
+
+- name: download argocd
+  become: yes
+  get_url:
+    url: https://github.com/argoproj/argo-cd/releases/download/v{{ argocd_version }}/argocd-linux-amd64
+    dest: "/usr/local/bin/argocd"
+  register: download_argocd
+  when: argocd_exists is failed
+
+- name: change file permissions
+  become: yes
+  file:
+    path: /usr/local/bin/argocd
+    mode: "0755"
+  when: argocd_exists is failed
