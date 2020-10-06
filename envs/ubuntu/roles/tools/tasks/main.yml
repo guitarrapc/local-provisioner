@@ -115,3 +115,48 @@
     path: /usr/local/bin/grpcurl
     mode: "0755"
   when: grpcurl_exists is failed
+
+# cert
+- name: check cert installed
+  shell: cert -v 2>&1 | head -n 1 | grep {{ cert_version }}
+  register: cert_exists
+  changed_when: false
+  ignore_errors: yes
+
+- name: download cert
+  become: yes
+  get_url:
+    url: https://github.com/genkiroid/cert/releases/download/0.15.0/cert_{{ cert_version }}_linux_64bit.tar.gz
+    dest: "{{ ansible_home }}/cert.tar.gz"
+  when: cert_exists is failed
+
+- name: unarchive cert
+  command: tar -zxvf "{{ ansible_home }}/cert.tar.gz"
+  args:
+    chdir: "{{ ansible_home }}/"
+  register: unarchive_cert
+  when: cert_exists is failed
+
+- name: copy cert
+  become: yes
+  copy:
+    src: "{{ ansible_home }}/cert"
+    dest: /usr/local/bin/cert
+  when: cert_exists is failed
+
+- name: remove cert files
+  file:
+    state: absent
+    path: "{{ ansible_home }}/{{ item }}"
+  with_items:
+    - cert.tar.gz
+    - README.md
+    - cert
+  when: cert_exists is failed
+
+- name: change file permissions
+  become: yes
+  file:
+    path: /usr/local/bin/cert
+    mode: "0755"
+  when: cert_exists is failed
