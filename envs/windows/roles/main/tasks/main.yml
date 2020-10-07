@@ -13,7 +13,7 @@
     state: present
     bucket: main
     name:
-      - gow
+      - busybox
       - jq
       - netcat
       - openssl
