@@ -1,22 +1,21 @@
 ---
 # aws2
 - name: check aws2 exists
-  stat:
-    path: /usr/local/bin/aws
-    get_checksum: false
-    get_md5: false
+  shell: aws --version 2>&1 | head -n 1 | grep "aws-cli/{{ aws_cli_version }}"
   register: aws2_exists
+  changed_when: false
+  ignore_errors: yes
 
 - name: download aws2
-  shell: curl -L "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o /tmp/awscliv2.zip
-  when: not aws2_exists.stat.exists
+  shell: curl -L "https://awscli.amazonaws.com/awscli-exe-linux-x86_64-{{ aws_cli_version }}.zip" -o /tmp/awscliv2.zip
+  when: aws2_exists is failed
 
 - name: unzip aws2
   unarchive:
     src: /tmp/awscliv2.zip
     dest: /tmp
     remote_src: yes
-  when: not aws2_exists.stat.exists
+  when: aws2_exists is failed
 
 # install to /usr/local/aws by default.
 # symlink to /usr/local/bin/aws by default.
@@ -24,25 +23,24 @@
   become: yes
   shell: >
     /tmp/aws/install --update
-  when: not aws2_exists.stat.exists
+  when: aws2_exists is failed
 
 - name: clean up tmp aws zip
   file:
     path: /tmp/awscliv2.zip
     state: absent
-  when: not aws2_exists.stat.exists
+  when: aws2_exists is failed
 
 # eksctl
 - name: check eksctl exists
-  stat:
-    path: /usr/local/bin/eksctl
-    get_checksum: false
-    get_md5: false
+  shell: eksctl version 2>&1 | head -n 1 | grep "{{ eksctl_version }}"
   register: eksctl_exists
+  changed_when: false
+  ignore_errors: yes
 
 - name: download eksctl
-  shell: curl -L "https://github.com/weaveworks/eksctl/releases/download/latest_release/eksctl_$(uname -s)_amd64.tar.gz" -o /tmp/eksctl_amd64.tar.gz
-  when: not eksctl_exists.stat.exists
+  shell: curl -L "https://github.com/weaveworks/eksctl/releases/download/{{ eksctl_version }}/eksctl_$(uname -s)_amd64.tar.gz" -o /tmp/eksctl_amd64.tar.gz
+  when: eksctl_exists is failed
 
 - name: unzip eksctl
   become: yes
@@ -50,37 +48,17 @@
     src: /tmp/eksctl_amd64.tar.gz
     dest: /usr/local/bin
     remote_src: yes
-  when: not eksctl_exists.stat.exists
+  when: eksctl_exists is failed
 
 - name: remove eksctl tmp
   file:
-    path: /tmp/eksctl_$(uname -s)_amd64.tar.gz
+    path: /tmp/eksctl_amd64.tar.gz
     state: absent
-  when: not eksctl_exists.stat.exists
+  when: eksctl_exists is failed
 
 - name: chmod eksctl
   become: yes
   file:
     path: /usr/local/bin/eksctl
     mode: a+x
-
-# aws-iam-authenticator
-# ref: https://docs.aws.amazon.com/ja_jp/eks/latest/userguide/install-aws-iam-authenticator.html
-# TODO: version mis match with `aws-iam-authenticator version` and download url :(
-- name: check aws-iam-authenticator exists
-  stat:
-    path: /usr/local/bin/aws-iam-authenticator
-    get_checksum: false
-    get_md5: false
-  register: aws_iam_authenticator_exists
-
-- name: download aws-iam-authenticator
-  become: yes
-  shell: curl -L "https://amazon-eks.s3-us-west-2.amazonaws.com/{{ aws_iam_authenticator_version }}/{{ aws_iam_authenticator_date }}/bin/linux/amd64/aws-iam-authenticator" -o /usr/local/bin/aws-iam-authenticator
-  when: not aws_iam_authenticator_exists.stat.exists
-
-- name: chmod aws-iam-authenticator
-  become: yes
-  file:
-    path: /usr/local/bin/aws-iam-authenticator
-    mode: a+x
+  when: eksctl_exists is failed
