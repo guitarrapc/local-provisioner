@@ -20,6 +20,7 @@
       - sops
       - time
       - unzip
+      - vim
 
 - name: "Install windows tools"
   scoop_install:
