@@ -160,3 +160,15 @@
     path: /usr/local/bin/cert
     mode: "0755"
   when: cert_exists is failed
+
+# getenvoy
+- name: check getenvoy installed
+  shell: getenvoy --version 2>&1 | head -n 1 | grep {{ getenvoy_version }}
+  register: getenvoy_exists
+  changed_when: false
+  ignore_errors: yes
+
+- name: download getenvoy
+  become: yes
+  shell: curl -L https://getenvoy.io/cli | bash -s -- -b /usr/local/bin
+  when: getenvoy_exists is failed
