@@ -31,6 +31,18 @@
     state: absent
   when: aws2_exists is failed
 
+- name: create ~/.aws/credentials symlinks
+  file:
+    src: "/mnt/c/Users/guitarrapc/.aws/credentials"
+    dest: "{{ ansible_home }}/.aws/credentials"
+    state: link
+
+- name: create ~/.aws/config symlinks
+  file:
+    src: "/mnt/c/Users/guitarrapc/.aws/config"
+    dest: "{{ ansible_home }}/.aws/config"
+    state: link
+
 # eksctl
 - name: check eksctl exists
   shell: eksctl version 2>&1 | head -n 1 | grep "{{ eksctl_version }}"
