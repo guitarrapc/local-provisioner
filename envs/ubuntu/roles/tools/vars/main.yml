@@ -3,6 +3,7 @@ apt_tools:
   - direnv
   - git-lfs
   - jq
+  - pkg-config
   - python3-pip
   - tree
   - unzip
