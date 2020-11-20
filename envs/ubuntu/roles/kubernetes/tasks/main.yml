@@ -154,7 +154,6 @@
   ignore_errors: yes
 
 - name: download stern
-  become: yes
   get_url:
     url: https://github.com/stern/stern/releases/download/v{{ stern_version }}/stern_{{ stern_version }}_linux_amd64.tar.gz
     dest: "/tmp/stern.tar.gz"
