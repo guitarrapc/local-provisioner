@@ -156,9 +156,23 @@
 - name: download stern
   become: yes
   get_url:
-    url: https://github.com/wercker/stern/releases/download/{{ stern_version }}/stern_linux_amd64
-    dest: "/usr/local/bin/stern"
+    url: https://github.com/stern/stern/releases/download/v{{ stern_version }}/stern_{{ stern_version }}_linux_amd64.tar.gz
+    dest: "/tmp/stern.tar.gz"
   register: download_stern
+  when: stern_exists is failed
+
+- name: unzip stern
+  shell: tar -zxvf /tmp/stern.tar.gz
+  args:
+    chdir: "/tmp"
+  when: stern_exists is failed
+
+- name: copy stern
+  become: yes
+  copy:
+    src: "/tmp/stern/stern"
+    dest: /usr/local/bin/stern
+    mode: a+x
   when: stern_exists is failed
 
 - name: change file permissions
@@ -166,6 +180,18 @@
   file:
     path: /usr/local/bin/stern
     mode: "0755"
+
+- name: remove stern tmp
+  file:
+    path: /tmp/stern.tar.gz
+    state: absent
+  when: stern_exists is failed
+
+- name: remove stern tmp directory
+  file:
+    path: "/tmp/stern/"
+    state: absent
+  when: stern_exists is failed
 
 # kubergrunt
 - name: check kubergrunt installed

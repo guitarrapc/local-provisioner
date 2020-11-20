@@ -1,7 +1,7 @@
 win_kube_config_path: /mnt/c/Users/guitarrapc/.kube/config
 kubectl_version: v1.18.10
 helm_version: v3.4.0
-stern_version: 1.11.0
+stern_version: 1.13.0
 kubergrunt_version: 0.5.4
 istioctl_version: 1.6.13
 kubesec_version: 0.9.2
