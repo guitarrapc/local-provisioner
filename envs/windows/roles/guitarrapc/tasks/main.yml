@@ -9,6 +9,7 @@
     state: present
     bucket: guitarrapc
     name:
+      - ctop
       - DejaVuSansMono-Bront
       - ecs-cli
       - bombardier
