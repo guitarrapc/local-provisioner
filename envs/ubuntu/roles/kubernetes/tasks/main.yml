@@ -170,7 +170,7 @@
 - name: copy stern
   become: yes
   copy:
-    src: "/tmp/stern/stern"
+    src: "/tmp/stern_{{ stern_version }}_linux_amd64/stern"
     dest: /usr/local/bin/stern
     mode: a+x
   when: stern_exists is failed
@@ -189,7 +189,7 @@
 
 - name: remove stern tmp directory
   file:
-    path: "/tmp/stern/"
+    path: "/tmp/stern_{{ stern_version }}_linux_amd64/"
     state: absent
   when: stern_exists is failed
 
