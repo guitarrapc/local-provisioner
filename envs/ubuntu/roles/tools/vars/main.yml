@@ -3,6 +3,7 @@ apt_tools:
   - direnv
   - git-lfs
   - jq
+  - moreutils
   - pkg-config
   - python3-pip
   - tree
