@@ -1,19 +1,21 @@
 ---
+# if wsl2 docker is enabled, docker will be locate in /usr/bin/docker
+- name: check /usr/bin/docker exists
+  stat:
+    path: "/usr/bin/docker"
+  register: docker_stat_result
+
 - name: make sure docker prerequisites are supported by apt
   become: yes
   apt:
     pkg: "{{ docker_prerequisites }}"
     update_cache: yes
-
-# - name: import Docker apt key
-#   become: yes
-#   apt_key:
-#     url: "https://download.docker.com/linux/ubuntu/gpg"
-#     state: present
+  when: (not docker_stat_result.stat.exists)
 
 - name: import Docker apt key
   become: yes
   shell: curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+  when: (not docker_stat_result.stat.exists)
 
 - name: add repo for Ubuntu
   become: yes
@@ -22,6 +24,7 @@
     repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable
     state: present
     update_cache: yes
+  when: (not docker_stat_result.stat.exists)
 
 # remove old version when error occurd: `sudo apt-get remove docker docker-engine docker.io containerd runc`
 - name: install docker
@@ -29,6 +32,7 @@
   apt:
     pkg: "{{ docker_pkgs }}"
     update_cache: yes
+  when: (not docker_stat_result.stat.exists)
 
 - name: check docker-compose exists
   stat:
@@ -36,17 +40,19 @@
     get_checksum: false
     get_md5: false
   register: dockercompose_exists
+  when: (not docker_stat_result.stat.exists)
 
 - name: download docker-compose
   become: yes
   shell: curl -L "https://github.com/docker/compose/releases/download/1.24.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-  when: not dockercompose_exists.stat.exists
+  when: (not docker_stat_result.stat.exists) and (not dockercompose_exists.stat.exists)
 
 - name: chmod docker-compose
   become: yes
   file:
     path: /usr/local/bin/docker-compose
     mode: a+x
+  when: (not docker_stat_result.stat.exists)
 
 - name: docker startup profile.d script
   become: yes
@@ -59,3 +65,4 @@
       sudo service docker start
       # wsl1 using windows docker-compose. wsl2 don't need this line.
       export DOCKER_HOST=tcp://localhost:2375
+  when: (not docker_stat_result.stat.exists)
