@@ -1,5 +1,7 @@
 ---
 # aws2
+# install to /usr/local/aws by default.
+# symlink to /usr/local/bin/aws by default.
 - name: check aws2 exists
   shell: aws --version 2>&1 | head -n 1 | grep "aws-cli/{{ aws_cli_version }}"
   register: aws2_exists
@@ -17,8 +19,6 @@
     remote_src: yes
   when: aws2_exists is failed
 
-# install to /usr/local/aws by default.
-# symlink to /usr/local/bin/aws by default.
 - name: install aws2
   become: yes
   shell: >
@@ -30,23 +30,6 @@
     path: /tmp/awscliv2.zip
     state: absent
   when: aws2_exists is failed
-
-- name: Create .aws directory
-  file:
-    path: "{{ ansible_home }}/.aws"
-    state: directory
-
-- name: create ~/.aws/credentials symlinks
-  file:
-    src: "/mnt/c/Users/guitarrapc/.aws/credentials"
-    dest: "{{ ansible_home }}/.aws/credentials"
-    state: link
-
-- name: create ~/.aws/config symlinks
-  file:
-    src: "/mnt/c/Users/guitarrapc/.aws/config"
-    dest: "{{ ansible_home }}/.aws/config"
-    state: link
 
 # eksctl
 - name: check eksctl exists

@@ -16,15 +16,16 @@
   roles:
     - { role: "debug", tags: [debug] }
     - { role: "dotfiles", tags: [dotfiles] }
-    - { role: "gpg", tags: [gpg], when: is_wsl1 != "0" } # when wsl1
+    - { role: "gpg", tags: [gpg], when: is_wsl1 == "1" } # when wsl1
     - { role: "tools", tags: [tools] }
     - { role: "yq", tags: [yq] }
     - { role: "awscli", tags: [awscli] }
     - { role: "terraform", tags: [terraform] }
     - { role: "pulumi", tags: [pulumi] }
-    - { role: "docker", tags: [docker], when: is_wsl1 != "0" } # when wsl1
+    - { role: "docker", tags: [docker], when: is_wsl1 == "1" } # when wsl1
     - { role: "circleci", tags: [circleci] }
     - { role: "ngrok", tags: [ngrok] }
     - { role: "kubernetes", tags: [kubernetes] }
     - { role: "dotnetsdk", tags: [dotnetsdk] }
+    - { role: "credentials", tags: [credentials], when: is_wsl1 == "0" } # when wsl2
 # ansible-playbook -i hosts site.yml --ask-become-pass
