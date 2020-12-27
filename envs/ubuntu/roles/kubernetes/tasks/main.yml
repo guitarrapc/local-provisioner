@@ -26,28 +26,6 @@
     mode: "0755"
   when: kubectl_exists is failed
 
-# kubeadm
-# - name: add kubeadm apt key
-#   become: yes
-#   apt_key:
-#     url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
-
-- name: add kubeadm apt key
-  become: yes
-  shell: curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
-
-- name: add kube apt
-  become: yes
-  apt_repository:
-    repo: deb http://apt.kubernetes.io/ kubernetes-xenial main
-    state: present
-
-- name: install kubeadm
-  become: yes
-  apt:
-    pkg: kubeadm
-    update_cache: yes
-
 # helm3
 - name: check helm3 installed
   shell: helm version --short | grep {{ helm_version }}
