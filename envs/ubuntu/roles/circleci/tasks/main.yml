@@ -22,8 +22,8 @@
 - name: chmod installer
   file:
     path: "{{ ansible_home }}/ciecleci_install.sh"
-    owner: "{{ ansible_user }}"
-    group: "{{ ansible_user }}"
+    owner: "{{ ansible_user_id }}"
+    group: "{{ ansible_user_id }}"
     mode: a+x
   when: circleci_sh_exists.stat.exists
 
