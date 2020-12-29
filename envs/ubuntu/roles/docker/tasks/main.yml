@@ -52,7 +52,7 @@
   become: yes
   blockinfile:
     create: yes
-    path: /etc/profile.d/profle_ansible_init_docker.sh
+    path: /etc/profile.d/profile_ansible_init_docker.sh
     block: |
       sudo -S cgroupfs-mount
       sudo usermod -aG docker $USER
@@ -65,7 +65,7 @@
   become: yes
   blockinfile:
     create: yes
-    path: /etc/profile.d/profle_ansible_init_docker.sh
+    path: /etc/profile.d/profile_ansible_init_docker.sh
     block: |
       sudo usermod -aG docker $USER
       sudo service docker start
