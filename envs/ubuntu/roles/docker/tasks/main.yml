@@ -47,7 +47,7 @@
     mode: a+x
   when: dockercompose_exists is failed
 
-# profile
+# docker service daemon
 - name: docker startup profile.d script (wsl1)
   become: yes
   blockinfile:
