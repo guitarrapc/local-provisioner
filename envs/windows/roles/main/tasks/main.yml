@@ -14,6 +14,7 @@
     bucket: main
     name:
       - busybox
+      - figlet
       - jq
       - netcat
       - openssl
