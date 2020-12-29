@@ -139,3 +139,10 @@ macOS / Ubuntu will change by modify followings.
 
 * Modify parameters by open `envs/ubuntu/roles/<role>/vars/main.yml`.
 * Modify logic by open `envs/ubuntu/roles/<role>/tasks/main.yml`.
+
+## Issues
+
+### Ubuntu
+
+* Ansible apt_key always show changed: https://github.com/ansible/ansible/issues/27798
+* get_url is not controlable or too match differ from original context, so it's warning is ignored.
