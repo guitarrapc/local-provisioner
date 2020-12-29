@@ -16,6 +16,7 @@
   roles:
     - { role: "debug", tags: [debug] }
     - { role: "dotfiles", tags: [dotfiles] }
+    - { role: "credentials", tags: [credentials], when: is_wsl1 == "0" } # when wsl2
     - { role: "gpg", tags: [gpg], when: is_wsl1 == "1" } # when wsl1
     - { role: "tools", tags: [tools] }
     - { role: "yq", tags: [yq] }
@@ -27,4 +28,3 @@
     - { role: "ngrok", tags: [ngrok] }
     - { role: "kubernetes", tags: [kubernetes] }
     - { role: "dotnetsdk", tags: [dotnetsdk] }
-    - { role: "credentials", tags: [credentials], when: is_wsl1 == "0" } # when wsl2

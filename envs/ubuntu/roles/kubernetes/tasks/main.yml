@@ -1,17 +1,30 @@
 ---
+# install minikube
+# https://kubernetes.io/blog/2020/05/21/wsl-docker-kubernetes-on-the-windows-desktop/#minikube-kubernetes-from-everywhere
+- name: check minikube installed
+  shell: minikube version | grep {{ minikube_version }}
+  register: minikube_exists
+  changed_when: false
+  ignore_errors: yes
+
+- name: download kubectl
+  become: yes
+  shell: curl -Ls "https://storage.googleapis.com/minikube/releases/{{ minikube_version }}/minikube-linux-amd64" -o /usr/local/bin/minikube
+  when: minikube_exists is failed
+
+- name: change file permissions
+  become: yes
+  file:
+    path: /usr/local/bin/minikube
+    mode: "0755"
+  when: minikube_exists is failed
+
 # kubectl
 - name: check kubectl installed
   shell: kubectl version --client --short | grep {{ kubectl_version }}
   register: kubectl_exists
   changed_when: false
   ignore_errors: yes
-
-- name: remove docker for windows kubectl if exists.
-  become: yes
-  file:
-    path: /usr/local/bin/kubectl
-    state: absent
-  when: kubectl_exists is failed
 
 - name: download kubectl
   become: yes

@@ -1,3 +1,4 @@
+minikube_version: v1.16.0
 kubectl_version: v1.18.10
 helm_version: v3.4.0
 stern_version: 1.13.0
