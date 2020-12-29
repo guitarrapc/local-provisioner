@@ -1,4 +1,5 @@
 ---
+# docker
 # if wsl2 docker is enabled, docker will be locate in /usr/bin/docker
 # to use this spec, you must disable docker run on wsl but run on Hyper-V instead.
 # then install docker on your Ubuntu.
@@ -20,31 +21,33 @@
     state: present
     update_cache: yes
 
-# remove old version when error occurd: `sudo apt-get remove docker docker-engine docker.io containerd runc`
+# note: remove old version when error occurd: `sudo apt-get remove docker docker-engine docker.io containerd runc`
 - name: install docker
   become: yes
   apt:
     pkg: "{{ docker_pkgs }}"
     update_cache: yes
 
-- name: check docker-compose exists
-  stat:
-    path: /usr/local/bin/docker-compose
-    get_checksum: false
-    get_md5: false
+# docker-compose
+- name: check docker-compose installed
+  shell: docker-compose --version | grep {{ dockercompose_version }}
   register: dockercompose_exists
+  changed_when: false
+  ignore_errors: yes
 
 - name: download docker-compose
   become: yes
-  shell: curl -L "https://github.com/docker/compose/releases/download/1.24.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-  when: (not dockercompose_exists.stat.exists)
+  shell: curl -L "https://github.com/docker/compose/releases/download/{{ dockercompose_version }}/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+  when: dockercompose_exists is failed
 
 - name: chmod docker-compose
   become: yes
   file:
     path: /usr/local/bin/docker-compose
     mode: a+x
+  when: dockercompose_exists is failed
 
+# profile
 - name: docker startup profile.d script (wsl1)
   become: yes
   blockinfile:
