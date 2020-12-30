@@ -118,3 +118,23 @@
     block: |
       # Start or enter a PID namespace in WSL2
       source /usr/sbin/start-systemd-namespace
+
+- name: minikube systemd apiVersion
+  become: yes
+  copy:
+    dest: $HOME/minikube.service
+    content: |
+      [Unit]
+      Description=Runs minikube on startup
+      After=docker.service
+
+      [Service]
+      Type=oneshot
+      RemainAfterExit=yes
+      ExecStart=/usr/local/bin/minikube start --vm-driver=docker --addons ingress
+      ExecStop=/usr/local/bin/minikube stop
+      User={{ ansible_user_id }}
+      Group={{ ansible_user_id }}
+
+      [Install]
+      WantedBy=multi-user.target
