@@ -102,7 +102,7 @@
   become: yes
   blockinfile:
     path: "/etc/bash.bashrc"
-    insertafter: "^System-wide"
+    insertafter: "System-wide"
     block: |
       # Start or enter a PID namespace in WSL2
       source /usr/sbin/start-systemd-namespace
