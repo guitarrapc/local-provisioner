@@ -23,6 +23,7 @@
     - { role: "awscli", tags: [awscli] }
     - { role: "terraform", tags: [terraform] }
     - { role: "pulumi", tags: [pulumi] }
+    - { role: "systemd", tags: [systemd] }
     - { role: "docker", tags: [docker] }
     - { role: "circleci", tags: [circleci] }
     - { role: "ngrok", tags: [ngrok] }
