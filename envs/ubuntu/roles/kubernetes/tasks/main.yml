@@ -31,7 +31,7 @@
       [Service]
       Type=oneshot
       RemainAfterExit=yes
-      ExecStart=/usr/local/bin/minikube start --vm-driver=docker --addons ingress --kubernetes-version v1.18.0 && eval $(/usr/local/bin/minikube docker-env)
+      ExecStart=/usr/local/bin/minikube start --vm-driver=docker --addons ingress --kubernetes-version v1.18.0
       ExecStop=/usr/local/bin/minikube stop
       User={{ ansible_user_id }}
       Group={{ ansible_user_id }}
@@ -45,6 +45,19 @@
   systemd:
     name: minikube.service
     enabled: yes
+  when: (is_wsl2 == "1")
+
+- name: minikube startup profile.d script (wsl2 systemd)
+  become: yes
+  blockinfile:
+    create: yes
+    path: /etc/profile.d/profile_ansible_init_minikube.sh
+    block: |
+      sytemctl start minikube
+      export DOCKER_TLS_VERIFY="1"
+      export DOCKER_HOST="tcp://127.0.0.1:49155"
+      export DOCKER_CERT_PATH="/home/{{ ansible_user_id }}/.minikube/certs"
+      export MINIKUBE_ACTIVE_DOCKERD="minikube"
   when: (is_wsl2 == "1")
 
 # kubectl
