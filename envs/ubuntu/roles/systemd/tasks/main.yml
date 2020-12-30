@@ -79,6 +79,7 @@
           done
       fi
 
+      echo "$(pwd)" > /tmp/cwd_path
       if [ -n "$SYSTEMD_PID" ] && [ "$SYSTEMD_PID" != "1" ]; then
           if [ -n "$1" ] && [ "$1" != "bash --login" ] && [ "$1" != "/bin/bash --login" ]; then
               exec /usr/bin/nsenter -t "$SYSTEMD_PID" -a \
@@ -118,3 +119,14 @@
     block: |
       # Start or enter a PID namespace in WSL2
       source /usr/sbin/start-systemd-namespace
+
+- name: fix login path to follow before bash login (systemd)
+  become: yes
+  blockinfile:
+    create: yes
+    path: /etc/profile.d/profile_ansible_init_systemd_login.sh
+    block: |
+      if [[ -f /tmp/cwd_path ]]; then
+        cd $(cat /tmp/cwd_path)
+      fi
+  when: (is_wsl1 == "1")
