@@ -38,14 +38,14 @@
 
       [Install]
       WantedBy=multi-user.target
-  when: (is_wsl1 == "0")
+  when: (is_wsl2 == "1")
 
 - name: enable minikube.service (systemd)
   become: yes
   systemd:
     name: minikube.service
     enabled: yes
-  when: (is_wsl1 == "0")
+  when: (is_wsl2 == "1")
 
 # kubectl
 - name: check kubectl installed

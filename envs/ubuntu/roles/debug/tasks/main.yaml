@@ -50,3 +50,6 @@
 - name: debug is_wsl1 or not
   debug:
     msg: "{{ is_wsl1 }}"
+- name: debug is_wsl2 or not
+  debug:
+    msg: "{{ is_wsl2 }}"

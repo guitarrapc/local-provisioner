@@ -70,4 +70,4 @@
     regexp: "^ExecStart="
     line: "ExecStart=/usr/bin/dockerd -H unix:///var/run/docker.sock --containerd=/run/containerd/containerd.sock"
   register: docker_systemd
-  when: (is_wsl1 == "0")
+  when: (is_wsl2 == "1")

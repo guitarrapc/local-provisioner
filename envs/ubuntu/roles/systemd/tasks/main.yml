@@ -129,4 +129,3 @@
       if [[ -f /tmp/cwd_path ]]; then
         cd $(cat /tmp/cwd_path)
       fi
-  when: (is_wsl1 == "1")
