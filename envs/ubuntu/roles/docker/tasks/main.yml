@@ -62,6 +62,15 @@
   when: (is_wsl1 == "1")
 
 # docker service daemon for systemd
+- name: docker startup profile.d script (wsl2 systemd)
+  become: yes
+  blockinfile:
+    create: yes
+    path: /etc/profile.d/profile_ansible_init_docker.sh
+    block: |
+      sudo usermod -aG docker $USER
+  when: (is_wsl2 == "1")
+
 - name: docker startup service replace (wsl2 systemd)
   become: yes
   lineinfile:
