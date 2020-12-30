@@ -60,19 +60,18 @@
       # wsl1 using windows docker-compose. wsl2 don't need this line.
       export DOCKER_HOST=tcp://localhost:2375
   when: (is_wsl1 == "1")
+# # docker service daemon for systemd
+# - name: docker startup service replace (wsl2 systemd)
+#   become: yes
+#   lineinfile:
+#     dest: /lib/systemd/system/docker.service
+#     backrefs: yes
+#     regexp: "^ExecStart="
+#     line: "ExecStart=/usr/bin/dockerd -H unix:///var/run/docker.sock --containerd=/run/containerd/containerd.sock"
+#   register: docker_systemd
+#   when: (is_wsl1 == "0")
 
-# docker service daemon for systemd
-- name: docker startup service replace (wsl2 systemd)
-  become: yes
-  lineinfile:
-    dest: /lib/systemd/system/docker.service
-    backrefs: yes
-    regexp: "^ExecStart="
-    line: "ExecStart=/usr/bin/dockerd -H unix:///var/run/docker.sock --containerd=/run/containerd/containerd.sock"
-  register: docker_systemd
-  when: (is_wsl1 == "0")
-
-- name: restart systemd daemon
-  become: yes
-  command: systemctl daemon-reload
-  when: (is_wsl1 == "0") and (docker_systemd.changed)
+# - name: restart systemd daemon
+#   become: yes
+#   command: systemctl daemon-reload
+#   when: (is_wsl1 == "0") and (docker_systemd.changed)

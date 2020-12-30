@@ -101,7 +101,7 @@
 - name: sudoers config for systemd
   become: yes
   blockinfile:
-    path: "/etc/sudoers"
+    path: "/etc/sudoers.d/wsl"
     block: |
       Defaults        env_keep += WSLPATH
       Defaults        env_keep += WSLENV
