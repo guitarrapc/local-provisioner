@@ -11,7 +11,6 @@
   become: yes
   file:
     path: "/usr/sbin/start-systemd-namespace"
-    state: touch
     mode: a+x
 
 - name: contents start-systemd-namespace script
@@ -64,7 +63,6 @@
   become: yes
   file:
     path: "/usr/sbin/enter-systemd-namespace"
-    state: touch
     mode: a+x
 
 - name: contents enter-systemd-namespace script
@@ -104,7 +102,7 @@
   become: yes
   blockinfile:
     path: "/etc/bash.bashrc"
-    insertafter: "^# System-wide"
+    insertafter: "^System-wide"
     block: |
       # Start or enter a PID namespace in WSL2
       source /usr/sbin/start-systemd-namespace
