@@ -99,6 +99,7 @@
       fi
 
 - name: sudoers config for systemd
+  become: yes
   blockinfile:
     path: "/etc/sudoers"
     block: |
