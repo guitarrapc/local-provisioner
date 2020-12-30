@@ -25,6 +25,9 @@ Ubuntu, run ansible-playbook.
 cd envs/ubuntu
 . ./prerequisites.sh
 . ./run.sh
+
+# log out and login new wsl then auto run minikube
+sudo systemctl enable minikube
 ```
 
 ![image](https://user-images.githubusercontent.com/3856350/67872931-0465bd80-fb76-11e9-8700-bdc0e861f556.png)
