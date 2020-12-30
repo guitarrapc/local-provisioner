@@ -89,11 +89,11 @@
           if [ -n "$1" ] && [ "$1" != "bash --login" ] && [ "$1" != "/bin/bash --login" ]; then
               exec /usr/bin/nsenter -t "$SYSTEMD_PID" -a \
                   /usr/bin/sudo -H -u "$SUDO_USER" \
-                  /bin/bash -c 'set -a; source "$HOME/.systemd-env"; set +a; exec bash -c '"$(printf "%q" "$@")"
+                  /bin/bash -c 'set -a; source "/home/$SUDO_USER/.systemd-env"; set +a; exec bash -c '"$(printf "%q" "$@")"
           else
               exec /usr/bin/nsenter -t "$SYSTEMD_PID" -a \
                   /bin/login -p -f "$SUDO_USER" \
-                  $(/bin/cat "$HOME/.systemd-env" | grep -v "^PATH=")
+                  $(/bin/cat "/home/$SUDO_USER/.systemd-env" | grep -v "^PATH=")
           fi
           echo "Existential crisis"
       fi
@@ -118,3 +118,8 @@
     block: |
       # Start or enter a PID namespace in WSL2
       source /usr/sbin/start-systemd-namespace
+
+- name: windows env var to read bashrc file for all sessions, both interactive and non-interactive.
+  command: cmd.exe /C setx WSLENV BASH_ENV/u
+- name: windows env var to read bashrc file for all sessions, both interactive and non-interactive.
+  command: cmd.exe /C setx BASH_ENV /etc/bash.bashrc
