@@ -120,6 +120,6 @@
       source /usr/sbin/start-systemd-namespace
 
 - name: windows env var to read bashrc file for all sessions, both interactive and non-interactive.
-  command: cmd.exe /C setx WSLENV BASH_ENV/u
+  command: /mnt/c/Windows/system32/cmd.exe /C setx WSLENV BASH_ENV/u
 - name: windows env var to read bashrc file for all sessions, both interactive and non-interactive.
-  command: cmd.exe /C setx BASH_ENV /etc/bash.bashrc
+  command: /mnt/c/Windows/system32/cmd.exe /C setx BASH_ENV /etc/bash.bashrc
