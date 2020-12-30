@@ -26,6 +26,6 @@
     - { role: "circleci", tags: [circleci] }
     - { role: "ngrok", tags: [ngrok] }
     - { role: "dotnetsdk", tags: [dotnetsdk] }
-    #- { role: "systemd", tags: [systemd], when: is_wsl1 == "0" }
+    - { role: "systemd", tags: [systemd], when: is_wsl1 == "0" }
     - { role: "docker", tags: [docker] }
     - { role: "kubernetes", tags: [kubernetes] }
