@@ -38,6 +38,7 @@
 
       [Install]
       WantedBy=multi-user.target
+  when: (is_wsl1 == "0")
 
 - name: enable minikube.service (systemd)
   become: yes
