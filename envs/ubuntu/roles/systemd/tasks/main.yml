@@ -7,12 +7,6 @@
     update_cache: yes
 
 # scripts
-- name: generate start-systemd-namespace script
-  become: yes
-  file:
-    path: "/usr/sbin/start-systemd-namespace"
-    mode: a+x
-
 - name: contents start-systemd-namespace script
   become: yes
   copy:
@@ -59,10 +53,10 @@
           export PATH="$PRE_NAMESPACE_PATH"
       fi
 
-- name: generate enter-systemd-namespace script
+- name: generate start-systemd-namespace script
   become: yes
   file:
-    path: "/usr/sbin/enter-systemd-namespace"
+    path: "/usr/sbin/start-systemd-namespace"
     mode: a+x
 
 - name: contents enter-systemd-namespace script
@@ -97,6 +91,12 @@
           fi
           echo "Existential crisis"
       fi
+
+- name: generate enter-systemd-namespace script
+  become: yes
+  file:
+    path: "/usr/sbin/enter-systemd-namespace"
+    mode: a+x
 
 - name: sudoers config for systemd
   become: yes
