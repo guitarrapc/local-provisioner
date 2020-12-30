@@ -54,10 +54,7 @@
     path: /etc/profile.d/profile_ansible_init_minikube.sh
     block: |
       sudo systemctl start minikube > /dev/null 2>&1
-      export DOCKER_TLS_VERIFY="1"
-      export DOCKER_HOST="tcp://127.0.0.1:49155"
-      export DOCKER_CERT_PATH="/home/{{ ansible_user_id }}/.minikube/certs"
-      export MINIKUBE_ACTIVE_DOCKERD="minikube"
+      eval $(minikube docker-env)
   when: (is_wsl2 == "1")
 
 # kubectl
