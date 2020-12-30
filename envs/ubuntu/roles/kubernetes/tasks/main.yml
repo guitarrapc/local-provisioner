@@ -19,25 +19,25 @@
     mode: "0755"
   when: minikube_exists is failed
 
-- name: minikube systemd
-  become: yes
-  copy:
-    dest: /home/{{ ansible_user_id }}/minikube.service
-    content: |
-      [Unit]
-      Description=Runs minikube on startup
-      After=docker.service
+# - name: minikube systemd
+#   become: yes
+#   copy:
+#     dest: /home/{{ ansible_user_id }}/minikube.service
+#     content: |
+#       [Unit]
+#       Description=Runs minikube on startup
+#       After=docker.service
 
-      [Service]
-      Type=oneshot
-      RemainAfterExit=yes
-      ExecStart=/usr/local/bin/minikube start --vm-driver=docker --addons ingress --kubernetes-version v1.18.0 && eval $(/usr/local/bin/minikube docker-env)
-      ExecStop=/usr/local/bin/minikube stop
-      User={{ ansible_user_id }}
-      Group={{ ansible_user_id }}
+#       [Service]
+#       Type=oneshot
+#       RemainAfterExit=yes
+#       ExecStart=/usr/local/bin/minikube start --vm-driver=docker --addons ingress --kubernetes-version v1.18.0 && eval $(/usr/local/bin/minikube docker-env)
+#       ExecStop=/usr/local/bin/minikube stop
+#       User={{ ansible_user_id }}
+#       Group={{ ansible_user_id }}
 
-      [Install]
-      WantedBy=multi-user.target
+#       [Install]
+#       WantedBy=multi-user.target
 
 # kubectl
 - name: check kubectl installed
