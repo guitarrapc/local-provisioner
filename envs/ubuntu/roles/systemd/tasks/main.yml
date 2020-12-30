@@ -98,6 +98,17 @@
           echo "Existential crisis"
       fi
 
+- name: sudoers config for systemd
+  blockinfile:
+    path: "/etc/sudoers"
+    block: |
+      Defaults        env_keep += WSLPATH
+      Defaults        env_keep += WSLENV
+      Defaults        env_keep += WSL_INTEROP
+      Defaults        env_keep += WSL_DISTRO_NAME
+      Defaults        env_keep += PRE_NAMESPACE_PATH
+      %sudo ALL=(ALL) NOPASSWD: /usr/sbin/enter-systemd-namespace
+
 - name: source enter-systemd-namespace in /etc/bash.bashrc
   become: yes
   blockinfile:

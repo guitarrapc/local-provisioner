@@ -47,7 +47,7 @@
     mode: a+x
   when: dockercompose_exists is failed
 
-# docker service daemon
+# docker service daemon for SysV Init
 - name: docker startup profile.d script (wsl1)
   become: yes
   blockinfile:
@@ -60,13 +60,3 @@
       # wsl1 using windows docker-compose. wsl2 don't need this line.
       export DOCKER_HOST=tcp://localhost:2375
   when: (is_wsl1 == "1")
-
-- name: docker startup profile.d script
-  become: yes
-  blockinfile:
-    create: yes
-    path: /etc/profile.d/profile_ansible_init_docker.sh
-    block: |
-      sudo usermod -aG docker $USER
-      sudo service docker start
-  when: (is_wsl1 == "0")
