@@ -76,7 +76,7 @@
       sudo usermod -aG docker $USER
   when: (is_wsl2 == "1")
 
-- name: docker startup service replace (wsl2 systemd)
+- name: docker startup service replace (wsl2 systemd & minikube)
   become: yes
   lineinfile:
     dest: /lib/systemd/system/docker.service
