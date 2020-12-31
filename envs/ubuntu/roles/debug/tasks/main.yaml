@@ -46,6 +46,10 @@
   debug:
     msg: "{{ ansible_distribution_release }}"
 
+# minikube check
+- name: debug use_minikube or not
+  debug:
+    msg: "{{ use_minikube }}"
 # wsl check
 - name: debug is_wsl1 or not
   debug:
