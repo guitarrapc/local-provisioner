@@ -6,18 +6,19 @@
   register: minikube_exists
   changed_when: false
   ignore_errors: yes
+  when: (use_minikube == "1") and (is_wsl2 == "1")
 
 - name: download kubectl
   become: yes
   shell: curl -Ls "https://storage.googleapis.com/minikube/releases/{{ minikube_version }}/minikube-linux-amd64" -o /usr/local/bin/minikube
-  when: minikube_exists is failed
+  when: (use_minikube == "1") and (is_wsl2 == "1") and (minikube_exists is failed)
 
 - name: change file permissions
   become: yes
   file:
     path: /usr/local/bin/minikube
     mode: "0755"
-  when: minikube_exists is failed
+  when: (use_minikube == "1") and (is_wsl2 == "1") and (minikube_exists is failed)
 
 - name: minikube systemd
   become: yes
@@ -38,14 +39,14 @@
 
       [Install]
       WantedBy=multi-user.target
-  when: (is_wsl2 == "1")
+  when: (use_minikube == "1") and (is_wsl2 == "1")
 
 - name: enable minikube.service (systemd)
   become: yes
   systemd:
     name: minikube.service
     enabled: yes
-  when: (is_wsl2 == "1")
+  when: (use_minikube == "1") and (is_wsl2 == "1")
 
 - name: minikube startup profile.d script (wsl2 systemd)
   become: yes
@@ -55,7 +56,7 @@
     block: |
       sudo systemctl start minikube > /dev/null 2>&1
       eval $(minikube docker-env)
-  when: (is_wsl2 == "1")
+  when: (use_minikube == "1") and (is_wsl2 == "1")
 
 # kubectl
 - name: check kubectl installed
