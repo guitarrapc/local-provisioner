@@ -27,8 +27,8 @@
   roles:
     - { role: "debug", tags: [debug] }
     - { role: "dotfiles", tags: [dotfiles] }
-    - { role: "credentials", tags: [credentials], when: is_wsl2 == "1" }
-    - { role: "gpg", tags: [gpg], when: is_wsl1 == "1" }
+    - { role: "credentials", tags: [credentials] }
+    #- { role: "gpg", tags: [gpg], when: is_wsl1 == "1" }
     - { role: "tools", tags: [tools] }
     - { role: "yq", tags: [yq] }
     - { role: "awscli", tags: [awscli] }
@@ -37,6 +37,10 @@
     - { role: "circleci", tags: [circleci] }
     - { role: "ngrok", tags: [ngrok] }
     - { role: "dotnetsdk", tags: [dotnetsdk] }
-    - { role: "systemd", tags: [systemd], when: is_wsl2 == "1" }
+    - {
+        role: "systemd",
+        tags: [systemd],
+        when: use_minikube == "1" and is_wsl2 == "1",
+      }
     - { role: "docker", tags: [docker] }
     - { role: "kubernetes", tags: [kubernetes] }

@@ -13,21 +13,17 @@ Ubuntu | 20.04<br/>18.04<br/>WSL1<br/>WSL2 | Ansible Playbook
 clone repo setup.
 
 ```shell
-mkdir -p ~/github/guitarapc
-cd ~/github/guitarapc
+mkdir -p ~/github/guitarapc && cd ~/github/guitarapc
 git clone https://github.com/guitarrapc/local-provisioner
-cd local-provisioner
 ```
 
 Ubuntu, run ansible-playbook.
 
 ```shell
-cd envs/ubuntu
+cd ~/github/guitarapc/local-provisioner/envs/ubuntu
 . ./prerequisites.sh
+exec $SHELL -l
 . ./run.sh
-
-# log out and login new wsl then auto run minikube
-sudo systemctl enable minikube
 ```
 
 ![image](https://user-images.githubusercontent.com/3856350/67872931-0465bd80-fb76-11e9-8700-bdc0e861f556.png)
@@ -35,7 +31,7 @@ sudo systemctl enable minikube
 macOS, run ansible-playbook.
 
 ```shell
-cd envs/macos
+cd ~/github/guitarapc/local-provisioner/envs/macos
 . ./prerequisites.sh
 . ./run.sh
 ```
@@ -45,9 +41,9 @@ cd envs/macos
 Windows 10, run scoop-playbook.
 
 ```shell
-cd envs/windows
+cd ~/github/guitarapc/local-provisioner/envs/windows
 . ./prerequisites.ps1
-scoop-playbook
+. ./run.ps1
 ```
 
 ![image](https://user-images.githubusercontent.com/3856350/67872580-84d7ee80-fb75-11e9-8c1c-e7d25fc94892.png)
