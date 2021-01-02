@@ -4,10 +4,11 @@
   pre_tasks:
     - name: Preset ansible_home as execution user HOME path
       set_fact: ansible_home='{{ lookup('env','HOME') }}'
+      tags: always
     - name: Use Minikube
       set_fact: use_minikube='0'
+      tags: always
     - name: Get WSL1
-      become: no
       shell: cat /proc/version | grep Microsoft | wc -l
       register: wsl1_exists
       changed_when: false
@@ -15,8 +16,8 @@
       tags: always
     - name: Preset WSL1 or not
       set_fact: is_wsl1='{{ wsl1_exists.stdout }}'
+      tags: always
     - name: Get WSL2
-      become: no
       shell: cat /proc/version | grep microsoft-standard | wc -l
       register: wsl2_exists
       changed_when: false
@@ -24,6 +25,7 @@
       tags: always
     - name: Preset WSL2 or not
       set_fact: is_wsl2='{{ wsl2_exists.stdout }}'
+      tags: always
   roles:
     - { role: "debug", tags: [debug] }
     - { role: "dotfiles", tags: [dotfiles] }
@@ -36,7 +38,7 @@
     - { role: "pulumi", tags: [pulumi] }
     - { role: "circleci", tags: [circleci] }
     - { role: "ngrok", tags: [ngrok] }
-    - { role: "dotnetsdk", tags: [dotnetsdk] }
+    - { role: "dotnet", tags: [dotnet] }
     - {
         role: "systemd",
         tags: [systemd],
