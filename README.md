@@ -20,7 +20,7 @@ git clone https://github.com/guitarrapc/local-provisioner
 Ubuntu, run ansible-playbook.
 
 ```shell
-cd ~/github/guitarapc/local-provisioner/envs/ubuntu
+cd ~/github/guitarrapc/local-provisioner/envs/ubuntu
 . ./prerequisites.sh
 exec $SHELL -l
 . ./run.sh
@@ -33,6 +33,7 @@ macOS, run ansible-playbook.
 ```shell
 cd ~/github/guitarapc/local-provisioner/envs/macos
 . ./prerequisites.sh
+exec $SHELL -l
 . ./run.sh
 ```
 
