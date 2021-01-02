@@ -3,19 +3,19 @@
 # if wsl2 docker is enabled, docker will be locate in /usr/bin/docker
 # to use this spec, you must disable docker run on wsl but run on Hyper-V instead.
 # then install docker on your Ubuntu.
-- name: make sure docker prerequisites are supported by apt
+- name: "{{ ansible_role_name}}: docker - make sure install prerequisites"
   become: yes
   apt:
     pkg: "{{ docker_prerequisites }}"
     update_cache: yes
   when: (use_minikube == "1") or (is_wsl1 == "1")
 
-- name: import Docker apt key
+- name: "{{ ansible_role_name}}: import Docker apt key"
   become: yes
   shell: curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
   when: (use_minikube == "1") or (is_wsl1 == "1")
 
-- name: add repo for Ubuntu
+- name: "{{ ansible_role_name}}: docker - add repo for Ubuntu"
   become: yes
   apt_repository:
     # $(lsb_release -cs) = {{ ansible_distribution_release }}
@@ -25,7 +25,7 @@
   when: (use_minikube == "1") or (is_wsl1 == "1")
 
 # note: remove old version when error occurd: `sudo apt-get remove docker docker-engine docker.io containerd runc`
-- name: install docker
+- name: "{{ ansible_role_name}}: docker - install"
   become: yes
   apt:
     pkg: "{{ docker_pkgs }}"
@@ -33,19 +33,19 @@
   when: (use_minikube == "1") or (is_wsl1 == "1")
 
 # docker-compose
-- name: check docker-compose installed
+- name: "{{ ansible_role_name}}: docker-compose - check installed"
   shell: docker-compose --version | grep {{ dockercompose_version }}
   register: dockercompose_exists
   changed_when: false
   ignore_errors: yes
   when: (use_minikube == "1") or (is_wsl1 == "1")
 
-- name: download docker-compose
+- name: "{{ ansible_role_name}}: docker-compose - download"
   become: yes
   shell: curl -L "https://github.com/docker/compose/releases/download/{{ dockercompose_version }}/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
   when: dockercompose_exists is failed
 
-- name: chmod docker-compose
+- name: "{{ ansible_role_name}}: docker-compose - chmod"
   become: yes
   file:
     path: /usr/local/bin/docker-compose
@@ -53,7 +53,7 @@
   when: dockercompose_exists is failed
 
 # docker service daemon for SysV Init
-- name: docker startup profile.d script (wsl1)
+- name: "{{ ansible_role_name}}: docker - startup profile.d script (wsl1)"
   become: yes
   blockinfile:
     create: yes
@@ -67,16 +67,16 @@
   when: (is_wsl1 == "1")
 
 # docker service daemon for systemd
-- name: docker startup profile.d script (wsl2 systemd)
+- name: "{{ ansible_role_name}}: docker - startup profile.d script (wsl2 systemd)"
   become: yes
   blockinfile:
     create: yes
     path: /etc/profile.d/profile_ansible_init_docker.sh
     block: |
       sudo usermod -aG docker $USER
-  when: (is_wsl2 == "1")
+  when: (is_wsl2 == "1") and (use_minikube == "0")
 
-- name: docker startup service replace (wsl2 systemd & minikube)
+- name: "{{ ansible_role_name}}: docker - startup service replace (wsl2 systemd & minikube)"
   become: yes
   lineinfile:
     dest: /lib/systemd/system/docker.service

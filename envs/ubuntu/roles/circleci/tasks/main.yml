@@ -1,25 +1,25 @@
 ---
-- name: check circleci exists
+- name: "{{ ansible_role_name}}: check exists"
   stat:
     path: /usr/local/bin/circleci
     get_checksum: false
     get_md5: false
   register: circleci_exists
 
-- name: download circleci
+- name: "{{ ansible_role_name}}: download circleci"
   get_url:
     url: https://circle.ci/cli
     dest: "{{ ansible_home }}/ciecleci_install.sh"
   when: not circleci_exists.stat.exists
 
-- name: check installer exists
+- name: "{{ ansible_role_name}}: check installer exists"
   stat:
     path: "{{ ansible_home }}/ciecleci_install.sh"
     get_checksum: false
     get_md5: false
   register: circleci_sh_exists
 
-- name: chmod installer
+- name: "{{ ansible_role_name}}: chmod installer"
   file:
     path: "{{ ansible_home }}/ciecleci_install.sh"
     owner: "{{ ansible_user_id }}"
@@ -27,12 +27,12 @@
     mode: a+x
   when: circleci_sh_exists.stat.exists
 
-- name: Execute the circleci installation
+- name: "{{ ansible_role_name}}: Execute the circleci installation"
   become: yes
   shell: "{{ ansible_home }}/ciecleci_install.sh"
   when: circleci_sh_exists.stat.exists
 
-- name: Remove the circlecci installation
+- name: "{{ ansible_role_name}}: Remove the circleci installation"
   file:
     path: "{{ ansible_home }}/ciecleci_install.sh"
     state: absent

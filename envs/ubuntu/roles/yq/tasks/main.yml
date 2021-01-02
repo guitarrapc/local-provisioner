@@ -6,18 +6,18 @@
 #     keyserver: keyserver.ubuntu.com
 #     id: CC86BB64
 
-- name: Add yq apt key
+- name: "{{ ansible_role_name}}: Add apt key"
   become: yes
   shell: apt-key adv --keyserver keyserver.ubuntu.com --recv-keys CC86BB64
 
 # sudo add-apt-repository ppa:rmescandon/yq
-- name: modify sources list for yq
+- name: "{{ ansible_role_name}}: modify sources list"
   become: yes
   apt_repository:
     repo: ppa:rmescandon/yq
     state: present
 
-- name: apt-get install yq
+- name: "{{ ansible_role_name}}: install"
   become: yes
   apt:
     pkg: yq

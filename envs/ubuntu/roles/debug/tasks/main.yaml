@@ -1,28 +1,28 @@
 ---
 # "ansible_home" may be: /home/guitarrapc
-- name: debug ansible_home
+- name: "{{ ansible_role_name}}: ansible_home"
   debug:
     msg: "{{ ansible_home }}"
-- name: debug env.Home
+- name: "{{ ansible_role_name}}: env.Home"
   debug:
     msg: "{{ lookup('env','HOME') }}"
-- name: debug become env.HOME
+- name: "{{ ansible_role_name}}: become env.HOME"
   become: yes
   debug:
     msg: "{{ lookup('env','HOME') }}"
 
 # "ansible_user" may be: guitarrapc
-- name: debug ansible_user_id
+- name: "{{ ansible_role_name}}: ansible_user_id"
   debug:
     msg: "{{ ansible_user_id }}"
-- name: debug become ansible_user_id
+- name: "{{ ansible_role_name}}: become ansible_user_id"
   become: yes
   debug:
     msg: "{{ ansible_user_id }}"
-- name: debug env.User
+- name: "{{ ansible_role_name}}: env.User"
   debug:
     msg: "{{ lookup('env','USER') }}"
-- name: debug become env.User
+- name: "{{ ansible_role_name}}: become env.User"
   become: yes
   debug:
     msg: "{{ lookup('env','USER') }}"
@@ -33,27 +33,27 @@
 # "ansible_distribution_release" may be: "bionic"
 # "ansible_os_family" may be: "Debian", "RedHat", "Suse"
 # Upper/lower case is important, you can change UPPER or lower via `|uppper` or `|lower`
-- name: debug distribution
+- name: "{{ ansible_role_name}}: distribution"
   debug:
     msg: "{{ ansible_distribution }}"
-- name: debug distribution lower case
+- name: "{{ ansible_role_name}}: distribution lower case"
   debug:
     msg: "{{ ansible_distribution|lower }}"
-- name: debug distribution version
+- name: "{{ ansible_role_name}}: distribution version"
   debug:
     msg: "{{ ansible_distribution_version }}"
-- name: debug distribution release
+- name: "{{ ansible_role_name}}: distribution release"
   debug:
     msg: "{{ ansible_distribution_release }}"
 
 # minikube check
-- name: debug use_minikube or not
+- name: "{{ ansible_role_name}}: use_minikube or not"
   debug:
     msg: "{{ use_minikube }}"
 # wsl check
-- name: debug is_wsl1 or not
+- name: "{{ ansible_role_name}}: is_wsl1 or not"
   debug:
     msg: "{{ is_wsl1 }}"
-- name: debug is_wsl2 or not
+- name: "{{ ansible_role_name}}: is_wsl2 or not"
   debug:
     msg: "{{ is_wsl2 }}"
