@@ -28,7 +28,7 @@
     - { role: "debug", tags: [debug] }
     - { role: "dotfiles", tags: [dotfiles] }
     - { role: "credentials", tags: [credentials] }
-    #- { role: "gpg", tags: [gpg], when: is_wsl1 == "1" }
+    - { role: "gpg", tags: [gpg], when: is_wsl1 == "1" }
     - { role: "tools", tags: [tools] }
     - { role: "yq", tags: [yq] }
     - { role: "awscli", tags: [awscli] }
