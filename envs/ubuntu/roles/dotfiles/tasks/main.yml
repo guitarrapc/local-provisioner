@@ -24,3 +24,14 @@
   debug:
     msg: "{{ dotfiles.stdout_lines }}"
   when: dotfiles.stdout != ""
+
+- name: "{{ ansible_role_name}}: insert .bash_rc to load custom rc"
+  blockinfile:
+    create: yes
+    path: "{{ ansible_home}}/.bashrc"
+    block: |
+      if [[ -f ${HOME}/.bashrc_custom ]]
+      then
+        source ${HOME}/.bashrc_custom
+      fi
+  when: dotfiles is success
