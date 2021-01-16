@@ -146,6 +146,14 @@
     dest: "/usr/local/bin/kubens"
     state: link
 
+# kube-ps1
+- name: "{{ ansible_role_name}}: kube-ps1 - clone"
+  become: yes
+  git:
+    repo: https://github.com/jonmosco/kube-ps1.git
+    dest: "{{ ansible_home}}/github/kube-ps1"
+    accept_hostkey: yes
+
 # stern
 - name: "{{ ansible_role_name}}: stern - check installed"
   shell: stern --version | grep {{ stern_version }}
