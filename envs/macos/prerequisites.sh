@@ -17,17 +17,9 @@ if [ $? -ne 0 ]; then
     brew doctor
 fi
 
-brew tap caskroom/cask
-brew tap caskroom/fonts
-
 # ansible
 which ansible > /dev/null 2>&1
 if [ $? -ne 0 ]; then
     echo Ansible not found, install it.
     brew install ansible
 fi
-
-# ansible spec
-cd ../..
-bundle install --path vendor/bundle
-bundle exec ansiblespec-init

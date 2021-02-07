@@ -23,7 +23,3 @@ if [ $? -ne 0 ]; then
     brew install ansible
 fi
 
-# ansible spec
-cd ../..
-bundle install --path vendor/bundle
-bundle exec ansiblespec-init
