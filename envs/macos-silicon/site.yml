@@ -5,8 +5,7 @@
     - { role: "defaults", tags: [defaults] }
     - { role: "dotfiles", tags: [dotfiles] }
     - { role: "homebrew", tags: [homebrew] }
-    - { role: "python", tags: [python] }
-    - { role: "ruby", tags: [ruby] }
     - { role: "homebrew_cask", tags: [homebrew_cask] }
+    - { role: "ruby", tags: [ruby] }
     - { role: "terraform", tags: [terraform] }
 # ansible-playbook -i hosts site.yml --ask-become-pass
