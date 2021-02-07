@@ -1,0 +1,7 @@
+base_path: /Users/guitarrapc/github/guitarrapc
+repository: 
+  - {
+    repo: "git@github.com:guitarrapc/dotfiles.git",
+    dest: "/Users/guitarrapc/github/guitarrapc/dotfiles"
+  }
+run_dotfiles: cd /Users/guitarrapc/github/guitarrapc/dotfiles && ./setup.sh

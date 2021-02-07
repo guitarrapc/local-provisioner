@@ -1,0 +1,5 @@
+nodebrew_nodejs_version: "v8.12.0"
+nodebrew_npm_update: true
+npm_pacakges:
+  - { name: firebase-tools }
+  - { name: typescript }

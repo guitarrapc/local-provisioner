@@ -1,0 +1,46 @@
+---
+
+- name: 'Set Interface Defaults'
+  osx_defaults:
+    domain: "{{ item.domain }}"
+    key: "{{ item.key }}"
+    type: "{{ item.type }}"
+    value: "{{ item.value }}"
+    state: "{{ item.state|default('present') }}"
+  with_items: "{{ interface_settings }}"
+
+- name: 'Set Screen Defaults'
+  osx_defaults:
+    domain: "{{ item.domain }}"
+    key: "{{ item.key }}"
+    type: "{{ item.type }}"
+    value: "{{ item.value }}"
+    state: "{{ item.state|default('present') }}"
+  with_items: "{{ screen_settings }}"
+
+- name: 'Set Trackpad Defaults'
+  osx_defaults:
+    domain: "{{ item.domain }}"
+    key: "{{ item.key }}"
+    type: "{{ item.type }}"
+    value: "{{ item.value }}"
+    state: "{{ item.state|default('present') }}"
+  with_items: "{{ trackpad_settings }}"
+
+- name: 'Set Finder Defaults'
+  osx_defaults:
+    domain: "{{ item.domain }}"
+    key: "{{ item.key }}"
+    type: "{{ item.type }}"
+    value: "{{ item.value }}"
+    state: "{{ item.state|default('present') }}"
+  with_items: "{{ finder_settings }}"
+
+- name: 'Set Dock Defaults'
+  osx_defaults:
+    domain: "{{ item.domain }}"
+    key: "{{ item.key }}"
+    type: "{{ item.type }}"
+    value: "{{ item.value }}"
+    state: "{{ item.state|default('present') }}"
+  with_items: "{{ dock_settings }}"

@@ -13,12 +13,8 @@ if [ $? -ne 0 ]; then
     echo Homebrew not found, install it.
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     brew update
-    #brew upgrade --all
     brew doctor
 fi
-
-brew tap caskroom/cask
-brew tap caskroom/fonts
 
 # ansible
 which ansible > /dev/null 2>&1
