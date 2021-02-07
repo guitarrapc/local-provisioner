@@ -1,0 +1,8 @@
+---
+
+- name: enable touchid for sudo Authentication
+  become: yes
+  lineinfile:
+    path: /etc/pam.d/sudo
+    insertafter: '^# sudo: auth account password session'
+    line: 'auth       sufficient     pam_tid.so'
