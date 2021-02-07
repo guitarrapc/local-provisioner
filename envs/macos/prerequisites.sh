@@ -30,5 +30,4 @@ fi
 # ansible spec
 cd ../..
 bundle install --path vendor/bundle
-cd playbooks/macos
 bundle exec ansiblespec-init
