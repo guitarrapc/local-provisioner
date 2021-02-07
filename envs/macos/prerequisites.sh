@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # commandline tool
+echo "check xcode-select is installed"
 xcrun -h > /dev/null 2>&1
 if [ $? -ne 0 ]; then
     echo apple commandline tools are not install. install latest.
@@ -8,18 +9,20 @@ if [ $? -ne 0 ]; then
 fi
 
 # brew
+echo "check ansible is installed"
 which brew > /dev/null 2>&1
 if [ $? -ne 0 ]; then
     echo Homebrew not found, install it.
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     brew update
-    #brew upgrade --all
     brew doctor
 fi
 
 # ansible
+echo "check ansible is installed"
 which ansible > /dev/null 2>&1
 if [ $? -ne 0 ]; then
     echo Ansible not found, install it.
     brew install ansible
 fi
+
