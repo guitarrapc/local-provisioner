@@ -8,7 +8,6 @@ homebrew_packages:
   - name: bat
   - name: brew-cask-completion
   - name: carthage
-  - name: circleci
   - name: ctop
   - name: direnv
   - name: docker
@@ -22,8 +21,7 @@ homebrew_packages:
   - name: jq
   - name: kubectx
   - name: kubernetes-helm
-  - name: mackerelio/mackerel-agent/mackerel-agent
-  - name: nodebrew
+  - name: nodenv
   - name: pyenv
   - name: rbenv
   - name: ruby-build
