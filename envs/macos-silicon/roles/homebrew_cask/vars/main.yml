@@ -1,13 +1,13 @@
 homebrew_cask_packages:
   - name: docker
-  - name: dotnet-sdk
+  # - name: dotnet-sdk # need rosetta 2
   - name: google-chrome
   - name: gitkraken
   - name: kindle
-  - name: krisp
+  # - name: krisp # need rosetta 2
   - name: ngrok
-  - name: powershell
+  # - name: powershell # need rosetta 2
   - name: slack
   - name: unity-hub
   - name: visual-studio-code
-  - name: zoomus
+  # - name: zoomus # hash invalid
