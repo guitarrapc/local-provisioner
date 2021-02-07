@@ -11,3 +11,4 @@ homebrew_cask_packages:
   - name: slack
   - name: unity-hub
   - name: visual-studio-code
+  - name: zoomus
