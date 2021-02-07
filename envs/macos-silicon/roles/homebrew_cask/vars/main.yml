@@ -1,0 +1,13 @@
+homebrew_cask_packages:
+  - name: docker
+  - name: dotnet-sdk
+  - name: google-chrome
+  - name: google-cloud-sdk
+  - name: gitkraken
+  - name: kindle
+  - name: krisp
+  - name: ngrok
+  - name: powershell
+  - name: slack
+  - name: unity-hub
+  - name: visual-studio-code
