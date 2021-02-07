@@ -1,12 +1,9 @@
 homebrew_packages:
   - name: autoconf
   - name: awscli
-  - name: aws-iam-authenticator
-  - name: azure-cli
   #  [⌘ + ⌥ + drag & drop] to put shortcut on terminal
   - name: bash-completion
   - name: bat
-  - name: brew-cask-completion
   - name: carthage
   - name: ctop
   - name: direnv
