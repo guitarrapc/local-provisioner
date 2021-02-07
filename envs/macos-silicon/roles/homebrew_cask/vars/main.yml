@@ -1,11 +1,9 @@
 homebrew_cask_packages:
-  - name: docker
   # - name: dotnet-sdk # need rosetta 2
   - name: google-chrome
   - name: gitkraken
   - name: kindle
   # - name: krisp # need rosetta 2
-  - name: ngrok
   # - name: powershell # need rosetta 2
   - name: slack
   - name: unity-hub
