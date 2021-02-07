@@ -1,0 +1,19 @@
+---
+- name: clone pyenv-virtualenv repository
+  git:
+    repo: https://github.com/pyenv/pyenv-virtualenv.git
+    dest: ~/.pyenv/plugins/pyenv-virtualenv
+    accept_hostkey: yes
+
+- name: check python3 installed
+  shell: pyenv versions | grep {{ python3_version }}
+  register: pyenv3_version
+  changed_when: false
+  ignore_errors: yes
+
+- name: install python3
+  shell: pyenv install {{ python3_version }}
+  when: pyenv3_version is failed
+
+- name: pyenv global set {{ python3_version }}
+  shell: pyenv global {{ python3_version }}

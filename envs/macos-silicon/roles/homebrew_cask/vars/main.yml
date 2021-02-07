@@ -2,7 +2,7 @@ homebrew_cask_packages:
   - name: docker
   - name: dotnet-sdk
   - name: google-chrome
-  - name: google-cloud-sdk
+  - name: google-cloud-sdk # require python 3.8 and higher
   - name: gitkraken
   - name: kindle
   - name: krisp
