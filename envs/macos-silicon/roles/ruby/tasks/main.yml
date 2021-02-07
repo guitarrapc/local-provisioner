@@ -1,15 +1,15 @@
 ---
-- name: check  rbenv installed
+- name: check ruby installed
   shell: rbenv versions | grep {{ ruby_version }}
   register: rbenv_version
   changed_when: false
   ignore_errors: yes
 
-- name: install rbenv
+- name: install ruby {{ ruby_version }}
   shell: rbenv install {{ ruby_version }}
   when: rbenv_version is failed
 
-- name: install bundler
+- name: install ruby bundler
   gem:
     name: bundler
   when: rbenv_version is success
