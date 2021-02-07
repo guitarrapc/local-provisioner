@@ -10,5 +10,5 @@ describe command("which pyenv") do
 end
 
 describe command("pyenv versions") do
-    its(:stdout) { should match "3.8" }
+    its(:stdout) { should match "3.8.7" }
 end
