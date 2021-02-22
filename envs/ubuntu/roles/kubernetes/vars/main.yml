@@ -1,5 +1,5 @@
 minikube_version: v1.16.0
-kubectl_version: v1.18.10
+kubectl_version: v1.19.8
 helm_version: v3.4.0
 stern_version: 1.13.0
 kubergrunt_version: 0.5.4
