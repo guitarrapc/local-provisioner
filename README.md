@@ -14,7 +14,7 @@ Ubuntu | 20.04<br/>18.04<br/>WSL1<br/>WSL2 | Ansible Playbook
 clone repo setup.
 
 ```shell
-mkdir -p ~/github/guitarapc && cd ~/github/guitarapc
+mkdir -p ~/github/guitarrapc && cd ~/github/guitarrapc
 git clone https://github.com/guitarrapc/local-provisioner
 ```
 
@@ -32,7 +32,7 @@ exec $SHELL -l
 macOS, run ansible-playbook.
 
 ```shell
-cd ~/github/guitarapc/local-provisioner/envs/macos
+cd ~/github/guitarrapc/local-provisioner/envs/macos
 . ./prerequisites.sh
 exec $SHELL -l
 . ./run.sh
@@ -43,7 +43,7 @@ exec $SHELL -l
 Windows 10, run scoop-playbook.
 
 ```shell
-cd ~/github/guitarapc/local-provisioner/envs/windows
+cd ~/github/guitarrapc/local-provisioner/envs/windows
 . ./prerequisites.ps1
 . ./run.ps1
 ```
