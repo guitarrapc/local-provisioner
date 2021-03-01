@@ -7,7 +7,7 @@
 
 # tldr
 - name: "{{ ansible_role_name}}: tldr - check installed"
-  shell: tldr -h 2>&1
+  shell: tldr -h 2>&1 | grep USAGE
   register: tldr_exists
   changed_when: false
   ignore_errors: yes
