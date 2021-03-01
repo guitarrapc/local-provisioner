@@ -5,6 +5,27 @@
     pkg: "{{ apt_tools }}"
     update_cache: yes
 
+# tldr
+- name: "{{ ansible_role_name}}: tldr - check installed"
+  shell: tldr -h 2>&1
+  register: tldr_exists
+  changed_when: false
+  ignore_errors: yes
+
+- name: "{{ ansible_role_name}}: tldr download"
+  become: yes
+  get_url:
+    url: "{{ tldr_url }}"
+    dest: "/bin/tldr"
+  register: download_tldr
+  when: tldr_exists is failed
+
+- name: "{{ ansible_role_name}}: tldr - chmod"
+  become: yes
+  file:
+    path: /bin/tldr
+    mode: a+x
+
 # bombardier
 - name: "{{ ansible_role_name}}: bombardier - check installed"
   shell: bombardier --version 2>&1 | head -n 1 | grep {{ bombardier_version }}

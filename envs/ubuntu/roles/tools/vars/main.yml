@@ -14,3 +14,4 @@ ctop_version: 0.7.3
 grpcurl_version: 1.7.0
 cert_version: 0.15.0
 getenvoy_version: 0.2.0
+tldr_url: https://raw.githubusercontent.com/raylee/tldr/master/tldr
