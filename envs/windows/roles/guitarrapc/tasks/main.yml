@@ -13,6 +13,7 @@
       - DejaVuSansMono-Bront
       - ecs-cli
       - bombardier
+      - ghz
       - py
       - qttabbar
       - qttabbar-patch
