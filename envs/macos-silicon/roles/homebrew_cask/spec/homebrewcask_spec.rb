@@ -2,6 +2,7 @@ require 'spec_helper'
 set :backend, :exec
 
 describe command("brew cask list -1") do
+    its(:stdout) { should match "android-studio" }
     #its(:stdout) { should match "dotnet-sdk" }
     its(:stdout) { should match "google-chrome" }
     its(:stdout) { should match "gitkraken" }

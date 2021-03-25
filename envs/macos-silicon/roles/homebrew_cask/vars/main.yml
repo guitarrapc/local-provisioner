@@ -1,4 +1,5 @@
 homebrew_cask_packages:
+  - name: android-studio
   # - name: dotnet-sdk # need rosetta 2
   - name: google-chrome
   - name: gitkraken
