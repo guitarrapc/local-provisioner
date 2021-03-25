@@ -17,6 +17,7 @@ describe command("brew list -l") do
     its(:stdout) { should match "go" }
     its(:stdout) { should match "hub" }
     its(:stdout) { should match "hugo" }
+    its(:stdout) { should match "java" }
     its(:stdout) { should match "jq" }
     its(:stdout) { should match "nodeenv" }
     its(:stdout) { should match "pyenv" }

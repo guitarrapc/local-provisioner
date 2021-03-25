@@ -1,5 +1,5 @@
 homebrew_cask_packages:
-  - name: android-studio
+  - name: android-studio # for grpc/android
   # - name: dotnet-sdk # need rosetta 2
   - name: google-chrome
   - name: gitkraken

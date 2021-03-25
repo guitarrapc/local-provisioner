@@ -12,6 +12,7 @@ homebrew_packages:
   - name: git
   - name: git-lfs
   - name: go
+  - name: java # for grpc/android
   - name: hub
   - name: hugo
   - name: jq
