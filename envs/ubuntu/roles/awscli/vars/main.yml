@@ -1,4 +1,4 @@
 # https://github.com/aws/aws-cli/releases
-aws_cli_version: 2.0.56
-# # https://github.com/weaveworks/eksctl/releases
-eksctl_version: 0.29.2
+aws_cli_version: 2.1.35
+# https://github.com/weaveworks/eksctl/releases
+eksctl_version: 0.43.0
