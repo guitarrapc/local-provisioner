@@ -87,7 +87,6 @@ ngrok | install ngrok.
 pulumi | install pulumi cli.
 terraform | terraform environment setup. using tfenv.
 tools | miscellaneous tools setup.
-yq | install yq.
 
 ### macOS
 

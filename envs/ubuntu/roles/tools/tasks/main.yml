@@ -183,6 +183,7 @@
   when: cert_exists is failed
 
 # getenvoy
+# switch to https://www.getenvoy.io/install/envoy/ubuntu/
 - name: "{{ ansible_role_name}}: getenvoy - check installed"
   shell: getenvoy --version 2>&1 | head -n 1 | grep {{ getenvoy_version }}
   register: getenvoy_exists

@@ -32,7 +32,6 @@
     - { role: "credentials", tags: [credentials] }
     - { role: "gpg", tags: [gpg], when: is_wsl1 == "1" }
     - { role: "tools", tags: [tools] }
-    - { role: "yq", tags: [yq] }
     - { role: "awscli", tags: [awscli] }
     - { role: "terraform", tags: [terraform] }
     - { role: "ngrok", tags: [ngrok] }
