@@ -7,4 +7,5 @@ docker_pkgs:
   - docker-ce
   - docker-ce-cli
   - containerd.io
+  - cgroupfs-mount
 dockercompose_version: 1.27.4
