@@ -6,4 +6,4 @@ symlink:
       dest: "/usr/local/bin/terraform",
     }
   - { src: "{{ ansible_home }}/.tfenv/bin/tfenv", dest: "/usr/local/bin/tfenv" }
-version: "0.12.26"
+version: "0.13.5"
