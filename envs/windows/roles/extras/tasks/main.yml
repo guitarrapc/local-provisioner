@@ -9,8 +9,6 @@
     state: present
     bucket: extras
     name:
-      - azure-cli
-      - dnspy
       - everything
       - fiddler
       - fontbase
