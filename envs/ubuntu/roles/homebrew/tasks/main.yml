@@ -1,0 +1,21 @@
+---
+- name: "{{ ansible_role_name}}: homebrew - clone"
+  git:
+    repo: https://github.com/Homebrew/brew
+    dest: "{{ ansible_home}}/github/brew"
+    accept_hostkey: yes
+
+- name: "{{ ansible_role_name}}: homebrew - mkdir .linuxbrew/bin"
+  file:
+    path: "{{ ansible_home}}/.linuxbrew/bin"
+    state: directory
+    force: yes
+
+- name: "{{ ansible_role_name}}: homebrew - create linuxbrew symlinks"
+  file:
+    src: "{{ ansible_home }}/github/brew/bin/brew"
+    dest: "{{ ansible_home }}/.linuxbrew/bin"
+    state: link
+
+- name: "{{ ansible_role_name}}: homebrew - eval shellenv"
+  shell: eval $({{ ansible_home }}/.linuxbrew/bin/brew shellenv)
