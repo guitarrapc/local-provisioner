@@ -16,3 +16,10 @@
     src: "{{ ansible_home }}/github/Homebrew/brew/bin/brew"
     dest: "{{ ansible_home }}/.linuxbrew/bin/brew"
     state: link
+
+- name: "{{ ansible_role_name}}: homebrew - eval shellenv"
+  shell: eval $({{ ansible_home }}/.linuxbrew/bin/brew shellenv)
+
+- name: "{{ ansible_role_name}}: homebrew - install tools"
+  shell: brew install "{{ item }}"
+  with_items: "{{ brew_tools }}"

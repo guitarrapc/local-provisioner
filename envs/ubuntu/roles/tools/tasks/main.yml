@@ -1,5 +1,5 @@
 ---
-- name: "{{ ansible_role_name}}: install apt tools"
+- name: "{{ ansible_role_name}}: apt - install apt tools"
   become: yes
   apt:
     pkg: "{{ apt_tools }}"
@@ -12,7 +12,7 @@
   changed_when: false
   ignore_errors: yes
 
-- name: "{{ ansible_role_name}}: tldr download"
+- name: "{{ ansible_role_name}}: tldr - download"
   become: yes
   get_url:
     url: "{{ tldr_url }}"
@@ -33,7 +33,7 @@
   changed_when: false
   ignore_errors: yes
 
-- name: "{{ ansible_role_name}}: bombardier download"
+- name: "{{ ansible_role_name}}: bombardier - download"
   become: yes
   get_url:
     url: https://github.com/codesenberg/bombardier/releases/download/{{ bombardier_version }}/bombardier-linux-amd64
