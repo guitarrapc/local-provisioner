@@ -23,6 +23,5 @@
 
 - name: "{{ ansible_role_name}}: homebrew - install tools"
   homebrew:
-    name: "{{ item }}"
+    name: "{{ homebrew_packages }}"
     state: "present"
-  with_items: "{{ homebrew_packages }}"
