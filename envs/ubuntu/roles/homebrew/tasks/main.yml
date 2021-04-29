@@ -2,7 +2,7 @@
 - name: "{{ ansible_role_name}}: homebrew - clone"
   git:
     repo: https://github.com/Homebrew/brew
-    dest: "{{ ansible_home}}/github/brew"
+    dest: "{{ ansible_home}}/github/Homebrew/brew"
     accept_hostkey: yes
 
 - name: "{{ ansible_role_name}}: homebrew - mkdir .linuxbrew/bin"
@@ -13,7 +13,7 @@
 
 - name: "{{ ansible_role_name}}: homebrew - create linuxbrew symlinks"
   file:
-    src: "{{ ansible_home }}/github/brew/bin/brew"
+    src: "{{ ansible_home }}/github/Homebrew/brew/bin/brew"
     dest: "{{ ansible_home }}/.linuxbrew/bin"
     state: link
 
