@@ -19,7 +19,10 @@
 
 - name: "{{ ansible_role_name}}: homebrew - eval shellenv"
   shell: eval $({{ ansible_home }}/.linuxbrew/bin/brew shellenv)
+  changed_when: false
 
 - name: "{{ ansible_role_name}}: homebrew - install tools"
-  shell: brew install "{{ item }}"
-  with_items: "{{ brew_tools }}"
+  homebrew:
+    name: "{{ item }}"
+    state: "present"
+  with_items: "{{ homebrew_packages }}"

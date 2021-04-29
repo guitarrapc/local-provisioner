@@ -11,10 +11,12 @@
 - name: "{{ ansible_role_name}}: import Microsoft apt key"
   become: yes
   shell: wget https://packages.microsoft.com/config/ubuntu/{{ ansible_distribution_version }}/packages-microsoft-prod.deb -O /tmp/packages-microsoft-prod.deb
+  changed_when: false
 
 - name: "{{ ansible_role_name}}: add repo for Ubuntu"
   become: yes
   shell: dpkg -i /tmp/packages-microsoft-prod.deb
+  changed_when: false
 
 - name: "{{ ansible_role_name}}: install dotnet sdk ({{ dotnet_package_version }})"
   become: yes

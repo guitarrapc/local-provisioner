@@ -13,6 +13,7 @@
 - name: "{{ ansible_role_name}}: import Docker apt key"
   become: yes
   shell: curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+  changed_when: false
   when: (use_minikube == "1") or (is_wsl1 == "1")
 
 - name: "{{ ansible_role_name}}: docker - add repo for Ubuntu"

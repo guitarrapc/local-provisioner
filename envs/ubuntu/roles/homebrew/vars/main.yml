@@ -1,2 +1,2 @@
-brew_tools:
+homebrew_packages:
   - gh
