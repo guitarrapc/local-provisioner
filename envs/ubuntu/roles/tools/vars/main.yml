@@ -4,6 +4,7 @@ apt_tools:
   - git-lfs
   - jq
   - moreutils
+  - peco
   - pkg-config
   - python3-pip
   - tree
