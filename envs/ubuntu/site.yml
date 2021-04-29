@@ -29,6 +29,7 @@
   roles:
     - { role: "debug", tags: [debug] }
     - { role: "dotfiles", tags: [dotfiles] }
+    - { role: "homebrew", tags: [homebrew] }
     - { role: "credentials", tags: [credentials] }
     - { role: "gpg", tags: [gpg], when: is_wsl1 == "1" }
     - { role: "tools", tags: [tools] }
