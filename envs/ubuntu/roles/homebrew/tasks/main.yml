@@ -14,8 +14,5 @@
 - name: "{{ ansible_role_name}}: homebrew - create linuxbrew symlinks"
   file:
     src: "{{ ansible_home }}/github/Homebrew/brew/bin/brew"
-    dest: "{{ ansible_home }}/.linuxbrew/bin"
+    dest: "{{ ansible_home }}/.linuxbrew/bin/brew"
     state: link
-
-- name: "{{ ansible_role_name}}: homebrew - eval shellenv"
-  shell: eval $({{ ansible_home }}/.linuxbrew/bin/brew shellenv)
