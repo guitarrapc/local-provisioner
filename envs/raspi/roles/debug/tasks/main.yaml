@@ -1,0 +1,44 @@
+---
+# "ansible_home" may be: /home/guitarrapc
+- name: "{{ ansible_role_name}}: env.Home"
+  debug:
+    msg: "{{ lookup('env','HOME') }}"
+- name: "{{ ansible_role_name}}: become env.HOME"
+  become: yes
+  debug:
+    msg: "{{ lookup('env','HOME') }}"
+
+# "ansible_user" should be `ubuntu`
+- name: "{{ ansible_role_name}}: ansible_user_id"
+  debug:
+    msg: "{{ ansible_user_id }}"
+- name: "{{ ansible_role_name}}: become ansible_user_id"
+  become: yes
+  debug:
+    msg: "{{ ansible_user_id }}"
+- name: "{{ ansible_role_name}}: env.User"
+  debug:
+    msg: "{{ lookup('env','USER') }}"
+- name: "{{ ansible_role_name}}: become env.User"
+  become: yes
+  debug:
+    msg: "{{ lookup('env','USER') }}"
+
+# "ansible_distribution" may be: "Debian", "SLES", "Ubuntu", "CentOS"
+# "ansible_distribution_version" may be: "9.0", "12.2", "18.04", "7.3.1611"
+# "ansible_distribution_major_version" may be: "9", "12", 18.04"
+# "ansible_distribution_release" may be: "bionic"
+# "ansible_os_family" may be: "Debian", "RedHat", "Suse"
+# Upper/lower case is important, you can change UPPER or lower via `|uppper` or `|lower`
+- name: "{{ ansible_role_name}}: distribution"
+  debug:
+    msg: "{{ ansible_distribution }}"
+- name: "{{ ansible_role_name}}: distribution lower case"
+  debug:
+    msg: "{{ ansible_distribution|lower }}"
+- name: "{{ ansible_role_name}}: distribution version"
+  debug:
+    msg: "{{ ansible_distribution_version }}"
+- name: "{{ ansible_role_name}}: distribution release"
+  debug:
+    msg: "{{ ansible_distribution_release }}"

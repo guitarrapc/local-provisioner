@@ -1,0 +1,5 @@
+- name: local-dev ubuntu setup
+  hosts: "ubuntu"
+  become: no
+  roles:
+    - { role: "debug", tags: [debug] }
