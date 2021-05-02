@@ -3,6 +3,8 @@ ansible_host=192.168.2.201
 ansible_host=192.168.2.202
 ansible_host=192.168.2.203
 
-[all:vars]
+[all_pies:vars]
 ansible_ssh_user=ubuntu
-
+ansible_password="{{ vault_ansible_password}}"
+ansible_become_pass="{{ vault_ansible_become_pass }}"
+~

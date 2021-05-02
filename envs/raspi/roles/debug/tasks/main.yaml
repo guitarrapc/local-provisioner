@@ -2,27 +2,23 @@
 # "ansible_home" may be: /home/guitarrapc
 - name: "{{ ansible_role_name}}: env.Home"
   debug:
-    msg: "{{ lookup('env','HOME') }}"
+    var: ansible_env.HOME
 - name: "{{ ansible_role_name}}: become env.HOME"
   become: yes
   debug:
-    msg: "{{ lookup('env','HOME') }}"
+    var: ansible_env.HOME
 
 # "ansible_user" should be `ubuntu`
 - name: "{{ ansible_role_name}}: ansible_user_id"
   debug:
-    msg: "{{ ansible_user_id }}"
+    var: ansible_user_id
 - name: "{{ ansible_role_name}}: become ansible_user_id"
   become: yes
   debug:
-    msg: "{{ ansible_user_id }}"
-- name: "{{ ansible_role_name}}: env.User"
+    var: ansible_user_id
+- name: "{{ ansible_role_name}}: ansible_ssh_user"
   debug:
-    msg: "{{ lookup('env','USER') }}"
-- name: "{{ ansible_role_name}}: become env.User"
-  become: yes
-  debug:
-    msg: "{{ lookup('env','USER') }}"
+    var: ansible_ssh_user
 
 # "ansible_distribution" may be: "Debian", "SLES", "Ubuntu", "CentOS"
 # "ansible_distribution_version" may be: "9.0", "12.2", "18.04", "7.3.1611"
