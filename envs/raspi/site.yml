@@ -1,5 +1,5 @@
-- name: local-dev ubuntu setup
-  hosts: "ubuntu"
+- name: raspi ubuntu setup
+  hosts: "all_pies"
   become: no
   roles:
     - { role: "debug", tags: [debug] }
