@@ -24,6 +24,7 @@ homebrew_packages:
   - name: kubernetes-helm
   - name: mackerelio/mackerel-agent/mackerel-agent
   - name: nodebrew
+  - name: obs
   - name: pyenv
   - name: rbenv
   - name: ruby-build

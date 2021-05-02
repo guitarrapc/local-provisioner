@@ -26,6 +26,7 @@ describe command("brew list -l") do
     its(:stdout) { should match "kubernetes-helm" }
     its(:stdout) { should match "mackerel-agent" }
     its(:stdout) { should match "nodebrew" }
+    its(:stdout) { should match "obs" }
     its(:stdout) { should match "pyenv" }
     its(:stdout) { should match "rbenv" }
     its(:stdout) { should match "ruby-build" }
