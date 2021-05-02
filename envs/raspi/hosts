@@ -2,3 +2,7 @@
 ansible_host=192.168.2.201
 ansible_host=192.168.2.202
 ansible_host=192.168.2.203
+
+[all:vars]
+ansible_ssh_user=ubuntu
+
