@@ -25,3 +25,11 @@
   homebrew:
     name: "{{ homebrew_packages }}"
     state: "present"
+  environment:
+    # require re-login shell for 1st install, let's manual export shellenv and use it
+    HOMEBREW_PREFIX: "/home/guitarrapc/.linuxbrew"
+    HOMEBREW_CELLAR: "{{ ansible_home }}/.linuxbrew/Cellar"
+    HOMEBREW_REPOSITORY: "{{ ansible_home }}/github/Homebrew/brew"
+    PATH: "{{ ansible_home }}/.linuxbrew/bin:{{ ansible_home }}/.linuxbrew/sbin::{{ ansible_env.PATH }}"
+    MANPATH: "{{ ansible_home }}/.linuxbrew/share/man${MANPATH+:$MANPATH}:"
+    INFOPATH: "{{ ansible_home }}/.linuxbrew/share/info:${INFOPATH:-}"
