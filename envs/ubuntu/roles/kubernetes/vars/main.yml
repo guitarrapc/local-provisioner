@@ -5,6 +5,6 @@ stern_version: 1.13.0
 kubergrunt_version: 0.5.4
 istioctl_version: 1.6.13
 kubesec_version: 0.9.2
-kubeval_version: 0.16.1
+kubeval_version: v0.16.1
 sops_version: 3.7.1
 argocd_version: 1.8.7
