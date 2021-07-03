@@ -9,7 +9,7 @@
   get_url:
     url: https://github.com/bcicen/ctop/releases/download/v{{ args.version }}/ctop-{{ args.version }}-linux-amd64
     dest: "/usr/local/bin/ctop"
-  register: ctop_exists is failed
+  when: ctop_exists is failed
 
 - name: "ctop - change file permissions"
   become: yes
