@@ -1,0 +1,21 @@
+# if wsl2 docker is enabled, gpg will be locate in /usr/bin/gpg
+- name: "check /usr/bin/gpg exists"
+  stat:
+    path: "/usr/bin/gpg"
+  register: gpg_stat_result
+
+- name: "install gnupg1"
+  become: yes
+  apt:
+    pkg: gnupg1
+    state: present
+    update_cache: yes
+  when: (not gpg_stat_result.stat.exists)
+
+- name: "uninstall gpg"
+  become: yes
+  apt:
+    pkg: gpg
+    state: absent
+    update_cache: yes
+  when: (not gpg_stat_result.stat.exists)
