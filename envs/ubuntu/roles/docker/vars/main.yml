@@ -1,11 +1,9 @@
-docker_prerequisites:
-  - apt-transport-https
-  - ca-certificates
-  - curl
-  - software-properties-common
-docker_pkgs:
-  - docker-ce
-  - docker-ce-cli
-  - containerd.io
-  - cgroupfs-mount
-dockercompose_version: 1.27.4
+docker:
+  - {
+    install: (use_minikube == "1") or (is_wsl1 == "1"),
+    useSysV: is_wsl1 == "1",
+    useSystemd: (is_wsl2 == "1") and (use_minikube == "0"),
+    replaceStartup: (is_wsl2 == "1") and (use_minikube == "1")
+  }
+docker_compose:
+  - { version: "1.27.4", install: (use_minikube == "1") or (is_wsl1 == "1") }

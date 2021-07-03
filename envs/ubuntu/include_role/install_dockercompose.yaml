@@ -1,0 +1,21 @@
+# docker-compose
+- name: "docker-compose - check installed"
+  shell: docker-compose --version | grep {{ args.version }}
+  register: dockercompose_exists
+  changed_when: false
+  ignore_errors: yes
+  when: args.install
+
+- name: "docker-compose - download"
+  become: yes
+  shell: curl -L "https://github.com/docker/compose/releases/download/{{ args.version }}/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+  args:
+    warn: false
+  when: dockercompose_exists is failed
+
+- name: "docker-compose - chmod"
+  become: yes
+  file:
+    path: /usr/local/bin/docker-compose
+    mode: a+x
+  when: dockercompose_exists is failed

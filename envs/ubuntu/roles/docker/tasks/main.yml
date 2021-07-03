@@ -1,88 +1,11 @@
----
-# docker
-# if wsl2 docker is enabled, docker will be locate in /usr/bin/docker
-# to use this spec, you must disable docker run on wsl but run on Hyper-V instead.
-# then install docker on your Ubuntu.
-- name: "docker - make sure install prerequisites"
-  become: yes
-  apt:
-    pkg: "{{ docker_prerequisites }}"
-    update_cache: yes
-  when: (use_minikube == "1") or (is_wsl1 == "1")
+- name: "Install aws cli"
+  include: include_role/install_docker.yaml
+  with_items: "{{ docker }}"
+  loop_control:
+    loop_var: args
 
-- name: "import Docker apt key"
-  become: yes
-  shell: curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-  changed_when: false
-  when: (use_minikube == "1") or (is_wsl1 == "1")
-
-- name: "docker - add repo for Ubuntu"
-  become: yes
-  apt_repository:
-    # $(lsb_release -cs) = {{ ansible_distribution_release }}
-    repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable
-    state: present
-    update_cache: yes
-  when: (use_minikube == "1") or (is_wsl1 == "1")
-
-# note: remove old version when error occurd: `sudo apt-get remove docker docker-engine docker.io containerd runc`
-- name: "docker - install"
-  become: yes
-  apt:
-    pkg: "{{ docker_pkgs }}"
-    update_cache: yes
-  when: (use_minikube == "1") or (is_wsl1 == "1")
-
-# docker-compose
-- name: "docker-compose - check installed"
-  shell: docker-compose --version | grep {{ dockercompose_version }}
-  register: dockercompose_exists
-  changed_when: false
-  ignore_errors: yes
-  when: (use_minikube == "1") or (is_wsl1 == "1")
-
-- name: "docker-compose - download"
-  become: yes
-  shell: curl -L "https://github.com/docker/compose/releases/download/{{ dockercompose_version }}/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-  when: dockercompose_exists is failed
-
-- name: "docker-compose - chmod"
-  become: yes
-  file:
-    path: /usr/local/bin/docker-compose
-    mode: a+x
-  when: dockercompose_exists is failed
-
-# docker service daemon for SysV Init
-- name: "docker - startup profile.d script (wsl1)"
-  become: yes
-  blockinfile:
-    create: yes
-    path: /etc/profile.d/profile_ansible_init_docker.sh
-    block: |
-      sudo -S cgroupfs-mount
-      sudo usermod -aG docker $USER
-      sudo service docker start
-      # wsl1 using windows docker-compose. wsl2 don't need this line.
-      export DOCKER_HOST=tcp://localhost:2375
-  when: (is_wsl1 == "1")
-
-# docker service daemon for systemd
-- name: "docker - startup profile.d script (wsl2 systemd)"
-  become: yes
-  blockinfile:
-    create: yes
-    path: /etc/profile.d/profile_ansible_init_docker.sh
-    block: |
-      sudo usermod -aG docker $USER
-  when: (is_wsl2 == "1") and (use_minikube == "0")
-
-- name: "docker - startup service replace (wsl2 systemd & minikube)"
-  become: yes
-  lineinfile:
-    dest: /lib/systemd/system/docker.service
-    backrefs: yes
-    regexp: "^ExecStart="
-    line: "ExecStart=/usr/bin/dockerd -H unix:///var/run/docker.sock --containerd=/run/containerd/containerd.sock"
-  register: docker_systemd
-  when: (is_wsl2 == "1") and (use_minikube == "1")
+- name: "Install eksctl"
+  include: include_role/install_dockercompose.yaml
+  with_items: "{{ docker_compose }}"
+  loop_control:
+    loop_var: args

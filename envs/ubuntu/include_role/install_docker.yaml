@@ -1,0 +1,78 @@
+---
+# docker
+# if wsl2 docker is enabled, docker will be locate in /usr/bin/docker
+# to use this spec, you must disable docker run on wsl but run on Hyper-V instead.
+# then install docker on your Ubuntu.
+- name: "docker - make sure install prerequisites"
+  become: yes
+  apt:
+    pkg:
+      - apt-transport-https
+      - ca-certificates
+      - curl
+      - software-properties-common
+    update_cache: yes
+  when: args.install
+
+- name: "import Docker apt key"
+  become: yes
+  shell: curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+  args:
+    warn: false
+  changed_when: false
+  when: args.install
+
+# $(lsb_release -cs) = {{ ansible_distribution_release }}
+- name: "docker - add repo for Ubuntu"
+  become: yes
+  apt_repository:
+    repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable
+    state: present
+    update_cache: yes
+  when: args.install
+
+# note: remove old version when error occured: `sudo apt-get remove docker docker-engine docker.io containerd runc`
+- name: "docker - install"
+  become: yes
+  apt:
+    pkg:
+      - docker-ce
+      - docker-ce-cli
+      - containerd.io
+      - cgroupfs-mount
+    update_cache: yes
+  when: args.install
+
+# docker service daemon for SysV Init
+- name: "docker - startup profile.d script (wsl1)"
+  become: yes
+  blockinfile:
+    create: yes
+    path: /etc/profile.d/profile_ansible_init_docker.sh
+    block: |
+      sudo -S cgroupfs-mount
+      sudo usermod -aG docker $USER
+      sudo service docker start
+      # wsl1 using windows docker-compose. wsl2 don't need this line.
+      export DOCKER_HOST=tcp://localhost:2375
+  when: args.useSysV
+
+# docker service daemon for systemd
+- name: "docker - startup profile.d script (wsl2 systemd)"
+  become: yes
+  blockinfile:
+    create: yes
+    path: /etc/profile.d/profile_ansible_init_docker.sh
+    block: |
+      sudo usermod -aG docker $USER
+  when: args.useSystemd
+
+- name: "docker - startup service replace (wsl2 systemd & minikube)"
+  become: yes
+  lineinfile:
+    dest: /lib/systemd/system/docker.service
+    backrefs: yes
+    regexp: "^ExecStart="
+    line: "ExecStart=/usr/bin/dockerd -H unix:///var/run/docker.sock --containerd=/run/containerd/containerd.sock"
+  register: docker_systemd
+  when: args.replaceStartup
