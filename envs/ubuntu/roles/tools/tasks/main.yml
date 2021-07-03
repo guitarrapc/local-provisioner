@@ -31,10 +31,3 @@
   with_items: "{{ grpcurl }}"
   loop_control:
     loop_var: args
-
-# cert
-- name: "Install cert"
-  include: include_role/install_cert.yaml
-  with_items: "{{ cert }}"
-  loop_control:
-    loop_var: args
