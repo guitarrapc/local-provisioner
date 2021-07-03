@@ -1,5 +1,3 @@
-helm:
-  - version: "3.5.4"
 stern:
   - version: "1.13.0"
 kubeval:

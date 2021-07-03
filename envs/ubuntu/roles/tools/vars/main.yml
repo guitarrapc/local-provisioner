@@ -48,3 +48,15 @@ binary_install:
     version_arg: "--version"
     version: "3.7.1"
     download_url: https://github.com/mozilla/sops/releases/download/v3.7.1/sops-v3.7.1.linux
+
+targz_binary_install:
+  - name: helm
+    version_arg: "version --short"
+    version: "3.5.4"
+    download_url: https://get.helm.sh/helm-v3.5.4-linux-amd64.tar.gz
+    copy_root: linux-amd64
+    binaries:
+      - helm
+    remove_files:
+      - /tmp/helm3.tar.gz
+      - /tmp/linux-amd64

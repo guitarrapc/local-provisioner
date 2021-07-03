@@ -19,6 +19,12 @@
   loop_control:
     loop_var: args
 
+- name: "Install .tar.gz binaries"
+  include: include_role/install_binary_targz.yaml
+  with_items: "{{ targz_binary_install }}"
+  loop_control:
+    loop_var: args
+
 # grpcurl
 - name: "Install grpcurl"
   include: include_role/install_grpcurl.yaml

@@ -1,0 +1,41 @@
+- name: "binary_targz ({{ args.name }}) - check installed"
+  shell: "{{ args.name }} {{ args.version_arg }} --short | grep {{ args.version }}"
+  register: binary_targz_exists
+  changed_when: false
+  ignore_errors: yes
+
+- name: "binary_targz ({{ args.name }}) - download"
+  get_url:
+    url: "{{ args.download_url }}"
+    dest: "/tmp/{{ args.name }}.tar.gz"
+  when: binary_targz_exists is failed
+
+- name: "binary_targz ({{ args.name }}) - unarchive"
+  unarchive:
+    src: "/tmp/{{ args.name }}.tar.gz"
+    dest: /tmp
+    remote_src: yes
+  when: binary_targz_exists is failed
+
+- name: "binary_targz ({{ args.name }}) - copy"
+  become: yes
+  copy:
+    src: "/tmp/{{ args.copy_root }}/{{ item }}"
+    dest: /usr/local/bin
+    remote_src: yes
+  with_items: "{{ args.binaries }}"
+  when: binary_targz_exists is failed
+
+- name: "binary_targz ({{ args.name }}) - remove temp files"
+  file:
+    state: absent
+    path: "{{ item }}"
+  with_items: "/tmp/{{ args.remove_files }}"
+  when: binary_targz_exists is failed
+
+- name: "binary_targz ({{ args.name }}) - change file permissions"
+  become: yes
+  file:
+    path: "/usr/local/bin/{{ item }}"
+    mode: "a+x"
+  with_items: "{{ args.link_binaries }}"
