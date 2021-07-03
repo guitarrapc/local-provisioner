@@ -10,8 +10,6 @@ apt_tools:
   - sshpass
   - tree
   - unzip
-bombardier:
-  - version: "1.2.4"
 grpcurl:
   - version: "1.7.0"
 cert:

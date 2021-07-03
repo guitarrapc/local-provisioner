@@ -5,16 +5,12 @@
     dest: "{{ ansible_home}}/github/kubectx"
     accept_hostkey: yes
 
-- name: "kubectx - create kubectx symlinks"
+- name: "kubectx - create symlinks"
   become: yes
   file:
-    src: "{{ ansible_home }}/github/kubectx/kubectx"
-    dest: "/usr/local/bin/kubectx"
+    src: "{{ ansible_home }}/github/kubectx/{{ item }}"
+    dest: "/usr/local/bin/{{ item }}"
     state: link
-
-- name: "kubectx - create kubens symlinks"
-  become: yes
-  file:
-    src: "{{ ansible_home }}/github/kubectx/kubens"
-    dest: "/usr/local/bin/kubens"
-    state: link
+  with_items:
+    - kubectx
+    - kubens
