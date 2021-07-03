@@ -1,5 +1,5 @@
 - name: "binary_targz ({{ args.name }}) - check installed"
-  shell: "{{ args.name }} {{ args.version_arg }} --short | grep {{ args.version }}"
+  shell: "{{ args.name }} {{ args.version_arg }} | grep {{ args.version }}"
   register: binary_targz_exists
   changed_when: false
   ignore_errors: yes
