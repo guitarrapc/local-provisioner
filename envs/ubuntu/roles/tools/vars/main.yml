@@ -38,8 +38,8 @@ binary_install:
   - name: docker-compose
     enable: "{{ is_wsl1 }}"
     version_arg: "--version"
-    version: "1.27.4"
-    download_url: "https://github.com/docker/compose/releases/download/1.27.4/docker-compose-$(uname -s)-$(uname -m)"
+    version: "1.29.2"
+    download_url: "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-Linux-x86_64"
   - name: kubectl
     enable: "1"
     version_arg: "version --client --short"
