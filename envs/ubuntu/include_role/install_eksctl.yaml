@@ -1,4 +1,4 @@
-# eksctl
+# https://github.com/weaveworks/eksctl/releases
 - name: "eksctl - check exists"
   shell: eksctl version 2>&1 | head -n 1 | grep "{{ args.version }}"
   register: eksctl_exists

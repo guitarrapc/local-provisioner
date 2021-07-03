@@ -1,6 +1,4 @@
-# https://github.com/aws/aws-cli/releases
 aws_cli:
-  - { version: "2.1.35" }
-# https://github.com/weaveworks/eksctl/releases
+  - version: "2.1.35"
 eksctl:
-  - { version: "0.43.0" }
+  - version: "0.43.0"
