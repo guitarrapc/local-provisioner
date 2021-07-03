@@ -59,92 +59,22 @@
   when: (use_minikube == "1") and (is_wsl2 == "1")
 
 # kubectl
-- name: "kubectl - check installed"
-  shell: kubectl version --client --short | grep {{ kubectl_version }}
-  register: kubectl_exists
-  changed_when: false
-  ignore_errors: yes
-
-- name: "kubectl - download"
-  become: yes
-  shell: curl -Lks "https://storage.googleapis.com/kubernetes-release/release/{{ kubectl_version }}/bin/linux/amd64/kubectl" -o /usr/local/bin/kubectl
-  register: download_kubectl
-  when: kubectl_exists is failed
-
-- name: "kubectl - change file permissions"
-  become: yes
-  file:
-    path: /usr/local/bin/kubectl
-    mode: "0755"
-  when: kubectl_exists is failed
+- name: "Install kubectl"
+  include: include_role/install_kubectl.yaml
+  with_items: "{{ kubectl }}"
+  loop_control:
+    loop_var: args
 
 # helm3
-- name: "helm3 - check installed"
-  shell: helm version --short | grep {{ helm_version }}
-  register: helm3_exists
-  changed_when: false
-  ignore_errors: yes
-
-- name: "helm3 - download"
-  get_url:
-    url: https://get.helm.sh/helm-{{ helm_version }}-linux-amd64.tar.gz
-    dest: "{{ ansible_home }}/helm3.tar.gz"
-  register: download_helm3
-  when: helm3_exists is failed
-
-- name: "helm3 unarchive"
-  command: tar -zxvf "{{ ansible_home }}/helm3.tar.gz"
-  args:
-    chdir: "{{ ansible_home }}/"
-  register: unarchive_helm3
-  when: helm3_exists is failed
-
-- name: "helm3 - copy"
-  become: yes
-  copy:
-    src: "{{ ansible_home }}/linux-amd64/helm"
-    dest: /usr/local/bin
-  when: helm3_exists is failed
-
-- name: "helm3 - remove tar.gz"
-  file:
-    state: absent
-    path: "{{ ansible_home }}/helm3.tar.gz"
-  when: download_helm3 is succeeded
-
-- name: "helm3 - remove temp dir"
-  file:
-    state: absent
-    path: "{{ ansible_home }}/linux-amd64"
-  when: unarchive_helm3 is succeeded
-
-- name: "helm3 - change file permissions"
-  become: yes
-  file:
-    path: /usr/local/bin/helm
-    mode: "0755"
+- name: "Install helm"
+  include: include_role/install_helm.yaml
+  with_items: "{{ helm }}"
+  loop_control:
+    loop_var: args
 
 # kubectx
-- name: "kubectx - clone"
-  become: yes
-  git:
-    repo: https://github.com/ahmetb/kubectx.git
-    dest: "{{ ansible_home}}/github/kubectx"
-    accept_hostkey: yes
-
-- name: "kubectx - create kubectx symlinks"
-  become: yes
-  file:
-    src: "{{ ansible_home }}/github/kubectx/kubectx"
-    dest: "/usr/local/bin/kubectx"
-    state: link
-
-- name: "kubectx - create kubens symlinks"
-  become: yes
-  file:
-    src: "{{ ansible_home }}/github/kubectx/kubens"
-    dest: "/usr/local/bin/kubens"
-    state: link
+- name: "Install kubectx"
+  include: include_role/install_kubectx.yaml
 
 # kube-ps1
 - name: "kube-ps1 - clone"
@@ -155,50 +85,11 @@
     accept_hostkey: yes
 
 # stern
-- name: "stern - check installed"
-  shell: stern --version | grep {{ stern_version }}
-  register: stern_exists
-  changed_when: false
-  ignore_errors: yes
-
-- name: "stern - download"
-  get_url:
-    url: https://github.com/stern/stern/releases/download/v{{ stern_version }}/stern_{{ stern_version }}_linux_amd64.tar.gz
-    dest: "/tmp/stern.tar.gz"
-  register: download_stern
-  when: stern_exists is failed
-
-- name: "stern - unzip"
-  shell: tar -zxvf /tmp/stern.tar.gz
-  args:
-    chdir: "/tmp"
-  when: stern_exists is failed
-
-- name: "stern - copy"
-  become: yes
-  copy:
-    src: "/tmp/stern_{{ stern_version }}_linux_amd64/stern"
-    dest: /usr/local/bin/stern
-    mode: a+x
-  when: stern_exists is failed
-
-- name: "stern - change file permissions"
-  become: yes
-  file:
-    path: /usr/local/bin/stern
-    mode: "0755"
-
-- name: "stern - remove tmp"
-  file:
-    path: /tmp/stern.tar.gz
-    state: absent
-  when: stern_exists is failed
-
-- name: "stern - remove tmp directory"
-  file:
-    path: "/tmp/stern_{{ stern_version }}_linux_amd64/"
-    state: absent
-  when: stern_exists is failed
+- name: "Install stern"
+  include: include_role/install_stern.yaml
+  with_items: "{{ stern }}"
+  loop_control:
+    loop_var: args
 
 # kubergrunt
 - name: "kubegrunt - check kubergrunt installed"

@@ -1,0 +1,40 @@
+- name: "helm - check installed"
+  shell: helm version --short | grep {{ args.version }}
+  register: helm_exists
+  changed_when: false
+  ignore_errors: yes
+
+- name: "helm - download"
+  get_url:
+    url: https://get.helm.sh/helm-{{ args.version }}-linux-amd64.tar.gz
+    dest: "/tmp/helm.tar.gz"
+  when: helm_exists is failed
+
+- name: "helm unarchive"
+  unarchive:
+    src: "/tmp/helm.tar.gx"
+    dest: /tmp
+    remote_src: yes
+  when: helm_exists is failed
+
+- name: "helm - copy"
+  become: yes
+  copy:
+    src: "/tmp/linux-amd64/helm"
+    dest: /usr/local/bin
+  when: helm_exists is failed
+
+- name: "helm - remove temp files"
+  file:
+    state: absent
+    path: "{{ item }}"
+  with_items:
+    - "/tmp/helm3.tar.gz"
+    - "/tmp/linux-amd64"
+  when: helm_exists is failed
+
+- name: "helm - change file permissions"
+  become: yes
+  file:
+    path: /usr/local/bin/helm
+    mode: "0755"

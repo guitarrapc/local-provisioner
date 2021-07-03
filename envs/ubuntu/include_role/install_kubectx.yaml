@@ -1,0 +1,20 @@
+- name: "kubectx - clone"
+  become: yes
+  git:
+    repo: https://github.com/ahmetb/kubectx.git
+    dest: "{{ ansible_home}}/github/kubectx"
+    accept_hostkey: yes
+
+- name: "kubectx - create kubectx symlinks"
+  become: yes
+  file:
+    src: "{{ ansible_home }}/github/kubectx/kubectx"
+    dest: "/usr/local/bin/kubectx"
+    state: link
+
+- name: "kubectx - create kubens symlinks"
+  become: yes
+  file:
+    src: "{{ ansible_home }}/github/kubectx/kubens"
+    dest: "/usr/local/bin/kubens"
+    state: link
