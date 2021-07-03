@@ -12,8 +12,6 @@ apt_tools:
   - unzip
 grpcurl:
   - version: "1.7.0"
-cert:
-  - version: "0.15.0"
 tldr:
   - version: "0.6.1"
 
@@ -50,13 +48,17 @@ binary_install:
     download_url: https://github.com/mozilla/sops/releases/download/v3.7.1/sops-v3.7.1.linux
 
 targz_binary_install:
+  - name: cert
+    version_arg: "-v"
+    version: "0.15.0"
+    download_url: https://github.com/genkiroid/cert/releases/download/0.15.0/cert_0.15.0_linux_64bit.tar.gz
+    copy_root: ""
+    binaries:
+      - cert
   - name: helm
     version_arg: "version --short"
     version: "3.5.4"
     download_url: https://get.helm.sh/helm-v3.5.4-linux-amd64.tar.gz
-    copy_root: linux-amd64
+    copy_root: linux-amd64/
     binaries:
       - helm
-    remove_files:
-      - /tmp/helm3.tar.gz
-      - /tmp/linux-amd64

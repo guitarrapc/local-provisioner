@@ -4,23 +4,29 @@
   changed_when: false
   ignore_errors: yes
 
+- name: "binary_targz ({{ args.name }}) - tmp directory"
+  file:
+    path: "/tmp/{{ args.name }}"
+    state: directory
+  when: binary_targz_exists is failed
+
 - name: "binary_targz ({{ args.name }}) - download"
   get_url:
     url: "{{ args.download_url }}"
-    dest: "/tmp/{{ args.name }}.tar.gz"
+    dest: "/tmp/{{ args.name }}/{{ args.name }}.tar.gz"
   when: binary_targz_exists is failed
 
 - name: "binary_targz ({{ args.name }}) - unarchive"
   unarchive:
-    src: "/tmp/{{ args.name }}.tar.gz"
-    dest: /tmp
+    src: "/tmp/{{ args.name }}/{{ args.name }}.tar.gz"
+    dest: /tmp/{{ args.name }}
     remote_src: yes
   when: binary_targz_exists is failed
 
 - name: "binary_targz ({{ args.name }}) - copy"
   become: yes
   copy:
-    src: "/tmp/{{ args.copy_root }}/{{ item }}"
+    src: "/tmp/{{ args.name }}/{{ args.copy_root }}{{ item }}"
     dest: /usr/local/bin
     remote_src: yes
   with_items: "{{ args.binaries }}"
@@ -29,8 +35,7 @@
 - name: "binary_targz ({{ args.name }}) - remove temp files"
   file:
     state: absent
-    path: "{{ item }}"
-  with_items: "/tmp/{{ args.remove_files }}"
+    path: /tmp/{{ args.name }}
   when: binary_targz_exists is failed
 
 - name: "binary_targz ({{ args.name }}) - change file permissions"
