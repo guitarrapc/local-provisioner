@@ -10,10 +10,11 @@ apt_tools:
   - sshpass
   - tree
   - unzip
-bombardier_version: v1.2.4
-dive_version: 0.9.2
-ctop_version: 0.7.3
-grpcurl_version: 1.7.0
-cert_version: 0.15.0
-getenvoy_version: 0.2.1-rc2
-tldr_url: https://raw.githubusercontent.com/raylee/tldr/master/tldr
+bombardier:
+  - version: "1.2.4"
+ctop:
+  - version: "0.7.3"
+grpcurl:
+  - version: "1.7.0"
+cert:
+  - version: "0.15.0"

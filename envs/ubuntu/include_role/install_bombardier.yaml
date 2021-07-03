@@ -1,0 +1,19 @@
+- name: "bombardier - check installed"
+  shell: bombardier --version 2>&1 | head -n 1 | grep {{ args.version }}
+  register: bombardier_exists
+  changed_when: false
+  ignore_errors: yes
+
+- name: "bombardier - download"
+  become: yes
+  get_url:
+    url: https://github.com/codesenberg/bombardier/releases/download/v{{ args.version }}/bombardier-linux-amd64
+    dest: "/usr/local/bin/bombardier"
+  register: download_bombardier
+  when: bombardier_exists is failed
+
+- name: "bombardier - chmod"
+  become: yes
+  file:
+    path: /usr/local/bin/bombardier
+    mode: a+x

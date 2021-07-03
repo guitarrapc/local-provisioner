@@ -6,191 +6,33 @@
     update_cache: yes
 
 # tldr
-- name: "tldr - check installed"
-  shell: tldr -h 2>&1 | grep USAGE
-  register: tldr_exists
-  changed_when: false
-  ignore_errors: yes
-
-- name: "tldr - download"
-  become: yes
-  get_url:
-    url: "{{ tldr_url }}"
-    dest: "/bin/tldr"
-  register: download_tldr
-  when: tldr_exists is failed
-
-- name: "tldr - chmod"
-  become: yes
-  file:
-    path: /bin/tldr
-    mode: a+x
+- name: "Install tldr"
+  include: include_role/install_tldr.yaml
 
 # bombardier
-- name: "bombardier - check installed"
-  shell: bombardier --version 2>&1 | head -n 1 | grep {{ bombardier_version }}
-  register: bombardier_exists
-  changed_when: false
-  ignore_errors: yes
-
-- name: "bombardier - download"
-  become: yes
-  get_url:
-    url: https://github.com/codesenberg/bombardier/releases/download/{{ bombardier_version }}/bombardier-linux-amd64
-    dest: "/usr/local/bin/bombardier"
-  register: download_bombardier
-  when: bombardier_exists is failed
-
-- name: "bombardier - chmod"
-  become: yes
-  file:
-    path: /usr/local/bin/bombardier
-    mode: a+x
-
-# dive
-- name: "dive - check installed"
-  shell: dive --version 2>&1 | head -n 1 | grep {{ dive_version }}
-  register: dive_exists
-  changed_when: false
-  ignore_errors: yes
-
-- name: "dive - download deb"
-  get_url:
-    url: https://github.com/wagoodman/dive/releases/download/v{{ dive_version }}/dive_{{ dive_version }}_linux_amd64.deb
-    dest: "{{ ansible_home }}/dive"
-  register: download_dive
-  when: dive_exists is failed
-
-- name: "dive - install"
-  become: yes
-  apt:
-    deb: "{{ ansible_home }}/dive"
-  when: dive_exists is failed
-
-- name: "dive - Remove the deb"
-  file:
-    path: "{{ ansible_home }}/dive"
-    state: absent
-  when: dive_exists is failed
+- name: "Install bombardier"
+  include: include_role/install_bombardier.yaml
+  with_items: "{{ bombardier }}"
+  loop_control:
+    loop_var: args
 
 # ctop
-- name: "ctop - check installed"
-  shell: ctop -v 2>&1 | head -n 1 | grep {{ ctop_version }}
-  register: ctop_exists
-  changed_when: false
-  ignore_errors: yes
-
-- name: "ctop - download"
-  become: yes
-  shell: curl -Ls "https://github.com/bcicen/ctop/releases/download/v{{ ctop_version }}/ctop-{{ ctop_version }}-linux-amd64" -o /usr/local/bin/ctop
-  when: ctop_exists is failed
-
-- name: "ctop - change file permissions"
-  become: yes
-  file:
-    path: /usr/local/bin/ctop
-    mode: "a+x"
-  when: ctop_exists is failed
+- name: "Install ctop"
+  include: include_role/install_ctop.yaml
+  with_items: "{{ ctop }}"
+  loop_control:
+    loop_var: args
 
 # grpcurl
-- name: "grpcurl check installed"
-  shell: grpcurl --version 2>&1 | head -n 1 | grep {{ grpcurl_version }}
-  register: grpcurl_exists
-  changed_when: false
-  ignore_errors: yes
-
-- name: "grpcurl - download"
-  become: yes
-  get_url:
-    url: https://github.com/fullstorydev/grpcurl/releases/download/v{{ grpcurl_version }}/grpcurl_{{ grpcurl_version }}_linux_x86_64.tar.gz
-    dest: "{{ ansible_home }}/grpcurl.tar.gz"
-  when: grpcurl_exists is failed
-
-- name: "grpcurl - unarchive"
-  command: tar -zxvf "{{ ansible_home }}/grpcurl.tar.gz"
-  args:
-    chdir: "{{ ansible_home }}/"
-  register: unarchive_grpcurl
-  when: grpcurl_exists is failed
-
-- name: "grpcurl - copy"
-  become: yes
-  copy:
-    src: "{{ ansible_home }}/grpcurl"
-    dest: /usr/local/bin/grpcurl
-  when: grpcurl_exists is failed
-
-- name: "grpcurl - remove files"
-  file:
-    state: absent
-    path: "{{ ansible_home }}/{{ item }}"
-  with_items:
-    - grpcurl.tar.gz
-    - LICENSE
-    - grpcurl
-  when: grpcurl_exists is failed
-
-- name: "grpcurl - change file permissions"
-  become: yes
-  file:
-    path: /usr/local/bin/grpcurl
-    mode: "0755"
-  when: grpcurl_exists is failed
+- name: "Install grpcurl"
+  include: include_role/install_grpcurl.yaml
+  with_items: "{{ grpcurl }}"
+  loop_control:
+    loop_var: args
 
 # cert
-- name: "crt - check installed"
-  shell: cert -v 2>&1 | head -n 1 | grep {{ cert_version }}
-  register: cert_exists
-  changed_when: false
-  ignore_errors: yes
-
-- name: "cert - download"
-  become: yes
-  get_url:
-    url: https://github.com/genkiroid/cert/releases/download/0.15.0/cert_{{ cert_version }}_linux_64bit.tar.gz
-    dest: "{{ ansible_home }}/cert.tar.gz"
-  when: cert_exists is failed
-
-- name: "cert - unarchive"
-  command: tar -zxvf "{{ ansible_home }}/cert.tar.gz"
-  args:
-    chdir: "{{ ansible_home }}/"
-  register: unarchive_cert
-  when: cert_exists is failed
-
-- name: "cert - copy"
-  become: yes
-  copy:
-    src: "{{ ansible_home }}/cert"
-    dest: /usr/local/bin/cert
-  when: cert_exists is failed
-
-- name: "cert - remove files"
-  file:
-    state: absent
-    path: "{{ ansible_home }}/{{ item }}"
-  with_items:
-    - cert.tar.gz
-    - README.md
-    - cert
-  when: cert_exists is failed
-
-- name: "cert - change file permissions"
-  become: yes
-  file:
-    path: /usr/local/bin/cert
-    mode: "0755"
-  when: cert_exists is failed
-
-# getenvoy
-# switch to https://www.getenvoy.io/install/envoy/ubuntu/
-- name: "getenvoy - check installed"
-  shell: getenvoy --version 2>&1 | head -n 1 | grep {{ getenvoy_version }}
-  register: getenvoy_exists
-  changed_when: false
-  ignore_errors: yes
-
-- name: "getenvoy - download"
-  become: yes
-  shell: curl -L https://getenvoy.io/cli | bash -s -- -b /usr/local/bin
-  when: getenvoy_exists is failed
+- name: "Install cert"
+  include: include_role/install_cert.yaml
+  with_items: "{{ cert }}"
+  loop_control:
+    loop_var: args

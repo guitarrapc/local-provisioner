@@ -1,0 +1,19 @@
+- name: "ctop - check installed"
+  shell: ctop -v 2>&1 | head -n 1 | grep {{ args.version }}
+  register: ctop_exists
+  changed_when: false
+  ignore_errors: yes
+
+- name: "ctop - download"
+  become: yes
+  get_url:
+    url: https://github.com/bcicen/ctop/releases/download/v{{ args.version }}/ctop-{{ args.version }}-linux-amd64
+    dest: "/usr/local/bin/ctop"
+  register: ctop_exists is failed
+
+- name: "ctop - change file permissions"
+  become: yes
+  file:
+    path: /usr/local/bin/ctop
+    mode: "a+x"
+  when: ctop_exists is failed

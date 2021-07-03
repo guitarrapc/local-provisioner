@@ -1,0 +1,44 @@
+- name: "grpcurl - check installed"
+  shell: grpcurl --version 2>&1 | head -n 1 | grep {{ args.version }}
+  register: grpcurl_exists
+  changed_when: false
+  ignore_errors: yes
+
+- name: "grpcurl - download"
+  become: yes
+  get_url:
+    url: https://github.com/fullstorydev/grpcurl/releases/download/v{{ args.version }}/grpcurl_{{ args.version }}_linux_x86_64.tar.gz
+    dest: "/tmp/grpcurl.tar.gz"
+  when: grpcurl_exists is failed
+
+- name: "grpcurl - unarchive"
+  unarchive:
+    src: /tmp/grpcurl.tar.gz
+    dest: /tmp
+    remote_src: yes
+  when: grpcurl_exists is failed
+
+- name: "grpcurl - copy"
+  become: yes
+  copy:
+    src: "/tmp/grpcurl"
+    dest: /usr/local/bin/grpcurl
+    remote_src: yes
+  when: grpcurl_exists is failed
+
+- name: "grpcurl - remove files"
+  file:
+    state: absent
+    path: "/tmp/{{ item }}"
+  with_items:
+    - grpcurl.tar.gz
+    - LICENSE
+    - grpcurl
+  when: grpcurl_exists is failed
+
+- name: "grpcurl - change file permissions"
+  become: yes
+  file:
+    path: /usr/local/bin/grpcurl
+    mode: "0755"
+  when: grpcurl_exists is failed

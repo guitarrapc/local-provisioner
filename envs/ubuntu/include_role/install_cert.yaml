@@ -1,0 +1,43 @@
+- name: "cert - check installed"
+  shell: cert -v 2>&1 | head -n 1 | grep {{ args.version }}
+  register: cert_exists
+  changed_when: false
+  ignore_errors: yes
+
+- name: "cert - download"
+  get_url:
+    url: https://github.com/genkiroid/cert/releases/download/{{ args.version }}/cert_{{ args.version }}_linux_64bit.tar.gz
+    dest: "/tmp/cert.tar.gz"
+  when: cert_exists is failed
+
+- name: "cert - unarchive"
+  unarchive:
+    src: /tmp/cert.tar.gz
+    dest: /tmp
+    remote_src: yes
+  when: cert_exists is failed
+
+- name: "cert - copy"
+  become: yes
+  copy:
+    src: "/tmp/cert"
+    dest: /usr/local/bin/cert
+    remote_src: yes
+  when: cert_exists is failed
+
+- name: "cert - remove files"
+  file:
+    state: absent
+    path: "{{ ansible_home }}/{{ item }}"
+  with_items:
+    - cert.tar.gz
+    - README.md
+    - cert
+  when: cert_exists is failed
+
+- name: "cert - change file permissions"
+  become: yes
+  file:
+    path: /usr/local/bin/cert
+    mode: "0755"
+  when: cert_exists is failed
