@@ -1,2 +1,2 @@
-homebrew_packages:
-  - gh
+homebrew:
+  - { package: "gh", state: "present" }
