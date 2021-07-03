@@ -1,5 +1,5 @@
 - name: "tldr - check installed"
-  shell: tldr -h 2>&1 | grep USAGE
+  shell: tldr --version 2>&1 | grep {{ args.version }}
   register: tldr_exists
   changed_when: false
   ignore_errors: yes
@@ -7,13 +7,37 @@
 - name: "tldr - download"
   become: yes
   get_url:
-    url: "https://raw.githubusercontent.com/raylee/tldr/master/tldr"
-    dest: "/bin/tldr"
+    url: "https://github.com/isacikgoz/tldr/releases/download/v{{ args.version }}-alpha/tldr_{{ args.version }}-alpha_linux_amd64.tar.gz"
+    dest: "/tmp/tldr_linux_amd64.tar.gz"
   register: download_tldr
   when: tldr_exists is failed
 
-- name: "tldr - chmod"
+- name: "tldr - unarchive"
+  unarchive:
+    src: "/tmp/tldr_linux_amd64.tar.gz"
+    dest: /tmp
+    remote_src: yes
+  when: tldr_exists is failed
+
+- name: "tldr - copy"
+  become: yes
+  copy:
+    src: "/tmp/tldr"
+    dest: /usr/local/bin/tldr
+    remote_src: yes
+  when: tldr_exists is failed
+
+- name: "tldr - remove tmp files"
+  file:
+    state: absent
+    path: "{{ item }}"
+  with_items:
+    - /tmp/tldr_linux_amd64.tar.gz
+    - /tmp/tldr
+  when: tldr_exists is failed
+
+- name: "tldr - change file permissions"
   become: yes
   file:
-    path: /bin/tldr
+    path: /usr/local/bin/tldr
     mode: "a+x"

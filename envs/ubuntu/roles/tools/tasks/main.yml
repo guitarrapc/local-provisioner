@@ -8,6 +8,9 @@
 # tldr
 - name: "Install tldr"
   include: include_role/install_tldr.yaml
+  with_items: "{{ tldr }}"
+  loop_control:
+    loop_var: args
 
 # bombardier
 - name: "Install binaries"

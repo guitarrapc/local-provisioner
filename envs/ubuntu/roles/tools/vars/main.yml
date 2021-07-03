@@ -18,6 +18,8 @@ grpcurl:
   - version: "1.7.0"
 cert:
   - version: "0.15.0"
+tldr:
+  - version: "0.6.1"
 
 binary_install:
   - name: bombardier
