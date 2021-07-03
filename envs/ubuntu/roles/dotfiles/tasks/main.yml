@@ -1,4 +1,4 @@
-- name: "Install docker"
+- name: "Install dotfiles"
   include: include_role/install_dotfiles.yaml
   with_items: "{{ dotfiles }}"
   loop_control:
