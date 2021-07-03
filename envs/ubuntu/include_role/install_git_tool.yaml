@@ -1,0 +1,15 @@
+- name: "git_tool ({{ args.name }}) - clone"
+  become: yes
+  git:
+    repo: "{{ args.git_https_url }}"
+    dest: "{{ ansible_home}}/github/{{ args.name }}"
+    accept_hostkey: yes
+
+- name: "git_tool ({{ args.name }}) - create symlinks"
+  become: yes
+  file:
+    src: "{{ ansible_home}}/github/{{ args.name }}/{{ item }}"
+    dest: "/usr/local/bin/{{ item }}"
+    state: link
+  with_items: "{{ args.link_binaries }}"
+  when: args.link_binaries is defined

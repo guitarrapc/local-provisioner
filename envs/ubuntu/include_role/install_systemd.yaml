@@ -1,4 +1,5 @@
----
+# install only wsl2 and you want use....
+
 # prerequisites
 - name: "add systemd prerequisite packages"
   become: yes

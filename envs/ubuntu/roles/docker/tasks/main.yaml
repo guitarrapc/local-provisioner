@@ -1,5 +1,8 @@
 - name: "Install docker"
   include: include_role/install_docker.yaml
-  with_items: "{{ docker }}"
+
+- name: "Install docker-compose"
+  include: include_role/install_binary.yaml
+  with_items: "{{ docker_compose }}"
   loop_control:
     loop_var: args

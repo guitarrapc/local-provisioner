@@ -1,2 +1,0 @@
-- name: "Install systemd"
-  include: include_role/install_systemd.yaml

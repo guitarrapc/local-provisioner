@@ -47,9 +47,6 @@
     msg: "{{ ansible_distribution_release }}"
 
 # wsl check
-- name: "is_wsl1 or not"
-  debug:
-    msg: "{{ is_wsl1 }}"
 - name: "is_wsl2 or not"
   debug:
     msg: "{{ is_wsl2 }}"

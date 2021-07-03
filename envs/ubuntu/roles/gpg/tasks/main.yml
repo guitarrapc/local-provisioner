@@ -1,2 +1,0 @@
-- name: "Install gpg"
-  include: include_role/install_gpg.yaml

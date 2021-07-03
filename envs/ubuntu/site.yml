@@ -5,15 +5,6 @@
     - name: Preset ansible_home as execution user HOME path
       set_fact: ansible_home='{{ lookup('env','HOME') }}'
       tags: always
-    - name: Get WSL1
-      shell: cat /proc/version | grep Microsoft | wc -l
-      register: wsl1_exists
-      changed_when: false
-      check_mode: no
-      tags: always
-    - name: Preset WSL1 or not
-      set_fact: is_wsl1='{{ wsl1_exists.stdout }}'
-      tags: always
     - name: Get WSL2
       shell: cat /proc/version | grep microsoft-standard | wc -l
       register: wsl2_exists
@@ -26,17 +17,6 @@
   roles:
     - { role: "debug", tags: [debug] }
     - { role: "dotfiles", tags: [dotfiles] }
-    - { role: "homebrew", tags: [homebrew] }
     - { role: "credentials", tags: [credentials] }
-    - { role: "gpg", tags: [gpg], when: is_wsl1 == "1" }
     - { role: "tools", tags: [tools] }
-    - { role: "awscli", tags: [awscli] }
-    - { role: "terraform", tags: [terraform] }
-    - { role: "dotnet", tags: [dotnet] }
-    - {
-        role: "systemd",
-        tags: [systemd],
-        when: is_wsl2 == "1",
-      }
-    - { role: "docker", tags: [docker] }
-    - { role: "kubernetes", tags: [kubernetes] }
+    - { role: "docker", tags: [docker], when: is_wsl2 == "0" }

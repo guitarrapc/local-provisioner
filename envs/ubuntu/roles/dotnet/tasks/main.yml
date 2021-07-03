@@ -1,5 +1,0 @@
-- name: "Install dotnet"
-  include: include_role/install_dotnet.yaml
-  with_items: "{{ dotnet }}"
-  loop_control:
-    loop_var: args

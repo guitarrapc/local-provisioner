@@ -3,7 +3,6 @@
   register: binary_exists
   changed_when: false
   ignore_errors: yes
-  when: args.enable == "1"
 
 - name: "binary ({{ args.name }}) - download"
   become: yes

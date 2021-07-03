@@ -1,5 +1,0 @@
-- name: "Install aws cli"
-  include: include_role/install_awscli.yaml
-  with_items: "{{ aws_cli }}"
-  loop_control:
-    loop_var: args

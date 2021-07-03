@@ -3,7 +3,6 @@
   register: binary_targz_exists
   changed_when: false
   ignore_errors: yes
-  when: args.enable == "1"
 
 - name: "binary_targz ({{ args.name }}) - tmp directory"
   file:
