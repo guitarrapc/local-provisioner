@@ -1,37 +1,5 @@
----
-- name: "Create github directory"
-  file:
-    path: "{{ base_path }}"
-    state: directory
-
-- name: "Clone & Fetch"
-  git:
-    repo: "{{ item.repo }}"
-    dest: "{{ item.dest }}"
-  with_items: "{{ repository }}"
-  when: repository is defined
-
-# must use shell, instead of command.
-# ref: https://stackoverflow.com/questions/56989048/issue-in-ansible-playbook-command/56991314
-- name: "Create symlinks"
-  become: yes
-  become_user: "{{ lookup('env','USER') }}"
-  shell: bash -lc "{{ run_dotfiles }}"
-  changed_when: false
-  register: dotfiles
-
-- name: "symlink result"
-  debug:
-    msg: "{{ dotfiles.stdout_lines }}"
-  when: dotfiles.stdout != ""
-
-- name: "insert .bash_rc to load custom rc"
-  blockinfile:
-    create: yes
-    path: "{{ ansible_home}}/.bashrc"
-    block: |
-      if [[ -f ${HOME}/.bashrc_custom ]]
-      then
-        source ${HOME}/.bashrc_custom
-      fi
-  when: dotfiles is success
+- name: "Install docker"
+  include: include_role/install_dotfiles.yaml
+  with_items: "{{ dotfiles }}"
+  loop_control:
+    loop_var: args
