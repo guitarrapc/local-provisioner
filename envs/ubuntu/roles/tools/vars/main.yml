@@ -42,9 +42,15 @@ binary_install:
     version_arg: "--version"
     version: "3.7.1"
     download_url: https://github.com/mozilla/sops/releases/download/v3.7.1/sops-v3.7.1.linux
+  - name: stern
+    enable: "1"
+    version_arg: "--version"
+    version: "1.11.0"
+    download_url: https://github.com/wercker/stern/releases/download/1.11.0/stern_linux_amd64
 
 targz_binary_install:
   - name: cert
+    enable: "1"
     version_arg: "-v"
     version: "0.15.0"
     download_url: https://github.com/genkiroid/cert/releases/download/0.15.0/cert_0.15.0_linux_64bit.tar.gz
@@ -52,6 +58,7 @@ targz_binary_install:
     binaries:
       - cert
   - name: eksctl
+    enable: "1"
     version_arg: "version"
     version: "0.55.0"
     download_url: https://github.com/weaveworks/eksctl/releases/download/0.55.0/eksctl_Linux_amd64.tar.gz
@@ -59,6 +66,7 @@ targz_binary_install:
     binaries:
       - eksctl
   - name: grpcurl
+    enable: "1"
     version_arg: "--version"
     version: "1.7.0"
     download_url: https://github.com/fullstorydev/grpcurl/releases/download/v1.7.0/grpcurl_1.7.0_linux_x86_64.tar.gz
@@ -66,6 +74,7 @@ targz_binary_install:
     binaries:
       - grpcurl
   - name: helm
+    enable: "1"
     version_arg: "version --short"
     version: "3.5.4"
     download_url: https://get.helm.sh/helm-v3.5.4-linux-amd64.tar.gz
@@ -73,20 +82,15 @@ targz_binary_install:
     binaries:
       - helm
   - name: kubeval
+    enable: "1"
     version_arg: "--version"
     version: "0.16.1"
     download_url: https://github.com/instrumenta/kubeval/releases/download/v0.16.1/kubeval-linux-amd64.tar.gz
     copy_root: ""
     binaries:
       - kubeval
-  - name: stern
-    version_arg: "--version"
-    version: "1.13.0"
-    download_url: https://github.com/stern/stern/releases/download/v1.13.0/stern.tar.gz
-    copy_root: "stern_1.13.0_linux_amd64"
-    binaries:
-      - stern
   - name: tldr
+    enable: "1"
     version_arg: "--version"
     version: "0.6.1"
     download_url: https://github.com/isacikgoz/tldr/releases/download/v0.6.1/tldr_0.6.1_linux_amd64.tar.gz
