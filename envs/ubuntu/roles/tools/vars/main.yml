@@ -55,6 +55,13 @@ targz_binary_install:
     copy_root: ""
     binaries:
       - cert
+  - name: eksctl
+    version_arg: "version"
+    version: "0.55.0"
+    download_url: https://github.com/weaveworks/eksctl/releases/download/0.55.0/eksctl_Linux_amd64.tar.gz
+    copy_root: ""
+    binaries:
+      - eksctl
   - name: helm
     version_arg: "version --short"
     version: "3.5.4"

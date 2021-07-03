@@ -1,4 +1,2 @@
 aws_cli:
   - version: "2.1.35"
-eksctl:
-  - version: "0.43.0"

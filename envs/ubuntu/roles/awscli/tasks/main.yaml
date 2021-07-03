@@ -3,9 +3,3 @@
   with_items: "{{ aws_cli }}"
   loop_control:
     loop_var: args
-
-- name: "Install eksctl"
-  include: include_role/install_eksctl.yaml
-  with_items: "{{ eksctl }}"
-  loop_control:
-    loop_var: args
