@@ -6,7 +6,7 @@
 
 - name: "kubectl - download"
   become: yes
-  shell: curl -Lks "https://storage.googleapis.com/kubernetes-release/release/{{ args.version }}/bin/linux/amd64/kubectl" -o /usr/local/bin/kubectl
+  shell: curl -Lks "https://storage.googleapis.com/kubernetes-release/release/v{{ args.version }}/bin/linux/amd64/kubectl" -o /usr/local/bin/kubectl
   args:
     warn: false
   register: download_kubectl

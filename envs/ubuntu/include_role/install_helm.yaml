@@ -6,7 +6,7 @@
 
 - name: "helm - download"
   get_url:
-    url: https://get.helm.sh/helm-{{ args.version }}-linux-amd64.tar.gz
+    url: https://get.helm.sh/helm-v{{ args.version }}-linux-amd64.tar.gz
     dest: "/tmp/helm.tar.gz"
   when: helm_exists is failed
 

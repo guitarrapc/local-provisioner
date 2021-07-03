@@ -1,7 +1,7 @@
 kubectl:
-  - { version: "v1.20.4" }
+  - { version: "1.20.4" }
 helm:
-  - { version: "v3.5.4" }
+  - { version: "3.5.4" }
 stern:
   - { version: "1.13.0" }
 kubeval:
