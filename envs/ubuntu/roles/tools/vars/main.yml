@@ -10,10 +10,6 @@ apt_tools:
   - sshpass
   - tree
   - unzip
-grpcurl:
-  - version: "1.7.0"
-tldr:
-  - version: "0.6.1"
 
 binary_install:
   - name: argocd
@@ -62,6 +58,13 @@ targz_binary_install:
     copy_root: ""
     binaries:
       - eksctl
+  - name: grpcurl
+    version_arg: "--version"
+    version: "1.7.0"
+    download_url: https://github.com/fullstorydev/grpcurl/releases/download/v1.7.0/grpcurl_1.7.0_linux_x86_64.tar.gz
+    copy_root: ""
+    binaries:
+      - grpcurl
   - name: helm
     version_arg: "version --short"
     version: "3.5.4"
@@ -69,3 +72,24 @@ targz_binary_install:
     copy_root: linux-amd64/
     binaries:
       - helm
+  - name: kubeval
+    version_arg: "--version"
+    version: "0.16.1"
+    download_url: https://github.com/instrumenta/kubeval/releases/download/v0.16.1/kubeval-linux-amd64.tar.gz
+    copy_root: ""
+    binaries:
+      - kubeval
+  - name: stern
+    version_arg: "--version"
+    version: "1.13.0"
+    download_url: https://github.com/stern/stern/releases/download/v1.13.0/stern.tar.gz
+    copy_root: "stern_1.13.0_linux_amd64"
+    binaries:
+      - stern
+  - name: tldr
+    version_arg: "--version"
+    version: "0.6.1"
+    download_url: https://github.com/isacikgoz/tldr/releases/download/v0.6.1/tldr_0.6.1_linux_amd64.tar.gz
+    copy_root: ""
+    binaries:
+      - tldr

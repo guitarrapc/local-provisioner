@@ -10,16 +10,3 @@
     dest: "{{ ansible_home}}/github/kube-ps1"
     accept_hostkey: yes
 
-# stern
-- name: "Install stern"
-  include: include_role/install_stern.yaml
-  with_items: "{{ stern }}"
-  loop_control:
-    loop_var: args
-
-# kubeval
-- name: "Install kubeval"
-  include: include_role/install_kubeval.yaml
-  with_items: "{{ kubeval }}"
-  loop_control:
-    loop_var: args
