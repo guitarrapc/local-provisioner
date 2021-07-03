@@ -5,9 +5,6 @@
     - name: Preset ansible_home as execution user HOME path
       set_fact: ansible_home='{{ lookup('env','HOME') }}'
       tags: always
-    - name: Use Minikube
-      set_fact: use_minikube='0'
-      tags: always
     - name: Get WSL1
       shell: cat /proc/version | grep Microsoft | wc -l
       register: wsl1_exists
@@ -39,7 +36,7 @@
     - {
         role: "systemd",
         tags: [systemd],
-        when: use_minikube == "1" and is_wsl2 == "1",
+        when: is_wsl2 == "1",
       }
     - { role: "docker", tags: [docker] }
     - { role: "kubernetes", tags: [kubernetes] }

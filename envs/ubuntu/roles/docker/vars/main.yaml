@@ -1,4 +1,4 @@
 docker:
-  - { use_minikube: "{{ use_minikube }}", is_wsl1: "{{ is_wsl1 }}" }
+  - { is_wsl1: "{{ is_wsl1 }}" }
 docker_compose:
-  - { version: "1.27.4", use_minikube: "{{ use_minikube }}", is_wsl1: "{{ is_wsl1 }}" }
+  - { version: "1.27.4", is_wsl1: "{{ is_wsl1 }}" }

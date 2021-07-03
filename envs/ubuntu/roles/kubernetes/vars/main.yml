@@ -4,11 +4,6 @@ helm:
   - { version: "v3.5.4" }
 stern:
   - { version: "1.13.0" }
-minikube_version: v1.20.0
-stern_version: 1.13.0
-kubergrunt_version: 0.5.4
-istioctl_version: 1.6.13
-kubesec_version: 0.9.2
 kubeval_version: v0.16.1
 sops_version: 3.7.1
 argocd_version: 1.8.7

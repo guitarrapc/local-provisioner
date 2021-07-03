@@ -12,7 +12,7 @@
       - curl
       - software-properties-common
     update_cache: yes
-  when: (args.use_minikube == "1") or (args.is_wsl1 == "1")
+  when: (args.is_wsl1 == "1")
 
 - name: "import Docker apt key"
   become: yes
@@ -20,7 +20,7 @@
   args:
     warn: false
   changed_when: false
-  when: (args.use_minikube == "1") or (args.is_wsl1 == "1")
+  when: (args.is_wsl1 == "1")
 
 - name: "docker - add repo for Ubuntu"
   become: yes
@@ -29,7 +29,7 @@
     repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable
     state: present
     update_cache: yes
-  when: (args.use_minikube == "1") or (args.is_wsl1 == "1")
+  when: (args.is_wsl1 == "1")
 
 # note: remove old version when error occured: `sudo apt-get remove docker docker-engine docker.io containerd runc`
 - name: "docker - install"
@@ -41,7 +41,7 @@
       - containerd.io
       - cgroupfs-mount
     update_cache: yes
-  when: (args.use_minikube == "1") or (args.is_wsl1 == "1")
+  when: (args.is_wsl1 == "1")
 
 # docker service daemon for SysV Init
 - name: "docker - startup profile.d script (wsl1)"
@@ -65,9 +65,9 @@
     path: /etc/profile.d/profile_ansible_init_docker.sh
     block: |
       sudo usermod -aG docker $USER
-  when: (args.is_wsl1 == "0") and (args.use_minikube == "0")
+  when: (args.is_wsl1 == "0")
 
-- name: "docker - startup service replace (wsl2 systemd & minikube)"
+- name: "docker - startup service replace (wsl2 systemd)"
   become: yes
   lineinfile:
     dest: /lib/systemd/system/docker.service
@@ -75,4 +75,4 @@
     regexp: "^ExecStart="
     line: "ExecStart=/usr/bin/dockerd -H unix:///var/run/docker.sock --containerd=/run/containerd/containerd.sock"
   register: docker_systemd
-  when: (args.is_wsl1 == "0") and (args.use_minikube == "1")
+  when: (args.is_wsl1 == "0")
