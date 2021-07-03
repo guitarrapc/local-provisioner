@@ -12,11 +12,6 @@
   when: kubeval_exists is failed
 
 - name: "kubeval - unarchive"
-  command: tar -zxvf "/tmp/kubeval.tar.gz"
-  register: unarchive_kubeval
-  when: kubeval_exists is failed
-
-- name: "kubeval - unarchive"
   unarchive:
     src: "/tmp/kubeval.tar.gz"
     dest: /tmp

@@ -1,10 +1,3 @@
-# kubectl
-- name: "Install kubectl"
-  include: include_role/install_kubectl.yaml
-  with_items: "{{ kubectl }}"
-  loop_control:
-    loop_var: args
-
 # helm
 - name: "Install helm"
   include: include_role/install_helm.yaml
@@ -35,19 +28,5 @@
 - name: "Install kubeval"
   include: include_role/install_kubeval.yaml
   with_items: "{{ kubeval }}"
-  loop_control:
-    loop_var: args
-
-# mozilla/sops
-- name: "Install sops"
-  include: include_role/install_sops.yaml
-  with_items: "{{ sops }}"
-  loop_control:
-    loop_var: args
-
-# argocd
-- name: "Install argocd"
-  include: include_role/install_argocd.yaml
-  with_items: "{{ argocd }}"
   loop_control:
     loop_var: args

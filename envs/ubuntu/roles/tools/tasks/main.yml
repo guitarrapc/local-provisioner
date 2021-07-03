@@ -12,26 +12,12 @@
   loop_control:
     loop_var: args
 
-# bombardier
+# binary tools
 - name: "Install binaries"
   include: include_role/install_binary.yaml
   with_items: "{{ binary_install }}"
   loop_control:
     loop_var: args
-
-# # bombardier
-# - name: "Install bombardier"
-#   include: include_role/install_bombardier.yaml
-#   with_items: "{{ bombardier }}"
-#   loop_control:
-#     loop_var: args
-
-# ctop
-# - name: "Install ctop"
-#   include: include_role/install_ctop.yaml
-#   with_items: "{{ ctop }}"
-#   loop_control:
-#     loop_var: args
 
 # grpcurl
 - name: "Install grpcurl"
