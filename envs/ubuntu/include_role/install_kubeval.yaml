@@ -46,5 +46,4 @@
   become: yes
   file:
     path: /usr/local/bin/kubeval
-    mode: "0755"
-  when: kubeval_exists is failed
+    mode: "a+x"

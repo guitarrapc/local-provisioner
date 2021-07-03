@@ -38,4 +38,4 @@
   become: yes
   file:
     path: /usr/local/bin/helm
-    mode: "0755"
+    mode: "a+x"

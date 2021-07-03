@@ -39,4 +39,4 @@
   become: yes
   file:
     path: /usr/local/bin/stern
-    mode: "0755"
+    mode: "a+x"

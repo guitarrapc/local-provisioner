@@ -40,5 +40,4 @@
   become: yes
   file:
     path: /usr/local/bin/grpcurl
-    mode: "0755"
-  when: grpcurl_exists is failed
+    mode: "a+x"

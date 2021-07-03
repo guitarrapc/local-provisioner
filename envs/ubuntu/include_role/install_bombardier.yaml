@@ -9,7 +9,6 @@
   get_url:
     url: https://github.com/codesenberg/bombardier/releases/download/v{{ args.version }}/bombardier-linux-amd64
     dest: "/usr/local/bin/bombardier"
-  register: download_bombardier
   when: bombardier_exists is failed
 
 - name: "bombardier - chmod"

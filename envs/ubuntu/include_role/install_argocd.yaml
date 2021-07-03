@@ -17,4 +17,3 @@
   file:
     path: /usr/local/bin/argocd
     mode: "0755"
-  when: argocd_exists is failed

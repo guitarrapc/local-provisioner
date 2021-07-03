@@ -16,5 +16,4 @@
   become: yes
   file:
     path: /usr/local/bin/sops
-    mode: "0755"
-  when: sops_exists is failed
+    mode: "a+x"

@@ -40,4 +40,3 @@
   file:
     path: /usr/local/bin/cert
     mode: "0755"
-  when: cert_exists is failed

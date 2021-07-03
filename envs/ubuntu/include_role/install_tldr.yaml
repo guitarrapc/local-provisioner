@@ -16,4 +16,4 @@
   become: yes
   file:
     path: /bin/tldr
-    mode: a+x
+    mode: "a+x"

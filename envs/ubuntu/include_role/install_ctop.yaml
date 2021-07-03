@@ -16,4 +16,3 @@
   file:
     path: /usr/local/bin/ctop
     mode: "a+x"
-  when: ctop_exists is failed
