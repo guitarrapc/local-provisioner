@@ -1,64 +1,11 @@
----
-# aws2
-# install to /usr/local/aws by default.
-# symlink to /usr/local/bin/aws by default.
-- name: "{{ ansible_role_name}}: aws2 - check exists"
-  shell: aws --version 2>&1 | head -n 1 | grep "aws-cli/{{ aws_cli_version }}"
-  register: aws2_exists
-  changed_when: false
-  ignore_errors: yes
+- name: "Install aws cli"
+  include: include_role/install_awscli.yaml
+  with_items: "{{ aws_cli }}"
+  loop_control:
+    loop_var: args
 
-- name: "{{ ansible_role_name}}: aws2 - download"
-  shell: curl -L "https://awscli.amazonaws.com/awscli-exe-linux-x86_64-{{ aws_cli_version }}.zip" -o /tmp/awscliv2.zip
-  when: aws2_exists is failed
-
-- name: "{{ ansible_role_name}}: aws2 - unzip"
-  unarchive:
-    src: /tmp/awscliv2.zip
-    dest: /tmp
-    remote_src: yes
-  when: aws2_exists is failed
-
-- name: "{{ ansible_role_name}}: aws2 - install"
-  become: yes
-  shell: >
-    /tmp/aws/install --update
-  when: aws2_exists is failed
-
-- name: "{{ ansible_role_name}}: aws2 - clean up tmp zip"
-  file:
-    path: /tmp/awscliv2.zip
-    state: absent
-  when: aws2_exists is failed
-
-# eksctl
-- name: "{{ ansible_role_name}}: eksctl - check exists"
-  shell: eksctl version 2>&1 | head -n 1 | grep "{{ eksctl_version }}"
-  register: eksctl_exists
-  changed_when: false
-  ignore_errors: yes
-
-- name: "{{ ansible_role_name}}: eksctl - download"
-  shell: curl -L "https://github.com/weaveworks/eksctl/releases/download/{{ eksctl_version }}/eksctl_$(uname -s)_amd64.tar.gz" -o /tmp/eksctl_amd64.tar.gz
-  when: eksctl_exists is failed
-
-- name: "{{ ansible_role_name}}: eksctl - unzip"
-  become: yes
-  unarchive:
-    src: /tmp/eksctl_amd64.tar.gz
-    dest: /usr/local/bin
-    remote_src: yes
-  when: eksctl_exists is failed
-
-- name: "{{ ansible_role_name}}: eksctl - remove tmp"
-  file:
-    path: /tmp/eksctl_amd64.tar.gz
-    state: absent
-  when: eksctl_exists is failed
-
-- name: "{{ ansible_role_name}}: eksctl - chmod"
-  become: yes
-  file:
-    path: /usr/local/bin/eksctl
-    mode: a+x
-  when: eksctl_exists is failed
+- name: "Install eksctl"
+  include: include_role/install_eksctl.yaml
+  with_items: "{{ eksctl }}"
+  loop_control:
+    loop_var: args

@@ -1,12 +1,12 @@
 ---
-- name: "{{ ansible_role_name}}: Clone & Fetch repo"
+- name: "Clone & Fetch repo"
   git:
     repo: "{{ item.repo }}"
     dest: "{{ item.dest }}"
   with_items: "{{ repository }}"
   when: repository is defined
 
-- name: "{{ ansible_role_name}}: Create symlinks"
+- name: "Create symlinks"
   become: yes
   file:
     src: "{{ item.src }}"
@@ -15,23 +15,23 @@
   with_items: "{{ symlink }}"
   when: repository is defined
 
-- name: "{{ ansible_role_name}}: check installed"
+- name: "check installed"
   shell: tfenv list | grep {{ version }}
   register: terraform_version
   changed_when: false
   ignore_errors: yes
 
-- name: "{{ ansible_role_name}}: install"
+- name: "install"
   command: tfenv install {{ version }}
   register: terraform
   when: terraform_version is failed
 
-- name: "{{ ansible_role_name}}: use version {{ version }}"
+- name: "use version {{ version }}"
   command: tfenv use {{ version }}
   register: terraform
   when: terraform_version is failed
 
-- name: "{{ ansible_role_name}}: version"
+- name: "version"
   debug:
     msg: "{{ terraform.stdout_lines }}"
   when: terraform is failed

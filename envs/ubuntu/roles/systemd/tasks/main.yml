@@ -1,13 +1,13 @@
 ---
 # prerequisites
-- name: "{{ ansible_role_name}}: add systemd prerequisite packages"
+- name: "add systemd prerequisite packages"
   become: yes
   apt:
     pkg: "{{ systemd_prerequisite_packages }}"
     update_cache: yes
 
 # scripts
-- name: "{{ ansible_role_name}}: contents start-systemd-namespace script"
+- name: "contents start-systemd-namespace script"
   become: yes
   copy:
     dest: "/usr/sbin/start-systemd-namespace"
@@ -53,13 +53,13 @@
           export PATH="$PRE_NAMESPACE_PATH"
       fi
 
-- name: "{{ ansible_role_name}}: generate start-systemd-namespace script"
+- name: "generate start-systemd-namespace script"
   become: yes
   file:
     path: "/usr/sbin/start-systemd-namespace"
     mode: a+x
 
-- name: "{{ ansible_role_name}}: contents enter-systemd-namespace script"
+- name: "contents enter-systemd-namespace script"
   become: yes
   copy:
     dest: "/usr/sbin/enter-systemd-namespace"
@@ -93,13 +93,13 @@
           echo "Existential crisis"
       fi
 
-- name: "{{ ansible_role_name}}: generate enter-systemd-namespace script"
+- name: "generate enter-systemd-namespace script"
   become: yes
   file:
     path: "/usr/sbin/enter-systemd-namespace"
     mode: a+x
 
-- name: "{{ ansible_role_name}}: sudoers config for systemd"
+- name: "sudoers config for systemd"
   become: yes
   blockinfile:
     path: "/etc/sudoers"
@@ -111,7 +111,7 @@
       Defaults        env_keep += PRE_NAMESPACE_PATH
       %sudo ALL=(ALL) NOPASSWD: /usr/sbin/enter-systemd-namespace
 
-- name: "{{ ansible_role_name}}: source enter-systemd-namespace in /etc/bash.bashrc"
+- name: "source enter-systemd-namespace in /etc/bash.bashrc"
   become: yes
   blockinfile:
     path: "/etc/bash.bashrc"
@@ -120,7 +120,7 @@
       # Start or enter a PID namespace in WSL2
       source /usr/sbin/start-systemd-namespace
 
-- name: "{{ ansible_role_name}}: fix login path to follow before bash login (systemd)"
+- name: "fix login path to follow before bash login (systemd)"
   become: yes
   blockinfile:
     create: yes

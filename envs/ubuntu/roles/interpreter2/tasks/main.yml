@@ -1,3 +1,3 @@
 ---
-- name: "{{ ansible_role_name}}: set ansible python interpreter to refer system python"
+- name: "set ansible python interpreter to refer system python"
   set_fact: ansible_python_interpreter=/usr/bin/python

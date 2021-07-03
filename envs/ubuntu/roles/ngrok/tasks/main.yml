@@ -1,26 +1,26 @@
 ---
-- name: "{{ ansible_role_name}}: check installed"
+- name: "check installed"
   stat:
     path: /usr/local/bin/ngrok
     get_checksum: false
     get_md5: false
   register: ngrok_exists
 
-- name: "{{ ansible_role_name}}: download"
+- name: "download"
   get_url:
     url: https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip
     dest: "{{ ansible_home }}/ngrok-stable-linux-amd64.zip"
   register: download_ngrok
   when: not ngrok_exists.stat.exists
 
-- name: "{{ ansible_role_name}}: check temp zip exists"
+- name: "check temp zip exists"
   stat:
     path: "{{ ansible_home }}/ngrok-stable-linux-amd64.zip"
     get_checksum: false
     get_md5: false
   register: ngrok_zip_exists
 
-- name: "{{ ansible_role_name}}: unzip {{ ansible_home }}/ngrok-stable-linux-amd64.zip"
+- name: "unzip {{ ansible_home }}/ngrok-stable-linux-amd64.zip"
   become: yes
   unarchive:
     src: "{{ ansible_home }}/ngrok-stable-linux-amd64.zip"
@@ -28,33 +28,33 @@
     remote_src: yes
   when: ngrok_zip_exists.stat.exists
 
-- name: "{{ ansible_role_name}}: remove tmp"
+- name: "remove tmp"
   file:
     path: "{{ ansible_home }}/ngrok-stable-linux-amd64.zip"
     state: absent
   when: ngrok_zip_exists.stat.exists
 
-- name: "{{ ansible_role_name}}: ensure config folder exists"
+- name: "ensure config folder exists"
   stat:
     path: "{{ ansible_home}}/.ngrok2"
     get_checksum: false
     get_md5: false
   register: ngrok_config_folder_exists
 
-- name: "{{ ansible_role_name}}: make config folder"
+- name: "make config folder"
   file:
     path: "{{ ansible_home}}/.ngrok2"
     state: directory
   when: not ngrok_config_folder_exists.stat.exists
 
-- name: "{{ ansible_role_name}}: ensure config exists"
+- name: "ensure config exists"
   stat:
     path: "{{ ansible_home}}/.ngrok2/ngrok.yml"
     get_checksum: false
     get_md5: false
   register: ngrok_config_exists
 
-- name: "{{ ansible_role_name}}: add configuration file"
+- name: "add configuration file"
   template:
     src: "ngrok.yml.j2"
     dest: "{{ ansible_home }}/.ngrok2/ngrok.yml"

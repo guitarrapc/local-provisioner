@@ -1,10 +1,10 @@
 ---
-- name: "{{ ansible_role_name}}: Create github directory"
+- name: "Create github directory"
   file:
     path: "{{ base_path }}"
     state: directory
 
-- name: "{{ ansible_role_name}}: Clone & Fetch"
+- name: "Clone & Fetch"
   git:
     repo: "{{ item.repo }}"
     dest: "{{ item.dest }}"
@@ -13,19 +13,19 @@
 
 # must use shell, instead of command.
 # ref: https://stackoverflow.com/questions/56989048/issue-in-ansible-playbook-command/56991314
-- name: "{{ ansible_role_name}}: Create symlinks"
+- name: "Create symlinks"
   become: yes
   become_user: "{{ lookup('env','USER') }}"
   shell: bash -lc "{{ run_dotfiles }}"
   changed_when: false
   register: dotfiles
 
-- name: "{{ ansible_role_name}}: symlink result"
+- name: "symlink result"
   debug:
     msg: "{{ dotfiles.stdout_lines }}"
   when: dotfiles.stdout != ""
 
-- name: "{{ ansible_role_name}}: insert .bash_rc to load custom rc"
+- name: "insert .bash_rc to load custom rc"
   blockinfile:
     create: yes
     path: "{{ ansible_home}}/.bashrc"

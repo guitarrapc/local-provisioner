@@ -1,0 +1,33 @@
+---
+# aws2
+# install to /usr/local/aws by default.
+# symlink to /usr/local/bin/aws by default.
+- name: "aws - check exists"
+  shell: aws --version 2>&1 | head -n 1 | grep "aws-cli/{{ args.version }}"
+  register: aws_exists
+  changed_when: false
+  ignore_errors: yes
+
+- name: "aws - download"
+  shell: curl -L "https://awscli.amazonaws.com/awscli-exe-linux-x86_64-{{ args.version }}.zip" -o /tmp/awscliv2.zip
+  args:
+    warn: false
+  when: aws_exists is failed
+
+- name: "aws - unzip"
+  unarchive:
+    src: /tmp/awscliv2.zip
+    dest: /tmp
+    remote_src: yes
+  when: aws_exists is failed
+
+- name: "aws - install"
+  become: yes
+  shell: /tmp/aws/install --update
+  when: aws_exists is failed
+
+- name: "aws - clean up tmp zip"
+  file:
+    path: /tmp/awscliv2.zip
+    state: absent
+  when: aws_exists is failed

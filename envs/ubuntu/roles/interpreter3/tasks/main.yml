@@ -1,6 +1,6 @@
 ---
-- name: "{{ ansible_role_name}}: Set the fact for pyenv path"
+- name: "Set the fact for pyenv path"
   set_fact: pyenv_root="{{ ansible_home }}/pyenv"
 
-- name: "{{ ansible_role_name}}: set ansible python interpreter to refer pyenv python"
+- name: "set ansible python interpreter to refer pyenv python"
   set_fact: ansible_python_interpreter={{ pyenv_root }}/shims/python

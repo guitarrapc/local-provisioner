@@ -1,26 +1,26 @@
 ---
 # install minikube
 # https://kubernetes.io/blog/2020/05/21/wsl-docker-kubernetes-on-the-windows-desktop/#minikube-kubernetes-from-everywhere
-- name: "{{ ansible_role_name}}: minikube - check installed"
+- name: "minikube - check installed"
   shell: minikube version | grep {{ minikube_version }}
   register: minikube_exists
   changed_when: false
   ignore_errors: yes
   when: (use_minikube == "1") and (is_wsl2 == "1")
 
-- name: "{{ ansible_role_name}}: minkube - download"
+- name: "minkube - download"
   become: yes
   shell: curl -Ls "https://storage.googleapis.com/minikube/releases/{{ minikube_version }}/minikube-linux-amd64" -o /usr/local/bin/minikube
   when: (use_minikube == "1") and (is_wsl2 == "1") and (minikube_exists is failed)
 
-- name: "{{ ansible_role_name}}: minikube - change file permissions"
+- name: "minikube - change file permissions"
   become: yes
   file:
     path: /usr/local/bin/minikube
     mode: "0755"
   when: (use_minikube == "1") and (is_wsl2 == "1") and (minikube_exists is failed)
 
-- name: "{{ ansible_role_name}}: minikube - generate systemd service"
+- name: "minikube - generate systemd service"
   become: yes
   copy:
     dest: /etc/systemd/system/minikube.service
@@ -41,14 +41,14 @@
       WantedBy=multi-user.target
   when: (use_minikube == "1") and (is_wsl2 == "1")
 
-- name: "{{ ansible_role_name}}: minikube - enable minikube.service (systemd)"
+- name: "minikube - enable minikube.service (systemd)"
   become: yes
   systemd:
     name: minikube.service
     enabled: yes
   when: (use_minikube == "1") and (is_wsl2 == "1")
 
-- name: "{{ ansible_role_name}}: minikube - startup profile.d script (wsl2 systemd)"
+- name: "minikube - startup profile.d script (wsl2 systemd)"
   become: yes
   blockinfile:
     create: yes
@@ -59,19 +59,19 @@
   when: (use_minikube == "1") and (is_wsl2 == "1")
 
 # kubectl
-- name: "{{ ansible_role_name}}: kubectl - check installed"
+- name: "kubectl - check installed"
   shell: kubectl version --client --short | grep {{ kubectl_version }}
   register: kubectl_exists
   changed_when: false
   ignore_errors: yes
 
-- name: "{{ ansible_role_name}}: kubectl - download"
+- name: "kubectl - download"
   become: yes
   shell: curl -Lks "https://storage.googleapis.com/kubernetes-release/release/{{ kubectl_version }}/bin/linux/amd64/kubectl" -o /usr/local/bin/kubectl
   register: download_kubectl
   when: kubectl_exists is failed
 
-- name: "{{ ansible_role_name}}: kubectl - change file permissions"
+- name: "kubectl - change file permissions"
   become: yes
   file:
     path: /usr/local/bin/kubectl
@@ -79,67 +79,67 @@
   when: kubectl_exists is failed
 
 # helm3
-- name: "{{ ansible_role_name}}: helm3 - check installed"
+- name: "helm3 - check installed"
   shell: helm version --short | grep {{ helm_version }}
   register: helm3_exists
   changed_when: false
   ignore_errors: yes
 
-- name: "{{ ansible_role_name}}: helm3 - download"
+- name: "helm3 - download"
   get_url:
     url: https://get.helm.sh/helm-{{ helm_version }}-linux-amd64.tar.gz
     dest: "{{ ansible_home }}/helm3.tar.gz"
   register: download_helm3
   when: helm3_exists is failed
 
-- name: "{{ ansible_role_name}}: helm3 unarchive"
+- name: "helm3 unarchive"
   command: tar -zxvf "{{ ansible_home }}/helm3.tar.gz"
   args:
     chdir: "{{ ansible_home }}/"
   register: unarchive_helm3
   when: helm3_exists is failed
 
-- name: "{{ ansible_role_name}}: helm3 - copy"
+- name: "helm3 - copy"
   become: yes
   copy:
     src: "{{ ansible_home }}/linux-amd64/helm"
     dest: /usr/local/bin
   when: helm3_exists is failed
 
-- name: "{{ ansible_role_name}}: helm3 - remove tar.gz"
+- name: "helm3 - remove tar.gz"
   file:
     state: absent
     path: "{{ ansible_home }}/helm3.tar.gz"
   when: download_helm3 is succeeded
 
-- name: "{{ ansible_role_name}}: helm3 - remove temp dir"
+- name: "helm3 - remove temp dir"
   file:
     state: absent
     path: "{{ ansible_home }}/linux-amd64"
   when: unarchive_helm3 is succeeded
 
-- name: "{{ ansible_role_name}}: helm3 - change file permissions"
+- name: "helm3 - change file permissions"
   become: yes
   file:
     path: /usr/local/bin/helm
     mode: "0755"
 
 # kubectx
-- name: "{{ ansible_role_name}}: kubectx - clone"
+- name: "kubectx - clone"
   become: yes
   git:
     repo: https://github.com/ahmetb/kubectx.git
     dest: "{{ ansible_home}}/github/kubectx"
     accept_hostkey: yes
 
-- name: "{{ ansible_role_name}}: kubectx - create kubectx symlinks"
+- name: "kubectx - create kubectx symlinks"
   become: yes
   file:
     src: "{{ ansible_home }}/github/kubectx/kubectx"
     dest: "/usr/local/bin/kubectx"
     state: link
 
-- name: "{{ ansible_role_name}}: kubectx - create kubens symlinks"
+- name: "kubectx - create kubens symlinks"
   become: yes
   file:
     src: "{{ ansible_home }}/github/kubectx/kubens"
@@ -147,7 +147,7 @@
     state: link
 
 # kube-ps1
-- name: "{{ ansible_role_name}}: kube-ps1 - clone"
+- name: "kube-ps1 - clone"
   become: yes
   git:
     repo: https://github.com/jonmosco/kube-ps1.git
@@ -155,26 +155,26 @@
     accept_hostkey: yes
 
 # stern
-- name: "{{ ansible_role_name}}: stern - check installed"
+- name: "stern - check installed"
   shell: stern --version | grep {{ stern_version }}
   register: stern_exists
   changed_when: false
   ignore_errors: yes
 
-- name: "{{ ansible_role_name}}: stern - download"
+- name: "stern - download"
   get_url:
     url: https://github.com/stern/stern/releases/download/v{{ stern_version }}/stern_{{ stern_version }}_linux_amd64.tar.gz
     dest: "/tmp/stern.tar.gz"
   register: download_stern
   when: stern_exists is failed
 
-- name: "{{ ansible_role_name}}: stern - unzip"
+- name: "stern - unzip"
   shell: tar -zxvf /tmp/stern.tar.gz
   args:
     chdir: "/tmp"
   when: stern_exists is failed
 
-- name: "{{ ansible_role_name}}: stern - copy"
+- name: "stern - copy"
   become: yes
   copy:
     src: "/tmp/stern_{{ stern_version }}_linux_amd64/stern"
@@ -182,32 +182,32 @@
     mode: a+x
   when: stern_exists is failed
 
-- name: "{{ ansible_role_name}}: stern - change file permissions"
+- name: "stern - change file permissions"
   become: yes
   file:
     path: /usr/local/bin/stern
     mode: "0755"
 
-- name: "{{ ansible_role_name}}: stern - remove tmp"
+- name: "stern - remove tmp"
   file:
     path: /tmp/stern.tar.gz
     state: absent
   when: stern_exists is failed
 
-- name: "{{ ansible_role_name}}: stern - remove tmp directory"
+- name: "stern - remove tmp directory"
   file:
     path: "/tmp/stern_{{ stern_version }}_linux_amd64/"
     state: absent
   when: stern_exists is failed
 
 # kubergrunt
-- name: "{{ ansible_role_name}}: kubegrunt - check kubergrunt installed"
+- name: "kubegrunt - check kubergrunt installed"
   shell: kubergrunt --version | grep {{ kubergrunt_version }}
   register: kubergrunt_exists
   changed_when: false
   ignore_errors: yes
 
-- name: "{{ ansible_role_name}}: kubergrunt - download"
+- name: "kubergrunt - download"
   become: yes
   get_url:
     url: https://github.com/gruntwork-io/kubergrunt/releases/download/v{{ kubergrunt_version }}/kubergrunt_linux_amd64
@@ -215,27 +215,27 @@
   register: download_kubergrunt
   when: kubergrunt_exists is failed
 
-- name: "{{ ansible_role_name}}: kubegrunt - change file permissions"
+- name: "kubegrunt - change file permissions"
   become: yes
   file:
     path: /usr/local/bin/kubergrunt
     mode: "0755"
 
 # istioctl
-- name: "{{ ansible_role_name}}: istioctl - check installed"
+- name: "istioctl - check installed"
   shell: istioctl version | grep {{ istioctl_version }}
   register: istioctl_exists
   changed_when: false
   ignore_errors: yes
 
-- name: "{{ ansible_role_name}}: istioctl - download"
+- name: "istioctl - download"
   get_url:
     url: https://git.io/getLatestIstio
     dest: "{{ ansible_home }}/istio_install.sh"
   register: download_istioctl
   when: istioctl_exists is failed
 
-- name: "{{ ansible_role_name}}: istioctl - install sh"
+- name: "istioctl - install sh"
   shell: ISTIO_VERSION={{ istioctl_version }} . ./istio_install.sh
   args:
     chdir: "{{ ansible_home }}/"
@@ -244,7 +244,7 @@
     - download_istioctl is succeeded
   changed_when: false
 
-- name: "{{ ansible_role_name}}: istioctl - copy"
+- name: "istioctl - copy"
   become: yes
   copy:
     src: "{{ ansible_home }}/istio-{{ istioctl_version }}/bin/istioctl"
@@ -253,7 +253,7 @@
     - istioctl_exists is failed
     - download_istioctl is succeeded
 
-- name: "{{ ansible_role_name}}: istio - remove dir"
+- name: "istio - remove dir"
   file:
     state: absent
     path: "{{ ansible_home }}/istio-{{ istioctl_version }}/"
@@ -261,7 +261,7 @@
     - istioctl_exists is failed
     - download_istioctl is succeeded
 
-- name: "{{ ansible_role_name}}: istioctl - remove sh"
+- name: "istioctl - remove sh"
   file:
     state: absent
     path: "{{ ansible_home }}/istio_install.sh"
@@ -269,7 +269,7 @@
     - istioctl_exists is failed
     - download_istioctl is succeeded
 
-- name: "{{ ansible_role_name}}: istioctl - change file permissions"
+- name: "istioctl - change file permissions"
   become: yes
   file:
     path: /usr/local/bin/istioctl
@@ -279,13 +279,13 @@
     - download_istioctl is succeeded
 
 # kubesec
-- name: "{{ ansible_role_name}}: kubesec - check installed"
+- name: "kubesec - check installed"
   shell: kubesec --version | grep {{ kubesec_version }}
   register: kubesec_exists
   changed_when: false
   ignore_errors: yes
 
-- name: "{{ ansible_role_name}}: kubesec - download"
+- name: "kubesec - download"
   become: yes
   get_url:
     url: https://github.com/shyiko/kubesec/releases/download/{{ kubesec_version }}/kubesec-{{ kubesec_version }}-linux-amd64
@@ -293,7 +293,7 @@
   register: download_kubesec
   when: kubesec_exists is failed
 
-- name: "{{ ansible_role_name}}: kubesec - change file permissions"
+- name: "kubesec - change file permissions"
   become: yes
   file:
     path: /usr/local/bin/kubesec
@@ -301,34 +301,34 @@
   when: download_kubesec is succeeded
 
 # kubeval
-- name: "{{ ansible_role_name}}: kubeval - check installed"
+- name: "kubeval - check installed"
   shell: kubeval --version | grep {{ kubeval_version }}
   register: kubeval_exists
   changed_when: false
   ignore_errors: yes
 
-- name: "{{ ansible_role_name}}: kubeval - download"
+- name: "kubeval - download"
   get_url:
     url: https://github.com/instrumenta/kubeval/releases/download/{{ kubeval_version }}/kubeval-linux-amd64.tar.gz
     dest: "{{ ansible_home }}/kubeval.tar.gz"
   register: download_kubeval
   when: kubeval_exists is failed
 
-- name: "{{ ansible_role_name}}: kubeval - unarchive"
+- name: "kubeval - unarchive"
   command: tar -zxvf "{{ ansible_home }}/kubeval.tar.gz"
   args:
     chdir: "{{ ansible_home }}/"
   register: unarchive_kubeval
   when: kubeval_exists is failed
 
-- name: "{{ ansible_role_name}}: kubeval - copy"
+- name: "kubeval - copy"
   become: yes
   copy:
     src: "{{ ansible_home }}/kubeval"
     dest: /usr/local/bin/kubeval
   when: kubeval_exists is failed
 
-- name: "{{ ansible_role_name}}: kubeval - remove files"
+- name: "kubeval - remove files"
   file:
     state: absent
     path: "{{ ansible_home }}/{{ item }}"
@@ -339,7 +339,7 @@
     - kubeval
   when: kubeval_exists is failed
 
-- name: "{{ ansible_role_name}}: kubeval - change file permissions"
+- name: "kubeval - change file permissions"
   become: yes
   file:
     path: /usr/local/bin/kubeval
@@ -347,13 +347,13 @@
   when: kubeval_exists is failed
 
 # mozilla/sops
-- name: "{{ ansible_role_name}}: sops - check installed"
+- name: "sops - check installed"
   shell: sops --version | grep {{ sops_version }}
   register: sops_exists
   changed_when: false
   ignore_errors: yes
 
-- name: "{{ ansible_role_name}}: sops - download"
+- name: "sops - download"
   become: yes
   get_url:
     url: https://github.com/mozilla/sops/releases/download/v{{ sops_version }}/sops-v{{ sops_version }}.linux
@@ -361,7 +361,7 @@
   register: download_sops
   when: sops_exists is failed
 
-- name: "{{ ansible_role_name}}: sops - change file permissions"
+- name: "sops - change file permissions"
   become: yes
   file:
     path: /usr/local/bin/sops
@@ -369,13 +369,13 @@
   when: sops_exists is failed
 
 # argocd
-- name: "{{ ansible_role_name}}: argocd - check installed"
+- name: "argocd - check installed"
   shell: argocd version | grep {{ argocd_version }}
   register: argocd_exists
   changed_when: false
   ignore_errors: yes
 
-- name: "{{ ansible_role_name}}: argocd - download"
+- name: "argocd - download"
   become: yes
   get_url:
     url: https://github.com/argoproj/argo-cd/releases/download/v{{ argocd_version }}/argocd-linux-amd64
@@ -383,7 +383,7 @@
   register: download_argocd
   when: argocd_exists is failed
 
-- name: "{{ ansible_role_name}}: argocd - change file permissions"
+- name: "argocd - change file permissions"
   become: yes
   file:
     path: /usr/local/bin/argocd

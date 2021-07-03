@@ -1,22 +1,22 @@
 ---
 # "ansible_home" may be: /home/guitarrapc
-- name: "{{ ansible_role_name}}: env.Home"
+- name: "env.Home"
   debug:
     var: ansible_env.HOME
-- name: "{{ ansible_role_name}}: become env.HOME"
+- name: "become env.HOME"
   become: yes
   debug:
     var: ansible_env.HOME
 
 # "ansible_user" should be `ubuntu`
-- name: "{{ ansible_role_name}}: ansible_user_id"
+- name: "ansible_user_id"
   debug:
     var: ansible_user_id
-- name: "{{ ansible_role_name}}: become ansible_user_id"
+- name: "become ansible_user_id"
   become: yes
   debug:
     var: ansible_user_id
-- name: "{{ ansible_role_name}}: ansible_ssh_user"
+- name: "ansible_ssh_user"
   debug:
     var: ansible_ssh_user
 
@@ -26,15 +26,15 @@
 # "ansible_distribution_release" may be: "bionic"
 # "ansible_os_family" may be: "Debian", "RedHat", "Suse"
 # Upper/lower case is important, you can change UPPER or lower via `|uppper` or `|lower`
-- name: "{{ ansible_role_name}}: distribution"
+- name: "distribution"
   debug:
     msg: "{{ ansible_distribution }}"
-- name: "{{ ansible_role_name}}: distribution lower case"
+- name: "distribution lower case"
   debug:
     msg: "{{ ansible_distribution|lower }}"
-- name: "{{ ansible_role_name}}: distribution version"
+- name: "distribution version"
   debug:
     msg: "{{ ansible_distribution_version }}"
-- name: "{{ ansible_role_name}}: distribution release"
+- name: "distribution release"
   debug:
     msg: "{{ ansible_distribution_release }}"
