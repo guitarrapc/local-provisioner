@@ -1,26 +1,5 @@
----
-# ref: https://dotnet.microsoft.com/download/linux-package-manager/ubuntu18-04/sdk-current
-# ref: https://github.com/ocha/ansible-role-dotnet-core
-- name: "make sure HTTPS is supported by apt"
-  become: yes
-  apt:
-    name: apt-transport-https
-    state: present
-    update_cache: yes
-
-- name: "import Microsoft apt key"
-  become: yes
-  shell: wget https://packages.microsoft.com/config/ubuntu/{{ ansible_distribution_version }}/packages-microsoft-prod.deb -O /tmp/packages-microsoft-prod.deb
-  changed_when: false
-
-- name: "add repo for Ubuntu"
-  become: yes
-  shell: dpkg -i /tmp/packages-microsoft-prod.deb
-  changed_when: false
-
-- name: "install dotnet sdk ({{ dotnet_package_version }})"
-  become: yes
-  package:
-    name: "dotnet-sdk-{{ dotnet_package_version }}"
-    state: present
-    update_cache: true
+- name: "Install dotnet"
+  include: include_role/install_dotnet.yaml
+  with_items: "{{ dotnet }}"
+  loop_control:
+    loop_var: args

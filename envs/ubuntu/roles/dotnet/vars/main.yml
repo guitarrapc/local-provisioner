@@ -1,1 +1,2 @@
-dotnet_package_version: "5.0"
+dotnet:
+  - { "version": "5.0"}
