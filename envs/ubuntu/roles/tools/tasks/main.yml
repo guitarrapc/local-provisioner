@@ -17,6 +17,12 @@
   loop_control:
     loop_var: args
 
+- name: "Install git tools"
+  include: include_role/install_git_tools.yaml
+  with_items: "{{ git_tools }}"
+  loop_control:
+    loop_var: args
+
 - name: "Install homebrew"
   include: include_role/install_homebrew.yaml
   with_items: "{{ homebrew }}"
