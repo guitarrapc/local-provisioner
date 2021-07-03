@@ -1,10 +1,10 @@
-- name: "Install aws cli"
+- name: "Install docker"
   include: include_role/install_docker.yaml
   with_items: "{{ docker }}"
   loop_control:
     loop_var: args
 
-- name: "Install eksctl"
+- name: "Install docker-compose"
   include: include_role/install_dockercompose.yaml
   with_items: "{{ docker_compose }}"
   loop_control:
