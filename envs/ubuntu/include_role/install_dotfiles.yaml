@@ -21,7 +21,7 @@
 
 - name: "symlink result"
   debug:
-    msg: "{{ dotfiles.stdout_lines }}"
+    msg: "{{ install_dotfiles.stdout_lines }}"
   when: install_dotfiles.stdout != ""
 
 - name: "insert .bash_rc to load custom rc"
