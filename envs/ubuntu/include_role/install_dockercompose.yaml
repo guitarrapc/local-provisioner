@@ -4,7 +4,7 @@
   register: dockercompose_exists
   changed_when: false
   ignore_errors: yes
-  when: args.install
+  when: (args.use_minikube == "1") or (args.is_wsl1 == "1")
 
 - name: "docker-compose - download"
   become: yes
