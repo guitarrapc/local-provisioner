@@ -4,6 +4,9 @@ helm:
   - { version: "v3.5.4" }
 stern:
   - { version: "1.13.0" }
-kubeval_version: v0.16.1
-sops_version: 3.7.1
-argocd_version: 1.8.7
+kubeval:
+  - { version: "0.16.1" }
+sops:
+  - { version: "3.7.1" }
+argocd:
+  - { version: "1.8.7" }

@@ -1,0 +1,50 @@
+- name: "kubeval - check installed"
+  shell: kubeval --version | grep {{ args.version }}
+  register: kubeval_exists
+  changed_when: false
+  ignore_errors: yes
+
+- name: "kubeval - download"
+  get_url:
+    url: https://github.com/instrumenta/kubeval/releases/download/v{{ args.version }}/kubeval-linux-amd64.tar.gz
+    dest: "/tmp/kubeval.tar.gz"
+  register: download_kubeval
+  when: kubeval_exists is failed
+
+- name: "kubeval - unarchive"
+  command: tar -zxvf "/tmp/kubeval.tar.gz"
+  register: unarchive_kubeval
+  when: kubeval_exists is failed
+
+- name: "kubeval - unarchive"
+  unarchive:
+    src: "/tmp/kubeval.tar.gz"
+    dest: /tmp
+    remote_src: yes
+  when: kubeval_exists is failed
+
+- name: "kubeval - copy"
+  become: yes
+  copy:
+    src: "/tmp/kubeval"
+    dest: /usr/local/bin/kubeval
+    remote_src: yes
+  when: kubeval_exists is failed
+
+- name: "kubeval - remove tmp files"
+  file:
+    state: absent
+    path: "{{ item }}"
+  with_items:
+    - /tmp/kubeval.tar.gz
+    - /tmp/LICENSE
+    - /tmp/README.md
+    - /tmp/kubeval
+  when: kubeval_exists is failed
+
+- name: "kubeval - change file permissions"
+  become: yes
+  file:
+    path: /usr/local/bin/kubeval
+    mode: "0755"
+  when: kubeval_exists is failed

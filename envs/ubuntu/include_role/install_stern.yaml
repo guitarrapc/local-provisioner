@@ -11,9 +11,9 @@
   register: download_stern
   when: stern_exists is failed
 
-- name: "helm unarchive"
+- name: "stern - unarchive"
   unarchive:
-    src: "/tmp/stern.tar.gx"
+    src: "/tmp/stern.tar.gz"
     dest: /tmp
     remote_src: yes
   when: stern_exists is failed
@@ -23,7 +23,7 @@
   copy:
     src: "/tmp/stern_{{ args.version }}_linux_amd64/stern"
     dest: /usr/local/bin/stern
-    mode: a+x
+    remote_src: yes
   when: stern_exists is failed
 
 - name: "stern - remove temp files"

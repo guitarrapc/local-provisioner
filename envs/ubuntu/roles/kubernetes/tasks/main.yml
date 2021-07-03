@@ -5,7 +5,7 @@
   loop_control:
     loop_var: args
 
-# helm3
+# helm
 - name: "Install helm"
   include: include_role/install_helm.yaml
   with_items: "{{ helm }}"
@@ -32,91 +32,22 @@
     loop_var: args
 
 # kubeval
-- name: "kubeval - check installed"
-  shell: kubeval --version | grep {{ kubeval_version }}
-  register: kubeval_exists
-  changed_when: false
-  ignore_errors: yes
-
-- name: "kubeval - download"
-  get_url:
-    url: https://github.com/instrumenta/kubeval/releases/download/{{ kubeval_version }}/kubeval-linux-amd64.tar.gz
-    dest: "{{ ansible_home }}/kubeval.tar.gz"
-  register: download_kubeval
-  when: kubeval_exists is failed
-
-- name: "kubeval - unarchive"
-  command: tar -zxvf "{{ ansible_home }}/kubeval.tar.gz"
-  args:
-    chdir: "{{ ansible_home }}/"
-  register: unarchive_kubeval
-  when: kubeval_exists is failed
-
-- name: "kubeval - copy"
-  become: yes
-  copy:
-    src: "{{ ansible_home }}/kubeval"
-    dest: /usr/local/bin/kubeval
-  when: kubeval_exists is failed
-
-- name: "kubeval - remove files"
-  file:
-    state: absent
-    path: "{{ ansible_home }}/{{ item }}"
-  with_items:
-    - kubeval.tar.gz
-    - LICENSE
-    - README.md
-    - kubeval
-  when: kubeval_exists is failed
-
-- name: "kubeval - change file permissions"
-  become: yes
-  file:
-    path: /usr/local/bin/kubeval
-    mode: "0755"
-  when: kubeval_exists is failed
+- name: "Install kubeval"
+  include: include_role/install_kubeval.yaml
+  with_items: "{{ kubeval }}"
+  loop_control:
+    loop_var: args
 
 # mozilla/sops
-- name: "sops - check installed"
-  shell: sops --version | grep {{ sops_version }}
-  register: sops_exists
-  changed_when: false
-  ignore_errors: yes
-
-- name: "sops - download"
-  become: yes
-  get_url:
-    url: https://github.com/mozilla/sops/releases/download/v{{ sops_version }}/sops-v{{ sops_version }}.linux
-    dest: "/usr/local/bin/sops"
-  register: download_sops
-  when: sops_exists is failed
-
-- name: "sops - change file permissions"
-  become: yes
-  file:
-    path: /usr/local/bin/sops
-    mode: "0755"
-  when: sops_exists is failed
+- name: "Install sops"
+  include: include_role/install_sops.yaml
+  with_items: "{{ sops }}"
+  loop_control:
+    loop_var: args
 
 # argocd
-- name: "argocd - check installed"
-  shell: argocd version | grep {{ argocd_version }}
-  register: argocd_exists
-  changed_when: false
-  ignore_errors: yes
-
-- name: "argocd - download"
-  become: yes
-  get_url:
-    url: https://github.com/argoproj/argo-cd/releases/download/v{{ argocd_version }}/argocd-linux-amd64
-    dest: "/usr/local/bin/argocd"
-  register: download_argocd
-  when: argocd_exists is failed
-
-- name: "argocd - change file permissions"
-  become: yes
-  file:
-    path: /usr/local/bin/argocd
-    mode: "0755"
-  when: argocd_exists is failed
+- name: "Install argocd"
+  include: include_role/install_argocd.yaml
+  with_items: "{{ argocd }}"
+  loop_control:
+    loop_var: args

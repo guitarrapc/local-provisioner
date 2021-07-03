@@ -10,9 +10,9 @@
     dest: "/tmp/helm.tar.gz"
   when: helm_exists is failed
 
-- name: "helm unarchive"
+- name: "helm - unarchive"
   unarchive:
-    src: "/tmp/helm.tar.gx"
+    src: "/tmp/helm.tar.gz"
     dest: /tmp
     remote_src: yes
   when: helm_exists is failed
@@ -22,6 +22,7 @@
   copy:
     src: "/tmp/linux-amd64/helm"
     dest: /usr/local/bin
+    remote_src: yes
   when: helm_exists is failed
 
 - name: "helm - remove temp files"
