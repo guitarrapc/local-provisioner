@@ -38,4 +38,4 @@
   file:
     path: "/usr/local/bin/{{ item }}"
     mode: "a+x"
-  with_items: "{{ args.link_binaries }}"
+  with_items: "{{ args.binaries }}"
