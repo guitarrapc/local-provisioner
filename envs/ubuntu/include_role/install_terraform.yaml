@@ -1,0 +1,28 @@
+- name: "tfenv - Clone & Fetch repo"
+  git:
+    repo: "https://github.com/tfutils/tfenv.git"
+    dest: "{{ ansible_home }}/.tfenv"
+
+- name: "tfenv - Create symlinks"
+  become: yes
+  file:
+    src: "{{ ansible_home }}/.tfenv/bin/{{ item }}"
+    dest: "/usr/local/bin/{{ item }}"
+    state: link
+  with_items:
+    - terraform
+    - tfenv
+
+- name: "tfenv - check installed"
+  shell: tfenv list | grep {{ args.version }}
+  register: terraform_version
+  changed_when: false
+  ignore_errors: yes
+
+- name: "tfenv - install"
+  command: tfenv install {{ args.version }}
+  when: terraform_version is failed
+
+- name: "tfenv - use version {{ args.version }}"
+  command: tfenv use {{ args.version }}
+  when: terraform_version is failed
