@@ -1,5 +1,5 @@
 - name: "Install homebrew"
-  include: include_role/install_homebrew.yaml
+  include: ../include_role/ubuntu/install_homebrew.yaml
   with_items: "{{ homebrew }}"
   loop_control:
     loop_var: args
