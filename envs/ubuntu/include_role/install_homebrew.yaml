@@ -25,8 +25,7 @@
   homebrew:
     name: "{{ item.name }}"
     state: "{{ item.state }}"
-  with_items:
-    state: "{{ args.packages }}"
+  with_items: "{{ args.packages }}"
   environment:
     # require re-login shell for 1st install, let's manual export shellenv and use it
     HOMEBREW_PREFIX: "{{ ansible_home }}/.linuxbrew"
