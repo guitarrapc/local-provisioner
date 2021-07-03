@@ -1,2 +1,2 @@
 - name: "Install gpg"
-  include: ../include_role/ubuntu/install_gpg.yaml
+  include: include_role/install_gpg.yaml
