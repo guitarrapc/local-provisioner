@@ -1,2 +1,4 @@
 homebrew:
-  - { package: "gh", state: "present" }
+  - { packages:
+    - { name: "gh", state: "present" }
+  }
