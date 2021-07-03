@@ -3,9 +3,3 @@
   with_items: "{{ docker }}"
   loop_control:
     loop_var: args
-
-- name: "Install docker-compose"
-  include: include_role/install_dockercompose.yaml
-  with_items: "{{ docker_compose }}"
-  loop_control:
-    loop_var: args
