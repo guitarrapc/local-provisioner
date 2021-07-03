@@ -35,7 +35,6 @@
     - { role: "tools", tags: [tools] }
     - { role: "awscli", tags: [awscli] }
     - { role: "terraform", tags: [terraform] }
-    - { role: "ngrok", tags: [ngrok] }
     - { role: "dotnet", tags: [dotnet] }
     - {
         role: "systemd",
