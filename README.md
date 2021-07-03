@@ -73,19 +73,10 @@ include Ubuntu 20.04, 18.04 and on WSL1, WSL2.
 
 Role | Descriptions
 ---- | ----
-awscli | awscli setup.
-azcli | azure cli setup.
-bombardier | simple web benchmark tool.
-circleci | circleci cli.
+credentials | link credentials on Windows. When it's WSL1 or WSL2.
 debug | ansible status debugger.
-docker | docker installation when it's not WSL2.
+docker | install docker. when it's not WSL2.
 dotfiles | link with [dofiles-linux](https://github.com/guitarrapc/dotfiles-linux)
-dotnetsdk | install .NET Core SDK.
-envsubst2 | install envsubst for ubuntu.
-kubernets | install kubernetes related.
-ngrok | install ngrok.
-pulumi | install pulumi cli.
-terraform | terraform environment setup. using tfenv.
 tools | miscellaneous tools setup.
 
 ### macOS
