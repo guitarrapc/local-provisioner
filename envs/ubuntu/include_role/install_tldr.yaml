@@ -5,7 +5,6 @@
   ignore_errors: yes
 
 - name: "tldr - download"
-  become: yes
   get_url:
     url: "https://github.com/isacikgoz/tldr/releases/download/v{{ args.version }}/tldr_{{ args.version }}_linux_amd64.tar.gz"
     dest: "/tmp/tldr_linux_amd64.tar.gz"
