@@ -1,7 +1,7 @@
 # install only wsl2 and you want use....
 
 # prerequisites
-- name: "add systemd prerequisite packages"
+- name: "systemd - add systemd prerequisite packages"
   become: yes
   apt:
     pkg:
@@ -11,7 +11,7 @@
     update_cache: yes
 
 # scripts
-- name: "contents start-systemd-namespace script"
+- name: "systemd - contents start-systemd-namespace script"
   become: yes
   copy:
     remote_src: yes
@@ -58,13 +58,13 @@
           export PATH="$PRE_NAMESPACE_PATH"
       fi
 
-- name: "generate start-systemd-namespace script"
+- name: "systemd - generate start-systemd-namespace script"
   become: yes
   file:
     path: "/usr/sbin/start-systemd-namespace"
     mode: a+x
 
-- name: "contents enter-systemd-namespace script"
+- name: "systemd - contents enter-systemd-namespace script"
   become: yes
   copy:
     remote_src: yes
@@ -99,13 +99,13 @@
           echo "Existential crisis"
       fi
 
-- name: "generate enter-systemd-namespace script"
+- name: "systemd - generate enter-systemd-namespace script"
   become: yes
   file:
     path: "/usr/sbin/enter-systemd-namespace"
     mode: a+x
 
-- name: "sudoers config for systemd"
+- name: "systemd - sudoers config for systemd"
   become: yes
   blockinfile:
     path: "/etc/sudoers"
@@ -117,7 +117,7 @@
       Defaults        env_keep += PRE_NAMESPACE_PATH
       %sudo ALL=(ALL) NOPASSWD: /usr/sbin/enter-systemd-namespace
 
-- name: "source enter-systemd-namespace in /etc/bash.bashrc"
+- name: "systemd - source enter-systemd-namespace in /etc/bash.bashrc"
   become: yes
   blockinfile:
     path: "/etc/bash.bashrc"
@@ -126,7 +126,7 @@
       # Start or enter a PID namespace in WSL2
       source /usr/sbin/start-systemd-namespace
 
-- name: "fix login path to follow before bash login (systemd)"
+- name: "systemd - fix login path to follow before bash login (systemd)"
   become: yes
   blockinfile:
     create: yes

@@ -1,16 +1,16 @@
-- name: "Create github directory"
+- name: "dotfiles - create github directory"
   file:
     path: "{{ args.clone_destination }}"
     state: directory
 
-- name: "Clone & Fetch"
+- name: "dotfiles - clone & Fetch"
   git:
     repo: "{{ args.repository }}"
     dest: "{{ args.clone_destination }}"
 
 # must use shell, instead of command.
 # ref: https://stackoverflow.com/questions/56989048/issue-in-ansible-playbook-command/56991314
-- name: "Create symlinks"
+- name: "dotfiles - create symlinks"
   become: yes
   become_user: "{{ ansible_user_id }}"
   shell: "{{ args.run_command }}"
@@ -19,18 +19,18 @@
   changed_when: false
   register: install_dotfiles
 
-- name: "symlink result"
+- name: "dotfiles - debug show result"
   debug:
     msg: "{{ install_dotfiles.stdout_lines }}"
   when: install_dotfiles.stdout != ""
 
-- name: "insert .bash_rc to load custom rc"
+- name: "dotfiles - insert .bash_rc to load custom rc"
   blockinfile:
     create: yes
-    path: "{{ ansible_home}}/.bashrc"
+    path: "{{ ansible_home }}/.bashrc"
     block: |
-      if [[ -f {{ ansible_home}}/.bashrc_custom ]]
+      if [[ -f {{ ansible_home }}/.bashrc_custom ]]
       then
-        source {{ ansible_home}}/.bashrc_custom
+        source {{ ansible_home }}/.bashrc_custom
       fi
   when: install_dotfiles is success

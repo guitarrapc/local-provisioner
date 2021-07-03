@@ -2,12 +2,12 @@
 - name: "homebrew - clone"
   git:
     repo: https://github.com/Homebrew/brew
-    dest: "{{ ansible_home}}/github/Homebrew/brew"
+    dest: "{{ ansible_home }}/github/Homebrew/brew"
     accept_hostkey: yes
 
-- name: "homebrew - mkdir {{ ansible_home}}/.linuxbrew/bin"
+- name: "homebrew - mkdir {{ ansible_home }}/.linuxbrew/bin"
   file:
-    path: "{{ ansible_home}}/.linuxbrew/bin"
+    path: "{{ ansible_home }}/.linuxbrew/bin"
     state: directory
     force: yes
 
