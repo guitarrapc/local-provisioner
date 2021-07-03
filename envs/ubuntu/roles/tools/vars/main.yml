@@ -18,3 +18,13 @@ grpcurl:
   - version: "1.7.0"
 cert:
   - version: "0.15.0"
+
+binary_install:
+  - name: bombardier
+    version_arg: --version
+    version: "1.2.4"
+    download_url: https://github.com/codesenberg/bombardier/releases/download/v1.2.4/bombardier-linux-amd64
+  - name: ctop
+    version_arg: -v
+    version: "0.7.3"
+    download_url: https://github.com/bcicen/ctop/releases/download/v0.7.3/ctop-0.7.3-linux-amd64

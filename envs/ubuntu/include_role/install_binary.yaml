@@ -1,0 +1,18 @@
+- name: "binary - check installed ({{ args.name }})"
+  shell: "{{ args.name }}" "{{ args.version_arg }}" 2>&1 | head -n 1 | grep {{ args.version }}
+  register: binary_exists
+  changed_when: false
+  ignore_errors: yes
+
+- name: "binary - download ({{ args.name }})"
+  become: yes
+  get_url:
+    url: "{{ args.download_url }}"
+    dest: "/usr/local/bin/{{ args.name }}"
+  when: binary_exists is failed
+
+- name: "binary - chmod ({{ args.name }})"
+  become: yes
+  file:
+    path: /usr/local/bin/{{ args.name }}
+    mode: a+x
