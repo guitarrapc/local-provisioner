@@ -1,4 +1,0 @@
-systemd_prerequisite_packages:
-  - daemonize
-  - dbus-user-session
-  - fontconfig
