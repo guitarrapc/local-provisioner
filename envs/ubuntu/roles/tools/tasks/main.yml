@@ -18,7 +18,7 @@
     loop_var: args
 
 - name: "Install git tools"
-  include: include_role/install_git_tools.yaml
+  include: include_role/install_git_tool.yaml
   with_items: "{{ git_tools }}"
   loop_control:
     loop_var: args
