@@ -3,7 +3,7 @@
   become: no
   pre_tasks:
     - name: Preset ansible_home as execution user HOME path
-      set_fact: ansible_home='{{ lookup('env','HOME') }}'
+      set_fact: ansible_home='{{ ansible_env.HOME }}'
       tags: always
     - name: Get WSL1
       shell: cat /proc/version | grep Microsoft | wc -l
@@ -26,6 +26,10 @@
   roles:
     - { role: "debug", tags: [debug] }
     - { role: "dotfiles", tags: [dotfiles] }
-    - { role: "credentials", tags: [credentials], when: is_wsl1 == "1" or is_wsl2 == "1" }
+    - {
+        role: "credentials",
+        tags: [credentials],
+        when: is_wsl1 == "1" or is_wsl2 == "1",
+      }
     - { role: "docker", tags: [docker], when: is_wsl2 == "0" }
     - { role: "tools", tags: [tools] }
