@@ -6,44 +6,44 @@
     update_cache: yes
 
 - name: "Install binaries"
-  include: include_role/install_binary.yaml
+  include: ../include_role/ubuntu/install_binary.yaml
   with_items: "{{ binary_install }}"
   loop_control:
     loop_var: args
 
 - name: "Install .tar.gz binaries"
-  include: include_role/install_binary_targz.yaml
+  include: ../include_role/ubuntu/install_binary_targz.yaml
   with_items: "{{ targz_binary_install }}"
   loop_control:
     loop_var: args
 
 - name: "Install git tools"
-  include: include_role/install_git_tool.yaml
+  include: ../include_role/ubuntu/install_git_tool.yaml
   with_items: "{{ git_tools }}"
   loop_control:
     loop_var: args
 
 - name: "Install homebrew"
-  include: include_role/install_homebrew.yaml
+  include: ../include_role/ubuntu/install_homebrew.yaml
   with_items: "{{ homebrew }}"
   loop_control:
     loop_var: args
 
 # each packages
 - name: "Install aws cli"
-  include: include_role/install_awscli.yaml
+  include: ../include_role/ubuntu/install_awscli.yaml
   with_items: "{{ aws_cli }}"
   loop_control:
     loop_var: args
 
 - name: "Install dotnet"
-  include: include_role/install_dotnet.yaml
+  include: ../include_role/ubuntu/install_dotnet.yaml
   with_items: "{{ dotnet }}"
   loop_control:
     loop_var: args
 
 - name: "Install terraform"
-  include: include_role/install_terraform.yaml
+  include: ../include_role/ubuntu/install_terraform.yaml
   with_items: "{{ terraform }}"
   loop_control:
     loop_var: args
