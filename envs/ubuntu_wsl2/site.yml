@@ -26,10 +26,6 @@
   roles:
     - { role: "debug", tags: [debug] }
     - { role: "dotfiles", tags: [dotfiles] }
-    - {
-        role: "credentials",
-        tags: [credentials],
-        when: is_wsl1 == "1" or is_wsl2 == "1",
-      }
+    - { role: "credentials", tags: [credentials] }
     - { role: "docker", tags: [docker], when: is_wsl2 == "1" }
     - { role: "tools", tags: [tools] }

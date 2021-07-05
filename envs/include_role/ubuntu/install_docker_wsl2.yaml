@@ -36,16 +36,3 @@
       - containerd.io
       - cgroupfs-mount
     update_cache: yes
-
-# docker service daemon for SysV Init
-- name: "docker - startup profile.d script (wsl1)"
-  become: yes
-  blockinfile:
-    create: yes
-    path: /etc/profile.d/profile_ansible_init_docker.sh
-    block: |
-      sudo -S cgroupfs-mount
-      sudo usermod -aG docker $USER
-      sudo service docker start
-      # wsl2 indepent docker install using windows docker-compose.
-      export DOCKER_HOST=tcp://$(cat /etc/resolv.conf | grep nameserver | cut -d' ' -f 2):2375
