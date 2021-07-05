@@ -30,6 +30,15 @@ exec $SHELL -l
 
 ![image](https://user-images.githubusercontent.com/3856350/67872931-0465bd80-fb76-11e9-8700-bdc0e861f556.png)
 
+Ubuntu WSL2 install docker explict, run ansible-playbook.
+
+```shell
+cd ~/github/guitarrapc/local-provisioner/envs/ubuntu_wsl2
+. ./prerequisites.sh
+exec $SHELL -l
+. ./run.sh
+```
+
 macOS, run ansible-playbook.
 
 ```shell

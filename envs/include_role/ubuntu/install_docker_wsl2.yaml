@@ -37,16 +37,6 @@
       - cgroupfs-mount
     update_cache: yes
 
-- name: "docker - check /etc/resolv.conf"
-  become: yes
-  shell: cat /etc/resolv.conf | grep nameserver | cut -d' ' -f 2
-  register: docker_resolvconf
-  changed_when: false
-
-- name: "docker - preset /etc/resolv.conf nameserver value"
-  set_fact: resolv_nameserver='{{ docker_resolvconf.stdout }}'
-  tags: always
-
 # docker service daemon for SysV Init
 - name: "docker - startup profile.d script (wsl1)"
   become: yes
@@ -58,4 +48,4 @@
       sudo usermod -aG docker $USER
       sudo service docker start
       # wsl2 indepent docker install using windows docker-compose.
-      export DOCKER_HOST=tcp://{{ resolv_nameserver }}:2375
+      export DOCKER_HOST=tcp://$(cat /etc/resolv.conf | grep nameserver | cut -d' ' -f 2):2375
