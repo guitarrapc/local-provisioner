@@ -29,6 +29,7 @@
     bucket: main
     name:
       - aws
+      - azure-cli
       - bazel
       - chromedriver
       - dive
