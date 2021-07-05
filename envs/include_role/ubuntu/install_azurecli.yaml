@@ -1,0 +1,33 @@
+- name: "azure-cli - make sure install prerequisites"
+  become: yes
+  apt:
+    pkg:
+      - apt-transport-https
+      - ca-certificates
+      - curl
+      - lsb-release
+      # - gnupg # no need.
+    update_cache: yes
+
+- name: "azure-cli - import azure-cli apt key"
+  become: yes
+  shell: |
+    curl -sL https://packages.microsoft.com/keys/microsoft.asc |
+      gpg --dearmor |
+      sudo tee /etc/apt/trusted.gpg.d/microsoft.gpg > /dev/null
+  args:
+    warn: false
+  changed_when: false
+
+- name: "azure-cli - add repo for Ubuntu"
+  become: yes
+  # $(lsb_release -cs) = {{ ansible_distribution_release }}
+  shell: echo "deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ {{ ansible_distribution_release }} main" | sudo tee /etc/apt/sources.list.d/azure-cli.list
+  changed_when: false
+
+- name: "azure-cli - install"
+  become: yes
+  apt:
+    pkg: azure-cli
+    state: latest
+    update_cache: yes

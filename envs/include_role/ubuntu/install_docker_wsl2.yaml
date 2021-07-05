@@ -11,7 +11,7 @@
       - software-properties-common
     update_cache: yes
 
-- name: "import Docker apt key"
+- name: "docker - import Docker apt key"
   become: yes
   shell: curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
   args:

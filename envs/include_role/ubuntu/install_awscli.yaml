@@ -1,4 +1,3 @@
----
 # aws2
 # install to /usr/local/aws by default.
 # symlink to /usr/local/bin/aws by default.
