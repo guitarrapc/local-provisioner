@@ -1,0 +1,2 @@
+- name: "debug status"
+  include: ../include_role/ubuntu/debug_status.yaml

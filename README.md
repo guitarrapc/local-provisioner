@@ -8,6 +8,7 @@ macOS | Intel BigSurf | Ansible Playbook
 macOS-silicon | ARM BigSurf | Ansible Playbook
 Windows | 10 2020 May Update| scoop
 Ubuntu | 20.04<br/>18.04<br/>WSL1<br/>WSL2 | Ansible Playbook
+Ubuntu WSL2 | Ubuntu 20.04 WSL2 (install docker on wsl2) | Ansible Playbook
 
 ## Run
 

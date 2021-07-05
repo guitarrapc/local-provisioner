@@ -1,0 +1,61 @@
+---
+# docker
+# wsl2 but docker install version
+- name: "docker - make sure install prerequisites"
+  become: yes
+  apt:
+    pkg:
+      - apt-transport-https
+      - ca-certificates
+      - curl
+      - software-properties-common
+    update_cache: yes
+
+- name: "import Docker apt key"
+  become: yes
+  shell: curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+  args:
+    warn: false
+  changed_when: false
+
+- name: "docker - add repo for Ubuntu"
+  become: yes
+  apt_repository:
+    # $(lsb_release -cs) = {{ ansible_distribution_release }}
+    repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable
+    state: present
+    update_cache: yes
+
+# note: remove old version when error occured: `sudo apt-get remove docker docker-engine docker.io containerd runc`
+- name: "docker - install"
+  become: yes
+  apt:
+    pkg:
+      - docker-ce
+      - docker-ce-cli
+      - containerd.io
+      - cgroupfs-mount
+    update_cache: yes
+
+- name: "docker - check /etc/resolv.conf"
+  become: yes
+  shell: cat /etc/resolv.conf | grep nameserver | cut -d' ' -f 2
+  register: docker_resolvconf
+  changed_when: false
+
+- name: "docker - preset /etc/resolv.conf nameserver value"
+  set_fact: resolv_nameserver='{{ docker_resolvconf.stdout }}'
+  tags: always
+
+# docker service daemon for SysV Init
+- name: "docker - startup profile.d script (wsl1)"
+  become: yes
+  blockinfile:
+    create: yes
+    path: /etc/profile.d/profile_ansible_init_docker.sh
+    block: |
+      sudo -S cgroupfs-mount
+      sudo usermod -aG docker $USER
+      sudo service docker start
+      # wsl2 indepent docker install using windows docker-compose.
+      export DOCKER_HOST=tcp://{{ resolv_nameserver }}:2375
