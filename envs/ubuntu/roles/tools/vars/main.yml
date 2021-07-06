@@ -34,8 +34,8 @@ binary_install:
     download_url: https://github.com/mozilla/sops/releases/download/v3.7.1/sops-v3.7.1.linux
   - name: stern
     version_arg: "--version"
-    version: "1.11.0"
-    download_url: https://github.com/wercker/stern/releases/download/1.11.0/stern_linux_amd64
+    version: "1.13.0"
+    download_url: https://github.com/wercker/stern/releases/download/1.13.0/stern_linux_amd64
 
 targz_binary_install:
   - name: cert
