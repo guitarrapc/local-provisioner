@@ -1,3 +1,6 @@
+docker:
+  - require_sysvinit: "{{ is_wsl2 }}"
+
 docker_compose:
   - name: docker-compose
     version_arg: "--version"
