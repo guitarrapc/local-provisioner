@@ -36,3 +36,15 @@
       - containerd.io
       - cgroupfs-mount
     update_cache: yes
+
+# docker service daemon for SysV Init
+- name: "docker - startup profile.d script (wsl2)"
+  become: yes
+  blockinfile:
+    create: yes
+    path: /etc/profile.d/profile_ansible_init_docker.sh
+    block: |
+      sudo -S cgroupfs-mount
+      sudo usermod -aG docker $USER
+      sudo service docker start
+  when: args.require_sysvinit == "1"
