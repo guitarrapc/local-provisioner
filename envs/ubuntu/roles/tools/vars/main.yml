@@ -13,7 +13,7 @@ apt_tools:
 
 binary_install:
   - name: argocd
-    version_arg: "version"
+    version_arg: "version --client"
     version: "1.8.7"
     download_url: https://github.com/argoproj/argo-cd/releases/download/v1.8.7/argocd-linux-amd64
   - name: bombardier
