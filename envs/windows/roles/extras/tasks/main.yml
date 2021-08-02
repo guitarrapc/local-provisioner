@@ -9,6 +9,7 @@
     state: present
     bucket: extras
     name:
+      - actionlint
       - everything
       - fiddler
       - gitkraken
