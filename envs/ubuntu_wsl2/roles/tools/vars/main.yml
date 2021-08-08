@@ -9,6 +9,7 @@ apt_tools:
   - python3-pip
   - sshpass
   - tree
+  - trivy
   - unzip
 
 binary_install:
@@ -102,3 +103,6 @@ dotnet:
 
 terraform:
   - version: "1.0.1"
+
+kuberctl_plugin:
+  - krew_version: "0.4.1"
