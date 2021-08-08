@@ -45,14 +45,17 @@
   loop_control:
     loop_var: args
 
+- name: "Install kubectl plugins"
+  include: ../include_role/ubuntu/install_kuberctl_plugin.yaml
+  with_items: "{{ kuberctl_plugin }}"
+  loop_control:
+    loop_var: args
+
 - name: "Install terraform"
   include: ../include_role/ubuntu/install_terraform.yaml
   with_items: "{{ terraform }}"
   loop_control:
     loop_var: args
 
-- name: "Install kubectl plugins"
-  include: ../include_role/ubuntu/install_kuberctl_plugin.yaml
-  with_items: "{{ kuberctl_plugin }}"
-  loop_control:
-    loop_var: args
+- name: "Install trivy"
+  include: ../include_role/ubuntu/install_trivy.yaml

@@ -9,7 +9,6 @@ apt_tools:
   - python3-pip
   - sshpass
   - tree
-  - trivy
   - unzip
 
 binary_install:
