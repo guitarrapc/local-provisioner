@@ -13,7 +13,9 @@
 
 - name: "trivy - import apt key"
   become: yes
-  apt_key: https://aquasecurity.github.io/trivy-repo/deb/public.key
+  ansible.builtin.apt_key:
+    url: https://aquasecurity.github.io/trivy-repo/deb/public.key
+    state: present
 
 - name: "trivy - add repo for Ubuntu"
   become: yes
