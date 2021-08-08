@@ -23,7 +23,7 @@
 
 # krew: https://krew.sigs.k8s.io/docs/user-guide/setup/install/
 - name: "kuberctl_plugin krew - check installed"
-  shell: "krew --version 2>&1 | grep {{ args.krew_version }}"
+  shell: "kubectl krew version 2>&1 | grep {{ args.krew_version }}"
   register: krew_exists
   changed_when: false
   ignore_errors: yes
@@ -48,5 +48,17 @@
   when: krew_exists is failed
 
 - name: "kuberctl_plugin krew - install"
-  shell: "/tmp/krew/krew-{{ ansible_os }}_{{ ansible_arch }} install krew"
+  shell: |
+    "/tmp/krew/krew-{{ ansible_os }}_{{ ansible_arch }} install krew"
+    export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
   when: krew_exists is failed
+
+- name: "kuberctl_plugin krew - startup profile.d script"
+  become: yes
+  blockinfile:
+    create: yes
+    path: /etc/profile.d/profile_ansible_init_krew.sh
+    block: |
+      if [[ -d "$HOME/.krew" ]]; then
+        export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+      fi
