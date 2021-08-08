@@ -48,5 +48,5 @@
   when: krew_exists is failed
 
 - name: "kuberctl_plugin krew - install"
-  shell: "/tmp/krew/krew_{{ ansible_os }}_{{ ansible_arch }} install krew"
+  shell: "/tmp/krew/krew-{{ ansible_os }}_{{ ansible_arch }} install krew"
   when: krew_exists is failed
