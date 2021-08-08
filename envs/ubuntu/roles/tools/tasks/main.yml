@@ -50,3 +50,9 @@
   with_items: "{{ terraform }}"
   loop_control:
     loop_var: args
+
+- name: "Install krew"
+  include: ../include_role/ubuntu/install_krew.yaml
+  with_items: "{{ krew }}"
+  loop_control:
+    loop_var: args

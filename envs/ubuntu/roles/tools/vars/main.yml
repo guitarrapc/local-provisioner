@@ -92,7 +92,7 @@ git_tools:
 
 homebrew:
   - packages:
-    - { name: "gh", state: "present" }
+      - { name: "gh", state: "present" }
 
 aws_cli:
   - version: "2.1.35"
@@ -102,3 +102,6 @@ dotnet:
 
 terraform:
   - version: "1.0.1"
+
+krew:
+  - version: "0.4.1"

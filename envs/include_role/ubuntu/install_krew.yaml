@@ -1,0 +1,52 @@
+---
+# prepare
+- name: "krew - get os"
+  shell: uname | tr '[:upper:]' '[:lower:]'
+  register: os_value
+  changed_when: false
+  check_mode: no
+- name: "krew - register os"
+  set_fact: ansible_os='{{ os_value.stdout }}'
+- name: "krew - get arch"
+  shell: uname -m | sed -e 's/x86_64/amd64/' -e 's/\(arm\)\(64\)\?.*/\1\2/' -e 's/aarch64$/arm64/'
+  register: arch_value
+  changed_when: false
+  check_mode: no
+- name: "krew - register arch"
+  set_fact: ansible_arch='{{ arch_value.stdout }}'
+- name: "ansible_os"
+  debug:
+    msg: "{{ ansible_os }}"
+- name: "ansible_arch"
+  debug:
+    msg: "{{ ansible_arch }}"
+# # download & install
+# - name: "krew - check installed"
+#   shell: "krew --version 2>&1 | grep {{ args.version }}"
+#   register: krew_exists
+#   changed_when: false
+#   ignore_errors: yes
+
+# - name: "krew - tmp directory"
+#   file:
+#     path: "/tmp/krew"
+#     state: directory
+#   when: krew_exists is failed
+
+# # ref: https://krew.sigs.k8s.io/docs/user-guide/setup/install/
+# - name: "krew - download"
+#   get_url:
+#     url: "https://github.com/kubernetes-sigs/krew/releases/download/v{{ args.version }}/krew.tar.gz"
+#     dest: "/tmp/krew/krew.tar.gz"
+#   when: krew_exists is failed
+
+# - name: "krew - unarchive"
+#   unarchive:
+#     src: "/tmp/krew/krew.tar.gz"
+#     dest: /tmp/krew
+#     remote_src: yes
+#   when: krew_exists is failed
+
+# - name: "krew - install"
+#   shell: "/tmp/krew/krew_{{ ansible_os }}_{{ ansible_arch }} install krew"
+#   when: krew_exists is failed
