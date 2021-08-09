@@ -103,8 +103,9 @@ dotnet:
 terraform:
   - version: "1.0.1"
 
+krew:
+  - version: "0.4.1"
+
 kubectl_plugin:
-  - krew_version: "0.4.1"
-  - plugins:
-      - foo
-      - bar
+  - name: neat
+    install_check_arg: "--help"

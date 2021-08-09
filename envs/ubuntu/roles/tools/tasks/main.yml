@@ -45,6 +45,12 @@
   loop_control:
     loop_var: args
 
+- name: "Install krew"
+  include: ../include_role/ubuntu/install_krew.yaml
+  with_items: "{{ krew }}"
+  loop_control:
+    loop_var: args
+
 - name: "Install kubectl plugins"
   include: ../include_role/ubuntu/install_kubectl_plugin.yaml
   with_items: "{{ kubectl_plugin }}"
