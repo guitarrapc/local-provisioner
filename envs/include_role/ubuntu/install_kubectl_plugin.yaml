@@ -62,3 +62,7 @@
       if [[ -d "$HOME/.krew" ]]; then
         export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
       fi
+
+- name: "kuberctl_plugin {{ item }} - install"
+  debug: "{{ item } }"
+  with_items: "{{ args.plugins }}"

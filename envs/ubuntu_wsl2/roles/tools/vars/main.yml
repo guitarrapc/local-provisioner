@@ -103,5 +103,5 @@ dotnet:
 terraform:
   - version: "1.0.1"
 
-kuberctl_plugin:
+kubectl_plugin:
   - krew_version: "0.4.1"
