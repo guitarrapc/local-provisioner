@@ -107,5 +107,15 @@ krew:
   - version: "0.4.1"
 
 kubectl_plugin:
+  - name: get-all
+    install_check_arg: "--help"
+  - name: iexec
+    install_check_arg: "--help"
+  - name: images
+    install_check_arg: "--help"
   - name: neat
+    install_check_arg: "--help"
+  - name: rolesum
+    install_check_arg: "--help"
+  - name: who-can
     install_check_arg: "--help"
