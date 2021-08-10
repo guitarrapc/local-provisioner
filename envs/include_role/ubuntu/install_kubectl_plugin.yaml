@@ -7,5 +7,7 @@
   ignore_errors: yes
 
 - name: "kubectl_plugin ({{ args.name }}) - install"
-  shell: kubectl krew install {{ args.name }}
+  shell: |
+    export PATH="${KREW_ROOT:-{{ ansible_home }}/.krew}/bin:$PATH"
+    kubectl krew install {{ args.name }}
   when: kubectl_plugin_exists is failed
