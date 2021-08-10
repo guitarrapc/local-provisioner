@@ -51,7 +51,7 @@
   when: krew_exists is failed
 
 - name: "krew - install"
-  shell: /tmp/krew/krew-{{ ansible_os }}_{{ ansible_arch }} install
+  shell: /tmp/krew/krew-{{ ansible_os }}_{{ ansible_arch }} install krew
   when: krew_exists is failed
 
 - name: "krew - startup profile.d script"
