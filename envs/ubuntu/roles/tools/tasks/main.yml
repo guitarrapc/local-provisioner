@@ -36,8 +36,8 @@
   loop_control:
     loop_var: args
 
-- name: "Install azure cli"
-  include: ../include_role/ubuntu/install_azurecli.yaml
+# - name: "Install azure cli"
+#   include: ../include_role/ubuntu/install_azurecli.yaml
 
 - name: "Install dotnet"
   include: ../include_role/ubuntu/install_dotnet.yaml
