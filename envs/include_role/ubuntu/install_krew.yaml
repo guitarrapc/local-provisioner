@@ -24,6 +24,9 @@
 # krew: https://krew.sigs.k8s.io/docs/user-guide/setup/install/
 - name: "krew - check installed"
   shell: "kubectl krew version 2>&1 | grep {{ args.version }}"
+  environment:
+    # require re-login shell for 1st install, let's manual export shellenv and use it
+    PATH: "{{ ansible_home }}/.krew/bin:{{ ansible_env.PATH }}"
   register: krew_exists
   changed_when: false
   ignore_errors: yes
@@ -48,9 +51,7 @@
   when: krew_exists is failed
 
 - name: "krew - install"
-  shell: |
-    "/tmp/krew/krew-{{ ansible_os }}_{{ ansible_arch }} install krew"
-    export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+  shell: /tmp/krew/krew-{{ ansible_os }}_{{ ansible_arch }} install
   when: krew_exists is failed
 
 - name: "krew - startup profile.d script"
