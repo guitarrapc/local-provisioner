@@ -16,7 +16,6 @@
       - busybox
       - figlet
       - jq
-      - netcat
       - openssl
       - sops
       - time
@@ -48,7 +47,5 @@
     state: present
     bucket: main
     name:
-      - go
-      - nvm
       - python
       - yarn
