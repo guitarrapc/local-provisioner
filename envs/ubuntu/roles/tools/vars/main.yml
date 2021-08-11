@@ -117,5 +117,7 @@ kubectl_plugin:
     install_check_arg: "--help"
   - name: rolesum
     install_check_arg: "--help"
+  - name: view-secret
+    install_check_arg: "--help"
   - name: who-can
     install_check_arg: "--help"
