@@ -9,6 +9,7 @@
     state: present
     bucket: guitarrapc
     name:
+      - actionlint # will move to extras when pr merged.
       - ctop
       - DejaVuSansMono-Bront
       - bombardier
