@@ -38,6 +38,7 @@
       - kubeval
       - mysql-workbench
       - ngrok
+      - shellcheck
       - pwsh
       - terraform
       - tflint
