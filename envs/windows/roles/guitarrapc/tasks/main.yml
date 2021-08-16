@@ -10,6 +10,7 @@
     bucket: guitarrapc
     name:
       - actionlint # will move to extras when pr merged.
+      - conftest
       - ctop
       - DejaVuSansMono-Bront
       - bombardier
