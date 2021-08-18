@@ -38,10 +38,12 @@
       - kubeval
       - mysql-workbench
       - ngrok
+      - nvm
       - shellcheck
       - pwsh
       - terraform
       - tflint
+      - yarn
 
 - name: "Install Programming Languages"
   scoop_install:
@@ -49,4 +51,3 @@
     bucket: main
     name:
       - python
-      - yarn
