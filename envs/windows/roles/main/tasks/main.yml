@@ -28,7 +28,6 @@
     bucket: main
     name:
       - aws
-      - aws-copilot
       - azure-cli
       - bazel
       - chromedriver
