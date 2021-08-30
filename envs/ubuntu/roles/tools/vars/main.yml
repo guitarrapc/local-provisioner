@@ -28,10 +28,6 @@ binary_install:
     version_arg: "version --client --short"
     version: "1.20.4"
     download_url: https://storage.googleapis.com/kubernetes-release/release/v1.20.4/bin/linux/amd64/kubectl
-  - name: kubedeploy
-    version_arg: version
-    version: "0.0.1"
-    download_url: https://github.com/afshinpaydar/kubedeploy/releases/download/v0.0.1/kubectl-deploy-x86-64-linux
   - name: sops
     version_arg: "--version"
     version: "3.7.1"
