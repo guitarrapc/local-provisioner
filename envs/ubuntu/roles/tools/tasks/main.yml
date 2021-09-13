@@ -36,9 +36,6 @@
   loop_control:
     loop_var: args
 
-- name: "Install azure cli"
-  include: ../include_role/ubuntu/install_azurecli.yaml
-
 - name: "Install dotnet"
   include: ../include_role/ubuntu/install_dotnet.yaml
   with_items: "{{ dotnet }}"
@@ -65,3 +62,7 @@
 
 - name: "Install trivy"
   include: ../include_role/ubuntu/install_trivy.yaml
+
+# too slow download pacakge..... oh my package.microsoft.com ....
+- name: "Install azure cli"
+  include: ../include_role/ubuntu/install_azurecli.yaml
