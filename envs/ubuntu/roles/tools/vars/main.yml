@@ -102,7 +102,9 @@ homebrew:
       - { name: "gh", state: "present" }
 
 anyenv:
-  - env: "nodeenv"
+  - goenv: false
+    nodeenv: true
+    pyenv: false
 
 aws_cli:
   - version: "2.1.35"

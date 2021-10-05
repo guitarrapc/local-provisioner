@@ -15,3 +15,18 @@
 - name: "anyenv - init"
   shell: yes | anyenv install --init
   changed_when: false
+
+- name: "anyenv - install goenv"
+  shell: anyenv install goenv
+  changed_when: false
+  when: args.goenv == "true"
+
+- name: "anyenv - install nodeenv"
+  shell: anyenv install nodeenv
+  changed_when: false
+  when: args.nodeenv == "true"
+
+- name: "anyenv - install pyenv"
+  shell: anyenv install pyenv
+  changed_when: false
+  when: args.pyenv == "true"
