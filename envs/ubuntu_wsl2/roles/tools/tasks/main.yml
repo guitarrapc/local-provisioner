@@ -30,14 +30,17 @@
     loop_var: args
 
 # each packages
+- name: "Install anyenv"
+  include: ../include_role/ubuntu/install_anyenv.yaml
+  with_items: "{{ anyenv }}"
+  loop_control:
+    loop_var: args
+
 - name: "Install aws cli"
   include: ../include_role/ubuntu/install_awscli.yaml
   with_items: "{{ aws_cli }}"
   loop_control:
     loop_var: args
-
-- name: "Install azure cli"
-  include: ../include_role/ubuntu/install_azurecli.yaml
 
 - name: "Install dotnet"
   include: ../include_role/ubuntu/install_dotnet.yaml
@@ -65,3 +68,7 @@
 
 - name: "Install trivy"
   include: ../include_role/ubuntu/install_trivy.yaml
+
+# too slow download pacakge..... oh my package.microsoft.com ....
+- name: "Install azure cli"
+  include: ../include_role/ubuntu/install_azurecli.yaml
