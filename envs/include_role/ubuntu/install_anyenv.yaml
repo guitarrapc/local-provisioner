@@ -11,3 +11,7 @@
     state: link
   with_items:
     - anyenv
+
+- name: "anyenv - init"
+  shell: yes | anyenv install --init
+  changed_when: false
