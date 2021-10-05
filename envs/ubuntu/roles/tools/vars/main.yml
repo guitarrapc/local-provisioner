@@ -101,14 +101,14 @@ homebrew:
   - packages:
       - { name: "gh", state: "present" }
 
+anyenv:
+  - env: "nodeenv"
+
 aws_cli:
   - version: "2.1.35"
 
 dotnet:
   - version: "5.0"
-
-terraform:
-  - version: "1.0.1"
 
 krew:
   - version: "0.4.1"
@@ -128,3 +128,6 @@ kubectl_plugin:
     install_check_arg: "--help"
   - name: who-can
     install_check_arg: "--help"
+
+terraform:
+  - version: "1.0.1"

@@ -1,0 +1,13 @@
+- name: "anyenv - Clone & Fetch repo"
+  git:
+    repo: "git clone https://github.com/anyenv/anyenv"
+    dest: "{{ ansible_home }}/.anyenv"
+
+- name: "anyenv - Create symlinks"
+  become: yes
+  file:
+    src: "{{ ansible_home }}/.anyenv/bin/{{ item }}"
+    dest: "/usr/local/bin/{{ item }}"
+    state: link
+  with_items:
+    - anyenv

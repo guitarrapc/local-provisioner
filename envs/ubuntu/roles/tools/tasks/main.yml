@@ -30,6 +30,12 @@
     loop_var: args
 
 # each packages
+- name: "Install anyenv"
+  include: ../include_role/ubuntu/install_anyenv.yaml
+  with_items: "{{ anyenv }}"
+  loop_control:
+    loop_var: args
+
 - name: "Install aws cli"
   include: ../include_role/ubuntu/install_awscli.yaml
   with_items: "{{ aws_cli }}"
