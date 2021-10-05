@@ -12,8 +12,14 @@
   with_items:
     - anyenv
 
-- name: "anyenv - init"
+- name: "anyenv - check ~/.config/anyenv/anyenv-install exists"
+  stat:
+    path: "{{ ansible_home }}/.config/anyenv/anyenv-install"
+  register: anyenv_confi_exists
+
+- name: "anyenv - install --init"
   shell: yes | anyenv install --init
+  when: not anyenv_confi_exists.stat.exists
   changed_when: false
 
 - name: "anyenv - install goenv"
