@@ -103,7 +103,7 @@ homebrew:
 
 anyenv:
   - goenv: "false"
-    nodeenv: "true"
+    nodenv: "true"
     pyenv: "false"
 
 aws_cli:

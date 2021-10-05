@@ -27,10 +27,10 @@
   changed_when: false
   when: args.goenv == "true"
 
-- name: "anyenv - install nodeenv"
+- name: "anyenv - install nodenv"
   shell: anyenv install nodeenv
   changed_when: false
-  when: args.nodeenv == "true"
+  when: args.nodenv == "true"
 
 - name: "anyenv - install pyenv"
   shell: anyenv install pyenv
