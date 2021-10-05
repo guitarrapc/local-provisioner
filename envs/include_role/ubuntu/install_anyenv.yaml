@@ -28,7 +28,7 @@
   when: args.goenv == "true"
 
 - name: "anyenv - install nodenv"
-  shell: anyenv install nodeenv
+  shell: anyenv install nodenv
   changed_when: false
   when: args.nodenv == "true"
 
