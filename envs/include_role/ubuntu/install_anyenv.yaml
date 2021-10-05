@@ -23,16 +23,16 @@
   changed_when: false
 
 - name: "anyenv - install goenv"
-  shell: anyenv install goenv
+  shell: anyenv install goenv --skip-existing
   changed_when: false
   when: args.goenv == "true"
 
 - name: "anyenv - install nodenv"
-  shell: anyenv install nodenv
+  shell: anyenv install nodenv --skip-existing
   changed_when: false
   when: args.nodenv == "true"
 
 - name: "anyenv - install pyenv"
-  shell: anyenv install pyenv
+  shell: anyenv install pyenv --skip-existing
   changed_when: false
   when: args.pyenv == "true"
