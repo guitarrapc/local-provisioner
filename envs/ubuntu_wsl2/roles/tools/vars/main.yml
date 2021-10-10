@@ -2,6 +2,7 @@ apt_tools:
   - apache2-utils
   - direnv
   - git-lfs
+  - htop
   - jq
   - moreutils
   - peco
