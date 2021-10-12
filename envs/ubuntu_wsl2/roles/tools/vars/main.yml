@@ -3,6 +3,7 @@ apt_tools:
   - direnv
   - git-lfs
   - htop
+  - hub
   - jq
   - moreutils
   - peco
