@@ -12,6 +12,7 @@ apt_tools:
   - sshpass
   - tree
   - unzip
+  - whois
 
 binary_install:
   - name: argocd
