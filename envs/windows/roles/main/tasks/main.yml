@@ -32,6 +32,7 @@
       - bazel
       - chromedriver
       - dive
+      - hub
       - gibo
       - git-lfs
       - helm
