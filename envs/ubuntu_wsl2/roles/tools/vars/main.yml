@@ -24,9 +24,13 @@ binary_install:
     version: "1.2.4"
     download_url: https://github.com/codesenberg/bombardier/releases/download/v1.2.4/bombardier-linux-amd64
   - name: ctop
-    version_arg: -v
+    version_arg: "-v"
     version: "0.7.3"
     download_url: https://github.com/bcicen/ctop/releases/download/v0.7.3/ctop-0.7.3-linux-amd64
+  - name: linkerd
+    version_arg: "version --client"
+    version: "2.11.0"
+    download_url: https://github.com/linkerd/linkerd2/releases/download/stable-2.11.0/linkerd2-cli-stable-2.11.0-linux-amd64
   - name: kubectl
     version_arg: "version --client --short"
     version: "1.21.4"
