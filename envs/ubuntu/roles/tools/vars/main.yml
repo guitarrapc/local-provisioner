@@ -93,7 +93,7 @@ targz_binary_install:
     download_url: https://dl.step.sm/gh-release/cli/gh-release-header/v0.17.6/step_linux_0.17.6_amd64.tar.gz
     copy_root: "step_0.17.6/bin/"
     binaries:
-      - tldr
+      - step
     dest_override: /usr/bin
   - name: tldr
     version_arg: "--version"
