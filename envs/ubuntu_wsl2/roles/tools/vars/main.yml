@@ -114,7 +114,7 @@ git_tools:
 
 homebrew:
   - packages:
-      # - { name: "hello", state: "present" }
+      - { name: "hello", state: "present" }
 
 anyenv:
   - goenv: "false"

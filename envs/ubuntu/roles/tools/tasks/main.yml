@@ -24,11 +24,11 @@
     loop_var: args
 
 # too slow.... may be remove in future. packages should not depends on brew.
-- name: "Install homebrew"
-  include: ../include_role/ubuntu/install_homebrew.yaml
-  with_items: "{{ homebrew }}"
-  loop_control:
-    loop_var: args
+# - name: "Install homebrew"
+#   include: ../include_role/ubuntu/install_homebrew.yaml
+#   with_items: "{{ homebrew }}"
+#   loop_control:
+#     loop_var: args
 
 # each packages
 - name: "Install anyenv"
