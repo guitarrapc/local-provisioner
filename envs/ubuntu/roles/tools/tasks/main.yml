@@ -48,6 +48,12 @@
   loop_control:
     loop_var: args
 
+- name: "Install gh cli"
+  include: ../include_role/ubuntu/install_ghcli.yaml
+  with_items: "{{ gh_cli }}"
+  loop_control:
+    loop_var: args
+
 - name: "Install krew"
   include: ../include_role/ubuntu/install_krew.yaml
   with_items: "{{ krew }}"

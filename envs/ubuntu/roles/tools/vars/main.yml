@@ -127,6 +127,9 @@ aws_cli:
 dotnet:
   - version: "5.0"
 
+gh_cli:
+  - { version: "2.0.0" }
+
 krew:
   - version: "0.4.1"
 
