@@ -114,8 +114,7 @@ git_tools:
 
 homebrew:
   - packages:
-      - { name: "gh", state: "present" }
-      - { name: "hello", state: "present" }
+      # - { name: "hello", state: "present" }
 
 anyenv:
   - goenv: "false"
@@ -127,6 +126,9 @@ aws_cli:
 
 dotnet:
   - version: "5.0"
+
+gh_cli:
+  - version: "2.0.0"
 
 krew:
   - version: "0.4.1"

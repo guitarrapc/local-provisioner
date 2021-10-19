@@ -23,6 +23,7 @@
   loop_control:
     loop_var: args
 
+# too slow.... may be remove in future. packages should not depends on brew.
 - name: "Install homebrew"
   include: ../include_role/ubuntu/install_homebrew.yaml
   with_items: "{{ homebrew }}"
@@ -45,6 +46,12 @@
 - name: "Install dotnet"
   include: ../include_role/ubuntu/install_dotnet.yaml
   with_items: "{{ dotnet }}"
+  loop_control:
+    loop_var: args
+
+- name: "Install gh cli"
+  include: ../include_role/ubuntu/install_ghcli.yaml
+  with_items: "{{ gh_cli }}"
   loop_control:
     loop_var: args
 
