@@ -17,8 +17,8 @@ apt_tools:
 binary_install:
   - name: argocd
     version_arg: "version --client"
-    version: "2.0.5"
-    download_url: https://github.com/argoproj/argo-cd/releases/download/v2.0.5/argocd-linux-amd64
+    version: "2.1.5"
+    download_url: https://github.com/argoproj/argo-cd/releases/download/v2.1.5/argocd-linux-amd64
   - name: bombardier
     version_arg: "--version"
     version: "1.2.4"
