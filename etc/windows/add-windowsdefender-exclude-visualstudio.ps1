@@ -5,12 +5,13 @@ $pathes = @(
   "$env:ProgramData\Microsoft\VisualStudio\Packages",
   "$env:ProgramFiles\dotnet",
   "$env:ProgramFiles\Microsoft SDKs",
+  "$env:ProgramFiles\Microsoft Visual Studio", # since VS2022
   "$env:ProgramFiles\MSBuild",
   "$env:ProgramFiles\Unity",
   "$env:ProgramFiles\Unity Hub",
   "${env:ProgramFiles(x86)}\Microsoft SDKs",
   "${env:ProgramFiles(x86)}\Microsoft SDKs\NuGetPackages",
-  "${env:ProgramFiles(x86)}\Microsoft Visual Studio",
+  "${env:ProgramFiles(x86)}\Microsoft Visual Studio", # until VS2019
   "${env:ProgramFiles(x86)}\MSBuild",
   "$env:SystemRoot\assembly",
   "$env:SystemRoot\Microsoft.NET",
