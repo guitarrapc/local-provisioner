@@ -1,6 +1,26 @@
+# usage pattern 1: use version args for version detection.
+# - name: NAME_OF_BINARY
+#   version_arg: "--version"
+#   version: "1.0.0"
+#   download_url: https://github.com/owner/repo/releases/download/verison/binary_name
+
+# usage pattern 2: use checksum for verison detection.
+# - name: NAME_OF_BINARY
+#   checksum_type: sha256sum
+#   checksum: 68c7301c41b1bd1d89668bf27d5314a10b8330f694e711401fe1494d2c9780c2
+#   download_url: https://github.com/owner/repo/releases/download/verison/binary_name
+
 - name: "binary ({{ args.name }}) - check installed"
   shell: "{{ args.name }} {{ args.version_arg }} 2>&1 | head -n 1 | grep {{ args.version }}"
   register: binary_exists
+  when: (args.version_arg != "") and (args.version != "")
+  changed_when: false
+  ignore_errors: yes
+
+- name: "binary ({{ args.name }}) - check installed with checksum"
+  shell: "{{ args.checksum_type }} /usr/local/bin/{{ args.name }} | grep {{ args.checksum }}"
+  register: binary_exists
+  when: (args.checksum_type != "") and (args.checksum != "")
   changed_when: false
   ignore_errors: yes
 
