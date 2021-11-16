@@ -13,14 +13,14 @@
 - name: "binary ({{ args.name }}) - check installed"
   shell: "{{ args.name }} {{ args.version_arg }} 2>&1 | head -n 1 | grep {{ args.version }}"
   register: binary_exists
-  when: (args.version_arg) is defnied and (args.version is defnied)
+  when: (args.version_arg) is defined and (args.version is defined)
   changed_when: false
   ignore_errors: yes
 
 - name: "binary ({{ args.name }}) - check installed with checksum"
   shell: "{{ args.checksum_type }} /usr/local/bin/{{ args.name }} | grep {{ args.checksum }}"
   register: binary_exists
-  when: (args.checksum_type is defnied) and (args.checksum is defnied)
+  when: (args.checksum_type is defined) and (args.checksum is defined)
   changed_when: false
   ignore_errors: yes
 
