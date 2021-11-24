@@ -13,13 +13,13 @@
 - name: "binary ({{ args.name }}) - check installed"
   shell: "{{ args.name }} {{ args.version_arg }} 2>&1 | head -n 1 | grep {{ args.version }}"
   register: binary_exists
-  when: (args.version_arg) is defined and (args.version is defined)
+  when: (args.version_arg is defined) and (args.version is defined)
   changed_when: false
   ignore_errors: yes
 
 - name: "binary ({{ args.name }}) - check installed with checksum"
   shell: "{{ args.checksum_type }} /usr/local/bin/{{ args.name }} | grep {{ args.checksum }}"
-  register: binary_exists
+  register: binary_exists_checksum
   when: (args.checksum_type is defined) and (args.checksum is defined)
   changed_when: false
   ignore_errors: yes
@@ -28,7 +28,7 @@
   get_url:
     url: "{{ args.download_url }}"
     dest: "/tmp/{{ args.name }}"
-  when: binary_exists is failed
+  when: (binary_exists is failed) or (binary_exists_checksum is failed)
 
 - name: "binary ({{ args.name }}) - copy"
   become: yes
@@ -36,13 +36,13 @@
     src: "/tmp/{{ args.name }}"
     dest: "{{ args.dest_override | default('/usr/local/bin') }}"
     remote_src: yes
-  when: binary_exists is failed
+  when: (binary_exists is failed) or (binary_exists_checksum is failed)
 
 - name: "binary ({{ args.name }}) - remove temp files"
   file:
     state: absent
     path: /tmp/{{ args.name }}
-  when: binary_exists is failed
+  when: (binary_exists is failed) or (binary_exists_checksum is failed)
 
 - name: "binary ({{ args.name }}) - chmod"
   become: yes
