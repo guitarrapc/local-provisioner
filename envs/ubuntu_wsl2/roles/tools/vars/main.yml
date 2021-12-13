@@ -146,6 +146,8 @@ kubectl_plugin:
     install_check_arg: "--help"
   - name: neat
     install_check_arg: "--help"
+  - name: resource-capacity
+    install_check_arg: "--help"
   - name: rolesum
     install_check_arg: "--help"
   - name: view-secret
