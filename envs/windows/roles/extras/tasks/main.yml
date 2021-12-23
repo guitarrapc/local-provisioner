@@ -20,6 +20,7 @@
       - lens
       - linqpad
       - mobaxterm
+      - msbuild-structured-log-viewer
       - streamdeck
       - slack
       - vscode
