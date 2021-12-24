@@ -18,5 +18,4 @@
       - googlechrome-stable # fork version and use https://github.com/42wim/chromeupdates as update source.
       - opa
       - py
-      - qttabbar
-      - qttabbar-patch
+      - qttabbar-beta # for Windows 11
