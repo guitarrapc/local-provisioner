@@ -138,7 +138,7 @@ krew:
   - version: "0.4.1"
 
 kubectl_plugin:
-  - name: explorer
+  - name: explore
     install_check_arg: "--help"
   - name: fuzzy
     install_check_arg: "--help"
