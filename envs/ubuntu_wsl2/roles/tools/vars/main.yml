@@ -160,4 +160,4 @@ kubectl_plugin:
     install_check_arg: "--help"
 
 terraform:
-  - version: "1.1.16"
+  - version: "1.1.6"
