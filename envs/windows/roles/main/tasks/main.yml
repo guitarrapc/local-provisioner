@@ -44,7 +44,6 @@
       - pwsh
       - terraform
       - tflint
-      - yarn
 
 - name: "Install Programming Languages"
   scoop_install:
