@@ -132,7 +132,7 @@ dotnet:
   - version: "6.0"
 
 gh_cli:
-  - version: "2.11.3"
+  - version: "2.10.1"
 
 krew:
   - version: "0.4.1"
