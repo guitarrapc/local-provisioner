@@ -129,10 +129,10 @@ aws_cli:
   - version: "2.1.35"
 
 dotnet:
-  - version: "5.0"
+  - version: "6.0"
 
 gh_cli:
-  - version: "2.0.0"
+  - version: "2.11.3"
 
 krew:
   - version: "0.4.1"
