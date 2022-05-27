@@ -45,7 +45,6 @@
     src: "/opt/gh/bin/gh"
     dest: "/usr/local/bin/gh"
     state: link
-  when: gh_exists is failed
 
 - name: "gh - clean up tmp zip"
   file:
