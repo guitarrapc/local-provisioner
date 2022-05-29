@@ -91,6 +91,14 @@ targz_binary_install:
     copy_root: ""
     binaries:
       - kubeval
+  - name: lazygit
+    version_arg: "--version"
+    version: "0.34"
+    download_url: https://github.com/jesseduffield/lazygit/releases/download/v0.34/lazygit_0.34_Linux_x86_64.tar.gz
+    copy_root: ""
+    binaries:
+      - lazygit
+    dest_override: /usr/bin
   - name: step
     version_arg: "--version"
     version: "0.17.6"
