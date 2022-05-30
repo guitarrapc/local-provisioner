@@ -120,6 +120,7 @@ targz_binary_install:
     copy_root: ""
     binaries:
       - yq_linux_amd64
+    dest_override: /usr/local/bin/yq
 
 git_tools:
   - name: kubectx

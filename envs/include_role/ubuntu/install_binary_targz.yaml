@@ -23,6 +23,13 @@
     remote_src: yes
   when: binary_targz_exists is failed
 
+- name: "binary_targz ({{ args.name }}) - change file permissions"
+  become: yes
+  file:
+    path: "/tmp/{{ args.name }}/{{ args.copy_root }}{{ item }}"
+    mode: "a+x"
+  with_items: "{{ args.binaries }}"
+
 - name: "binary_targz ({{ args.name }}) - copy"
   become: yes
   copy:
@@ -37,10 +44,3 @@
     state: absent
     path: /tmp/{{ args.name }}
   when: binary_targz_exists is failed
-
-- name: "binary_targz ({{ args.name }}) - change file permissions"
-  become: yes
-  file:
-    path: "{{ args.dest_override | default('/usr/local/bin') }}/{{ item }}"
-    mode: "a+x"
-  with_items: "{{ args.binaries }}"
