@@ -42,7 +42,7 @@ binary_install:
   - name: sops
     version_arg: "--version"
     version: "3.7.3"
-    download_url: https://github.com/mozilla/sops/releases/download/v3.7.1/sops-v3.7.1.linux
+    download_url: https://github.com/mozilla/sops/releases/download/v3.7.3/sops-v3.7.3.linux
   - name: stern
     version_arg: "--version"
     version: "1.11.0"
@@ -150,7 +150,7 @@ gh_cli:
   - version: "2.10.1"
 
 krew:
-  - version: "0.4.1"
+  - version: "0.4.3"
 
 kubectl_plugin:
   - name: explore
