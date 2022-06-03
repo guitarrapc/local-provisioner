@@ -41,7 +41,7 @@ binary_install:
     download_url: https://storage.googleapis.com/kubernetes-release/release/v1.22.4/bin/linux/amd64/kubectl
   - name: sops
     version_arg: "--version"
-    version: "3.7.1"
+    version: "3.7.3"
     download_url: https://github.com/mozilla/sops/releases/download/v3.7.1/sops-v3.7.1.linux
   - name: stern
     version_arg: "--version"
