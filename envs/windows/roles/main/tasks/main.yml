@@ -21,6 +21,7 @@
       - time
       - unzip
       - vim
+      - yq
 
 - name: "Install windows tools"
   scoop_install:

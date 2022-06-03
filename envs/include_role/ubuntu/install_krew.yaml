@@ -5,25 +5,30 @@
   register: os_value
   changed_when: false
   check_mode: no
+
 - name: "krew - register os"
   set_fact: ansible_os='{{ os_value.stdout }}'
+
 - name: "krew - get arch"
   shell: uname -m | sed -e 's/x86_64/amd64/' -e 's/\(arm\)\(64\)\?.*/\1\2/' -e 's/aarch64$/arm64/'
   register: arch_value
   changed_when: false
   check_mode: no
+
 - name: "krew - register arch"
   set_fact: ansible_arch='{{ arch_value.stdout }}'
+
 - name: "krew - debug ansible_os"
   debug:
     msg: "{{ ansible_os }}"
+
 - name: "krew - debug ansible_arch"
   debug:
     msg: "{{ ansible_arch }}"
 
 # krew: https://krew.sigs.k8s.io/docs/user-guide/setup/install/
 - name: "krew - check installed"
-  shell: "kubectl krew version 2>&1 | grep {{ args.version }}"
+  shell: "kubectl krew version | grep {{ args.version }}"
   environment:
     # require re-login shell for 1st install, let's manual export shellenv and use it
     PATH: "{{ ansible_home }}/.krew/bin:{{ ansible_env.PATH }}"

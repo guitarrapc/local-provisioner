@@ -98,7 +98,6 @@ targz_binary_install:
     copy_root: ""
     binaries:
       - lazygit
-    dest_override: /usr/bin
   - name: step
     version_arg: "--version"
     version: "0.17.6"
@@ -106,7 +105,7 @@ targz_binary_install:
     copy_root: "step_0.17.6/bin/"
     binaries:
       - step
-    dest_override: /usr/bin
+    dest_override: /usr/bin/
   - name: tldr
     version_arg: "--version"
     version: "0.6.1"
@@ -114,6 +113,14 @@ targz_binary_install:
     copy_root: ""
     binaries:
       - tldr
+  - name: yq
+    version_arg: "--version"
+    version: "4.25.2"
+    download_url: https://github.com/mikefarah/yq/releases/download/v4.25.2/yq_linux_amd64.tar.gz
+    copy_root: ""
+    binaries:
+      - yq_linux_amd64
+    dest_override: /usr/local/bin/yq # rename to yq
 
 git_tools:
   - name: kubectx
@@ -143,7 +150,7 @@ gh_cli:
   - version: "2.10.1"
 
 krew:
-  - version: "0.4.1"
+  - version: "0.4.3"
 
 kubectl_plugin:
   - name: explore

@@ -34,7 +34,8 @@
   become: yes
   copy:
     src: "/tmp/{{ args.name }}"
-    dest: "{{ args.dest_override | default('/usr/local/bin') }}"
+    dest: "{{ args.dest_override | default('/usr/local/bin/') }}"
+    mode: "a+x"
     remote_src: yes
   when: (binary_exists is failed) or (binary_exists_checksum is failed)
 
@@ -43,9 +44,3 @@
     state: absent
     path: /tmp/{{ args.name }}
   when: (binary_exists is failed) or (binary_exists_checksum is failed)
-
-- name: "binary ({{ args.name }}) - chmod"
-  become: yes
-  file:
-    path: /usr/local/bin/{{ args.name }}
-    mode: a+x
