@@ -43,8 +43,6 @@
       - nvm
       - shellcheck
       - pwsh
-      - terraform
-      - tflint
 
 - name: "Install Programming Languages"
   scoop_install:
