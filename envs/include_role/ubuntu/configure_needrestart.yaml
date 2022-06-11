@@ -13,5 +13,6 @@
       $nrconf{ui} = 'NeedRestart::UI::stdio';
       # control restart service
       $nrconf{kernelhints} = '0';
+      $nrconf{ucodehints} = 0;
       $nrconf{restart} = 'a';
   when: needrestart_exists.stat.exists

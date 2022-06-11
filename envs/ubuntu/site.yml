@@ -1,6 +1,5 @@
 - name: local-dev ubuntu setup
   hosts: "local"
-  become: no
   pre_tasks:
     - name: Preset ansible_home as execution user HOME path
       set_fact: ansible_home='{{ ansible_env.HOME }}'
@@ -25,6 +24,7 @@
       tags: always
   roles:
     - { role: "debug", tags: [debug] }
+    - { role: "configure", tags: [configure] }
     - { role: "dotfiles", tags: [dotfiles] }
     - { role: "credentials", tags: [credentials] }
     - { role: "needrestart", tags: [needrestart] }

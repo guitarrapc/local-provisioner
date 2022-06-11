@@ -1,0 +1,7 @@
+- name: "configure wsl1 - remove needrestart"
+  become: yes
+  apt:
+    pkg: "needrestart"
+    state: absent
+    purge: yes
+  when: is_wsl1 == "1"
