@@ -44,7 +44,7 @@
 
 - name: "krew - download"
   get_url:
-    url: "https://github.com/kubernetes-sigs/krew/releases/download/v{{ args.version }}/krew-linux_arm64.tar.gz"
+    url: "https://github.com/kubernetes-sigs/krew/releases/download/v{{ args.version }}/krew-linux_amd64.tar.gz"
     dest: "/tmp/krew/krew.tar.gz"
   when: krew_exists is failed
 
