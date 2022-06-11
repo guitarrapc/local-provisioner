@@ -30,8 +30,7 @@ function install_ansible_ubuntu22() {
   fi
 }
 
-which ansible > /dev/null 2>&1
-if [[ $? -ne 0 ]]; then
+if ! which ansible; then
     echo Ansible not found, install it.
     sudo apt update -y
     sudo apt upgrade -y
