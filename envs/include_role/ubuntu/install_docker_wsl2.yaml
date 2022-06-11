@@ -45,6 +45,12 @@
     update-alternatives --set ip6tables /usr/sbin/ip6tables-legacy
   changed_when: false
 
+# allow use docker without sudo
+- name: "docker - change iptables/ip6tables to use legacy"
+  become: yes
+  shell: usermod -aG docker "{{ ansible_user_id }}"
+  changed_when: false
+
 # docker service daemon for SysV Init
 - name: "docker - startup profile.d script (wsl2)"
   become: yes
