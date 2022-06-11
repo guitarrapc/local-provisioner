@@ -1,2 +1,2 @@
-- name: "Configure WSL1"
-  include: ../include_role/ubuntu/configure_wsl1.yaml
+# - name: "Configure WSL1"
+#   include: ../include_role/ubuntu/configure_wsl1.yaml
