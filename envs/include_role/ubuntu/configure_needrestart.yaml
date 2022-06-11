@@ -1,0 +1,16 @@
+- name: "needrestart - place custom conf.d"
+  become: yes
+  stat:
+    path: /usr/sbin/needrestart
+  register: needrestart_exists
+
+- name: "needrestart - place custom conf.d"
+  become: yes
+  copy:
+    dest: /etc/needrestart/conf.d/99_ansible.conf
+    content: |
+      # use stdin to select restart service
+      $nrconf{ui} = 'NeedRestart::UI::stdio';
+      $nrconf{kernelhints} = '0';
+      $nrconf{restart} = 'a';
+  when: needrestart_exists.stat.exists
