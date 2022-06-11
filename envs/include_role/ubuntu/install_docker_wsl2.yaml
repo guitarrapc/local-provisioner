@@ -37,6 +37,14 @@
       - cgroupfs-mount
     update_cache: yes
 
+# configure iptables to use legacy. see: https://github.com/WhitewaterFoundry/Pengwin/issues/485#issuecomment-518028465
+- name: "docker - change iptables/ip6tables to use legacy"
+  become: yes
+  shell: |
+    update-alternatives --set iptables /usr/sbin/iptables-legacy
+    update-alternatives --set ip6tables /usr/sbin/ip6tables-legacy
+  changed_when: false
+
 # docker service daemon for SysV Init
 - name: "docker - startup profile.d script (wsl2)"
   become: yes
