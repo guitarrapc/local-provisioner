@@ -1,4 +1,4 @@
-- name: "needrestart - place custom conf.d"
+- name: "needrestart - check OS is using needrestart"
   become: yes
   stat:
     path: /usr/sbin/needrestart
