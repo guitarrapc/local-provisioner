@@ -24,7 +24,6 @@ Ubuntu, run ansible-playbook.
 ```shell
 cd ~/github/guitarrapc/local-provisioner/envs/ubuntu
 . ./prerequisites.sh
-exec $SHELL -l
 . ./run.sh
 ```
 
@@ -35,7 +34,6 @@ Ubuntu WSL2 install docker explict, run ansible-playbook.
 ```shell
 cd ~/github/guitarrapc/local-provisioner/envs/ubuntu_wsl2
 . ./prerequisites.sh
-exec $SHELL -l
 . ./run.sh
 ```
 
