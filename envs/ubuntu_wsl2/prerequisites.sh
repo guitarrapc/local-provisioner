@@ -1,24 +1,36 @@
-#!/bin/bash
+#!/bin/bash -ex
 
 function hack:wsl1_ubuntu20() {
-    is_wsl2=$([ $(grep -oE 'gcc version ([0-9]+)' /proc/version | awk '{print $3}') -gt 5 ] && echo "1" || echo "0")
-    is_ubuntu2004=$(lsb_release -r | grep 20.04 | wc -l)
-    if [[ "$is_wsl2" == "0" && "$is_ubuntu2004" == "1" ]]; then
+    if lshw | grep vsyscall32; then
+      is_wsl2=1
+    else
+      is_wsl2=0
+    fi
+    is_ubuntu2004=$(lsb_release -r | grep -c "20.04")
+    if [[ "${is_wsl2}" == "0" && "${is_ubuntu2004}" == "1" ]]; then
+      # sleep cannot use in WSL1 Ansible hack
       echo "detected Ubuntu 20.04 on WSL1, applying sleep hack. https://stackoverflow.com/questions/62363901/ansible-msg-failed-to-create-temporary-directory-in-some-cases-fatal"
       sudo mv /bin/sleep /bin/sleep~
       sudo ln -s /bin/busybox /bin/sleep
     fi
 }
 
-which ansible > /dev/null 2>&1
-if [[ $? -ne 0 ]]; then
-    echo Ansible not found, install it.
-    sudo apt update & sudo apt upgrade -y
-    sudo apt install -yqq daemonize dbus-user-session fontconfig
+function install_ansible() {
+  # Install Ansible from ppa for latest release and fast update.
+  # `pip3 install --user ansible` is too slow and could not accept.
+  echo "Install ansible from ppa."
+  sudo apt install -y software-properties-common
+  sudo add-apt-repository -y --update ppa:ansible/ansible
+  sudo apt install -y ansible
+}
 
-    # install ansible on python3
-    sudo apt-get install -y python3-pip
-    pip3 install --user ansible
+if ! which ansible; then
+    echo Ansible not found, install it.
+    sudo apt update -y
+    sudo apt upgrade -y
+
+    # install ansible
+    install_ansible
 
     # Ubuntu20.04LTS on WSL1
     hack:wsl1_ubuntu20
