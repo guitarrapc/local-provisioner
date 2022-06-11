@@ -16,6 +16,7 @@ function hack:wsl1_ubuntu20() {
 function install_ansible_before_ubuntu22() {
   if ! lsb_release -r | grep -V 22.04; then
     # install ansible on python3
+    echo "Install ansible from pip3."
     sudo apt install -y python3-pip
     pip3 install --user ansible
   fi
@@ -24,6 +25,7 @@ function install_ansible_before_ubuntu22() {
 function install_ansible_ubuntu22() {
   if lsb_release -r | grep 22.04; then
     # Install Ansible from ppa for latest release and fast update.
+    echo "Install ansible from ppa."
     sudo apt install -y software-properties-common
     sudo add-apt-repository -y --update ppa:ansible/ansible
     sudo apt install -y ansible
