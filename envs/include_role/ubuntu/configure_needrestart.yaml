@@ -11,6 +11,7 @@
     content: |
       # use stdin to select restart service
       $nrconf{ui} = 'NeedRestart::UI::stdio';
+      # control restart service
       $nrconf{kernelhints} = '0';
       $nrconf{restart} = 'a';
   when: needrestart_exists.stat.exists
