@@ -16,6 +16,7 @@ homebrew_packages:
   - name: hub
   - name: hugo
   - name: jq
+  - name: kubectl
   - name: nodenv
   - name: pyenv
   - name: rbenv
