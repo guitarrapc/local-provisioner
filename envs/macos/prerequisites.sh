@@ -14,9 +14,10 @@ which brew > /dev/null 2>&1
 if [ $? -ne 0 ]; then
     echo Homebrew not found, install it.
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-    brew update
-    brew doctor
 fi
+eval "$(/opt/homebrew/bin/brew shellenv)"
+brew update
+brew doctor
 
 # ansible
 echo "check ansible is installed"
@@ -25,4 +26,3 @@ if [ $? -ne 0 ]; then
     echo Ansible not found, install it.
     brew install ansible
 fi
-
