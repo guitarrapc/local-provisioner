@@ -10,6 +10,7 @@ describe command("brew list -l") do
     its(:stdout) { should match "carthage" }
     its(:stdout) { should match "ctop" }
     its(:stdout) { should match "direnv" }
+    its(:stdout) { should match "docker" }
     its(:stdout) { should match "freetype" }
     its(:stdout) { should match "gibo" }
     its(:stdout) { should match "git" }
@@ -30,4 +31,3 @@ describe command("brew list -l") do
     its(:stdout) { should match "yq" }
     its(:stdout) { should match "zlib" }
 end
-
