@@ -28,6 +28,7 @@ homebrew_packages:
   - name: pyenv
   - name: rbenv
   - name: ruby-build
+  - name: shellcheck
   - name: stern
   - name: swiftlint
   - name: tfenv

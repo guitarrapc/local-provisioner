@@ -30,6 +30,7 @@ describe command("brew list -l") do
     its(:stdout) { should match "pyenv" }
     its(:stdout) { should match "rbenv" }
     its(:stdout) { should match "ruby-build" }
+    its(:stdout) { should match "shellcheck" }
     its(:stdout) { should match "stern" }
     its(:stdout) { should match "swiftlint" }
     its(:stdout) { should match "tfenv" }
@@ -38,4 +39,3 @@ describe command("brew list -l") do
     its(:stdout) { should match "yq" }
     its(:stdout) { should match "zlib" }
 end
-
