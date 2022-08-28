@@ -21,6 +21,7 @@ homebrew_packages:
   - name: pyenv
   - name: rbenv
   - name: ruby-build
+  - name: shellcheck
   - name: stern
   - name: tfenv
   - name: tree
