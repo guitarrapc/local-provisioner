@@ -6,7 +6,7 @@ Environment | Version | Method | Note
 ---- | ---- | ---- | ----
 macOS | Intel Monterey | Ansible Playbook |
 macOS-silicon | ARM Monterey | Ansible Playbook |
-Windows | 11 21H2 | scoop |
+Windows | 11 21H2 and 10 21H2 | scoop |
 Ubuntu | 20.04<br/>18.04<br/>WSL1<br/>WSL2 | Ansible Playbook | 22.04 has problem with needrestart and no support.
 Ubuntu WSL2 | 22.04<br/>20.04 | Ansible Playbook | install docker on wsl2.
 
