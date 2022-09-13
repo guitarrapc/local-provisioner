@@ -16,6 +16,7 @@ describe command("brew list -l") do
     its(:stdout) { should match "direnv" }
     its(:stdout) { should match "docker" }
     its(:stdout) { should match "duf" }
+    its(:stdout) { should match "fd" }
     its(:stdout) { should match "freetype" }
     its(:stdout) { should match "gibo" }
     its(:stdout) { should match "git" }

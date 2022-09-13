@@ -8,6 +8,7 @@ homebrew_packages:
   - name: ctop
   - name: direnv
   - name: duf
+  - name: fd
   - name: freetype
   - name: gibo
   - name: git

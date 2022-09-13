@@ -14,6 +14,8 @@
     bucket: main
     name:
       - busybox
+      - duf
+      - fd
       - figlet
       - jq
       - openssl
@@ -22,7 +24,6 @@
       - unzip
       - vim
       - yq
-      - duf
 
 - name: "Install windows tools"
   scoop_install:
