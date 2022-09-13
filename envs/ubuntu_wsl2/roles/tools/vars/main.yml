@@ -1,6 +1,7 @@
 apt_tools:
   - apache2-utils
   - direnv
+  - duf
   - git-lfs
   - htop
   - hub

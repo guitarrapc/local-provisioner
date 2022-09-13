@@ -12,6 +12,7 @@ homebrew_packages:
   - name: ctop
   - name: direnv
   - name: docker
+  - name: duf
   - name: freetype
   - name: gibo
   - name: git

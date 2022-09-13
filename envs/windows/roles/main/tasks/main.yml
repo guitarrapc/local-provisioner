@@ -22,6 +22,7 @@
       - unzip
       - vim
       - yq
+      - duf
 
 - name: "Install windows tools"
   scoop_install:

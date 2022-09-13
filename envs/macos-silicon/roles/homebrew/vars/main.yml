@@ -7,6 +7,7 @@ homebrew_packages:
   - name: carthage
   - name: ctop
   - name: direnv
+  - name: duf
   - name: freetype
   - name: gibo
   - name: git
