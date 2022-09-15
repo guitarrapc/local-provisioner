@@ -26,5 +26,5 @@
   become: yes
   package:
     name: trivy
-    state: present
+    state: latest
     update_cache: true
