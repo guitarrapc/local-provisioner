@@ -1,7 +1,7 @@
 apt_tools:
   - apache2-utils
   - direnv
-  - duf
+  # - duf # not available below 22.04
   - fd-find
   - git-lfs
   - htop
