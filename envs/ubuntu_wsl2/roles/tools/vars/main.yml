@@ -19,28 +19,28 @@ apt_tools:
 binary_install:
   - name: argocd
     version_arg: "version --client"
-    version: "2.1.5"
-    download_url: https://github.com/argoproj/argo-cd/releases/download/v2.1.5/argocd-linux-amd64
+    version: "2.4.11"
+    download_url: https://github.com/argoproj/argo-cd/releases/download/v2.4.11/argocd-linux-amd64
   - name: bombardier
     version_arg: "--version"
-    version: "1.2.4"
-    download_url: https://github.com/codesenberg/bombardier/releases/download/v1.2.4/bombardier-linux-amd64
+    version: "1.2.5"
+    download_url: https://github.com/codesenberg/bombardier/releases/download/v1.2.5/bombardier-linux-amd64
   - name: ctop
     version_arg: "-v"
-    version: "0.7.3"
-    download_url: https://github.com/bcicen/ctop/releases/download/v0.7.3/ctop-0.7.3-linux-amd64
+    version: "0.7.7"
+    download_url: https://github.com/bcicen/ctop/releases/download/v0.7.7/ctop-0.7.7-linux-amd64
   - name: grpc_health_probe
     checksum_type: sha256sum
-    checksum: 68c7301c41b1bd1d89668bf27d5314a10b8330f694e711401fe1494d2c9780c2
-    download_url: https://github.com/grpc-ecosystem/grpc-health-probe/releases/download/v0.4.6/grpc_health_probe-linux-amd64
+    checksum: cc7e5f4eeafb4936838448dd767dbb8cd6bab7ebe25ce3803b00c2079a68c8a8
+    download_url: https://github.com/grpc-ecosystem/grpc-health-probe/releases/download/v0.4.12/grpc_health_probe-linux-amd64
   - name: linkerd
     version_arg: "version --client"
-    version: "2.10.2"
-    download_url: https://github.com/linkerd/linkerd2/releases/download/stable-2.10.2/linkerd2-cli-stable-2.10.2-linux-amd64
+    version: "2.12.0"
+    download_url: https://github.com/linkerd/linkerd2/releases/download/stable-2.12.0/linkerd2-cli-stable-2.12.0-linux-amd64
   - name: kubectl
     version_arg: "version --client --short"
-    version: "1.22.6"
-    download_url: https://storage.googleapis.com/kubernetes-release/release/v1.22.6/bin/linux/amd64/kubectl
+    version: "1.23.11"
+    download_url: https://storage.googleapis.com/kubernetes-release/release/v1.23.11/bin/linux/amd64/kubectl
   - name: sops
     version_arg: "--version"
     version: "3.7.3"
@@ -60,29 +60,29 @@ targz_binary_install:
       - cert
   - name: conftest
     version_arg: "-v"
-    version: "0.27.0"
-    download_url: https://github.com/open-policy-agent/conftest/releases/download/v0.27.0/conftest_0.27.0_Linux_x86_64.tar.gz
+    version: "0.34.0"
+    download_url: https://github.com/open-policy-agent/conftest/releases/download/v0.34.0/conftest_0.34.0_Linux_x86_64.tar.gz
     copy_root: ""
     binaries:
       - conftest
   - name: eksctl
     version_arg: "version"
-    version: "0.55.0"
-    download_url: https://github.com/weaveworks/eksctl/releases/download/0.55.0/eksctl_Linux_amd64.tar.gz
+    version: "0.111.0"
+    download_url: https://github.com/weaveworks/eksctl/releases/download/v0.111.0/eksctl_Linux_amd64.tar.gz
     copy_root: ""
     binaries:
       - eksctl
   - name: grpcurl
     version_arg: "--version"
-    version: "1.7.0"
-    download_url: https://github.com/fullstorydev/grpcurl/releases/download/v1.7.0/grpcurl_1.7.0_linux_x86_64.tar.gz
+    version: "1.8.7"
+    download_url: https://github.com/fullstorydev/grpcurl/releases/download/v1.8.7/grpcurl_1.8.7_linux_x86_64.tar.gz
     copy_root: ""
     binaries:
       - grpcurl
   - name: helm
     version_arg: "version --short"
-    version: "3.5.4"
-    download_url: https://get.helm.sh/helm-v3.5.4-linux-amd64.tar.gz
+    version: "3.9.4"
+    download_url: https://get.helm.sh/helm-v3.9.4-linux-amd64.tar.gz
     copy_root: linux-amd64/
     binaries:
       - helm
@@ -95,16 +95,16 @@ targz_binary_install:
       - kubeval
   - name: lazygit
     version_arg: "--version"
-    version: "0.34"
-    download_url: https://github.com/jesseduffield/lazygit/releases/download/v0.34/lazygit_0.34_Linux_x86_64.tar.gz
+    version: "0.35"
+    download_url: https://github.com/jesseduffield/lazygit/releases/download/v0.35/lazygit_0.35_Linux_x86_64.tar.gz
     copy_root: ""
     binaries:
       - lazygit
   - name: step
     version_arg: "--version"
-    version: "0.17.6"
-    download_url: https://dl.step.sm/gh-release/cli/gh-release-header/v0.17.6/step_linux_0.17.6_amd64.tar.gz
-    copy_root: "step_0.17.6/bin/"
+    version: "0.22.0"
+    download_url: https://github.com/smallstep/cli/releases/download/v0.22.0/step_linux_0.22.0_amd64.tar.gz
+    copy_root: "step_0.22.0/bin/"
     binaries:
       - step
     dest_override: /usr/bin/
@@ -117,8 +117,8 @@ targz_binary_install:
       - tldr
   - name: yq
     version_arg: "--version"
-    version: "4.25.2"
-    download_url: https://github.com/mikefarah/yq/releases/download/v4.25.2/yq_linux_amd64.tar.gz
+    version: "4.27.5"
+    download_url: https://github.com/mikefarah/yq/releases/download/v4.27.5/yq_linux_amd64.tar.gz
     copy_root: ""
     binaries:
       - yq_linux_amd64
@@ -177,4 +177,4 @@ kubectl_plugin:
     install_check_arg: "--help"
 
 terraform:
-  - version: "1.1.6"
+  - version: "1.2.9"
