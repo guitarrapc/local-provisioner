@@ -4,4 +4,4 @@ repository:
       repo: "https://github.com/guitarrapc/dotfiles.git",
       dest: "/Users/guitarrapc/github/guitarrapc/dotfiles",
     }
-run_dotfiles: cd /Users/guitarrapc/github/guitarrapc/dotfiles && ./setup.sh
+run_dotfiles: cd /Users/guitarrapc/github/guitarrapc/dotfiles && ./install.sh
