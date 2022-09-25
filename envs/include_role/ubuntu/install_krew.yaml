@@ -56,10 +56,12 @@
   when: krew_exists is failed
 
 - name: "krew - install"
-  shell: |
-    /tmp/krew/krew-{{ ansible_os }}_{{ ansible_arch }} install krew
-    /tmp/krew/krew-{{ ansible_os }}_{{ ansible_arch }} upgrade krew
+  shell: /tmp/krew/krew-{{ ansible_os }}_{{ ansible_arch }} install krew
   when: krew_exists is failed
+
+- name: "krew - install"
+  shell: /tmp/krew/krew-{{ ansible_os }}_{{ ansible_arch }} upgrade krew
+  ignore_errors: yes
 
 - name: "krew - startup profile.d script"
   become: yes
