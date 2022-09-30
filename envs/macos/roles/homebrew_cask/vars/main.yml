@@ -1,4 +1,5 @@
 homebrew_cask_packages:
+  - name: aws-vault
   - name: cd-to-terminal
   - name: docker
   - name: dotnet-sdk
@@ -20,4 +21,3 @@ homebrew_cask_packages:
   - name: sourcetree
   - name: unity-hub
   - name: visual-studio-code
-

@@ -2,6 +2,7 @@ require 'spec_helper'
 set :backend, :exec
 
 describe command("brew cask list -1") do
+    its(:stdout) { should match "aws-vault" }
     its(:stdout) { should match "cd-to-terminal" }
     its(:stdout) { should match "docker" }
     its(:stdout) { should match "duet" }
@@ -22,4 +23,3 @@ describe command("brew cask list -1") do
     its(:stdout) { should match "unity-hub" }
     its(:stdout) { should match "visual-studio-code" }
 end
-
