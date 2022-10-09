@@ -1,7 +1,7 @@
 # launch wsl2
 wsl.exe -d Ubuntu-22.04 --exec cat /etc/resolv.conf
 # disable Windows Firewall for WSL2 Interface
-Set-NetFirewallProfile -DisabledInterfaceAliases "vEthernet (WSL)" -Name Public
+Set-NetFirewallProfile -DisabledInterfaceAliases "vEthernet (WSL)" -Name Private
 
 # Allow WSL2 to access Windows Docker Daemon to share same images.
 $wslAddress = (Get-NetIPAddress -InterfaceAlias "vEthernet (WSL)" -AddressFamily IPv4).IPAddress
