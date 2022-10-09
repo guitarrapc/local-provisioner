@@ -8,6 +8,10 @@ if [ $? -ne 0 ]; then
     xcode-select --install
 fi
 
+# fix python3 or any xcode tool issue
+# see: prompt keeps popping up asking me to install the command line developer tools - https://developer.apple.com/forums/thread/704099?answerId=727578022#727578022
+xcodebuild -runFirstLaunch
+
 # brew
 echo "check ansible is installed"
 which brew > /dev/null 2>&1
