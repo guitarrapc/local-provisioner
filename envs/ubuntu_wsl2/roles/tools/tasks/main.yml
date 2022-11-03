@@ -24,7 +24,7 @@
     loop_var: args
 
 - name: "Install dpkg tools"
-  include: ../include_role/ubuntu/install_dpkg_tool.yaml
+  include: ../include_role/ubuntu/install_dpkg.yaml
   with_items: "{{ dpkg_install }}"
   loop_control:
     loop_var: args
