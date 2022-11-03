@@ -1,9 +1,29 @@
 # usage pattern  use version args for version detection.
 # - name: NAME_OF_DPKG
+#   version_arg: "--version"
+#   version: "1.0.0"
 #   download_url: https://github.com/owner/repo/releases/download/verison/dpkg_name
+
+- name: "dpkg ({{ args.name }}) - check installed"
+  shell: "{{ args.name }} {{ args.version_arg }} 2>&1 | head -n 1 | grep {{ args.version }}"
+  register: dpkg_exists
+  when: (args.version_arg is defined) and (args.version is defined)
+  changed_when: false
+  ignore_errors: yes
+
+- name: "dpkg ({{ args.name }}) - download"
+  get_url:
+    url: "{{ args.download_url }}"
+    dest: "/tmp/{{ args.name }}.deb"
+  when: (dpkg_exists is failed) or (dpkg_exists_checksum is failed)
 
 - name: "dpkg ({{ args.name }}) - install"
   become: yes
-  delegate_to: app1
-  apt:
-    deb: "{{ args.download_url }}"
+  shell: dpkg -i /tmp/{{ args.name }}.deb
+  when: (dpkg_exists is failed) or (dpkg_exists_checksum is failed)
+
+- name: "dpkg ({{ args.name }}) - remove temp files"
+  file:
+    state: absent
+    path: /tmp/{{ args.name }}.deb
+  when: (dpkg_exists is failed) or (dpkg_exists_checksum is failed)
