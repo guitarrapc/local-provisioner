@@ -6,4 +6,4 @@
   become: yes
   delegate_to: app1
   apt:
-    deb: "{{ arg.download_url }}"
+    deb: "{{ args.download_url }}"
