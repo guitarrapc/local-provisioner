@@ -54,6 +54,10 @@ binary_install:
     version: "1.11.0"
     download_url: https://github.com/wercker/stern/releases/download/1.11.0/stern_linux_amd64
 
+dpkg_install:
+  - name: session manager plugin
+    download_url: https://s3.amazonaws.com/session-manager-downloads/plugin/latest/ubuntu_64bit/session-manager-plugin.deb
+
 targz_binary_install:
   - name: cert
     version_arg: "-v"

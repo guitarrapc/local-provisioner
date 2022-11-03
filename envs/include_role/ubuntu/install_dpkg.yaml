@@ -1,0 +1,9 @@
+# usage pattern  use version args for version detection.
+# - name: NAME_OF_DPKG
+#   download_url: https://github.com/owner/repo/releases/download/verison/dpkg_name
+
+- name: "dpkg ({{ args.name }}) - install"
+  become: yes
+  delegate_to: app1
+  apt:
+    deb: "{{ arg.download_url }}"

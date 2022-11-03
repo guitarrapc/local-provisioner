@@ -23,6 +23,12 @@
   loop_control:
     loop_var: args
 
+- name: "Install dpkg tools"
+  include: ../include_role/ubuntu/install_dpkg_tool.yaml
+  with_items: "{{ dpkg_install }}"
+  loop_control:
+    loop_var: args
+
 # too slow.... may be remove in future. packages should not depends on brew.
 # - name: "Install homebrew"
 #   include: ../include_role/ubuntu/install_homebrew.yaml
