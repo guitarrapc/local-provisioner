@@ -30,6 +30,7 @@
     state: present
     bucket: main
     name:
+      - actionlint
       - aws
       - aws-vault
       - azure-cli

@@ -9,7 +9,6 @@
     state: present
     bucket: extras
     name:
-      - actionlint
       - everything
       - fork
       - gitkraken
