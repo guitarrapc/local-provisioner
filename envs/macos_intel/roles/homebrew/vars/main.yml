@@ -1,12 +1,17 @@
 homebrew_packages:
   - name: autoconf
   - name: awscli
+  - name: aws-iam-authenticator
+  - name: azure-cli
   #  [⌘ + ⌥ + drag & drop] to put shortcut on terminal
   - name: bash-completion
   - name: bat
+  - name: brew-cask-completion
   - name: carthage
+  - name: circleci
   - name: ctop
   - name: direnv
+  - name: docker
   - name: duf
   - name: fd
   - name: freetype
@@ -14,17 +19,20 @@ homebrew_packages:
   - name: git
   - name: git-lfs
   - name: go
-  - name: java # for grpc/android
   - name: hub
   - name: hugo
   - name: jq
-  - name: kubectl
-  - name: nodenv
+  - name: kubectx
+  - name: kubernetes-helm
+  - name: mackerelio/mackerel-agent/mackerel-agent
+  - name: nodebrew
+  - name: obs
   - name: pyenv
   - name: rbenv
   - name: ruby-build
   - name: shellcheck
   - name: stern
+  - name: swiftlint
   - name: tfenv
   - name: tree
   - name: yarn

@@ -81,9 +81,8 @@
 
 - name: "Install trivy"
   include: ../include_role/ubuntu/install_trivy.yaml
-
 #
 # use .devcontainer instead. https://github.com/microsoft/vscode-dev-containers/blob/main/script-library/docs/azcli.md
 # too slow download pacakge..... oh my package.microsoft.com ....
-- name: "Install azure cli"
-  include: ../include_role/ubuntu/install_azurecli.yaml
+# - name: "Install azure cli"
+#   include: ../include_role/ubuntu/install_azurecli.yaml

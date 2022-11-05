@@ -1,11 +1,17 @@
 - name: macos setup
   hosts: "local"
+  become: no
   roles:
     - { role: "defaults", tags: [defaults] }
     - { role: "pam", tags: [pam] }
     - { role: "dotfiles", tags: [dotfiles] }
     - { role: "homebrew", tags: [homebrew] }
     - { role: "homebrew_cask", tags: [homebrew_cask] }
+    - { role: "homebrew_cask_fonts", tags: [homebrew_cask_fonts] }
+    - { role: "bash_completion", tags: [bash_completion] }
+    - { role: "kubernetes", tags: [kubernetes] }
+    - { role: "node", tags: [node] }
+    - { role: "python", tags: [python] }
     - { role: "ruby", tags: [ruby] }
     - { role: "terraform", tags: [terraform] }
 # ansible-playbook -i hosts site.yml --ask-become-pass

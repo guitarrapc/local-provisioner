@@ -7,8 +7,8 @@ Environment | Version | Method | Note
 macOS | Intel Monterey | Ansible Playbook |
 macOS-silicon | ARM Monterey | Ansible Playbook |
 Windows | 11 21H2 <br/> 10 21H2 | scoop |
-Ubuntu | 20.04<br/>18.04<br/>WSL1<br/>WSL2 | Ansible Playbook | 22.04 has problem with needrestart and no support.
-Ubuntu WSL2 | 22.04<br/>20.04 | Ansible Playbook | install docker on wsl2.
+Ubuntu WSL1 | 20.04<br/>18.04<br/>WSL1 | Ansible Playbook | 22.04 has problem with needrestart and no support.
+Ubuntu WSL2 | 22.04<br/>20.04<br/>WSL2 | Ansible Playbook | install docker on wsl2.
 
 ## Run
 
@@ -19,10 +19,10 @@ mkdir -p ~/github/guitarrapc && cd ~/github/guitarrapc
 git clone https://github.com/guitarrapc/local-provisioner
 ```
 
-Ubuntu, run ansible-playbook.
+Ubuntu WSL1, run ansible-playbook.
 
 ```shell
-cd ~/github/guitarrapc/local-provisioner/envs/ubuntu
+cd ~/github/guitarrapc/local-provisioner/envs/ubuntu_wsl1
 . ./prerequisites.sh
 . ./run.sh
 ```
@@ -32,15 +32,24 @@ cd ~/github/guitarrapc/local-provisioner/envs/ubuntu
 Ubuntu WSL2 install docker explict, run ansible-playbook.
 
 ```shell
-cd ~/github/guitarrapc/local-provisioner/envs/ubuntu_wsl2
+cd ~/github/guitarrapc/local-provisioner/envs/ubuntu
 . ./prerequisites.sh
 . ./run.sh
 ```
 
-macOS, run ansible-playbook.
+macOS Silicon, run ansible-playbook.
 
 ```shell
 cd ~/github/guitarrapc/local-provisioner/envs/macos
+. ./prerequisites.sh
+exec $SHELL -l
+. ./run.sh
+```
+
+macOS Intel, run ansible-playbook.
+
+```shell
+cd ~/github/guitarrapc/local-provisioner/envs/macos_intel
 . ./prerequisites.sh
 exec $SHELL -l
 . ./run.sh
@@ -77,49 +86,45 @@ bundle exec rake all
 
 ### Ubuntu
 
-include Ubuntu 20.04, 18.04 and on WSL1, WSL2.
-
 Role | Descriptions
 ---- | ----
 credentials | link credentials on Windows. When it's WSL1 or WSL2.
 debug | ansible status debugger.
-docker | install docker. when it's not WSL2.
+docker | install docker.
 dotfiles | link with [dofiles-linux](https://github.com/guitarrapc/dotfiles-linux)
+needrestart | configure needrestart for WSL1 and WSL2. WSL1 will remove needrestart. WSL2 will disable apt package detection.
 tools | miscellaneous tools setup.
 
 ### macOS
 
 Role | Descriptions
 ---- | ----
-bash_completion | bash completion symlinks
 defaults | macos defaults
 dotfiles | link with [dofiles](https://github.com/guitarrapc/dotfiles)
 homebrew | homebrew packages
-homebrew-cask | homebrew packages for GUI App
-homebrew-cask-fonts | homebrew packages for fonts
-kubernetes | kubernetes related
-node | node.js/npm/npmpackages setup. using nodebrew/npm.
+homebrew_cask | homebrew packages for GUI App
 pam | pam module for touchid
-python | python environment setup. using pyenv and pyvirtualenv.
 ruby | ruby environment setup. using rbenv and just install bundler.
 terraform | terraform environment setup. using tfenv.
 
-* Out of scope: Each Unity Editor
+* Each Unity Editor (Use Unity Hub)
 
 ### Windows
 
 Role | Descriptions
 ---- | ----
 dotfiles | NOT YET. link with [dofiles-win](https://github.com/guitarrapc/dotfiles-win)
-scoop_current | install app via scoop's `current` bucket
-scoop_current | install app via scoop's `extras` bucket
+ba230t | install app via scoop's `ba230t` bucket
+extras | install app via scoop's `extras` bucket
+guitarrapc | install app via scoop's `guitarrapc` bucket
+main | install app via scoop's `main` bucket
 
 Out of scopes
 
 * Docker for Windows.
-* Visual Studio 2017 or higher.
+* Visual Studio 20xx or higher.
 * .NET Core SDK
-* Each Unity Editor
+* Each Unity Editor (Use Unity Hub)
 
 ## How to modify
 
