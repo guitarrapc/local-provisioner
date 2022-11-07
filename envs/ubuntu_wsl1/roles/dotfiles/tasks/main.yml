@@ -1,5 +1,5 @@
 - name: "Install dotfiles"
-  include: ../include_role/ubuntu/install_dotfiles.yaml
+  include_tasks: ../include_role/ubuntu/install_dotfiles.yaml
   with_items: "{{ dotfiles }}"
   loop_control:
     loop_var: args

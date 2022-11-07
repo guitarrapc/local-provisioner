@@ -6,84 +6,84 @@
     update_cache: yes
 
 - name: "Install binaries"
-  include: ../include_role/ubuntu/install_binary.yaml
+  include_tasks: ../include_role/ubuntu/install_binary.yaml
   with_items: "{{ binary_install }}"
   loop_control:
     loop_var: args
 
 - name: "Install .tar.gz binaries"
-  include: ../include_role/ubuntu/install_binary_targz.yaml
+  include_tasks: ../include_role/ubuntu/install_binary_targz.yaml
   with_items: "{{ targz_binary_install }}"
   loop_control:
     loop_var: args
 
 - name: "Install git tools"
-  include: ../include_role/ubuntu/install_git_tool.yaml
+  include_tasks: ../include_role/ubuntu/install_git_tool.yaml
   with_items: "{{ git_tools }}"
   loop_control:
     loop_var: args
 
 - name: "Install dpkg tools"
-  include: ../include_role/ubuntu/install_dpkg.yaml
+  include_tasks: ../include_role/ubuntu/install_dpkg.yaml
   with_items: "{{ dpkg_install }}"
   loop_control:
     loop_var: args
 
 # too slow.... may be remove in future. packages should not depends on brew.
 # - name: "Install homebrew"
-#   include: ../include_role/ubuntu/install_homebrew.yaml
+#   include_tasks: ../include_role/ubuntu/install_homebrew.yaml
 #   with_items: "{{ homebrew }}"
 #   loop_control:
 #     loop_var: args
 
 # each packages
 - name: "Install anyenv"
-  include: ../include_role/ubuntu/install_anyenv.yaml
+  include_tasks: ../include_role/ubuntu/install_anyenv.yaml
   with_items: "{{ anyenv }}"
   loop_control:
     loop_var: args
 
 - name: "Install aws cli"
-  include: ../include_role/ubuntu/install_awscli.yaml
+  include_tasks: ../include_role/ubuntu/install_awscli.yaml
   with_items: "{{ aws_cli }}"
   loop_control:
     loop_var: args
 
 - name: "Install dotnet"
-  include: ../include_role/ubuntu/install_dotnet.yaml
+  include_tasks: ../include_role/ubuntu/install_dotnet.yaml
   with_items: "{{ dotnet }}"
   loop_control:
     loop_var: args
 
 - name: "Install gh cli"
-  include: ../include_role/ubuntu/install_ghcli.yaml
+  include_tasks: ../include_role/ubuntu/install_ghcli.yaml
   with_items: "{{ gh_cli }}"
   loop_control:
     loop_var: args
 
 - name: "Install krew"
-  include: ../include_role/ubuntu/install_krew.yaml
+  include_tasks: ../include_role/ubuntu/install_krew.yaml
   with_items: "{{ krew }}"
   loop_control:
     loop_var: args
 
 - name: "Install kubectl plugins"
-  include: ../include_role/ubuntu/install_kubectl_plugin.yaml
+  include_tasks: ../include_role/ubuntu/install_kubectl_plugin.yaml
   with_items: "{{ kubectl_plugin }}"
   loop_control:
     loop_var: args
 
 - name: "Install terraform"
-  include: ../include_role/ubuntu/install_terraform.yaml
+  include_tasks: ../include_role/ubuntu/install_terraform.yaml
   with_items: "{{ terraform }}"
   loop_control:
     loop_var: args
 
 - name: "Install trivy"
-  include: ../include_role/ubuntu/install_trivy.yaml
+  include_tasks: ../include_role/ubuntu/install_trivy.yaml
 
 #
 # use .devcontainer instead. https://github.com/microsoft/vscode-dev-containers/blob/main/script-library/docs/azcli.md
 # too slow download pacakge..... oh my package.microsoft.com ....
 - name: "Install azure cli"
-  include: ../include_role/ubuntu/install_azurecli.yaml
+  include_tasks: ../include_role/ubuntu/install_azurecli.yaml
