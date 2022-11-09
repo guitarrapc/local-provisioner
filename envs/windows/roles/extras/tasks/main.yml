@@ -25,4 +25,10 @@
       - slack
       - vscode
       - vswhere
-      #- wiztree # commercial use is now required payment.
+
+- name: "Install extras tools"
+  scoop_install:
+    state: absent
+    bucket: extras
+    name:
+      - wiztree # commercial use is now required payment.
