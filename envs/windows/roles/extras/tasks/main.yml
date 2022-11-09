@@ -25,4 +25,4 @@
       - slack
       - vscode
       - vswhere
-      - wiztree
+      #- wiztree # commercial use is now required payment.
