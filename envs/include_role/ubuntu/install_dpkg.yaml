@@ -15,15 +15,15 @@
   get_url:
     url: "{{ args.download_url }}"
     dest: "/tmp/{{ args.name }}.deb"
-  when: (dpkg_exists is failed) or (dpkg_exists_checksum is failed)
+  when: dpkg_exists is failed
 
 - name: "dpkg ({{ args.name }}) - install"
   become: yes
   shell: dpkg -i /tmp/{{ args.name }}.deb
-  when: (dpkg_exists is failed) or (dpkg_exists_checksum is failed)
+  when: dpkg_exists is failed
 
 - name: "dpkg ({{ args.name }}) - remove temp files"
   file:
     state: absent
     path: /tmp/{{ args.name }}.deb
-  when: (dpkg_exists is failed) or (dpkg_exists_checksum is failed)
+  when: dpkg_exists is failed
