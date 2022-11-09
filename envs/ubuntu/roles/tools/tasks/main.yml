@@ -49,11 +49,18 @@
   loop_control:
     loop_var: args
 
-- name: "Install dotnet"
+- name: "Install dotnet (old)"
   include_tasks: ../include_role/ubuntu/install_dotnet.yaml
   with_items: "{{ dotnet }}"
   loop_control:
     loop_var: args
+  when: ansible_distribution_version != "22.04"
+
+- name: "Install dotnet (new)"
+  apt:
+    pkg: "{{ dotnet_tools }}"
+    update_cache: yes
+  when: ansible_distribution_version == "22.04"
 
 - name: "Install gh cli"
   include_tasks: ../include_role/ubuntu/install_ghcli.yaml
