@@ -18,3 +18,10 @@
       - googlechrome-stable # fork version and use https://github.com/42wim/chromeupdates as update source.
       - opa
       - py
+
+- name: "Install guitarrapc tools"
+  scoop_install:
+    state: absent
+    bucket: guitarrapc
+    name:
+      - qttabbar-beta # for Windows 11, but Windows 11 has tab explorer by default.
