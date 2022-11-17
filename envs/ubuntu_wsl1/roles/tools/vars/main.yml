@@ -43,8 +43,8 @@ binary_install:
     download_url: https://github.com/linkerd/linkerd2/releases/download/stable-2.12.0/linkerd2-cli-stable-2.12.0-linux-amd64
   - name: kubectl
     version_arg: "version --client --short"
-    version: "1.23.11"
-    download_url: https://storage.googleapis.com/kubernetes-release/release/v1.23.11/bin/linux/amd64/kubectl
+    version: "1.24.8"
+    download_url: https://storage.googleapis.com/kubernetes-release/release/v1.24.8/bin/linux/amd64/kubectl
   - name: sops
     version_arg: "--version"
     version: "3.7.3"
