@@ -96,13 +96,6 @@ targz_binary_install:
     copy_root: linux-amd64/
     binaries:
       - helm
-  - name: kubeval
-    version_arg: "--version"
-    version: "0.16.1"
-    download_url: https://github.com/instrumenta/kubeval/releases/download/v0.16.1/kubeval-linux-amd64.tar.gz
-    copy_root: ""
-    binaries:
-      - kubeval
   - name: lazygit
     version_arg: "--version"
     version: "0.35"
@@ -153,7 +146,7 @@ anyenv:
     pyenv: "false"
 
 aws_cli:
-  - version: "2.7.8"
+  - version: "2.8.13"
 
 dotnet_tools:
   - dotnet-sdk-6.0
