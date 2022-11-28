@@ -72,7 +72,7 @@ targz_binary_install:
     version_arg: "version"
     version: "0.1.22426"
     download_url: https://github.com/CircleCI-Public/circleci-cli/releases/download/v0.1.22426/circleci-cli_0.1.22426_linux_amd64.tar.gz
-    copy_root: "circleci-cli_0.1.22426_linux_amd64"
+    copy_root: "circleci-cli_0.1.22426_linux_amd64/"
     binaries:
       - circleci
   - name: conftest
