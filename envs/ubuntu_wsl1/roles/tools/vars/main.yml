@@ -49,10 +49,6 @@ binary_install:
     version_arg: "--version"
     version: "3.7.3"
     download_url: https://github.com/mozilla/sops/releases/download/v3.7.3/sops-v3.7.3.linux
-  - name: stern
-    version_arg: "--version"
-    version: "1.11.0"
-    download_url: https://github.com/wercker/stern/releases/download/1.11.0/stern_linux_amd64
 
 dpkg_install:
   - name: session-manager-plugin
@@ -117,6 +113,14 @@ targz_binary_install:
     copy_root: "step_0.22.0/bin/"
     binaries:
       - step
+    dest_override: /usr/bin/
+  - name: stern
+    version_arg: "--version"
+    version: "1.22.0"
+    download_url: https://github.com/stern/stern/releases/download/v1.22.0/stern_1.22.0_linux_amd64.tar.gz
+    copy_root: ""
+    binaries:
+      - stern
     dest_override: /usr/bin/
   - name: tldr
     version_arg: "--version"
