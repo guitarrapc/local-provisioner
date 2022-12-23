@@ -1,0 +1,10 @@
+- name: "git - Add ppa:git-core ppa repository"
+  becore: yes
+  apt_repository:
+    repo: ppa:git-core/ppa
+
+- name: "git - Install latest git"
+  becore: yes
+  apt:
+    pkg: "git"
+    update_cache: yes

@@ -1,9 +1,11 @@
----
 - name: "apt - install apt tools"
   become: yes
   apt:
     pkg: "{{ apt_tools }}"
     update_cache: yes
+
+- name: "Install git"
+  include_tasks: ../include_role/ubuntu/install_git.yaml
 
 - name: "Install binaries"
   include_tasks: ../include_role/ubuntu/install_binary.yaml
