@@ -17,7 +17,7 @@
   ignore_errors: yes
 
 - name: "gh - mkdir opt/gh"
-  become: yes
+  become: true
   file:
     path: "/opt/gh"
     state: directory
@@ -30,7 +30,7 @@
   when: gh_exists is failed
 
 - name: "gh - unzip"
-  become: yes
+  become: true
   unarchive:
     src: /tmp/gh_{{ args.version }}_linux_amd64.tar.gz
     dest: /opt/gh/
@@ -40,7 +40,7 @@
   when: gh_exists is failed
 
 - name: "gh - create symlinks"
-  become: yes
+  become: true
   file:
     src: "/opt/gh/bin/gh"
     dest: "/usr/local/bin/gh"

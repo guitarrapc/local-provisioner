@@ -24,7 +24,7 @@
   when: binary_targz_exists is failed
 
 - name: "binary_targz ({{ args.name }}) - copy"
-  become: yes
+  become: true
   copy:
     src: "/tmp/{{ args.name }}/{{ args.copy_root }}{{ item }}"
     dest: "{{ args.dest_override | default('/usr/local/bin/') }}"

@@ -1,8 +1,8 @@
 - name: "apt - install apt tools"
-  become: yes
+  become: true
   apt:
     pkg: "{{ apt_tools }}"
-    update_cache: yes
+    update_cache: true
 
 - name: "Install git"
   include_tasks: ../include_role/ubuntu/install_git.yaml
@@ -59,10 +59,10 @@
   when: ansible_distribution_version != "22.04"
 
 - name: "Install dotnet (new)"
-  become: yes
+  become: true
   apt:
     pkg: "{{ dotnet_tools }}"
-    update_cache: yes
+    update_cache: true
   when: ansible_distribution_version == "22.04"
 
 - name: "Install gh cli"

@@ -63,7 +63,7 @@
   ignore_errors: yes
 
 - name: "krew - startup profile.d script"
-  become: yes
+  become: true
   blockinfile:
     create: yes
     path: /etc/profile.d/profile_ansible_init_krew.sh

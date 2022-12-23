@@ -1,5 +1,5 @@
 - name: enable touchid for sudo Authentication
-  become: yes
+  become: true
   lineinfile:
     path: /etc/pam.d/sudo
     insertafter: "^# sudo: auth account password session"

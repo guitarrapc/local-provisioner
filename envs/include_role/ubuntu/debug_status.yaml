@@ -6,7 +6,7 @@
   debug:
     msg: "{{ lookup('env','HOME') }}"
 - name: "become env.HOME"
-  become: yes
+  become: true
   debug:
     msg: "{{ lookup('env','HOME') }}"
 
@@ -15,14 +15,14 @@
   debug:
     msg: "{{ ansible_user_id }}"
 - name: "become ansible_user_id"
-  become: yes
+  become: true
   debug:
     msg: "{{ ansible_user_id }}"
 - name: "env.User"
   debug:
     msg: "{{ lookup('env','USER') }}"
 - name: "become env.User"
-  become: yes
+  become: true
   debug:
     msg: "{{ lookup('env','USER') }}"
 

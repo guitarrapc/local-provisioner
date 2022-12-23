@@ -18,7 +18,7 @@
   when: dpkg_exists is failed
 
 - name: "dpkg ({{ args.name }}) - install"
-  become: yes
+  become: true
   shell: dpkg -i /tmp/{{ args.name }}.deb
   when: dpkg_exists is failed
 

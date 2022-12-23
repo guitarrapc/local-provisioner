@@ -1,19 +1,19 @@
 - name: "configure needrestart - remove needrestart"
-  become: yes
+  become: true
   apt:
     pkg: "needrestart"
     state: absent
   when: is_wsl1 == "1"
 
 - name: "needrestart - check OS is using needrestart"
-  become: yes
+  become: true
   stat:
     path: /usr/sbin/needrestart
   register: needrestart_exists
   when: is_wsl2 == "1"
 
 - name: "needrestart - place custom conf.d"
-  become: yes
+  become: true
   copy:
     dest: /etc/needrestart/conf.d/99_ansible.conf
     content: |

@@ -11,7 +11,7 @@
 # must use shell, instead of command.
 # ref: https://stackoverflow.com/questions/56989048/issue-in-ansible-playbook-command/56991314
 - name: "dotfiles - create symlinks"
-  become: yes
+  become: true
   become_user: "{{ ansible_user_id }}"
   shell: "{{ args.run_command }}"
   args:

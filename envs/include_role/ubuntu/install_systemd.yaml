@@ -2,17 +2,17 @@
 
 # prerequisites
 - name: "systemd - add systemd prerequisite packages"
-  become: yes
+  become: true
   apt:
     pkg:
       - daemonize
       - dbus-user-session
       - fontconfig
-    update_cache: yes
+    update_cache: true
 
 # scripts
 - name: "systemd - contents start-systemd-namespace script"
-  become: yes
+  become: true
   copy:
     remote_src: yes
     dest: "/usr/sbin/start-systemd-namespace"
@@ -59,13 +59,13 @@
       fi
 
 - name: "systemd - generate start-systemd-namespace script"
-  become: yes
+  become: true
   file:
     path: "/usr/sbin/start-systemd-namespace"
     mode: a+x
 
 - name: "systemd - contents enter-systemd-namespace script"
-  become: yes
+  become: true
   copy:
     remote_src: yes
     dest: "/usr/sbin/enter-systemd-namespace"
@@ -100,13 +100,13 @@
       fi
 
 - name: "systemd - generate enter-systemd-namespace script"
-  become: yes
+  become: true
   file:
     path: "/usr/sbin/enter-systemd-namespace"
     mode: a+x
 
 - name: "systemd - sudoers config for systemd"
-  become: yes
+  become: true
   blockinfile:
     path: "/etc/sudoers"
     block: |
@@ -118,7 +118,7 @@
       %sudo ALL=(ALL) NOPASSWD: /usr/sbin/enter-systemd-namespace
 
 - name: "systemd - source enter-systemd-namespace in /etc/bash.bashrc"
-  become: yes
+  become: true
   blockinfile:
     path: "/etc/bash.bashrc"
     insertafter: "System-wide"
@@ -127,7 +127,7 @@
       source /usr/sbin/start-systemd-namespace
 
 - name: "systemd - fix login path to follow before bash login (systemd)"
-  become: yes
+  become: true
   blockinfile:
     create: yes
     path: /etc/profile.d/profile_ansible_init_systemd_login.sh

@@ -1,6 +1,6 @@
 # ref: https://aquasecurity.github.io/trivy/v0.18.2/installation/
 - name: "trivy - make sure HTTPS is supported by apt"
-  become: yes
+  become: true
   apt:
     pkg:
       - wget
@@ -8,21 +8,21 @@
       # - gnupg # want to skip....
       - lsb-release
     state: present
-    update_cache: yes
+    update_cache: true
 
 - name: "trivy - import apt key"
-  become: yes
+  become: true
   ansible.builtin.apt_key:
     url: https://aquasecurity.github.io/trivy-repo/deb/public.key
     state: present
 
 - name: "trivy - add repo for Ubuntu"
-  become: yes
+  become: true
   shell: echo deb https://aquasecurity.github.io/trivy-repo/deb $(lsb_release -sc) main | sudo tee -a /etc/apt/sources.list.d/trivy.list
   changed_when: false
 
 - name: "trivy - install trivy"
-  become: yes
+  become: true
   package:
     name: trivy
     state: latest

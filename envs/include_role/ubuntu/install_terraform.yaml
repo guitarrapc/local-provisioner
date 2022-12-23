@@ -4,7 +4,7 @@
     dest: "{{ ansible_home }}/.tfenv"
 
 - name: "tfenv - Create symlinks"
-  become: yes
+  become: true
   file:
     src: "{{ ansible_home }}/.tfenv/bin/{{ item }}"
     dest: "/usr/local/bin/{{ item }}"

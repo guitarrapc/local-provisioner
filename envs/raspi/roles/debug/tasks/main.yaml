@@ -4,7 +4,7 @@
   debug:
     var: ansible_env.HOME
 - name: "become env.HOME"
-  become: yes
+  become: true
   debug:
     var: ansible_env.HOME
 
@@ -13,7 +13,7 @@
   debug:
     var: ansible_user_id
 - name: "become ansible_user_id"
-  become: yes
+  become: true
   debug:
     var: ansible_user_id
 - name: "ansible_ssh_user"

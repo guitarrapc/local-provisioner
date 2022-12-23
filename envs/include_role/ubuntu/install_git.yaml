@@ -1,10 +1,11 @@
 - name: "git - Add ppa:git-core ppa repository"
-  become: yes
+  become: true
   apt_repository:
     repo: ppa:git-core/ppa
 
 - name: "git - Install latest git"
-  become: yes
+  become: true
   apt:
     pkg: "git"
-    update_cache: yes
+    update_cache: true
+    force_apt_get: true

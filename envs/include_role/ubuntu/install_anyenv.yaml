@@ -4,7 +4,7 @@
     dest: "{{ ansible_home }}/.anyenv"
 
 - name: "anyenv - Create symlinks"
-  become: yes
+  become: true
   file:
     src: "{{ ansible_home }}/.anyenv/bin/{{ item }}"
     dest: "/usr/local/bin/{{ item }}"

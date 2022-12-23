@@ -21,7 +21,7 @@
   when: awscli_exists is failed
 
 - name: "awscli - install"
-  become: yes
+  become: true
   shell: /tmp/aws/install --update
   when: awscli_exists is failed
 

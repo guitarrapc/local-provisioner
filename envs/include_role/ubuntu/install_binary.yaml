@@ -31,7 +31,7 @@
   when: (binary_exists is failed) or (binary_exists_checksum is failed)
 
 - name: "binary ({{ args.name }}) - copy"
-  become: yes
+  become: true
   copy:
     src: "/tmp/{{ args.name }}"
     dest: "{{ args.dest_override | default('/usr/local/bin/') }}"
