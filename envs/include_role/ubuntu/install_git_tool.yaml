@@ -1,11 +1,11 @@
-- name: "git_tool ({{ args.name }}) - clone"
+- name: "git_tool - ({{ args.name }}) - clone"
   become: yes
   git:
     repo: "{{ args.git_https_url }}"
     dest: "{{ ansible_home }}/github/{{ args.name }}"
     accept_hostkey: yes
 
-- name: "git_tool ({{ args.name }}) - create symlinks"
+- name: "git_tool - ({{ args.name }}) - create symlinks"
   become: yes
   file:
     src: "{{ ansible_home }}/github/{{ args.name }}/{{ item }}"

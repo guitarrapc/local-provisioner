@@ -1,4 +1,3 @@
----
 # docker
 # if wsl2 docker is enabled, docker will be locate in /usr/bin/docker
 # to use this spec, you must disable docker run on wsl but run on Hyper-V instead.

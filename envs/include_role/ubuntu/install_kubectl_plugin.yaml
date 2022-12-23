@@ -1,4 +1,3 @@
----
 # krew: https://krew.sigs.k8s.io/docs/user-guide/setup/install/
 - name: "kubectl_plugin ({{ args.name }}) - check installed"
   shell: "kubectl {{ args.name }} {{ args.install_check_arg }} 2>&1"

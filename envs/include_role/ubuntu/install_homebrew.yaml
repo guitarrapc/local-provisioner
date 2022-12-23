@@ -1,4 +1,3 @@
----
 - name: "homebrew - clone"
   git:
     repo: https://github.com/Homebrew/brew
