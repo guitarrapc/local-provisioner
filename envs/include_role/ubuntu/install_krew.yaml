@@ -58,7 +58,7 @@
   shell: /tmp/krew/krew-{{ ansible_os }}_{{ ansible_arch }} install krew
   when: krew_exists is failed
 
-- name: "krew - install"
+- name: "krew - upgrade"
   shell: /tmp/krew/krew-{{ ansible_os }}_{{ ansible_arch }} upgrade krew
   ignore_errors: yes
 
