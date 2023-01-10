@@ -172,25 +172,27 @@ krew:
   - version: "0.4.3"
 
 kubectl_plugin:
-  - name: explore
+  - name: explore # https://github.com/keisku/kubectl-explore A better kubectl explain with the fuzzy finder
     install_check_arg: "--help"
-  - name: fuzzy
+  - name: fuzzy # https://github.com/d-kuro/kubectl-fuzzy Instead of specifying full resource names to kubectl commands, you can choose them from an interactive list that you can filter by typing a few characters.
     install_check_arg: "--help"
-  - name: get-all
+  - name: get-all # https://github.com/corneliusweig/ketall Like `kubectl get all`, but get really all resources
     install_check_arg: "--help"
-  - name: iexec
+  - name: iexec # https://github.com/gabeduke/kubectl-iexec Kubectl plugin to interactively exec into a pod
     install_check_arg: "--help"
-  - name: images
+  - name: images # https://github.com/chenjiandongx/kubectl-images Show container images used in the cluster.
     install_check_arg: "--help"
-  - name: neat
+  - name: lineage # https://github.com/tohjustin/kube-lineage display all dependencies or dependents of an object in a Kubernetes cluster
     install_check_arg: "--help"
-  - name: resource-capacity
+  - name: neat # https://github.com/itaysk/kubectl-neat Clean up Kubernetes yaml and json output to make it readable
     install_check_arg: "--help"
-  - name: rolesum
+  - name: resource-capacity # https://github.com/robscott/kube-capacity A simple CLI that provides an overview of the resource requests, limits, and utilization in a Kubernetes cluster
     install_check_arg: "--help"
-  - name: view-secret
+  - name: rolesum # https://github.com/Ladicle/kubectl-rolesum Summarize Kubernetes RBAC roles for the specified subjects.
     install_check_arg: "--help"
-  - name: who-can
+  - name: view-secret # https://github.com/elsesiy/kubectl-view-secret Kubernetes CLI plugin to decode Kubernetes secrets
+    install_check_arg: "--help"
+  - name: who-can # https://github.com/aquasecurity/kubectl-who-can Show who has RBAC permissions to perform actions on different resources in Kubernetes
     install_check_arg: "--help"
 
 terraform:
