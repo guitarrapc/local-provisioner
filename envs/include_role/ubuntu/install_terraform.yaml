@@ -15,8 +15,6 @@
 
 - name: "tfenv - check installed"
   ansible.builtin.shell: set -o pipefail && tfenv list | grep {{ args.version }}
-  args:
-    executable: /bin/bash
   register: terraform_version
   changed_when: false
   ignore_errors: true

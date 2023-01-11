@@ -12,8 +12,6 @@
 
 - name: "binary ({{ args.name }}) - check installed"
   ansible.builtin.shell: set -o pipefail && "{{ args.name }} {{ args.version_arg }} 2>&1 | head -n 1 | grep {{ args.version }}"
-  args:
-    executable: /bin/bash
   register: binary_exists
   when: (args.version_arg is defined) and (args.version is defined)
   changed_when: false
@@ -21,8 +19,6 @@
 
 - name: "binary ({{ args.name }}) - check installed with checksum"
   ansible.builtin.shell: set -o pipefail && "{{ args.checksum_type }} /usr/local/bin/{{ args.name }} | grep {{ args.checksum }}"
-  args:
-    executable: /bin/bash
   register: binary_exists_checksum
   when: (args.checksum_type is defined) and (args.checksum is defined)
   changed_when: false

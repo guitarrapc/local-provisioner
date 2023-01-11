@@ -19,8 +19,6 @@
 - name: "trivy - add repo for Ubuntu"
   become: true
   ansible.builtin.shell: set -o pipefail && echo deb https://aquasecurity.github.io/trivy-repo/deb $(lsb_release -sc) main | sudo tee -a /etc/apt/sources.list.d/trivy.list
-  args:
-    executable: /bin/bash
   changed_when: false
 
 - name: "trivy - install trivy"

@@ -12,8 +12,6 @@
 
 - name: "gh - check exists"
   ansible.builtin.shell: set -o pipefail && gh --version 2>&1 | head -n 1 | grep "{{ args.version }}"
-  args:
-    executable: /bin/bash
   register: gh_exists
   changed_when: false
   ignore_errors: true

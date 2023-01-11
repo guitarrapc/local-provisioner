@@ -16,7 +16,6 @@
       gpg --dearmor |
       sudo tee /etc/apt/trusted.gpg.d/microsoft.gpg > /dev/null
   args:
-    executable: /bin/bash
     warn: false
   changed_when: false
 
@@ -24,8 +23,6 @@
   become: true
   # $(lsb_release -cs) = {{ ansible_distribution_release }}
   ansible.builtin.shell: set -o pipefail && echo "deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ {{ ansible_distribution_release }} main" | sudo tee /etc/apt/sources.list.d/azure-cli.list
-  args:
-    executable: /bin/bash
   changed_when: false
 
 - name: "azure-cli - install"

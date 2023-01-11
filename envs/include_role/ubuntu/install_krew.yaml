@@ -1,16 +1,12 @@
 # prepare
 - name: "krew - get os"
   ansible.builtin.shell: set -o pipefail && uname | tr '[:upper:]' '[:lower:]'
-  args:
-    executable: /bin/bash
   register: os_value
   changed_when: false
   check_mode: false
 
 - name: "krew - get arch"
   ansible.builtin.shell: set -o pipefail && uname -m | sed -e 's/x86_64/amd64/' -e 's/\(arm\)\(64\)\?.*/\1\2/' -e 's/aarch64$/arm64/'
-  args:
-    executable: /bin/bash
   register: arch_value
   changed_when: false
   check_mode: false
@@ -26,8 +22,6 @@
 # krew: https://krew.sigs.k8s.io/docs/user-guide/setup/install/
 - name: "krew - check installed"
   ansible.builtin.shell: "set -o pipefail && kubectl krew version | grep {{ args.version }}"
-  args:
-    executable: /bin/bash
   environment:
     # require re-login shell for 1st install, let's manual export shellenv and use it
     PATH: "{{ ansible_home }}/.krew/bin:{{ ansible_env.PATH }}"

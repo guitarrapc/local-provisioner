@@ -7,8 +7,6 @@
 
 - name: check python3 installed
   ansible.builtin.shell: set -o pipefail && pyenv versions | grep {{ python3_version }}
-  args:
-    executable: /bin/bash
   register: pyenv3_version
   changed_when: false
   ignore_errors: true
@@ -19,8 +17,6 @@
 
 - name: check python2 installed
   ansible.builtin.shell: set -o pipefail && pyenv versions | grep {{ python2_version }}
-  args:
-    executable: /bin/bash
   register: pyenv2_version
   changed_when: false
   ignore_errors: true
