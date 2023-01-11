@@ -36,7 +36,7 @@
   register: npm_updated
 
 - name: install npm packges
-  npm:
+  community.general.npm:
     name: "{{ item.name }}"
     global: "{{ item.global|default('yes') }}"
   with_items: "{{ npm_pacakges }}"
