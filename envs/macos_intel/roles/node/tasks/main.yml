@@ -17,6 +17,8 @@
 
 - name: check installed node.js version
   ansible.builtin.shell: set -o pipefail && $SHELL -lc "nodebrew ls | grep {{ nodebrew_nodejs_version }}"
+  args:
+    executable: /bin/bash
   ignore_errors: True
   changed_when: nodejs_target_version_exist.rc > 0
   when: nodejs_installed is success
