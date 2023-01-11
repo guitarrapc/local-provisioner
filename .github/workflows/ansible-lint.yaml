@@ -17,8 +17,18 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [macos, macos_intel, raspi, ubuntu, ubuntu_wsl1]
-    runs-on: ubuntu-latest
+        include:
+          - os: macos
+            runs-on: [macos-latest]
+          - os: macos_intel
+            runs-on: [macos-latest]
+          - os: raspi
+            runs-on: [ubuntu-latest]
+          - os: ubuntu
+            runs-on: [ubuntu-latest]
+          - os: ubuntu_wsl1
+            runs-on: [ubuntu-latest]
+    runs-on: ${{ matrix.runs-on}}
     timeout-minutes: 60
     steps:
       - uses: actions/checkout@v3
