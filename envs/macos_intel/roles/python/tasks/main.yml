@@ -25,8 +25,9 @@
   ignore_errors: true
 
 - name: install python2
-  ansible.builtin.command: CFLAGS="-I$(xcrun --show-sdk-path)/usr/include" pyenv install {{ python2_version }}
+  ansible.builtin.shell: CFLAGS="-I$(xcrun --show-sdk-path)/usr/include" pyenv install {{ python2_version }}
   when: pyenv2_version is failed
 
 - name: pyenv global set {{ python3_version }} & {{ python2_version }}
   ansible.builtin.command: pyenv global {{ python3_version }} {{ python2_version }}
+  when: (pyenv3_version is failed) or (pyenv2_version is failed)

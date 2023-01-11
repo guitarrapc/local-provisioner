@@ -16,6 +16,9 @@
 - name: Create symlinks
   ansible.builtin.command: bash -lc "{{ run_dotfiles }}"
   changed_when: false
-  register: dotfiles
+  register: install_dotfiles
 
-- debug: msg="{{ dotfiles.stdout_lines }}"
+- name: "Debug show result"
+  ansible.builtin.debug:
+    msg: "{{ install_dotfiles.stdout_lines }}"
+  when: install_dotfiles.stdout != ""

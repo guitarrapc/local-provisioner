@@ -2,15 +2,17 @@
   ansible.builtin.file:
     path: "$HOME/.nodebrew"
     state: directory
+    mode: "0755"
 
 - name: Create .nodebrew src directory
   ansible.builtin.file:
     path: "$HOME/.nodebrew/src"
     state: directory
+    mode: "0755"
 
 - name: check node.js installed
   ansible.builtin.command: $SHELL -lc "which node"
-  ignore_errors: True
+  ignore_errors: true
   changed_when: nodejs_installed.rc > 0
   register: nodejs_installed
 
@@ -18,7 +20,7 @@
   ansible.builtin.shell: set -o pipefail && $SHELL -lc "nodebrew ls | grep {{ nodebrew_nodejs_version }}"
   args:
     executable: /bin/bash
-  ignore_errors: True
+  ignore_errors: true
   changed_when: nodejs_target_version_exist.rc > 0
   when: nodejs_installed is success
   register: nodejs_target_version_exist
@@ -34,7 +36,7 @@
   register: npm_updated
 
 - name: install npm packges
-  npm:
+  community.general.npm:
     name: "{{ item.name }}"
     global: "{{ item.global|default('yes') }}"
   with_items: "{{ npm_pacakges }}"
