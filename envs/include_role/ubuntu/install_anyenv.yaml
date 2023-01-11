@@ -19,6 +19,8 @@
 
 - name: "anyenv - install --init"
   ansible.builtin.shell: set -o pipefail && yes | anyenv install --init
+  args:
+    executable: /bin/bash
   when: not anyenv_confi_exists.stat.exists
   changed_when: false
 

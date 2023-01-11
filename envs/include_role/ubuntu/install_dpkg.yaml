@@ -6,6 +6,8 @@
 
 - name: "dpkg ({{ args.name }}) - check installed"
   ansible.builtin.shell: set -o pipefail && "{{ args.name }} {{ args.version_arg }} 2>&1 | head -n 1 | grep {{ args.version }}"
+  args:
+    executable: /bin/bash
   register: dpkg_exists
   when: (args.version_arg is defined) and (args.version is defined)
   changed_when: false

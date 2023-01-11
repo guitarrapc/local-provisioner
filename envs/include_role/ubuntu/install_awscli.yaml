@@ -3,6 +3,8 @@
 # symlink to /usr/local/bin/aws by default.
 - name: "awscli - check exists"
   ansible.builtin.shell: set -o pipefail && aws --version 2>&1 | head -n 1 | grep "aws-cli/{{ args.version }}"
+  args:
+    executable: /bin/bash
   register: awscli_exists
   changed_when: false
   ignore_errors: true

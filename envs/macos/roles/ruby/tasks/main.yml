@@ -1,6 +1,8 @@
 ---
 - name: check ruby installed
   ansible.builtin.shell: set -o pipefail && rbenv versions | grep {{ ruby_version }}
+  args:
+    executable: /bin/bash
   register: rbenv_version
   changed_when: false
   ignore_errors: true
