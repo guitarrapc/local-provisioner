@@ -54,6 +54,7 @@
 - name: "krew - upgrade"
   ansible.builtin.command: /tmp/krew/krew-{{ ansible_os }}_{{ arch_value.stdout }} upgrade krew
   ignore_errors: true
+  when: krew_exists
 
 - name: "krew - startup profile.d script"
   become: true

@@ -1,6 +1,6 @@
 - name: macos setup
   hosts: "local"
-  become: no
+  become: false
   roles:
     - { role: "defaults", tags: [defaults] }
     - { role: "pam", tags: [pam] }

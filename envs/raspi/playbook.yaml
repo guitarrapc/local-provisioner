@@ -1,5 +1,5 @@
 - name: raspi ubuntu setup
   hosts: "all_pies"
-  become: no
+  become: false
   roles:
     - { role: "debug", tags: [debug] }

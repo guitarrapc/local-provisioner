@@ -8,7 +8,7 @@
       ansible.builtin.shell: set -o pipefail && cat /proc/version | grep Microsoft | wc -l
       register: wsl1_exists
       changed_when: false
-      check_mode: no
+      check_mode: false
       tags: always
     - name: Preset WSL1 or not
       ansible.builtin.set_fact: is_wsl1='{{ wsl1_exists.stdout }}'
@@ -17,7 +17,7 @@
       ansible.builtin.shell: set -o pipefail && cat /proc/version | grep microsoft-standard | wc -l
       register: wsl2_exists
       changed_when: false
-      check_mode: no
+      check_mode: false
       tags: always
     - name: Preset WSL2 or not
       ansible.builtin.set_fact: is_wsl2='{{ wsl2_exists.stdout }}'
