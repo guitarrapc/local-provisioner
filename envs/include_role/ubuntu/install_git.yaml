@@ -1,6 +1,6 @@
 - name: "git - Add ppa:git-core ppa repository"
   become: true
-  apt_repository:
+  ansible.builtin.apt_repository:
     repo: ppa:git-core/ppa
     update_cache: true
 

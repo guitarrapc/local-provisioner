@@ -19,7 +19,7 @@
 
 - name: "docker - add repo for Ubuntu"
   become: true
-  apt_repository:
+  ansible.builtin.apt_repository:
     # $(lsb_release -cs) = {{ ansible_distribution_release }}
     repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable
     state: present
