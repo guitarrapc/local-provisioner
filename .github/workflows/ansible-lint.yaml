@@ -22,7 +22,7 @@ jobs:
     timeout-minutes: 60
     steps:
       - uses: actions/checkout@v3
-      - name: ansible-lint (macOS)
-        uses: ansible/ansible-lint-action@main
-        with:
-          path: ./envs/${{ matrix.os }}/playbook.yaml
+      - name: Install ansible-lint
+        run: pip3 install ansible-lint
+      - name: Run ansbile-lint
+        run: ansible-lint ./envs/${{ matrix.os }}/playbook.yaml
