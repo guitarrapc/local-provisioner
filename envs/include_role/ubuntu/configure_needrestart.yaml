@@ -1,20 +1,20 @@
-- name: "configure needrestart - remove needrestart"
+- name: "Needrestart - remove needrestart"
   become: true
-  apt:
+  ansible.builtin.apt:
     pkg: "needrestart"
     state: absent
   when: is_wsl1 == "1"
 
-- name: "needrestart - check OS is using needrestart"
+- name: "Needrestart - check OS is using needrestart"
   become: true
-  stat:
+  ansible.builtin.stat:
     path: /usr/sbin/needrestart
   register: needrestart_exists
   when: is_wsl2 == "1"
 
-- name: "needrestart - place custom conf.d"
+- name: "Needrestart - place custom conf.d"
   become: true
-  copy:
+  ansible.builtin.copy:
     dest: /etc/needrestart/conf.d/99_ansible.conf
     content: |
       # use stdin to select restart service

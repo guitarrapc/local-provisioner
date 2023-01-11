@@ -3,7 +3,7 @@
   git:
     repo: "{{ args.git_https_url }}"
     dest: "{{ ansible_home }}/github/{{ args.name }}"
-    accept_hostkey: yes
+    accept_hostkey: true
 
 - name: "git_tool - ({{ args.name }}) - create symlinks"
   become: true

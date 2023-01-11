@@ -1,6 +1,6 @@
 - name: "azure-cli - make sure install prerequisites"
   become: true
-  apt:
+  ansible.builtin.apt:
     pkg:
       - apt-transport-https
       - ca-certificates
@@ -27,7 +27,7 @@
 
 - name: "azure-cli - install"
   become: true
-  apt:
+  ansible.builtin.apt:
     pkg: azure-cli
     state: latest
     update_cache: true

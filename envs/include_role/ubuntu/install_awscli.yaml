@@ -5,7 +5,7 @@
   shell: aws --version 2>&1 | head -n 1 | grep "aws-cli/{{ args.version }}"
   register: awscli_exists
   changed_when: false
-  ignore_errors: yes
+  ignore_errors: true
 
 - name: "awscli - download"
   shell: curl -L "https://awscli.amazonaws.com/awscli-exe-linux-x86_64-{{ args.version }}.zip" -o /tmp/awscliv2.zip
@@ -17,7 +17,7 @@
   unarchive:
     src: /tmp/awscliv2.zip
     dest: /tmp
-    remote_src: yes
+    remote_src: true
   when: awscli_exists is failed
 
 - name: "awscli - install"

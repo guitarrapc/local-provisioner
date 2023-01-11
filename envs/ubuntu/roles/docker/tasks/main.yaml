@@ -1,11 +1,11 @@
 - name: "Install docker"
-  include_tasks: ../include_role/ubuntu/install_docker_wsl2.yaml
+  ansible.builtin.include_tasks: ../include_role/ubuntu/install_docker_wsl2.yaml
   with_items: "{{ docker }}"
   loop_control:
     loop_var: args
 
 - name: "Install docker-compose"
-  include_tasks: ../include_role/ubuntu/install_binary.yaml
+  ansible.builtin.include_tasks: ../include_role/ubuntu/install_binary.yaml
   with_items: "{{ docker_compose }}"
   loop_control:
     loop_var: args

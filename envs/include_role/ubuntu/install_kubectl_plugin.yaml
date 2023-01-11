@@ -6,7 +6,7 @@
     PATH: "{{ ansible_home }}/.krew/bin:{{ ansible_env.PATH }}"
   register: kubectl_plugin_exists
   changed_when: false
-  ignore_errors: yes
+  ignore_errors: true
 
 - name: "kubectl_plugin ({{ args.name }}) - install"
   shell: kubectl krew install {{ args.name }}

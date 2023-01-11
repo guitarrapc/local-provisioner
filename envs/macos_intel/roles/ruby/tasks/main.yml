@@ -3,7 +3,7 @@
   shell: rbenv versions | grep {{ ruby_version }}
   register: rbenv_version
   changed_when: false
-  ignore_errors: yes
+  ignore_errors: true
 
 - name: install rbenv
   shell: rbenv install {{ ruby_version }}

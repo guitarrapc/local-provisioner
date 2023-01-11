@@ -2,7 +2,7 @@
 # ref: https://github.com/ocha/ansible-role-dotnet-core
 - name: "dotnet - make sure HTTPS is supported by apt"
   become: true
-  apt:
+  ansible.builtin.apt:
     name: apt-transport-https
     state: present
     update_cache: true

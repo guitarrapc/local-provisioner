@@ -1,2 +1,2 @@
 - name: "debug status"
-  include_tasks: ../include_role/ubuntu/debug_status.yaml
+  ansible.builtin.include_tasks: ../include_role/ubuntu/debug_status.yaml

@@ -15,14 +15,14 @@
   register: binary_exists
   when: (args.version_arg is defined) and (args.version is defined)
   changed_when: false
-  ignore_errors: yes
+  ignore_errors: true
 
 - name: "binary ({{ args.name }}) - check installed with checksum"
   shell: "{{ args.checksum_type }} /usr/local/bin/{{ args.name }} | grep {{ args.checksum }}"
   register: binary_exists_checksum
   when: (args.checksum_type is defined) and (args.checksum is defined)
   changed_when: false
-  ignore_errors: yes
+  ignore_errors: true
 
 - name: "binary ({{ args.name }}) - download"
   get_url:
@@ -32,11 +32,11 @@
 
 - name: "binary ({{ args.name }}) - copy"
   become: true
-  copy:
+  ansible.builtin.copy:
     src: "/tmp/{{ args.name }}"
     dest: "{{ args.dest_override | default('/usr/local/bin/') }}"
     mode: "a+x"
-    remote_src: yes
+    remote_src: true
   when: (binary_exists is failed) or (binary_exists_checksum is failed)
 
 - name: "binary ({{ args.name }}) - remove temp files"

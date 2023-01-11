@@ -13,7 +13,7 @@
     - anyenv
 
 - name: "anyenv - check ~/.config/anyenv/anyenv-install exists"
-  stat:
+  ansible.builtin.stat:
     path: "{{ ansible_home }}/.config/anyenv/anyenv-install"
   register: anyenv_confi_exists
 

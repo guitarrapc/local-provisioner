@@ -5,7 +5,7 @@
     update_cache: true
 
 - name: Pip3 - Install pip3 packages
-  pip:
+  ansible.builtin.pip:
     name: "{{ pip_tools }}"
 
 - name: "Git - Install git cli"

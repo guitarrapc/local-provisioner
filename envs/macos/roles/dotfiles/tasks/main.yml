@@ -3,13 +3,13 @@
   file:
     path: "{{ base_path }}"
     state: directory
-    force: yes
+    force: true
 
 - name: Clone dotfiles
   git:
     repo: "{{ item.repo }}"
     dest: "{{ item.dest }}"
-    force: yes
+    force: true
   with_items: "{{ repository }}"
 
 - name: Create symlinks

@@ -33,7 +33,7 @@
     PATH: "{{ ansible_home }}/.krew/bin:{{ ansible_env.PATH }}"
   register: krew_exists
   changed_when: false
-  ignore_errors: yes
+  ignore_errors: true
 
 - name: "krew - tmp directory"
   file:
@@ -51,7 +51,7 @@
   unarchive:
     src: "/tmp/krew/krew.tar.gz"
     dest: /tmp/krew
-    remote_src: yes
+    remote_src: true
   when: krew_exists is failed
 
 - name: "krew - install"
@@ -60,12 +60,12 @@
 
 - name: "krew - upgrade"
   shell: /tmp/krew/krew-{{ ansible_os }}_{{ ansible_arch }} upgrade krew
-  ignore_errors: yes
+  ignore_errors: true
 
 - name: "krew - startup profile.d script"
   become: true
   blockinfile:
-    create: yes
+    create: true
     path: /etc/profile.d/profile_ansible_init_krew.sh
     block: |
       if [[ -d "$HOME/.krew" ]]; then

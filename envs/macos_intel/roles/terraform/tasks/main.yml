@@ -3,7 +3,7 @@
   shell: tfenv list | grep {{ terraform_version }}
   register: tfenv_version
   changed_when: false
-  ignore_errors: yes
+  ignore_errors: true
 
 - name: install terraform
   shell: tfenv install {{ terraform_version }}

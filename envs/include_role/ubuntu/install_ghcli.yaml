@@ -4,7 +4,7 @@
   shell: "gh --version"
   register: gh_current
   changed_when: false
-  ignore_errors: yes
+  ignore_errors: true
 
 - name: "gh - current version"
   debug:
@@ -14,14 +14,14 @@
   shell: gh --version 2>&1 | head -n 1 | grep "{{ args.version }}"
   register: gh_exists
   changed_when: false
-  ignore_errors: yes
+  ignore_errors: true
 
 - name: "gh - mkdir opt/gh"
   become: true
   file:
     path: "/opt/gh"
     state: directory
-    force: yes
+    force: true
 
 - name: "gh - download"
   shell: curl -L "https://github.com/cli/cli/releases/download/v{{ args.version }}/gh_{{ args.version }}_linux_amd64.tar.gz" -o /tmp/gh_{{ args.version }}_linux_amd64.tar.gz
@@ -34,7 +34,7 @@
   unarchive:
     src: /tmp/gh_{{ args.version }}_linux_amd64.tar.gz
     dest: /opt/gh/
-    remote_src: yes
+    remote_src: true
     extra_opts:
       - --strip-components=1 # remove parent directory
   when: gh_exists is failed

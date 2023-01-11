@@ -26,7 +26,7 @@
 
 - name: "dotfiles - insert .bash_rc to load custom rc"
   blockinfile:
-    create: yes
+    create: true
     path: "{{ ansible_home }}/.bashrc"
     block: |
       if [[ -f {{ ansible_home }}/.bashrc_custom ]]

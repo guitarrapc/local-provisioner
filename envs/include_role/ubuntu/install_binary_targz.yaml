@@ -2,7 +2,7 @@
   shell: "{{ args.name }} {{ args.version_arg }} 2>&1 | grep {{ args.version }}"
   register: binary_targz_exists
   changed_when: false
-  ignore_errors: yes
+  ignore_errors: true
 
 - name: "binary_targz ({{ args.name }}) - tmp directory"
   file:
@@ -20,16 +20,16 @@
   unarchive:
     src: "/tmp/{{ args.name }}/{{ args.name }}.tar.gz"
     dest: /tmp/{{ args.name }}
-    remote_src: yes
+    remote_src: true
   when: binary_targz_exists is failed
 
 - name: "binary_targz ({{ args.name }}) - copy"
   become: true
-  copy:
+  ansible.builtin.copy:
     src: "/tmp/{{ args.name }}/{{ args.copy_root }}{{ item }}"
     dest: "{{ args.dest_override | default('/usr/local/bin/') }}"
     mode: "a+x"
-    remote_src: yes
+    remote_src: true
   with_items: "{{ args.binaries }}"
   when: binary_targz_exists is failed
 

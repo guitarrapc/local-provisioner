@@ -1,62 +1,62 @@
 - name: "Apt - Install tools"
   become: true
-  apt:
+  ansible.builtin.apt:
     pkg: "{{ apt_tools }}"
     update_cache: true
 
 - name: Pip3 - Install pip3 packages
-  pip:
+  ansible.builtin.pip:
     name: "{{ pip_tools }}"
 
 - name: "Git - Install git cli"
-  include_tasks: ../include_role/ubuntu/install_git.yaml
+  ansible.builtin.include_tasks: ../include_role/ubuntu/install_git.yaml
 
 - name: "Binary - Install tools"
-  include_tasks: ../include_role/ubuntu/install_binary.yaml
+  ansible.builtin.include_tasks: ../include_role/ubuntu/install_binary.yaml
   with_items: "{{ binary_install }}"
   loop_control:
     loop_var: args
 
 - name: ".tar.gz - Install tools"
-  include_tasks: ../include_role/ubuntu/install_binary_targz.yaml
+  ansible.builtin.include_tasks: ../include_role/ubuntu/install_binary_targz.yaml
   with_items: "{{ targz_binary_install }}"
   loop_control:
     loop_var: args
 
 - name: "Clone - Install git tools"
-  include_tasks: ../include_role/ubuntu/install_git_tool.yaml
+  ansible.builtin.include_tasks: ../include_role/ubuntu/install_git_tool.yaml
   with_items: "{{ git_tools }}"
   loop_control:
     loop_var: args
 
 - name: "Dpkg - Install tools"
-  include_tasks: ../include_role/ubuntu/install_dpkg.yaml
+  ansible.builtin.include_tasks: ../include_role/ubuntu/install_dpkg.yaml
   with_items: "{{ dpkg_install }}"
   loop_control:
     loop_var: args
 
 # too slow.... may be remove in future. packages should not depends on brew.
 # - name: "Install homebrew"
-#   include_tasks: ../include_role/ubuntu/install_homebrew.yaml
+#   ansible.builtin.include_tasks: ../include_role/ubuntu/install_homebrew.yaml
 #   with_items: "{{ homebrew }}"
 #   loop_control:
 #     loop_var: args
 
 # each packages
 - name: "AnyEnv - Install anyenv"
-  include_tasks: ../include_role/ubuntu/install_anyenv.yaml
+  ansible.builtin.include_tasks: ../include_role/ubuntu/install_anyenv.yaml
   with_items: "{{ anyenv }}"
   loop_control:
     loop_var: args
 
 - name: "AwsCli - Install aws cli"
-  include_tasks: ../include_role/ubuntu/install_awscli.yaml
+  ansible.builtin.include_tasks: ../include_role/ubuntu/install_awscli.yaml
   with_items: "{{ aws_cli }}"
   loop_control:
     loop_var: args
 
 - name: ".NET - Install dotnet (old)"
-  include_tasks: ../include_role/ubuntu/install_dotnet.yaml
+  ansible.builtin.include_tasks: ../include_role/ubuntu/install_dotnet.yaml
   with_items: "{{ dotnet }}"
   loop_control:
     loop_var: args
@@ -64,40 +64,40 @@
 
 - name: ".NET - Install dotnet (new)"
   become: true
-  apt:
+  ansible.builtin.apt:
     pkg: "{{ dotnet_tools }}"
     update_cache: true
   when: ansible_distribution_version == "22.04"
 
 - name: "Gh - Install gh cli"
-  include_tasks: ../include_role/ubuntu/install_ghcli.yaml
+  ansible.builtin.include_tasks: ../include_role/ubuntu/install_ghcli.yaml
   with_items: "{{ gh_cli }}"
   loop_control:
     loop_var: args
 
 - name: "Krew - Install krew binary"
-  include_tasks: ../include_role/ubuntu/install_krew.yaml
+  ansible.builtin.include_tasks: ../include_role/ubuntu/install_krew.yaml
   with_items: "{{ krew }}"
   loop_control:
     loop_var: args
 
 - name: "Krew Plugins - Install krew kubectl plugins"
-  include_tasks: ../include_role/ubuntu/install_kubectl_plugin.yaml
+  ansible.builtin.include_tasks: ../include_role/ubuntu/install_kubectl_plugin.yaml
   with_items: "{{ kubectl_plugin }}"
   loop_control:
     loop_var: args
 
 - name: "Terraform - Install terraform"
-  include_tasks: ../include_role/ubuntu/install_terraform.yaml
+  ansible.builtin.include_tasks: ../include_role/ubuntu/install_terraform.yaml
   with_items: "{{ terraform }}"
   loop_control:
     loop_var: args
 
 - name: "Trivy - Install trivy"
-  include_tasks: ../include_role/ubuntu/install_trivy.yaml
+  ansible.builtin.include_tasks: ../include_role/ubuntu/install_trivy.yaml
 
 #
 # use .devcontainer instead. https://github.com/microsoft/vscode-dev-containers/blob/main/script-library/docs/azcli.md
 # too slow download pacakge..... oh my package.microsoft.com ....
 - name: "AzureCli - Install azure cli"
-  include_tasks: ../include_role/ubuntu/install_azurecli.yaml
+  ansible.builtin.include_tasks: ../include_role/ubuntu/install_azurecli.yaml

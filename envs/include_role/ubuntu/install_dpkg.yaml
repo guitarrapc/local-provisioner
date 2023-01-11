@@ -9,7 +9,7 @@
   register: dpkg_exists
   when: (args.version_arg is defined) and (args.version is defined)
   changed_when: false
-  ignore_errors: yes
+  ignore_errors: true
 
 - name: "dpkg ({{ args.name }}) - download"
   get_url:

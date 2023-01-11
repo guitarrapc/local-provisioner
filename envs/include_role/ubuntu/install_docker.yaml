@@ -4,7 +4,7 @@
 # then install docker on your Ubuntu.
 - name: "docker - make sure install prerequisites"
   become: true
-  apt:
+  ansible.builtin.apt:
     pkg:
       - apt-transport-https
       - ca-certificates
@@ -30,7 +30,7 @@
 # note: remove old version when error occured: `sudo apt-get remove docker docker-engine docker.io containerd runc`
 - name: "docker - install"
   become: true
-  apt:
+  ansible.builtin.apt:
     pkg:
       - docker-ce
       - docker-ce-cli
@@ -42,7 +42,7 @@
 - name: "docker - startup profile.d script (wsl1)"
   become: true
   blockinfile:
-    create: yes
+    create: true
     path: /etc/profile.d/profile_ansible_init_docker.sh
     block: |
       sudo -S cgroupfs-mount

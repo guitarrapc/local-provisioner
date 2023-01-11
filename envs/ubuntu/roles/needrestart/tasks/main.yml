@@ -1,2 +1,2 @@
 - name: "Configure needrestart"
-  include_tasks: ../include_role/ubuntu/configure_needrestart.yaml
+  ansible.builtin.include_tasks: ../include_role/ubuntu/configure_needrestart.yaml

@@ -3,13 +3,13 @@
   git:
     repo: https://github.com/pyenv/pyenv-virtualenv.git
     dest: ~/.pyenv/plugins/pyenv-virtualenv
-    accept_hostkey: yes
+    accept_hostkey: true
 
 - name: check python3 installed
   shell: pyenv versions | grep {{ python3_version }}
   register: pyenv3_version
   changed_when: false
-  ignore_errors: yes
+  ignore_errors: true
 
 - name: install python3
   shell: pyenv install {{ python3_version }}
@@ -19,7 +19,7 @@
   shell: pyenv versions | grep {{ python2_version }}
   register: pyenv2_version
   changed_when: false
-  ignore_errors: yes
+  ignore_errors: true
 
 - name: install python2
   shell: CFLAGS="-I$(xcrun --show-sdk-path)/usr/include" pyenv install {{ python2_version }}

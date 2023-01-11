@@ -6,7 +6,7 @@
 
 - name: "git - Install latest git"
   become: true
-  apt:
+  ansible.builtin.apt:
     name: "git"
     state: latest
-    update_cache: yes
+    update_cache: true

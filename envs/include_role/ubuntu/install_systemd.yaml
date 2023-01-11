@@ -3,7 +3,7 @@
 # prerequisites
 - name: "systemd - add systemd prerequisite packages"
   become: true
-  apt:
+  ansible.builtin.apt:
     pkg:
       - daemonize
       - dbus-user-session
@@ -13,8 +13,8 @@
 # scripts
 - name: "systemd - contents start-systemd-namespace script"
   become: true
-  copy:
-    remote_src: yes
+  ansible.builtin.copy:
+    remote_src: true
     dest: "/usr/sbin/start-systemd-namespace"
     content: |
       #!/bin/bash
@@ -66,8 +66,8 @@
 
 - name: "systemd - contents enter-systemd-namespace script"
   become: true
-  copy:
-    remote_src: yes
+  ansible.builtin.copy:
+    remote_src: true
     dest: "/usr/sbin/enter-systemd-namespace"
     content: |
       #!/bin/bash
@@ -129,7 +129,7 @@
 - name: "systemd - fix login path to follow before bash login (systemd)"
   become: true
   blockinfile:
-    create: yes
+    create: true
     path: /etc/profile.d/profile_ansible_init_systemd_login.sh
     block: |
       if [[ -f /tmp/cwd_path ]]; then

@@ -1,12 +1,12 @@
 # if wsl2 docker is enabled, gpg will be locate in /usr/bin/gpg
 - name: "gpg - check /usr/bin/gpg exists"
-  stat:
+  ansible.builtin.stat:
     path: "/usr/bin/gpg"
   register: gpg_stat_result
 
 - name: "gpg - install gnupg1"
   become: true
-  apt:
+  ansible.builtin.apt:
     pkg: gnupg1
     state: present
     update_cache: true
@@ -14,7 +14,7 @@
 
 - name: "gpg - uninstall gpg"
   become: true
-  apt:
+  ansible.builtin.apt:
     pkg: gpg
     state: absent
     update_cache: true

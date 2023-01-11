@@ -1,7 +1,7 @@
 # ref: https://aquasecurity.github.io/trivy/v0.18.2/installation/
 - name: "trivy - make sure HTTPS is supported by apt"
   become: true
-  apt:
+  ansible.builtin.apt:
     pkg:
       - wget
       - apt-transport-https
