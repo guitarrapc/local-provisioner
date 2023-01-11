@@ -2,13 +2,13 @@
 # install to /usr/local/aws by default.
 # symlink to /usr/local/bin/aws by default.
 - name: "awscli - check exists"
-  shell: aws --version 2>&1 | head -n 1 | grep "aws-cli/{{ args.version }}"
+  ansible.builtin.shell: aws --version 2>&1 | head -n 1 | grep "aws-cli/{{ args.version }}"
   register: awscli_exists
   changed_when: false
   ignore_errors: true
 
 - name: "awscli - download"
-  shell: curl -L "https://awscli.amazonaws.com/awscli-exe-linux-x86_64-{{ args.version }}.zip" -o /tmp/awscliv2.zip
+  ansible.builtin.shell: curl -L "https://awscli.amazonaws.com/awscli-exe-linux-x86_64-{{ args.version }}.zip" -o /tmp/awscliv2.zip
   args:
     warn: false
   when: awscli_exists is failed
@@ -22,7 +22,7 @@
 
 - name: "awscli - install"
   become: true
-  shell: /tmp/aws/install --update
+  ansible.builtin.shell: /tmp/aws/install --update
   when: awscli_exists is failed
 
 - name: "awscli - clean up tmp zip"

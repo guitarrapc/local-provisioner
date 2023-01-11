@@ -1,6 +1,6 @@
 # prepare
 - name: "krew - get os"
-  shell: uname | tr '[:upper:]' '[:lower:]'
+  ansible.builtin.shell: uname | tr '[:upper:]' '[:lower:]'
   register: os_value
   changed_when: false
   check_mode: no
@@ -9,7 +9,7 @@
   set_fact: ansible_os='{{ os_value.stdout }}'
 
 - name: "krew - get arch"
-  shell: uname -m | sed -e 's/x86_64/amd64/' -e 's/\(arm\)\(64\)\?.*/\1\2/' -e 's/aarch64$/arm64/'
+  ansible.builtin.shell: uname -m | sed -e 's/x86_64/amd64/' -e 's/\(arm\)\(64\)\?.*/\1\2/' -e 's/aarch64$/arm64/'
   register: arch_value
   changed_when: false
   check_mode: no
@@ -27,7 +27,7 @@
 
 # krew: https://krew.sigs.k8s.io/docs/user-guide/setup/install/
 - name: "krew - check installed"
-  shell: "kubectl krew version | grep {{ args.version }}"
+  ansible.builtin.shell: "kubectl krew version | grep {{ args.version }}"
   environment:
     # require re-login shell for 1st install, let's manual export shellenv and use it
     PATH: "{{ ansible_home }}/.krew/bin:{{ ansible_env.PATH }}"
@@ -55,11 +55,11 @@
   when: krew_exists is failed
 
 - name: "krew - install"
-  shell: /tmp/krew/krew-{{ ansible_os }}_{{ ansible_arch }} install krew
+  ansible.builtin.shell: /tmp/krew/krew-{{ ansible_os }}_{{ ansible_arch }} install krew
   when: krew_exists is failed
 
 - name: "krew - upgrade"
-  shell: /tmp/krew/krew-{{ ansible_os }}_{{ ansible_arch }} upgrade krew
+  ansible.builtin.shell: /tmp/krew/krew-{{ ansible_os }}_{{ ansible_arch }} upgrade krew
   ignore_errors: true
 
 - name: "krew - startup profile.d script"

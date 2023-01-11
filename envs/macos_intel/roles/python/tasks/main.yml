@@ -6,24 +6,24 @@
     accept_hostkey: true
 
 - name: check python3 installed
-  shell: pyenv versions | grep {{ python3_version }}
+  ansible.builtin.shell: pyenv versions | grep {{ python3_version }}
   register: pyenv3_version
   changed_when: false
   ignore_errors: true
 
 - name: install python3
-  shell: pyenv install {{ python3_version }}
+  ansible.builtin.shell: pyenv install {{ python3_version }}
   when: pyenv3_version is failed
 
 - name: check python2 installed
-  shell: pyenv versions | grep {{ python2_version }}
+  ansible.builtin.shell: pyenv versions | grep {{ python2_version }}
   register: pyenv2_version
   changed_when: false
   ignore_errors: true
 
 - name: install python2
-  shell: CFLAGS="-I$(xcrun --show-sdk-path)/usr/include" pyenv install {{ python2_version }}
+  ansible.builtin.shell: CFLAGS="-I$(xcrun --show-sdk-path)/usr/include" pyenv install {{ python2_version }}
   when: pyenv2_version is failed
 
 - name: pyenv global set {{ python3_version }} & {{ python2_version }}
-  shell: pyenv global {{ python3_version }} {{ python2_version }}
+  ansible.builtin.shell: pyenv global {{ python3_version }} {{ python2_version }}

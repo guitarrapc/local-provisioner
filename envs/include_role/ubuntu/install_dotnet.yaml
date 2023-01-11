@@ -9,12 +9,12 @@
 
 - name: "dotnet - import Microsoft apt key"
   become: true
-  shell: wget https://packages.microsoft.com/config/ubuntu/{{ ansible_distribution_version }}/packages-microsoft-prod.deb -O /tmp/packages-microsoft-prod.deb
+  ansible.builtin.shell: wget https://packages.microsoft.com/config/ubuntu/{{ ansible_distribution_version }}/packages-microsoft-prod.deb -O /tmp/packages-microsoft-prod.deb
   changed_when: false
 
 - name: "dotnet - add repo for Ubuntu"
   become: true
-  shell: dpkg -i /tmp/packages-microsoft-prod.deb
+  ansible.builtin.shell: dpkg -i /tmp/packages-microsoft-prod.deb
   changed_when: false
 
 - name: "dotnet - install dotnet sdk ({{ args.version }})"

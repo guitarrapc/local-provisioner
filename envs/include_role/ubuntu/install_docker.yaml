@@ -14,7 +14,7 @@
 
 - name: "docker - import Docker apt key"
   become: true
-  shell: curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+  ansible.builtin.shell: curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
   args:
     warn: false
   changed_when: false

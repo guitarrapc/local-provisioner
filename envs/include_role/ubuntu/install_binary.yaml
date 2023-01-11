@@ -11,14 +11,14 @@
 #   download_url: https://github.com/owner/repo/releases/download/verison/binary_name
 
 - name: "binary ({{ args.name }}) - check installed"
-  shell: "{{ args.name }} {{ args.version_arg }} 2>&1 | head -n 1 | grep {{ args.version }}"
+  ansible.builtin.shell: "{{ args.name }} {{ args.version_arg }} 2>&1 | head -n 1 | grep {{ args.version }}"
   register: binary_exists
   when: (args.version_arg is defined) and (args.version is defined)
   changed_when: false
   ignore_errors: true
 
 - name: "binary ({{ args.name }}) - check installed with checksum"
-  shell: "{{ args.checksum_type }} /usr/local/bin/{{ args.name }} | grep {{ args.checksum }}"
+  ansible.builtin.shell: "{{ args.checksum_type }} /usr/local/bin/{{ args.name }} | grep {{ args.checksum }}"
   register: binary_exists_checksum
   when: (args.checksum_type is defined) and (args.checksum is defined)
   changed_when: false

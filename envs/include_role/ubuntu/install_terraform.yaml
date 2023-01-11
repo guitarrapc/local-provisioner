@@ -14,7 +14,7 @@
     - tfenv
 
 - name: "tfenv - check installed"
-  shell: tfenv list | grep {{ args.version }}
+  ansible.builtin.shell: tfenv list | grep {{ args.version }}
   register: terraform_version
   changed_when: false
   ignore_errors: true

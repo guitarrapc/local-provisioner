@@ -17,7 +17,7 @@
     state: link
 
 - name: "homebrew - eval shellenv"
-  shell: eval $({{ ansible_home }}/.linuxbrew/bin/brew shellenv)
+  ansible.builtin.shell: eval $({{ ansible_home }}/.linuxbrew/bin/brew shellenv)
   changed_when: false
 
 - name: "homebrew - install tools"
