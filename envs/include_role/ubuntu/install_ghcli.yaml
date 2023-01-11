@@ -24,7 +24,7 @@
     path: "/opt/gh"
     state: directory
     force: true
-    mode: "0655"
+    mode: "0755"
 
 - name: "gh - download"
   ansible.builtin.command: curl -L "https://github.com/cli/cli/releases/download/v{{ args.version }}/gh_{{ args.version }}_linux_amd64.tar.gz" -o /tmp/gh_{{ args.version }}_linux_amd64.tar.gz
