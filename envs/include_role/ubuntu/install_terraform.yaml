@@ -5,7 +5,7 @@
 
 - name: "tfenv - Create symlinks"
   become: true
-  file:
+  ansible.builtin.file:
     src: "{{ ansible_home }}/.tfenv/bin/{{ item }}"
     dest: "/usr/local/bin/{{ item }}"
     state: link

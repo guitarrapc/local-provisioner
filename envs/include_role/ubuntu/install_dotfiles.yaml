@@ -1,5 +1,5 @@
 - name: "dotfiles - create github directory"
-  file:
+  ansible.builtin.file:
     path: "{{ args.clone_destination }}"
     state: directory
 

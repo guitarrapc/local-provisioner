@@ -40,7 +40,7 @@
   when: (binary_exists is failed) or (binary_exists_checksum is failed)
 
 - name: "binary ({{ args.name }}) - remove temp files"
-  file:
+  ansible.builtin.file:
     state: absent
     path: /tmp/{{ args.name }}
   when: (binary_exists is failed) or (binary_exists_checksum is failed)

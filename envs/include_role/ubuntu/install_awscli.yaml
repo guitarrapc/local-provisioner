@@ -26,7 +26,7 @@
   when: awscli_exists is failed
 
 - name: "awscli - clean up tmp zip"
-  file:
+  ansible.builtin.file:
     path: /tmp/awscliv2.zip
     state: absent
   when: awscli_exists is failed

@@ -60,7 +60,7 @@
 
 - name: "systemd - generate start-systemd-namespace script"
   become: true
-  file:
+  ansible.builtin.file:
     path: "/usr/sbin/start-systemd-namespace"
     mode: a+x
 
@@ -101,7 +101,7 @@
 
 - name: "systemd - generate enter-systemd-namespace script"
   become: true
-  file:
+  ansible.builtin.file:
     path: "/usr/sbin/enter-systemd-namespace"
     mode: a+x
 

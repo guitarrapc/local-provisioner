@@ -5,7 +5,7 @@
   ignore_errors: true
 
 - name: "binary_targz ({{ args.name }}) - tmp directory"
-  file:
+  ansible.builtin.file:
     path: "/tmp/{{ args.name }}"
     state: directory
   when: binary_targz_exists is failed
@@ -34,7 +34,7 @@
   when: binary_targz_exists is failed
 
 - name: "binary_targz ({{ args.name }}) - remove temp files"
-  file:
+  ansible.builtin.file:
     state: absent
     path: /tmp/{{ args.name }}
   when: binary_targz_exists is failed

@@ -5,13 +5,13 @@
     accept_hostkey: true
 
 - name: "homebrew - mkdir {{ ansible_home }}/.linuxbrew/bin"
-  file:
+  ansible.builtin.file:
     path: "{{ ansible_home }}/.linuxbrew/bin"
     state: directory
     force: true
 
 - name: "homebrew - create linuxbrew symlinks"
-  file:
+  ansible.builtin.file:
     src: "{{ ansible_home }}/github/Homebrew/brew/bin/brew"
     dest: "{{ ansible_home }}/.linuxbrew/bin/brew"
     state: link

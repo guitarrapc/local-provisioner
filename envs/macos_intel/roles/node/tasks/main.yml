@@ -1,12 +1,11 @@
 ---
-
 - name: Create .nodebrew directory
-  file:
+  ansible.builtin.file:
     path: "$HOME/.nodebrew"
     state: directory
 
 - name: Create .nodebrew src directory
-  file:
+  ansible.builtin.file:
     path: "$HOME/.nodebrew/src"
     state: directory
 

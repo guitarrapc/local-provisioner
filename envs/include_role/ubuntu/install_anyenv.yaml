@@ -5,7 +5,7 @@
 
 - name: "anyenv - Create symlinks"
   become: true
-  file:
+  ansible.builtin.file:
     src: "{{ ansible_home }}/.anyenv/bin/{{ item }}"
     dest: "/usr/local/bin/{{ item }}"
     state: link

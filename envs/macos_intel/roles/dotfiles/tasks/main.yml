@@ -1,6 +1,6 @@
 ---
 - name: Create github directory
-  file:
+  ansible.builtin.file:
     path: "{{ base_path }}"
     state: directory
     force: true

@@ -18,7 +18,7 @@
 
 - name: "gh - mkdir opt/gh"
   become: true
-  file:
+  ansible.builtin.file:
     path: "/opt/gh"
     state: directory
     force: true
@@ -41,13 +41,13 @@
 
 - name: "gh - create symlinks"
   become: true
-  file:
+  ansible.builtin.file:
     src: "/opt/gh/bin/gh"
     dest: "/usr/local/bin/gh"
     state: link
 
 - name: "gh - clean up tmp zip"
-  file:
+  ansible.builtin.file:
     path: /tmp/gh.tar.gz
     state: absent
   when: gh_exists is failed

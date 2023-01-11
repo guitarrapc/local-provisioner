@@ -5,7 +5,7 @@
   register: bashcompletion_stat_result
 
 - name: "docker bash-completion symlink setup"
-  file:
+  ansible.builtin.file:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
     state: link

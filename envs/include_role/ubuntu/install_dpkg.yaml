@@ -23,7 +23,7 @@
   when: dpkg_exists is failed
 
 - name: "dpkg ({{ args.name }}) - remove temp files"
-  file:
+  ansible.builtin.file:
     state: absent
     path: /tmp/{{ args.name }}.deb
   when: dpkg_exists is failed
