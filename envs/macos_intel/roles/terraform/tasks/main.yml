@@ -1,4 +1,3 @@
----
 - name: check  terraform installed
   ansible.builtin.shell: set -o pipefail && tfenv list | grep {{ terraform_version }}
   args:

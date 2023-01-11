@@ -30,3 +30,19 @@ homebrew_packages:
   - name: yarn
   - name: yq
   - name: zlib
+
+homebrew_cask_packages:
+  - name: aws-vault
+  - name: android-studio # for grpc/android
+  - name: cd-to
+  - name: docker # docker desktop
+  - name: dotnet-sdk
+  - name: google-chrome
+  - name: gitkraken
+  - name: kindle
+  - name: krisp
+  # - name: powershell # # require Rosetta2
+  - name: slack
+  - name: unity-hub
+  - name: visual-studio-code
+  - name: zoom

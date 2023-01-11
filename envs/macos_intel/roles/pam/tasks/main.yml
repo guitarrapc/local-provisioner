@@ -1,7 +1,6 @@
----
 - name: enable touchid for sudo Authentication
   become: true
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: /etc/pam.d/sudo
     insertafter: "^# sudo: auth account password session"
     line: "auth       sufficient     pam_tid.so"

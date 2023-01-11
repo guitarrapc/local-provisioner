@@ -1,4 +1,3 @@
----
 - name: check bash-completion exists
   ansible.builtin.stat:
     path: /usr/local/etc/bash_completion

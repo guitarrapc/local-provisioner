@@ -1,4 +1,3 @@
----
 - name: Create .nodebrew directory
   ansible.builtin.file:
     path: "$HOME/.nodebrew"

@@ -1,7 +1,7 @@
 - name: update brew
   ansible.builtin.command: brew update
   register: result
-  ignore_errors: True
+  ignore_errors: true
   changed_when: result.stdout != 'Already up-to-date.'
 
 - name: "homebrew packages installation"
@@ -9,3 +9,9 @@
     name: "{{ item.name }}"
     state: "{{ item.state|default('present') }}"
   with_items: "{{ homebrew_packages }}"
+
+- name: "homebrew cask packages installation"
+  homebrew_cask:
+    name: "{{ item.name }}"
+    state: "{{ item.state|default('present') }}"
+  with_items: "{{ homebrew_cask_packages }}"
