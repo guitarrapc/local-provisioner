@@ -20,7 +20,7 @@
   register: install_dotfiles
 
 - name: "dotfiles - debug show result"
-  debug:
+  ansible.builtin.debug:
     msg: "{{ install_dotfiles.stdout_lines }}"
   when: install_dotfiles.stdout != ""
 

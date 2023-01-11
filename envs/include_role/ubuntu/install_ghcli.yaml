@@ -7,7 +7,7 @@
   ignore_errors: true
 
 - name: "gh - current version"
-  debug:
+  ansible.builtin.debug:
     msg: "{{ gh_current.stdout_lines }}"
 
 - name: "gh - check exists"

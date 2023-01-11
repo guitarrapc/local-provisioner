@@ -18,11 +18,11 @@
   set_fact: ansible_arch='{{ arch_value.stdout }}'
 
 - name: "krew - debug ansible_os"
-  debug:
+  ansible.builtin.debug:
     msg: "{{ ansible_os }}"
 
 - name: "krew - debug ansible_arch"
-  debug:
+  ansible.builtin.debug:
     msg: "{{ ansible_arch }}"
 
 # krew: https://krew.sigs.k8s.io/docs/user-guide/setup/install/

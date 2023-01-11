@@ -1,29 +1,29 @@
 # "ansible_home" may be: /home/guitarrapc
 - name: "ansible_home"
-  debug:
+  ansible.builtin.debug:
     msg: "{{ ansible_home }}"
 - name: "env.Home"
-  debug:
+  ansible.builtin.debug:
     msg: "{{ lookup('env','HOME') }}"
 - name: "become env.HOME"
   become: true
-  debug:
+  ansible.builtin.debug:
     msg: "{{ lookup('env','HOME') }}"
 
 # "ansible_user" may be: guitarrapc
 - name: "ansible_user_id"
-  debug:
+  ansible.builtin.debug:
     msg: "{{ ansible_user_id }}"
 - name: "become ansible_user_id"
   become: true
-  debug:
+  ansible.builtin.debug:
     msg: "{{ ansible_user_id }}"
 - name: "env.User"
-  debug:
+  ansible.builtin.debug:
     msg: "{{ lookup('env','USER') }}"
 - name: "become env.User"
   become: true
-  debug:
+  ansible.builtin.debug:
     msg: "{{ lookup('env','USER') }}"
 
 # "ansible_distribution" may be: "Debian", "SLES", "Ubuntu", "CentOS"
@@ -33,22 +33,22 @@
 # "ansible_os_family" may be: "Debian", "RedHat", "Suse"
 # Upper/lower case is important, you can change UPPER or lower via `|uppper` or `|lower`
 - name: "distribution"
-  debug:
+  ansible.builtin.debug:
     msg: "{{ ansible_distribution }}"
 - name: "distribution lower case"
-  debug:
+  ansible.builtin.debug:
     msg: "{{ ansible_distribution|lower }}"
 - name: "distribution version"
-  debug:
+  ansible.builtin.debug:
     msg: "{{ ansible_distribution_version }}"
 - name: "distribution release"
-  debug:
+  ansible.builtin.debug:
     msg: "{{ ansible_distribution_release }}"
 
 # wsl check
 - name: "is_wsl1 or not"
-  debug:
+  ansible.builtin.debug:
     msg: "{{ is_wsl1 }}"
 - name: "is_wsl2 or not"
-  debug:
+  ansible.builtin.debug:
     msg: "{{ is_wsl2 }}"

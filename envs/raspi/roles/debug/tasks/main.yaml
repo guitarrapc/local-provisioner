@@ -1,23 +1,23 @@
 ---
 # "ansible_home" may be: /home/guitarrapc
 - name: "env.Home"
-  debug:
+  ansible.builtin.debug:
     var: ansible_env.HOME
 - name: "become env.HOME"
   become: true
-  debug:
+  ansible.builtin.debug:
     var: ansible_env.HOME
 
 # "ansible_user" should be `ubuntu`
 - name: "ansible_user_id"
-  debug:
+  ansible.builtin.debug:
     var: ansible_user_id
 - name: "become ansible_user_id"
   become: true
-  debug:
+  ansible.builtin.debug:
     var: ansible_user_id
 - name: "ansible_ssh_user"
-  debug:
+  ansible.builtin.debug:
     var: ansible_ssh_user
 
 # "ansible_distribution" may be: "Debian", "SLES", "Ubuntu", "CentOS"
@@ -27,14 +27,14 @@
 # "ansible_os_family" may be: "Debian", "RedHat", "Suse"
 # Upper/lower case is important, you can change UPPER or lower via `|uppper` or `|lower`
 - name: "distribution"
-  debug:
+  ansible.builtin.debug:
     msg: "{{ ansible_distribution }}"
 - name: "distribution lower case"
-  debug:
+  ansible.builtin.debug:
     msg: "{{ ansible_distribution|lower }}"
 - name: "distribution version"
-  debug:
+  ansible.builtin.debug:
     msg: "{{ ansible_distribution_version }}"
 - name: "distribution release"
-  debug:
+  ansible.builtin.debug:
     msg: "{{ ansible_distribution_release }}"
