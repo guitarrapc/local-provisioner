@@ -1,4 +1,3 @@
----
 - name: update brew
   ansible.builtin.command: brew update
   register: result
