@@ -12,6 +12,7 @@
   ansible.builtin.get_url:
     url: "wget https://packages.microsoft.com/config/ubuntu/{{ ansible_distribution_version }}/packages-microsoft-prod.deb"
     dest: "/tmp/packages-microsoft-prod.deb"
+    mode: "00644"
   changed_when: false
 
 - name: "dotnet - add repo for Ubuntu"
