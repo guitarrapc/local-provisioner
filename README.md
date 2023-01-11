@@ -1,3 +1,5 @@
+[![ansible lint](https://github.com/guitarrapc/local-provisioner/actions/workflows/ansible-lint.yaml/badge.svg)](https://github.com/guitarrapc/local-provisioner/actions/workflows/ansible-lint.yaml)
+
 # local-provisioner
 
 Dev environment setup.
