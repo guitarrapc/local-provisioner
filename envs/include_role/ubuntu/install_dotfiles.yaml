@@ -2,7 +2,7 @@
   ansible.builtin.file:
     path: "{{ args.clone_destination }}"
     state: directory
-    mode: "0655"
+    mode: "0755"
 
 - name: "dotfiles - clone & Fetch"
   ansible.builtin.git:
