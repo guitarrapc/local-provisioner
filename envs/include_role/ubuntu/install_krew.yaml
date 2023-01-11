@@ -48,7 +48,7 @@
   when: krew_exists is failed
 
 - name: "krew - unarchive"
-  unarchive:
+  ansible.builtin.unarchive:
     src: "/tmp/krew/krew.tar.gz"
     dest: /tmp/krew
     remote_src: true

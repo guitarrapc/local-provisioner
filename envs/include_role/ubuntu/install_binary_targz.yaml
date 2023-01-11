@@ -17,7 +17,7 @@
   when: binary_targz_exists is failed
 
 - name: "binary_targz ({{ args.name }}) - unarchive"
-  unarchive:
+  ansible.builtin.unarchive:
     src: "/tmp/{{ args.name }}/{{ args.name }}.tar.gz"
     dest: /tmp/{{ args.name }}
     remote_src: true

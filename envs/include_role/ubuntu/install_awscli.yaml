@@ -14,7 +14,7 @@
   when: awscli_exists is failed
 
 - name: "awscli - unzip"
-  unarchive:
+  ansible.builtin.unarchive:
     src: /tmp/awscliv2.zip
     dest: /tmp
     remote_src: true

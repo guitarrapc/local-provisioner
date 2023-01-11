@@ -31,7 +31,7 @@
 
 - name: "gh - unzip"
   become: true
-  unarchive:
+  ansible.builtin.unarchive:
     src: /tmp/gh_{{ args.version }}_linux_amd64.tar.gz
     dest: /opt/gh/
     remote_src: true
