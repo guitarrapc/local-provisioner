@@ -62,6 +62,7 @@
   ansible.builtin.command: /tmp/krew/krew-{{ os_value.stdout }}_{{ arch_value.stdout }} upgrade krew
   register: krew_upgrade
   failed_when: "'the newest version is already installed' not in krew_upgrade.stderr"
+  changed_when: krew_upgrade.rc == "0"
   when: krew_exists
 
 - name: "krew - startup profile.d script"
