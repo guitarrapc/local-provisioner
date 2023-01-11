@@ -31,7 +31,7 @@
     msg: "{{ ansible_distribution }}"
 - name: "distribution lower case"
   ansible.builtin.debug:
-    msg: "{{ ansible_distribution|lower }}"
+    msg: "{{ ansible_distribution | lower }}"
 - name: "distribution version"
   ansible.builtin.debug:
     msg: "{{ ansible_distribution_version }}"
