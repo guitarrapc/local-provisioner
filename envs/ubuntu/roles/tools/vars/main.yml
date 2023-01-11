@@ -89,7 +89,7 @@ homebrew:
 krew:
   - version: "0.4.3"
 
-kubectl_plugin:
+krew_plugins:
   - name: explore # https://github.com/keisku/kubectl-explore A better kubectl explain with the fuzzy finder
     install_check_arg: "--help"
   - name: fuzzy # https://github.com/d-kuro/kubectl-fuzzy Instead of specifying full resource names to kubectl commands, you can choose them from an interactive list that you can filter by typing a few characters.

@@ -1,17 +1,17 @@
-- name: "Apt - Install tools"
+- name: "apt - Install tools"
   become: true
   ansible.builtin.apt:
     pkg: "{{ apt_tools }}"
     update_cache: true
 
-- name: Pip3 - Install pip3 packages
+- name: pip3 - Install pip3 packages
   ansible.builtin.pip:
     name: "{{ pip_tools }}"
 
-- name: "Git - Install git cli"
+- name: "git - Install git cli"
   ansible.builtin.include_tasks: ../include_role/ubuntu/install_git.yaml
 
-- name: "Binary - Install tools"
+- name: "binary - Install tools"
   ansible.builtin.include_tasks: ../include_role/ubuntu/install_binary.yaml
   with_items: "{{ binary_install }}"
   loop_control:
@@ -23,13 +23,13 @@
   loop_control:
     loop_var: args
 
-- name: "Clone - Install git tools"
+- name: "git clone - Install git tools"
   ansible.builtin.include_tasks: ../include_role/ubuntu/install_git_tool.yaml
   with_items: "{{ git_tools }}"
   loop_control:
     loop_var: args
 
-- name: "Dpkg - Install tools"
+- name: "dpkg - Install tools"
   ansible.builtin.include_tasks: ../include_role/ubuntu/install_dpkg.yaml
   with_items: "{{ dpkg_install }}"
   loop_control:
@@ -43,13 +43,13 @@
 #     loop_var: args
 
 # each packages
-- name: "AnyEnv - Install anyenv"
+- name: "anyEnv - Install anyenv"
   ansible.builtin.include_tasks: ../include_role/ubuntu/install_anyenv.yaml
   with_items: "{{ anyenv }}"
   loop_control:
     loop_var: args
 
-- name: "AwsCli - Install aws cli"
+- name: "aws - Install aws cli"
   ansible.builtin.include_tasks: ../include_role/ubuntu/install_awscli.yaml
   with_items: "{{ aws_cli }}"
   loop_control:
@@ -69,35 +69,34 @@
     update_cache: true
   when: ansible_distribution_version == "22.04"
 
-- name: "Gh - Install gh cli"
+- name: "gh - Install gh cli"
   ansible.builtin.include_tasks: ../include_role/ubuntu/install_ghcli.yaml
   with_items: "{{ gh_cli }}"
   loop_control:
     loop_var: args
 
-- name: "Krew - Install krew binary"
+- name: "krew - Install krew binary"
   ansible.builtin.include_tasks: ../include_role/ubuntu/install_krew.yaml
   with_items: "{{ krew }}"
   loop_control:
     loop_var: args
 
-- name: "Krew Plugins - Install krew kubectl plugins"
-  ansible.builtin.include_tasks: ../include_role/ubuntu/install_kubectl_plugin.yaml
-  with_items: "{{ kubectl_plugin }}"
+- name: "krew Plugins - Install krew kubectl plugins"
+  ansible.builtin.include_tasks: ../include_role/ubuntu/install_krew_plugin.yaml
+  with_items: "{{ krew_plugins }}"
   loop_control:
     loop_var: args
 
-- name: "Terraform - Install terraform"
+- name: "terraform - Install terraform"
   ansible.builtin.include_tasks: ../include_role/ubuntu/install_terraform.yaml
   with_items: "{{ terraform }}"
   loop_control:
     loop_var: args
 
-- name: "Trivy - Install trivy"
+- name: "trivy - Install trivy"
   ansible.builtin.include_tasks: ../include_role/ubuntu/install_trivy.yaml
 
-#
 # use .devcontainer instead. https://github.com/microsoft/vscode-dev-containers/blob/main/script-library/docs/azcli.md
 # too slow download pacakge..... oh my package.microsoft.com ....
-- name: "AzureCli - Install azure cli"
+- name: "azure - Install azure cli"
   ansible.builtin.include_tasks: ../include_role/ubuntu/install_azurecli.yaml
