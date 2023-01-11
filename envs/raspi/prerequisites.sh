@@ -20,6 +20,9 @@ if [[ $? -ne 0 ]]; then
     sudo apt-get install -y python3-pip
     pip3 install --user ansible
 
+    # install ansible-lint
+    pip3 install --user ansible-lint
+
     # Ubuntu20.04LTS on WSL1
     hack:wsl1_ubuntu20
 fi

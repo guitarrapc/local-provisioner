@@ -22,6 +22,8 @@ function install_ansible() {
   sudo apt install -y software-properties-common
   sudo add-apt-repository -y --update ppa:ansible/ansible
   sudo apt install -y ansible
+  # install ansible-lint
+  pip3 install --user ansible-lint
 }
 
 if ! which ansible; then
