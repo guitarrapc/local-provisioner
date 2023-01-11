@@ -1,2 +1,2 @@
 #!/bin/bash
-ansible-playbook -i hosts site.yml --ask-become-pass
+ansible-playbook -i hosts playbook.yaml --ask-become-pass

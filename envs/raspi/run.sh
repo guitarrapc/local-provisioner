@@ -1,2 +1,2 @@
 #!/bin/bash
-ansible-playbook -i hosts site.yml --ask-vault-password
+ansible-playbook -i hosts playbook.yaml --ask-vault-password
