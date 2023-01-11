@@ -23,4 +23,5 @@
       $nrconf{kernelhints} = '0';
       $nrconf{ucodehints} = 0;
       $nrconf{restart} = 'a';
+    mode: "0644"
   when: (is_wsl2 == "1") and needrestart_exists.stat.exists

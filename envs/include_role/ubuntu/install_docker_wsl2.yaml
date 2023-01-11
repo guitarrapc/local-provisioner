@@ -61,4 +61,5 @@
       sudo -S cgroupfs-mount
       sudo usermod -aG docker $USER
       sudo service docker start
+    mode: "0644"
   when: args.require_sysvinit == "1"

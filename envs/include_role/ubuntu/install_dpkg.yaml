@@ -17,6 +17,7 @@
   ansible.builtin.get_url:
     url: "{{ args.download_url }}"
     dest: "/tmp/{{ args.name }}.deb"
+    mode: "0644"
   when: dpkg_exists is failed
 
 - name: "dpkg ({{ args.name }}) - install"

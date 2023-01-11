@@ -2,6 +2,7 @@
   ansible.builtin.file:
     path: "{{ args.clone_destination }}"
     state: directory
+    mode: "0655"
 
 - name: "dotfiles - clone & Fetch"
   ansible.builtin.git:
@@ -33,4 +34,5 @@
       then
         source {{ ansible_home }}/.bashrc_custom
       fi
+    mode: "0644"
   when: install_dotfiles is success

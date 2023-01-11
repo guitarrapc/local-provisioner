@@ -10,12 +10,14 @@
   ansible.builtin.file:
     path: "/tmp/{{ args.name }}"
     state: directory
+    mode: "0655"
   when: binary_targz_exists is failed
 
 - name: "binary_targz ({{ args.name }}) - download"
   ansible.builtin.get_url:
     url: "{{ args.download_url }}"
     dest: "/tmp/{{ args.name }}/{{ args.name }}.tar.gz"
+    mode: "0644"
   when: binary_targz_exists is failed
 
 - name: "binary_targz ({{ args.name }}) - unarchive"
