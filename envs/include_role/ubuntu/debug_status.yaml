@@ -1,30 +1,30 @@
 # "ansible_home" may be: /home/guitarrapc
-- name: "ansible_home"
+- name: "Debug - ansible_home"
   ansible.builtin.debug:
     msg: "{{ ansible_home }}"
-- name: "env.Home"
+- name: "Debug - env.Home"
   ansible.builtin.debug:
-    msg: "{{ lookup('env','HOME') }}"
-- name: "become env.HOME"
+    msg: "{{ lookup('env', 'HOME') }}"
+- name: "Debug - become env.HOME"
   become: true
   ansible.builtin.debug:
-    msg: "{{ lookup('env','HOME') }}"
+    msg: "{{ lookup('env', 'HOME') }}"
 
 # "ansible_user" may be: guitarrapc
-- name: "ansible_user_id"
+- name: "Debug - ansible_user_id"
   ansible.builtin.debug:
     msg: "{{ ansible_user_id }}"
-- name: "become ansible_user_id"
+- name: "Debug - become ansible_user_id"
   become: true
   ansible.builtin.debug:
     msg: "{{ ansible_user_id }}"
-- name: "env.User"
+- name: "Debug - env.User"
   ansible.builtin.debug:
-    msg: "{{ lookup('env','USER') }}"
-- name: "become env.User"
+    msg: "{{ lookup('env', 'USER') }}"
+- name: "Debug - become env.User"
   become: true
   ansible.builtin.debug:
-    msg: "{{ lookup('env','USER') }}"
+    msg: "{{ lookup('env', 'USER') }}"
 
 # "ansible_distribution" may be: "Debian", "SLES", "Ubuntu", "CentOS"
 # "ansible_distribution_version" may be: "9.0", "12.2", "18.04", "7.3.1611"
@@ -32,23 +32,23 @@
 # "ansible_distribution_release" may be: "bionic"
 # "ansible_os_family" may be: "Debian", "RedHat", "Suse"
 # Upper/lower case is important, you can change UPPER or lower via `|uppper` or `|lower`
-- name: "distribution"
+- name: "Debug - distribution"
   ansible.builtin.debug:
     msg: "{{ ansible_distribution }}"
-- name: "distribution lower case"
+- name: "Debug - distribution lower case"
   ansible.builtin.debug:
-    msg: "{{ ansible_distribution|lower }}"
-- name: "distribution version"
+    msg: "{{ ansible_distribution | lower }}"
+- name: "Debug - distribution version"
   ansible.builtin.debug:
     msg: "{{ ansible_distribution_version }}"
-- name: "distribution release"
+- name: "Debug - distribution release"
   ansible.builtin.debug:
     msg: "{{ ansible_distribution_release }}"
 
 # wsl check
-- name: "is_wsl1 or not"
+- name: "Debug - is_wsl1 or not"
   ansible.builtin.debug:
     msg: "{{ is_wsl1 }}"
-- name: "is_wsl2 or not"
+- name: "Debug - is_wsl2 or not"
   ansible.builtin.debug:
     msg: "{{ is_wsl2 }}"
