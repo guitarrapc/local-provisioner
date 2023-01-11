@@ -5,7 +5,7 @@
       ansible.builtin.set_fact: ansible_home='{{ ansible_env.HOME }}'
       tags: always
     - name: Get WSL1
-      ansible.builtin.shell: set -o pipefail && grep "Microsoft" /proc/version | wc -l
+      ansible.builtin.command: grep "Microsoft" /proc/version > /dev/null 2>&1 && echo 1 || echo 0
       register: wsl1_exists
       changed_when: false
       check_mode: false
@@ -14,7 +14,7 @@
       ansible.builtin.set_fact: is_wsl1='{{ wsl1_exists.stdout }}'
       tags: always
     - name: Get WSL2
-      ansible.builtin.shell: set -o pipefail && grep "microsoft-standard" /proc/version | wc -l
+      ansible.builtin.command: grep "microsoft-standard" /proc/version > /dev/null 2>&1 && echo 1 || echo 0
       register: wsl2_exists
       changed_when: false
       check_mode: false
