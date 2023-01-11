@@ -5,19 +5,19 @@
   changed_when: result.stdout != 'Already up-to-date.'
 
 - name: "homebrew packages installation"
-  community.general.homebrew:
+  homebrew:
     name: "{{ item.name }}"
     state: "{{ item.state | default('present') }}"
   with_items: "{{ homebrew_packages }}"
 
 - name: "homebrew cask packages installation"
-  community.general.homebrew_cask:
+  homebrew_cask:
     name: "{{ item.name }}"
     state: "{{ item.state | default('present') }}"
   with_items: "{{ homebrew_cask_packages }}"
 
 - name: "homebrew cask fonts installation"
-  community.general.homebrew_cask:
+  homebrew_cask:
     name: "{{ item.name }}"
     state: "{{ item.state | default('present') }}"
   with_items: "{{ homebrew_cask_fonts }}"
