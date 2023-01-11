@@ -3,19 +3,19 @@
   ansible.builtin.shell: set -o pipefail && uname | tr '[:upper:]' '[:lower:]'
   register: os_value
   changed_when: false
-  check_mode: no
+  check_mode: false
 
 - name: "krew - register os"
-  set_fact: ansible_os='{{ os_value.stdout }}'
+  ansible.builtin.set_fact: ansible_os='{{ os_value.stdout }}'
 
 - name: "krew - get arch"
   ansible.builtin.shell: set -o pipefail && uname -m | sed -e 's/x86_64/amd64/' -e 's/\(arm\)\(64\)\?.*/\1\2/' -e 's/aarch64$/arm64/'
   register: arch_value
   changed_when: false
-  check_mode: no
+  check_mode: false
 
 - name: "krew - register arch"
-  set_fact: ansible_arch='{{ arch_value.stdout }}'
+  ansible.builtin.set_fact: ansible_arch='{{ arch_value.stdout }}'
 
 - name: "krew - debug ansible_os"
   ansible.builtin.debug:
