@@ -1,0 +1,6 @@
+skip_list:
+  - latest[git] # Result of the command may vary on subsequent runs. what!?
+  - name[casing] # Upper letter rule
+  - name[template] # jinja rule is not valid
+  - package-latest # Unfortunately I do want update to latest without version specification
+  - yaml[line-length] # don't think line-length is important
