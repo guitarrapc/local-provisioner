@@ -3,6 +3,7 @@
     path: "{{ base_path }}"
     state: directory
     force: true
+    mode: "0755"
 
 - name: Clone dotfiles
   ansible.builtin.git:
