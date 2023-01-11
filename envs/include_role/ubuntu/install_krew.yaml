@@ -64,7 +64,7 @@
 
 - name: "krew - startup profile.d script"
   become: true
-  blockinfile:
+  ansible.builtin.blockinfile:
     create: true
     path: /etc/profile.d/profile_ansible_init_krew.sh
     block: |

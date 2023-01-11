@@ -25,7 +25,7 @@
   when: install_dotfiles.stdout != ""
 
 - name: "dotfiles - insert .bash_rc to load custom rc"
-  blockinfile:
+  ansible.builtin.blockinfile:
     create: true
     path: "{{ ansible_home }}/.bashrc"
     block: |

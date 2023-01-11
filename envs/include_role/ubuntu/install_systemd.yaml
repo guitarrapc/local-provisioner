@@ -107,7 +107,7 @@
 
 - name: "systemd - sudoers config for systemd"
   become: true
-  blockinfile:
+  ansible.builtin.blockinfile:
     path: "/etc/sudoers"
     block: |
       Defaults        env_keep += WSLPATH
@@ -119,7 +119,7 @@
 
 - name: "systemd - source enter-systemd-namespace in /etc/bash.bashrc"
   become: true
-  blockinfile:
+  ansible.builtin.blockinfile:
     path: "/etc/bash.bashrc"
     insertafter: "System-wide"
     block: |
@@ -128,7 +128,7 @@
 
 - name: "systemd - fix login path to follow before bash login (systemd)"
   become: true
-  blockinfile:
+  ansible.builtin.blockinfile:
     create: true
     path: /etc/profile.d/profile_ansible_init_systemd_login.sh
     block: |

@@ -53,7 +53,7 @@
 # docker service daemon for SysV Init
 - name: "docker - startup profile.d script (wsl2)"
   become: true
-  blockinfile:
+  ansible.builtin.blockinfile:
     create: true
     path: /etc/profile.d/profile_ansible_init_docker.sh
     block: |
