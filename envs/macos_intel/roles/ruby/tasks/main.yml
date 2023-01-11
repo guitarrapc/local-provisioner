@@ -11,5 +11,5 @@
   when: rbenv_version is failed
 
 - name: install bundler
-  gem:
+  community.general.gem:
     name: bundler
