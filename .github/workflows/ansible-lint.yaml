@@ -22,6 +22,8 @@ jobs:
     timeout-minutes: 60
     steps:
       - uses: actions/checkout@v3
+      - name: Install ansible
+        run: pip3 install ansible
       - name: Install ansible-lint
         run: pip3 install ansible-lint
       - name: Run ansbile-lint
