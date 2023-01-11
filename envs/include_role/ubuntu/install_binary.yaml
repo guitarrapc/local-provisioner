@@ -11,7 +11,7 @@
 #   download_url: https://github.com/owner/repo/releases/download/verison/binary_name
 
 - name: "binary ({{ args.name }}) - check installed"
-  ansible.builtin.shell: set -o pipefail && "{{ args.name }} {{ args.version_arg }} 2>&1 | head -n 1 | grep {{ args.version }}"
+  ansible.builtin.shell: "set -o pipefail && {{ args.name }} {{ args.version_arg }} 2>&1 | head -n 1 | grep {{ args.version }}"
   args:
     executable: /bin/bash
   register: binary_exists
@@ -20,7 +20,7 @@
   ignore_errors: true
 
 - name: "binary ({{ args.name }}) - check installed with checksum"
-  ansible.builtin.shell: set -o pipefail && "{{ args.checksum_type }} /usr/local/bin/{{ args.name }} | grep {{ args.checksum }}"
+  ansible.builtin.shell: "set -o pipefail && {{ args.checksum_type }} /usr/local/bin/{{ args.name }} | grep {{ args.checksum }}"
   args:
     executable: /bin/bash
   register: binary_exists_checksum
