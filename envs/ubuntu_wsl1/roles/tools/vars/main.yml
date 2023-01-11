@@ -1,3 +1,8 @@
+anyenv:
+  - goenv: "false"
+    nodenv: "true"
+    pyenv: "false"
+
 apt_tools:
   - apache2-utils
   - direnv
@@ -15,6 +20,9 @@ apt_tools:
   - tree
   - unzip
   - whois
+
+aws_cli:
+  - version: "2.8.13"
 
 binary_install:
   - name: argocd
@@ -50,11 +58,63 @@ binary_install:
     version: "3.7.3"
     download_url: https://github.com/mozilla/sops/releases/download/v3.7.3/sops-v3.7.3.linux
 
+dotnet_tools:
+  - dotnet-sdk-6.0
+
+dotnet:
+  - version: "6.0"
+
 dpkg_install:
   - name: session-manager-plugin
     version_arg: "--version"
     version: "1.2.398.0"
     download_url: https://s3.amazonaws.com/session-manager-downloads/plugin/1.2.398.0/ubuntu_64bit/session-manager-plugin.deb
+
+gh_cli:
+  - version: "2.10.1"
+
+git_tools:
+  - name: kubectx
+    git_https_url: https://github.com/ahmetb/kubectx.git
+    link_binaries:
+      - kubectx
+      - kubens
+  - name: kube-ps1
+    git_https_url: https://github.com/jonmosco/kube-ps1.git
+
+homebrew:
+  - packages:
+      - { name: "hello", state: "present" }
+
+krew:
+  - version: "0.4.3"
+
+kubectl_plugin:
+  - name: explore # https://github.com/keisku/kubectl-explore A better kubectl explain with the fuzzy finder
+    install_check_arg: "--help"
+  - name: fuzzy # https://github.com/d-kuro/kubectl-fuzzy Instead of specifying full resource names to kubectl commands, you can choose them from an interactive list that you can filter by typing a few characters.
+    install_check_arg: "--help"
+  - name: get-all # https://github.com/corneliusweig/ketall Like `kubectl get all`, but get really all resources
+    install_check_arg: "--help"
+  - name: iexec # https://github.com/gabeduke/kubectl-iexec Kubectl plugin to interactively exec into a pod
+    install_check_arg: "--help"
+  - name: images # https://github.com/chenjiandongx/kubectl-images Show container images used in the cluster.
+    install_check_arg: "--help"
+  - name: lineage # https://github.com/tohjustin/kube-lineage display all dependencies or dependents of an object in a Kubernetes cluster
+    install_check_arg: "--help"
+  - name: neat # https://github.com/itaysk/kubectl-neat Clean up Kubernetes yaml and json output to make it readable
+    install_check_arg: "--help"
+  - name: resource-capacity # https://github.com/robscott/kube-capacity A simple CLI that provides an overview of the resource requests, limits, and utilization in a Kubernetes cluster
+    install_check_arg: "--help"
+  - name: rolesum # https://github.com/Ladicle/kubectl-rolesum Summarize Kubernetes RBAC roles for the specified subjects.
+    install_check_arg: "--help"
+  - name: view-secret # https://github.com/elsesiy/kubectl-view-secret Kubernetes CLI plugin to decode Kubernetes secrets
+    install_check_arg: "--help"
+  - name: who-can # https://github.com/aquasecurity/kubectl-who-can Show who has RBAC permissions to perform actions on different resources in Kubernetes
+    install_check_arg: "--help"
+
+pip_tools:
+  - ansible-lint
 
 targz_binary_install:
   - name: cert
@@ -137,63 +197,6 @@ targz_binary_install:
     binaries:
       - yq_linux_amd64
     dest_override: /usr/local/bin/yq # rename to yq
-
-git_tools:
-  - name: kubectx
-    git_https_url: https://github.com/ahmetb/kubectx.git
-    link_binaries:
-      - kubectx
-      - kubens
-  - name: kube-ps1
-    git_https_url: https://github.com/jonmosco/kube-ps1.git
-
-homebrew:
-  - packages:
-      - { name: "hello", state: "present" }
-
-anyenv:
-  - goenv: "false"
-    nodenv: "true"
-    pyenv: "false"
-
-aws_cli:
-  - version: "2.8.13"
-
-dotnet_tools:
-  - dotnet-sdk-6.0
-
-dotnet:
-  - version: "6.0"
-
-gh_cli:
-  - version: "2.10.1"
-
-krew:
-  - version: "0.4.3"
-
-kubectl_plugin:
-  - name: explore # https://github.com/keisku/kubectl-explore A better kubectl explain with the fuzzy finder
-    install_check_arg: "--help"
-  - name: fuzzy # https://github.com/d-kuro/kubectl-fuzzy Instead of specifying full resource names to kubectl commands, you can choose them from an interactive list that you can filter by typing a few characters.
-    install_check_arg: "--help"
-  - name: get-all # https://github.com/corneliusweig/ketall Like `kubectl get all`, but get really all resources
-    install_check_arg: "--help"
-  - name: iexec # https://github.com/gabeduke/kubectl-iexec Kubectl plugin to interactively exec into a pod
-    install_check_arg: "--help"
-  - name: images # https://github.com/chenjiandongx/kubectl-images Show container images used in the cluster.
-    install_check_arg: "--help"
-  - name: lineage # https://github.com/tohjustin/kube-lineage display all dependencies or dependents of an object in a Kubernetes cluster
-    install_check_arg: "--help"
-  - name: neat # https://github.com/itaysk/kubectl-neat Clean up Kubernetes yaml and json output to make it readable
-    install_check_arg: "--help"
-  - name: resource-capacity # https://github.com/robscott/kube-capacity A simple CLI that provides an overview of the resource requests, limits, and utilization in a Kubernetes cluster
-    install_check_arg: "--help"
-  - name: rolesum # https://github.com/Ladicle/kubectl-rolesum Summarize Kubernetes RBAC roles for the specified subjects.
-    install_check_arg: "--help"
-  - name: view-secret # https://github.com/elsesiy/kubectl-view-secret Kubernetes CLI plugin to decode Kubernetes secrets
-    install_check_arg: "--help"
-  - name: who-can # https://github.com/aquasecurity/kubectl-who-can Show who has RBAC permissions to perform actions on different resources in Kubernetes
-    install_check_arg: "--help"
 
 terraform:
   - version: "1.3.4"
