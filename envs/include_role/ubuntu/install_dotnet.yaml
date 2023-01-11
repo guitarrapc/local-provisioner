@@ -21,7 +21,7 @@
 
 - name: "dotnet - install dotnet sdk ({{ args.version }})"
   become: true
-  package:
+  ansible.builtin.package:
     name: "dotnet-sdk-{{ args.version }}"
     state: present
     update_cache: true

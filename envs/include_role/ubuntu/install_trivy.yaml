@@ -23,7 +23,7 @@
 
 - name: "trivy - install trivy"
   become: true
-  package:
+  ansible.builtin.package:
     name: trivy
     state: latest
     update_cache: true
