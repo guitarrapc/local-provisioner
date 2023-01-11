@@ -5,9 +5,13 @@ on:
   push:
     branches:
       - main
+    paths:
+      - "envs/**/*.yaml"
   pull_request:
     branches:
       - main
+    paths:
+      - "envs/**/*.yaml"
 
 env:
   TERM: xterm
