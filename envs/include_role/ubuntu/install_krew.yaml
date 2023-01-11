@@ -14,16 +14,9 @@
   changed_when: false
   check_mode: false
 
-- name: "krew - register arch"
-  ansible.builtin.set_fact: ansible_arch='{{ arch_value.stdout }}'
-
 - name: "krew - debug ansible_os"
   ansible.builtin.debug:
     msg: "{{ ansible_os }}"
-
-- name: "krew - debug ansible_arch"
-  ansible.builtin.debug:
-    msg: "{{ ansible_arch }}"
 
 # krew: https://krew.sigs.k8s.io/docs/user-guide/setup/install/
 - name: "krew - check installed"
@@ -55,11 +48,11 @@
   when: krew_exists is failed
 
 - name: "krew - install"
-  ansible.builtin.command: /tmp/krew/krew-{{ ansible_os }}_{{ ansible_arch }} install krew
+  ansible.builtin.command: /tmp/krew/krew-{{ ansible_os }}_{{ arch_value.stdout }} install krew
   when: krew_exists is failed
 
 - name: "krew - upgrade"
-  ansible.builtin.command: /tmp/krew/krew-{{ ansible_os }}_{{ ansible_arch }} upgrade krew
+  ansible.builtin.command: /tmp/krew/krew-{{ ansible_os }}_{{ arch_value.stdout }} upgrade krew
   ignore_errors: true
 
 - name: "krew - startup profile.d script"
