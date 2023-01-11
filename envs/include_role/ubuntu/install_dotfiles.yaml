@@ -30,8 +30,7 @@
     create: true
     path: "{{ ansible_home }}/.bashrc"
     block: |
-      if [[ -f {{ ansible_home }}/.bashrc_custom ]]
-      then
+      if [[ -f {{ ansible_home }}/.bashrc_custom ]]; then
         source {{ ansible_home }}/.bashrc_custom
       fi
     mode: "0644"
