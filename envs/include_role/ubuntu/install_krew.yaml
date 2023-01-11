@@ -5,9 +5,6 @@
   changed_when: false
   check_mode: false
 
-- name: "krew - register os"
-  ansible.builtin.set_fact: ansible_os='{{ os_value.stdout }}'
-
 - name: "krew - get arch"
   ansible.builtin.shell: set -o pipefail && uname -m | sed -e 's/x86_64/amd64/' -e 's/\(arm\)\(64\)\?.*/\1\2/' -e 's/aarch64$/arm64/'
   register: arch_value
@@ -16,7 +13,11 @@
 
 - name: "krew - debug ansible_os"
   ansible.builtin.debug:
-    msg: "{{ ansible_os }}"
+    msg: "{{ os_value.stdout }}"
+
+- name: "krew - debug arch_value"
+  ansible.builtin.debug:
+    msg: "{{ arch_value.stdout }}"
 
 # krew: https://krew.sigs.k8s.io/docs/user-guide/setup/install/
 - name: "krew - check installed"
@@ -48,11 +49,11 @@
   when: krew_exists is failed
 
 - name: "krew - install"
-  ansible.builtin.command: /tmp/krew/krew-{{ ansible_os }}_{{ arch_value.stdout }} install krew
+  ansible.builtin.command: /tmp/krew/krew-{{ os_value.stdout }}_{{ arch_value.stdout }} install krew
   when: krew_exists is failed
 
 - name: "krew - upgrade"
-  ansible.builtin.command: /tmp/krew/krew-{{ ansible_os }}_{{ arch_value.stdout }} upgrade krew
+  ansible.builtin.command: /tmp/krew/krew-{{ os_value.stdout }}_{{ arch_value.stdout }} upgrade krew
   ignore_errors: true
   when: krew_exists
 
