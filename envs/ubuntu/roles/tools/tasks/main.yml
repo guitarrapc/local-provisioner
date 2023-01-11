@@ -1,6 +1,6 @@
 - name: "Apt - Install tools"
   become: true
-  apt:
+  ansible.builtin.apt:
     pkg: "{{ apt_tools }}"
     update_cache: true
 
@@ -64,7 +64,7 @@
 
 - name: ".NET - Install dotnet (new)"
   become: true
-  apt:
+  ansible.builtin.apt:
     pkg: "{{ dotnet_tools }}"
     update_cache: true
   when: ansible_distribution_version == "22.04"
