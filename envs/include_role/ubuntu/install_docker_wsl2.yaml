@@ -40,13 +40,13 @@
 # configure iptables to use legacy. see: https://github.com/WhitewaterFoundry/Pengwin/issues/485#issuecomment-518028465
 - name: "docker - change iptables/ip6tables to use legacy"
   become: true
-  ansible.builtin.command: |
+  ansible.builtin.shell: |
     update-alternatives --set iptables /usr/sbin/iptables-legacy
     update-alternatives --set ip6tables /usr/sbin/ip6tables-legacy
   changed_when: false
 
 # allow use docker without sudo
-- name: "docker - change iptables/ip6tables to use legacy"
+- name: "docker - allow use docker without sudo"
   become: true
   ansible.builtin.command: usermod -aG docker "{{ ansible_user_id }}"
   changed_when: false
