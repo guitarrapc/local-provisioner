@@ -181,7 +181,7 @@ targz_binary_install:
     copy_root: ""
     binaries:
       - stern
-    dest_override: /usr/bin/
+    dest_override: /usr/local/bin/
   - name: tldr
     version_arg: "--version"
     version: "0.6.1"
