@@ -12,7 +12,7 @@
 - name: "azure-cli - import azure-cli apt key"
   become: true
   ansible.builtin.shell: |
-    curl -sL https://packages.microsoft.com/keys/microsoft.asc |
+    set -o pipefail && curl -sL https://packages.microsoft.com/keys/microsoft.asc |
       gpg --dearmor |
       sudo tee /etc/apt/trusted.gpg.d/microsoft.gpg > /dev/null
   args:
@@ -22,7 +22,7 @@
 - name: "azure-cli - add repo for Ubuntu"
   become: true
   # $(lsb_release -cs) = {{ ansible_distribution_release }}
-  ansible.builtin.shell: echo "deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ {{ ansible_distribution_release }} main" | sudo tee /etc/apt/sources.list.d/azure-cli.list
+  ansible.builtin.shell: set -o pipefail && echo "deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ {{ ansible_distribution_release }} main" | sudo tee /etc/apt/sources.list.d/azure-cli.list
   changed_when: false
 
 - name: "azure-cli - install"

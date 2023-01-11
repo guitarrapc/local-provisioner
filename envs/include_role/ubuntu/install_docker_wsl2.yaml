@@ -12,7 +12,7 @@
 
 - name: "docker - import Docker apt key"
   become: true
-  ansible.builtin.shell: curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+  ansible.builtin.shell: set -o pipefail && curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
   args:
     warn: false
   changed_when: false
@@ -39,7 +39,7 @@
 # configure iptables to use legacy. see: https://github.com/WhitewaterFoundry/Pengwin/issues/485#issuecomment-518028465
 - name: "docker - change iptables/ip6tables to use legacy"
   become: true
-  ansible.builtin.shell: |
+  ansible.builtin.command: |
     update-alternatives --set iptables /usr/sbin/iptables-legacy
     update-alternatives --set ip6tables /usr/sbin/ip6tables-legacy
   changed_when: false
@@ -47,7 +47,7 @@
 # allow use docker without sudo
 - name: "docker - change iptables/ip6tables to use legacy"
   become: true
-  ansible.builtin.shell: usermod -aG docker "{{ ansible_user_id }}"
+  ansible.builtin.command: usermod -aG docker "{{ ansible_user_id }}"
   changed_when: false
 
 # docker service daemon for SysV Init

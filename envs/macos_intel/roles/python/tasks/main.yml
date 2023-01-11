@@ -1,29 +1,29 @@
 ---
 - name: clone pyenv-virtualenv repository
-  git:
+  ansible.builtin.git:
     repo: https://github.com/pyenv/pyenv-virtualenv.git
     dest: ~/.pyenv/plugins/pyenv-virtualenv
     accept_hostkey: true
 
 - name: check python3 installed
-  ansible.builtin.shell: pyenv versions | grep {{ python3_version }}
+  ansible.builtin.shell: set -o pipefail && pyenv versions | grep {{ python3_version }}
   register: pyenv3_version
   changed_when: false
   ignore_errors: true
 
 - name: install python3
-  ansible.builtin.shell: pyenv install {{ python3_version }}
+  ansible.builtin.command: pyenv install {{ python3_version }}
   when: pyenv3_version is failed
 
 - name: check python2 installed
-  ansible.builtin.shell: pyenv versions | grep {{ python2_version }}
+  ansible.builtin.shell: set -o pipefail && pyenv versions | grep {{ python2_version }}
   register: pyenv2_version
   changed_when: false
   ignore_errors: true
 
 - name: install python2
-  ansible.builtin.shell: CFLAGS="-I$(xcrun --show-sdk-path)/usr/include" pyenv install {{ python2_version }}
+  ansible.builtin.command: CFLAGS="-I$(xcrun --show-sdk-path)/usr/include" pyenv install {{ python2_version }}
   when: pyenv2_version is failed
 
 - name: pyenv global set {{ python3_version }} & {{ python2_version }}
-  ansible.builtin.shell: pyenv global {{ python3_version }} {{ python2_version }}
+  ansible.builtin.command: pyenv global {{ python3_version }} {{ python2_version }}

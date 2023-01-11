@@ -5,21 +5,21 @@
 #   download_url: https://github.com/owner/repo/releases/download/verison/dpkg_name
 
 - name: "dpkg ({{ args.name }}) - check installed"
-  ansible.builtin.shell: "{{ args.name }} {{ args.version_arg }} 2>&1 | head -n 1 | grep {{ args.version }}"
+  ansible.builtin.shell: set -o pipefail && "{{ args.name }} {{ args.version_arg }} 2>&1 | head -n 1 | grep {{ args.version }}"
   register: dpkg_exists
   when: (args.version_arg is defined) and (args.version is defined)
   changed_when: false
   ignore_errors: true
 
 - name: "dpkg ({{ args.name }}) - download"
-  get_url:
+  ansible.builtin.get_url:
     url: "{{ args.download_url }}"
     dest: "/tmp/{{ args.name }}.deb"
   when: dpkg_exists is failed
 
 - name: "dpkg ({{ args.name }}) - install"
   become: true
-  ansible.builtin.shell: dpkg -i /tmp/{{ args.name }}.deb
+  ansible.builtin.command: dpkg -i /tmp/{{ args.name }}.deb
   when: dpkg_exists is failed
 
 - name: "dpkg ({{ args.name }}) - remove temp files"

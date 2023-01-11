@@ -1,14 +1,12 @@
 ---
-
 - name: update brew
-  command: brew update
+  ansible.builtin.command: brew update
   register: result
   ignore_errors: True
   changed_when: result.stdout != 'Already up-to-date.'
 
-- name: 'homebrew packages installation'
+- name: "homebrew packages installation"
   homebrew:
-    name: '{{ item.name }}'
+    name: "{{ item.name }}"
     state: "{{ item.state|default('present') }}"
   with_items: "{{ homebrew_packages }}"
-

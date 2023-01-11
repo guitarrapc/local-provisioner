@@ -1,5 +1,5 @@
 - name: "homebrew - clone"
-  git:
+  ansible.builtin.git:
     repo: https://github.com/Homebrew/brew
     dest: "{{ ansible_home }}/github/Homebrew/brew"
     accept_hostkey: true
@@ -17,7 +17,7 @@
     state: link
 
 - name: "homebrew - eval shellenv"
-  ansible.builtin.shell: eval $({{ ansible_home }}/.linuxbrew/bin/brew shellenv)
+  ansible.builtin.command: eval $({{ ansible_home }}/.linuxbrew/bin/brew shellenv)
   changed_when: false
 
 - name: "homebrew - install tools"

@@ -1,7 +1,7 @@
 # gh
 # install to /opt/gh, then symlink to /usr/local/bin/gh.
 - name: "gh - get version"
-  ansible.builtin.shell: "gh --version"
+  ansible.builtin.command: "gh --version"
   register: gh_current
   changed_when: false
   ignore_errors: true
@@ -11,7 +11,7 @@
     msg: "{{ gh_current.stdout_lines }}"
 
 - name: "gh - check exists"
-  ansible.builtin.shell: gh --version 2>&1 | head -n 1 | grep "{{ args.version }}"
+  ansible.builtin.shell: set -o pipefail && gh --version 2>&1 | head -n 1 | grep "{{ args.version }}"
   register: gh_exists
   changed_when: false
   ignore_errors: true
@@ -24,7 +24,7 @@
     force: true
 
 - name: "gh - download"
-  ansible.builtin.shell: curl -L "https://github.com/cli/cli/releases/download/v{{ args.version }}/gh_{{ args.version }}_linux_amd64.tar.gz" -o /tmp/gh_{{ args.version }}_linux_amd64.tar.gz
+  ansible.builtin.command: curl -L "https://github.com/cli/cli/releases/download/v{{ args.version }}/gh_{{ args.version }}_linux_amd64.tar.gz" -o /tmp/gh_{{ args.version }}_linux_amd64.tar.gz
   args:
     warn: false
   when: gh_exists is failed

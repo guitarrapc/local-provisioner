@@ -10,24 +10,24 @@
     state: directory
 
 - name: check node.js installed
-  ansible.builtin.shell: $SHELL -lc "which node"
+  ansible.builtin.command: $SHELL -lc "which node"
   ignore_errors: True
   changed_when: nodejs_installed.rc > 0
   register: nodejs_installed
 
 - name: check installed node.js version
-  ansible.builtin.shell: $SHELL -lc "nodebrew ls | grep {{ nodebrew_nodejs_version }}"
+  ansible.builtin.shell: set -o pipefail && $SHELL -lc "nodebrew ls | grep {{ nodebrew_nodejs_version }}"
   ignore_errors: True
   changed_when: nodejs_target_version_exist.rc > 0
   when: nodejs_installed is success
   register: nodejs_target_version_exist
 
 - name: install node.js
-  ansible.builtin.shell: $SHELL -lc "nodebrew install-binary {{ nodebrew_nodejs_version }}"
+  ansible.builtin.command: $SHELL -lc "nodebrew install-binary {{ nodebrew_nodejs_version }}"
   when: (nodejs_installed is failed) or (nodejs_target_version_exist is failed)
 
 - name: npm update
-  ansible.builtin.shell: $SHELL -lc "npm update -g npm"
+  ansible.builtin.command: $SHELL -lc "npm update -g npm"
   when: nodebrew_npm_update
   changed_when: npm_updated.stdout != ''
   register: npm_updated

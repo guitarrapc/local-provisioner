@@ -1,6 +1,6 @@
 # krew: https://krew.sigs.k8s.io/docs/user-guide/setup/install/
 - name: "kubectl_plugin ({{ args.name }}) - check installed"
-  ansible.builtin.shell: "kubectl {{ args.name }} {{ args.install_check_arg }} 2>&1"
+  ansible.builtin.command: "kubectl {{ args.name }} {{ args.install_check_arg }} 2>&1"
   environment:
     # require re-login shell for 1st install, let's manual export shellenv and use it
     PATH: "{{ ansible_home }}/.krew/bin:{{ ansible_env.PATH }}"
@@ -9,7 +9,7 @@
   ignore_errors: true
 
 - name: "kubectl_plugin ({{ args.name }}) - install"
-  ansible.builtin.shell: kubectl krew install {{ args.name }}
+  ansible.builtin.command: kubectl krew install {{ args.name }}
   environment:
     # require re-login shell for 1st install, let's manual export shellenv and use it
     PATH: "{{ ansible_home }}/.krew/bin:{{ ansible_env.PATH }}"

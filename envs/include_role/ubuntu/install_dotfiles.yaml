@@ -4,7 +4,7 @@
     state: directory
 
 - name: "dotfiles - clone & Fetch"
-  git:
+  ansible.builtin.git:
     repo: "{{ args.repository }}"
     dest: "{{ args.clone_destination }}"
 
@@ -13,7 +13,7 @@
 - name: "dotfiles - create symlinks"
   become: true
   become_user: "{{ ansible_user_id }}"
-  ansible.builtin.shell: "{{ args.run_command }}"
+  ansible.builtin.command: "{{ args.run_command }}"
   args:
     chdir: "{{ args.clone_destination }}"
   changed_when: false

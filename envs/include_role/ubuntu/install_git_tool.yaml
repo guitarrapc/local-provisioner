@@ -1,6 +1,6 @@
 - name: "git_tool - ({{ args.name }}) - clone"
   become: true
-  git:
+  ansible.builtin.git:
     repo: "{{ args.git_https_url }}"
     dest: "{{ ansible_home }}/github/{{ args.name }}"
     accept_hostkey: true

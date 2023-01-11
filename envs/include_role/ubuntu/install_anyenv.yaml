@@ -1,5 +1,5 @@
 - name: "anyenv - Clone & Fetch repo"
-  git:
+  ansible.builtin.git:
     repo: "https://github.com/anyenv/anyenv"
     dest: "{{ ansible_home }}/.anyenv"
 
@@ -18,21 +18,21 @@
   register: anyenv_confi_exists
 
 - name: "anyenv - install --init"
-  ansible.builtin.shell: yes | anyenv install --init
+  ansible.builtin.shell: set -o pipefail && yes | anyenv install --init
   when: not anyenv_confi_exists.stat.exists
   changed_when: false
 
 - name: "anyenv - install goenv"
-  ansible.builtin.shell: anyenv install goenv --skip-existing
+  ansible.builtin.command: anyenv install goenv --skip-existing
   changed_when: false
   when: args.goenv == "true"
 
 - name: "anyenv - install nodenv"
-  ansible.builtin.shell: anyenv install nodenv --skip-existing
+  ansible.builtin.command: anyenv install nodenv --skip-existing
   changed_when: false
   when: args.nodenv == "true"
 
 - name: "anyenv - install pyenv"
-  ansible.builtin.shell: anyenv install pyenv --skip-existing
+  ansible.builtin.command: anyenv install pyenv --skip-existing
   changed_when: false
   when: args.pyenv == "true"

@@ -1,5 +1,5 @@
 - name: "tfenv - Clone & Fetch repo"
-  git:
+  ansible.builtin.git:
     repo: "https://github.com/tfutils/tfenv.git"
     dest: "{{ ansible_home }}/.tfenv"
 
@@ -14,15 +14,15 @@
     - tfenv
 
 - name: "tfenv - check installed"
-  ansible.builtin.shell: tfenv list | grep {{ args.version }}
+  ansible.builtin.shell: set -o pipefail && tfenv list | grep {{ args.version }}
   register: terraform_version
   changed_when: false
   ignore_errors: true
 
 - name: "tfenv - install"
-  command: tfenv install {{ args.version }}
+  ansible.builtin.command: tfenv install {{ args.version }}
   when: terraform_version is failed
 
 - name: "tfenv - use version {{ args.version }}"
-  command: tfenv use {{ args.version }}
+  ansible.builtin.command: tfenv use {{ args.version }}
   when: terraform_version is failed
