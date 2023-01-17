@@ -11,6 +11,7 @@
     name:
       - everything
       - fork
+      - gcloud
       - gitkraken
       #- googlechrome # too old and won't update since 91. stop use it and use self update.
       - hack-font

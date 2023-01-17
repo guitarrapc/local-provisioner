@@ -38,6 +38,8 @@
       - chromedriver
       - dive
       - hub
+      - hugo
+      - hugo-extended
       - gibo
       - git-lfs
       - helm
