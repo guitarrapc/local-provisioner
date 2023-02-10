@@ -17,7 +17,6 @@
       sudo tee /etc/apt/trusted.gpg.d/microsoft.gpg > /dev/null
   args:
     executable: /bin/bash
-    warn: false
   changed_when: false
 
 - name: "azure-cli - add repo for Ubuntu"

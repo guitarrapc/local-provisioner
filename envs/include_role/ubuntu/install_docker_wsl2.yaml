@@ -15,7 +15,6 @@
   ansible.builtin.shell: set -o pipefail && curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
   args:
     executable: /bin/bash
-    warn: false
   changed_when: false
 
 - name: "docker - add repo for Ubuntu"

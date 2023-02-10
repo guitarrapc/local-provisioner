@@ -28,8 +28,6 @@
 
 - name: "gh - download"
   ansible.builtin.command: curl -L "https://github.com/cli/cli/releases/download/v{{ gh_cli.version }}/gh_{{ gh_cli.version }}_linux_amd64.tar.gz" -o /tmp/gh_{{ gh_cli.version }}_linux_amd64.tar.gz
-  args:
-    warn: false
   when: gh_exists is failed
 
 - name: "gh - unzip"
