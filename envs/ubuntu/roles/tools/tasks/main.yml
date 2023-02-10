@@ -43,9 +43,15 @@
 #     loop_var: args
 
 # each packages
-- name: "anyEnv - Install anyenv"
-  ansible.builtin.include_tasks: ../include_role/ubuntu/install_anyenv.yaml
-  with_items: "{{ anyenv }}"
+- name: "asdf - Install asdf"
+  ansible.builtin.include_tasks: ../include_role/ubuntu/install_asdf.yaml
+  with_items: "{{ asdf }}"
+  loop_control:
+    loop_var: args
+
+- name: "asdf - Install asdf plugins"
+  ansible.builtin.include_tasks: ../include_role/ubuntu/install_asdf_plugins.yaml
+  with_items: "{{ asdf_plugins }}"
   loop_control:
     loop_var: args
 

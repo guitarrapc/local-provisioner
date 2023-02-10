@@ -1,0 +1,33 @@
+- name: "asdf - Clone & Fetch repo"
+  ansible.builtin.git:
+    repo: "https://github.com/asdf-vm/asdf"
+    dest: "{{ ansible_home }}/.asdf"
+    version: "{{ asdf.version }}"
+
+# need reload asdf on new bash session. This is achieved by https://github.com/guitarrapc/dotfiles-linux/blob/master/ROOT/etc/profile.d/profile_dotfiles_init_asdf.sh
+- name: "asdf - install check"
+  ansible.builtin.command: asdf version
+  args:
+    executable: /bin/bash
+  environment:
+    # require re-login shell for 1st install, let's manual export shellenv and use it
+    PATH: "{{ ansible_home }}/.asdf/shims:{{ ansible_home }}/.asdf/bin:{{ ansible_env.PATH }}"
+  register: asdf_debug
+  changed_when: false
+
+- name: "asdf - debug output"
+  ansible.builtin.debug:
+    msg: "{{ asdf_debug.stdout_lines }}"
+  when: asdf_debug.stdout != ""
+#
+# debug PATH output if needed.
+#
+# - name: "asdf - debug PATH"
+#   ansible.builtin.command: bash -lc "export"
+#   register: asdf_debug_path
+#   changed_when: false
+
+# - name: "asdf - debug PATH output"
+#   ansible.builtin.debug:
+#     msg: "{{ asdf_debug_path.stdout_lines }}"
+#   when: asdf_debug.stdout != ""
