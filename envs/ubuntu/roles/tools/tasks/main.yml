@@ -35,12 +35,12 @@
   loop_control:
     loop_var: args
 
-# # too slow.... may be remove in future. packages should not depends on brew.
-# - name: "Install homebrew"
-#   ansible.builtin.include_tasks: ../include_role/ubuntu/install_homebrew.yaml
-#   with_items: "{{ homebrew }}"
-#   loop_control:
-#     loop_var: args
+# # # too slow.... may be remove in future. packages should not depends on brew.
+# # - name: "Install homebrew"
+# #   ansible.builtin.include_tasks: ../include_role/ubuntu/install_homebrew.yaml
+# #   with_items: "{{ homebrew }}"
+# #   loop_control:
+# #     loop_var: args
 
 # each packages
 - name: "asdf - Install asdf"
@@ -52,12 +52,6 @@
 - name: "asdf - Install asdf plugins"
   ansible.builtin.include_tasks: ../include_role/ubuntu/install_asdf_plugins.yaml
   with_items: "{{ asdf_plugins }}"
-  loop_control:
-    loop_var: args
-
-- name: "aws - Install aws cli"
-  ansible.builtin.include_tasks: ../include_role/ubuntu/install_awscli.yaml
-  with_items: "{{ aws_cli }}"
   loop_control:
     loop_var: args
 
@@ -74,12 +68,6 @@
     pkg: "{{ dotnet }}"
     update_cache: true
   when: ansible_distribution_version == "22.04"
-
-- name: "gh - Install gh cli"
-  ansible.builtin.include_tasks: ../include_role/ubuntu/install_ghcli.yaml
-  with_items: "{{ gh_cli }}"
-  loop_control:
-    loop_var: args
 
 - name: "krew - Install krew binary"
   ansible.builtin.include_tasks: ../include_role/ubuntu/install_krew.yaml
