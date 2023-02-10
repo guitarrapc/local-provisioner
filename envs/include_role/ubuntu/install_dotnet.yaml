@@ -20,9 +20,9 @@
   ansible.builtin.command: dpkg -i /tmp/packages-microsoft-prod.deb
   changed_when: false
 
-- name: "dotnet - install dotnet sdk ({{ args.version }})"
+- name: "dotnet - install ({{ dotnet.version }})"
   become: true
   ansible.builtin.package:
-    name: "dotnet-sdk-{{ args.version }}"
+    name: "{{ dotnet.version }}"
     state: present
     update_cache: true

@@ -35,7 +35,7 @@
   loop_control:
     loop_var: args
 
-# too slow.... may be remove in future. packages should not depends on brew.
+# # too slow.... may be remove in future. packages should not depends on brew.
 # - name: "Install homebrew"
 #   ansible.builtin.include_tasks: ../include_role/ubuntu/install_homebrew.yaml
 #   with_items: "{{ homebrew }}"
@@ -65,7 +65,7 @@
 - name: ".NET - Install dotnet (new)"
   become: true
   ansible.builtin.apt:
-    pkg: "{{ dotnet_tools }}"
+    pkg: "{{ dotnet }}"
     update_cache: true
   when: ansible_distribution_version == "22.04"
 

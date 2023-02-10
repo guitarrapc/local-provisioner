@@ -8,34 +8,34 @@
   ansible.builtin.pip:
     name: "{{ pip_tools }}"
 
-- name: "git - Install git cli"
-  ansible.builtin.include_tasks: ../include_role/ubuntu/install_git.yaml
+# - name: "git - Install git cli"
+#   ansible.builtin.include_tasks: ../include_role/ubuntu/install_git.yaml
 
-- name: "binary - Install tools"
-  ansible.builtin.include_tasks: ../include_role/ubuntu/install_binary.yaml
-  with_items: "{{ binary_install }}"
-  loop_control:
-    loop_var: args
+# - name: "binary - Install tools"
+#   ansible.builtin.include_tasks: ../include_role/ubuntu/install_binary.yaml
+#   with_items: "{{ binary_install }}"
+#   loop_control:
+#     loop_var: args
 
-- name: ".tar.gz - Install tools"
-  ansible.builtin.include_tasks: ../include_role/ubuntu/install_binary_targz.yaml
-  with_items: "{{ targz_binary_install }}"
-  loop_control:
-    loop_var: args
+# - name: ".tar.gz - Install tools"
+#   ansible.builtin.include_tasks: ../include_role/ubuntu/install_binary_targz.yaml
+#   with_items: "{{ targz_binary_install }}"
+#   loop_control:
+#     loop_var: args
 
-- name: "git clone - Install git tools"
-  ansible.builtin.include_tasks: ../include_role/ubuntu/install_git_tool.yaml
-  with_items: "{{ git_tools }}"
-  loop_control:
-    loop_var: args
+# - name: "git clone - Install git tools"
+#   ansible.builtin.include_tasks: ../include_role/ubuntu/install_git_tool.yaml
+#   with_items: "{{ git_tools }}"
+#   loop_control:
+#     loop_var: args
 
-- name: "dpkg - Install tools"
-  ansible.builtin.include_tasks: ../include_role/ubuntu/install_dpkg.yaml
-  with_items: "{{ dpkg_install }}"
-  loop_control:
-    loop_var: args
+# - name: "dpkg - Install tools"
+#   ansible.builtin.include_tasks: ../include_role/ubuntu/install_dpkg.yaml
+#   with_items: "{{ dpkg_install }}"
+#   loop_control:
+#     loop_var: args
 
-# too slow.... may be remove in future. packages should not depends on brew.
+# # too slow.... may be remove in future. packages should not depends on brew.
 # - name: "Install homebrew"
 #   ansible.builtin.include_tasks: ../include_role/ubuntu/install_homebrew.yaml
 #   with_items: "{{ homebrew }}"
@@ -65,7 +65,7 @@
 - name: ".NET - Install dotnet (new)"
   become: true
   ansible.builtin.apt:
-    pkg: "{{ dotnet_tools }}"
+    pkg: "{{ dotnet }}"
     update_cache: true
   when: ansible_distribution_version == "22.04"
 

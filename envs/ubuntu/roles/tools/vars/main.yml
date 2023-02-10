@@ -22,7 +22,7 @@ apt_tools:
   - whois
 
 aws_cli:
-  - version: "2.8.13"
+  version: "2.8.13"
 
 binary_install:
   - name: argocd
@@ -58,11 +58,8 @@ binary_install:
     version: "3.7.3"
     download_url: https://github.com/mozilla/sops/releases/download/v3.7.3/sops-v3.7.3.linux
 
-dotnet_tools:
-  - dotnet-sdk-6.0
-
 dotnet:
-  - version: "6.0"
+  version: "6.0"
 
 dpkg_install:
   - name: session-manager-plugin
@@ -71,7 +68,7 @@ dpkg_install:
     download_url: https://s3.amazonaws.com/session-manager-downloads/plugin/1.2.398.0/ubuntu_64bit/session-manager-plugin.deb
 
 gh_cli:
-  - version: "2.10.1"
+  version: "2.10.1"
 
 git_tools:
   - name: kubectx
@@ -87,7 +84,7 @@ homebrew:
       - { name: "hello", state: "present" }
 
 krew:
-  - version: "0.4.3"
+  version: "0.4.3"
 
 krew_plugins:
   - name: explore # https://github.com/keisku/kubectl-explore A better kubectl explain with the fuzzy finder
@@ -199,4 +196,4 @@ targz_binary_install:
     dest_override: /usr/local/bin/yq # rename to yq
 
 terraform:
-  - version: "1.3.4"
+  version: "1.3.4"
