@@ -21,9 +21,9 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [macos, macos_intel, raspi, ubuntu, ubuntu_wsl1]
+        os: [macos, macos_intel, raspi, ubuntu]
     runs-on: ubuntu-latest
-    timeout-minutes: 60
+    timeout-minutes: 5
     steps:
       - uses: actions/checkout@v3
       - name: Install ansible
