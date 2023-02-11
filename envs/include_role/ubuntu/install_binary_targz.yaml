@@ -17,7 +17,7 @@
   ansible.builtin.get_url:
     url: "{{ args.download_url }}"
     dest: "/tmp/{{ args.name }}/{{ args.name }}.tar.gz"
-    mode: "0644"
+    mode: "0664"
   when: binary_targz_exists is failed
 
 - name: "binary_targz ({{ args.name }}) - unarchive"
