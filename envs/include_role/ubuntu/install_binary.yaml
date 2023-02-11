@@ -32,7 +32,7 @@
   ansible.builtin.get_url:
     url: "{{ args.download_url }}"
     dest: "/tmp/{{ args.name }}"
-    mode: "0644"
+    mode: "0755"
   when: (binary_exists is failed) or (binary_exists_checksum is failed)
 
 - name: "binary ({{ args.name }}) - copy"
