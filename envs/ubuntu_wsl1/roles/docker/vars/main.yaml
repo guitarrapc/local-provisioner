@@ -1,6 +1,6 @@
 docker:
   require_sysvinit: "{{ is_wsl1 }}"
-  wsl2_isolated_docker: 1
+  wsl2_isolated: 1
 
 docker_compose:
   - name: docker-compose

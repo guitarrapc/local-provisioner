@@ -43,14 +43,14 @@
     update-alternatives --set iptables /usr/sbin/iptables-legacy
     update-alternatives --set ip6tables /usr/sbin/ip6tables-legacy
   changed_when: false
-  when: (is_wsl2 == "1") and (docker.wsl2_isolated_docker == "1")
+  when: (is_wsl2 == "1") and (docker.wsl2_isolated == "1")
 
 # allow use docker without sudo
 - name: "docker - allow use docker without sudo"
   become: true
   ansible.builtin.command: usermod -aG docker "{{ ansible_user_id }}"
   changed_when: false
-  when: (is_wsl2 == "1") and (docker.wsl2_isolated_docker == "1")
+  when: (is_wsl2 == "1") and (docker.wsl2_isolated == "1")
 
 # docker service daemon for SysV Init
 - name: "docker - startup profile.d script (wsl2)"
@@ -63,7 +63,7 @@
       sudo usermod -aG docker $USER
       sudo service docker start
     mode: "0644"
-  when: (docker.require_sysvinit == "1")  and (wsl2_isolated_docker == "1") and (is_wsl2 == "1")
+  when: (docker.require_sysvinit == "1")  and (docker.wsl2_isolated == "1")
 
 - name: "docker - startup profile.d script (wsl1)"
   become: true
