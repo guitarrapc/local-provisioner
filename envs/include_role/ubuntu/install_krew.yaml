@@ -39,14 +39,14 @@
   ansible.builtin.file:
     path: "/tmp/krew"
     state: directory
-    mode: "0655"
+    mode: "0755"
   when: krew_exists is failed
 
 - name: "krew - download"
   ansible.builtin.get_url:
     url: "https://github.com/kubernetes-sigs/krew/releases/download/v{{ krew.version }}/krew-linux_amd64.tar.gz"
     dest: "/tmp/krew/krew.tar.gz"
-    mode: "0644"
+    mode: "0755"
   when: krew_exists is failed
 
 - name: "krew - unarchive"
