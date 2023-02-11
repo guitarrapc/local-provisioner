@@ -9,6 +9,9 @@
       - dbus-user-session
       - fontconfig
     update_cache: true
+  register: apt
+  until: "apt is not failed"
+  retries: 2 # wsl1 failed first apt on Ubuntu-22.04
 
 # scripts
 - name: "systemd - contents start-systemd-namespace script"

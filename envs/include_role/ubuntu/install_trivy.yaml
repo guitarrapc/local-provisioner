@@ -9,6 +9,9 @@
       - lsb-release
     state: present
     update_cache: true
+  register: apt
+  until: "apt is not failed"
+  retries: 2 # wsl1 failed first apt on Ubuntu-22.04
 
 - name: "trivy - import apt key"
   become: true

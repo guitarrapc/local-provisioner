@@ -6,6 +6,9 @@
     name: apt-transport-https
     state: present
     update_cache: true
+  register: apt
+  until: "apt is not failed"
+  retries: 2 # wsl1 failed first apt on Ubuntu-22.04
   when: ansible_distribution_version != "22.04"
 
 - name: "dotnet - import Microsoft apt key"

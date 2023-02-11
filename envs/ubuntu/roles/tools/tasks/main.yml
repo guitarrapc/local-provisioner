@@ -3,6 +3,9 @@
   ansible.builtin.apt:
     pkg: "{{ apt_tools }}"
     update_cache: true
+  register: apt
+  until: "apt is not failed"
+  retries: 2 # wsl1 failed first apt on Ubuntu-22.04
 
 - name: pip3 - Install pip3 packages
   ansible.builtin.pip:
