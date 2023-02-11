@@ -8,6 +8,8 @@
       - lsb-release
       # - gnupg # no need.
     update_cache: true
+  register: apt
+  failed_when: (apt.rc == 0) or '"Setting in Stop via TCSAFLUSH for stdin failed" not in apt.stdout' # for wsl1 Ubuntu-22.04
 
 - name: "azure-cli - import azure-cli apt key"
   become: true
@@ -33,3 +35,5 @@
     pkg: azure-cli
     state: latest
     update_cache: true
+  register: apt
+  failed_when: (apt.rc == 0) or '"Setting in Stop via TCSAFLUSH for stdin failed" not in apt.stdout' # for wsl1 Ubuntu-22.04

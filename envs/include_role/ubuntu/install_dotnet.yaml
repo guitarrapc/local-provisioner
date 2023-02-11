@@ -6,6 +6,8 @@
     name: apt-transport-https
     state: present
     update_cache: true
+  register: apt
+  failed_when: (apt.rc == 0) or '"Setting in Stop via TCSAFLUSH for stdin failed" not in apt.stdout' # for wsl1 Ubuntu-22.04
   when: ansible_distribution_version != "22.04"
 
 - name: "dotnet - import Microsoft apt key"
