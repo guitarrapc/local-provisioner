@@ -100,7 +100,7 @@ binary_install:
     download_url: https://github.com/linkerd/linkerd2/releases/download/stable-2.12.0/linkerd2-cli-stable-2.12.0-linux-amd64
 
 dotnet:
-  version: "6.0"
+  version: "dotnet-sdk-6.0"
 
 dpkg_install:
   - name: session-manager-plugin

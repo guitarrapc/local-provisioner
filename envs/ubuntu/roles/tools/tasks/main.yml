@@ -55,19 +55,12 @@
   loop_control:
     loop_var: args
 
-- name: ".NET - Install dotnet (old)"
+- name: ".NET - Install dotnet"
   ansible.builtin.include_tasks: ../include_role/ubuntu/install_dotnet.yaml
   with_items: "{{ dotnet }}"
   loop_control:
     loop_var: args
   when: ansible_distribution_version != "22.04"
-
-- name: ".NET - Install dotnet (new)"
-  become: true
-  ansible.builtin.apt:
-    pkg: "{{ dotnet }}"
-    update_cache: true
-  when: ansible_distribution_version == "22.04"
 
 - name: "krew - Install krew binary"
   ansible.builtin.include_tasks: ../include_role/ubuntu/install_krew.yaml
