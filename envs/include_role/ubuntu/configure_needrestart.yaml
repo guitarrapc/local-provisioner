@@ -9,8 +9,6 @@
   ansible.builtin.apt:
     pkg: "needrestart"
     state: absent
-  register: apt
-  failed_when: (apt.rc == 0) or '"Setting in Stop via TCSAFLUSH for stdin failed" not in apt.stdout' # for wsl1 Ubuntu-22.04
   when: (is_wsl1 == "1") and needrestart_exists.stat.exists
 
 - name: "needrestart - place custom conf.d"
