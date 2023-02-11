@@ -1,2 +1,0 @@
-- name: "debug status"
-  ansible.builtin.include_tasks: ../include_role/ubuntu/debug_status.yaml

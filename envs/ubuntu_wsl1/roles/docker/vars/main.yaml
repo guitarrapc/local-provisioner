@@ -1,9 +1,0 @@
-docker:
-  require_sysvinit: "{{ is_wsl1 }}"
-  wsl2_isolated: 1
-
-docker_compose:
-  - name: docker-compose
-    version_arg: "--version"
-    version: "2.12.2"
-    download_url: "https://github.com/docker/compose/releases/download/v2.12.2/docker-compose-linux-x86_64"

@@ -1,4 +1,0 @@
-dotfiles:
-  - repository: "https://github.com/guitarrapc/dotfiles-linux.git"
-    clone_destination: "{{ ansible_home }}/github/guitarrapc/dotfiles-linux"
-    run_command: "./install.sh"

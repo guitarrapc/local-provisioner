@@ -7,10 +7,9 @@ Dev environment setup.
 Environment | Version | Method | Note
 ---- | ---- | ---- | ----
 macOS | Intel Monterey | Ansible Playbook |
-macOS-silicon | ARM Monterey | Ansible Playbook |
-Windows | 11 22H2 <br/> 11 21H2 <br/> 10 21H2 | scoop |
-Ubuntu WSL1 | 20.04<br/>18.04<br/>WSL1 | Ansible Playbook | 22.04 has problem with needrestart and no support.
-Ubuntu WSL2 | 22.04<br/>20.04<br/>WSL2 | Ansible Playbook | install docker on wsl2.
+macOS-silicon | Ventura<br/>Monterey | Ansible Playbook |
+Windows | 11 22H2<br/>11 21H2<br/>10 21H2 | scoop |
+Ubuntu | 22.04<br/>20.04<br/>WSL1<br/>WSL2 | Ansible Playbook | install docker on wsl2.
 
 ## Run
 
@@ -21,7 +20,9 @@ mkdir -p ~/github/guitarrapc && cd ~/github/guitarrapc
 git clone https://github.com/guitarrapc/local-provisioner
 ```
 
-Ubuntu WSL1, run ansible-playbook.
+**Ubuntu**
+
+run ansible-playbook.
 
 ```shell
 cd ~/github/guitarrapc/local-provisioner/envs/ubuntu_wsl1
@@ -31,15 +32,9 @@ cd ~/github/guitarrapc/local-provisioner/envs/ubuntu_wsl1
 
 ![image](https://user-images.githubusercontent.com/3856350/67872931-0465bd80-fb76-11e9-8700-bdc0e861f556.png)
 
-Ubuntu WSL2 install docker explict, run ansible-playbook.
+**macOS Silicon**
 
-```shell
-cd ~/github/guitarrapc/local-provisioner/envs/ubuntu
-. ./prerequisites.sh
-. ./run.sh
-```
-
-macOS Silicon, run ansible-playbook.
+run ansible-playbook.
 
 ```shell
 cd ~/github/guitarrapc/local-provisioner/envs/macos
@@ -48,7 +43,9 @@ exec $SHELL -l
 . ./run.sh
 ```
 
-macOS Intel, run ansible-playbook.
+**macOS Intel**
+
+run ansible-playbook.
 
 ```shell
 cd ~/github/guitarrapc/local-provisioner/envs/macos_intel
@@ -59,7 +56,9 @@ exec $SHELL -l
 
 ![image](https://user-images.githubusercontent.com/3856350/67872838-dda78700-fb75-11e9-9073-a4cc0f37e6d1.png)
 
-Windows 10, run scoop-playbook.
+**Windows 10/11**
+
+run scoop-playbook.
 
 ```shell
 cd ~/github/guitarrapc/local-provisioner/envs/windows
