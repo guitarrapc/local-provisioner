@@ -25,7 +25,7 @@ git clone https://github.com/guitarrapc/local-provisioner
 run ansible-playbook.
 
 ```shell
-cd ~/github/guitarrapc/local-provisioner/envs/ubuntu_wsl1
+cd ~/github/guitarrapc/local-provisioner/envs/ubuntu
 . ./prerequisites.sh
 . ./run.sh
 ```
