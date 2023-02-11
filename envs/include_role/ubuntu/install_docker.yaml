@@ -9,7 +9,7 @@
       - software-properties-common
     update_cache: true
   register: apt
-  failed_when: (apt.stderr == "") or '"Setting in Stop via TCSAFLUSH for stdin failed" not in apt.stdout' # for wsl1 Ubuntu-22.04
+  failed_when: (apt.rc == 0) or '"Setting in Stop via TCSAFLUSH for stdin failed" not in apt.stdout' # for wsl1 Ubuntu-22.04
 
 - name: "docker - import Docker apt key"
   become: true
@@ -37,7 +37,7 @@
       - cgroupfs-mount
     update_cache: true
   register: apt
-  failed_when: (apt.stderr == "") or '"Setting in Stop via TCSAFLUSH for stdin failed" not in apt.stdout' # for wsl1 Ubuntu-22.04
+  failed_when: (apt.rc == 0) or '"Setting in Stop via TCSAFLUSH for stdin failed" not in apt.stdout' # for wsl1 Ubuntu-22.04
 
 # This configuration is for whom want run docker on Hyper-V backend, but using WSL2 docker isolated. If Docker Desktop use wsl2, then docker will be locate in wsl2's /usr/bin/docker.
 # configure iptables to use legacy. see: https://github.com/WhitewaterFoundry/Pengwin/issues/485#issuecomment-518028465
