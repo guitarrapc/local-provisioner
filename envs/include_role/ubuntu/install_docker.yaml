@@ -1,7 +1,4 @@
 # docker
-# if wsl2 docker is enabled, docker will be locate in /usr/bin/docker
-# to use this spec, you must disable docker run on wsl but run on Hyper-V instead.
-# then install docker on your Ubuntu.
 - name: "docker - make sure install prerequisites"
   become: true
   ansible.builtin.apt:
@@ -38,8 +35,25 @@
       - cgroupfs-mount
     update_cache: true
 
+# This configuration is for whom want run docker on Hyper-V backend, but using WSL2 docker isolated. If Docker Desktop use wsl2, then docker will be locate in wsl2's /usr/bin/docker.
+# configure iptables to use legacy. see: https://github.com/WhitewaterFoundry/Pengwin/issues/485#issuecomment-518028465
+- name: "docker - change iptables/ip6tables to use legacy"
+  become: true
+  ansible.builtin.shell: |
+    update-alternatives --set iptables /usr/sbin/iptables-legacy
+    update-alternatives --set ip6tables /usr/sbin/ip6tables-legacy
+  changed_when: false
+  when: (is_wsl2 == "1") and (docker.wsl2_isolated_docker == "1")
+
+# allow use docker without sudo
+- name: "docker - allow use docker without sudo"
+  become: true
+  ansible.builtin.command: usermod -aG docker "{{ ansible_user_id }}"
+  changed_when: false
+  when: (is_wsl2 == "1") and (docker.wsl2_isolated_docker == "1")
+
 # docker service daemon for SysV Init
-- name: "docker - startup profile.d script (wsl1)"
+- name: "docker - startup profile.d script (wsl2)"
   become: true
   ansible.builtin.blockinfile:
     create: true
@@ -48,7 +62,16 @@
       sudo -S cgroupfs-mount
       sudo usermod -aG docker $USER
       sudo service docker start
+    mode: "0644"
+  when: (docker.require_sysvinit == "1")  and (wsl2_isolated_docker == "1") and (is_wsl2 == "1")
+
+- name: "docker - startup profile.d script (wsl1)"
+  become: true
+  ansible.builtin.blockinfile:
+    create: true
+    path: /etc/profile.d/profile_ansible_init_docker.sh
+    block: |
       # wsl1 using windows docker-compose. wsl2 don't need this line.
       export DOCKER_HOST=tcp://localhost:2375
     mode: "0644"
-  when: args.require_sysvinit == "1"
+  when: (docker.require_sysvinit == "1") and (is_wsl1 == "1")

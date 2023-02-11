@@ -1,5 +1,5 @@
 - name: "Install docker"
-  ansible.builtin.include_tasks: ../include_role/ubuntu/install_docker_wsl2.yaml
+  ansible.builtin.include_tasks: ../include_role/ubuntu/install_docker.yaml
   with_items: "{{ docker }}"
   loop_control:
     loop_var: args
