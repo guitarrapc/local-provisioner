@@ -30,7 +30,7 @@
     executable: /bin/bash
   environment:
     # require re-login shell for 1st install, let's manual export shellenv and use it
-    PATH: "{{ ansible_home }}/.krew/bin:{{ ansible_env.PATH }}"
+    PATH: "{{ ansible_home }}/.asdf/shims:{{ ansible_home }}/.asdf/bin:{{ ansible_home }}/.krew/bin:{{ ansible_env.PATH }}"
   register: krew_exists
   changed_when: false
   ignore_errors: true
