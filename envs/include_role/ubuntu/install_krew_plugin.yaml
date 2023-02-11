@@ -2,8 +2,9 @@
 - name: "kubectl_plugin ({{ args.name }}) - check installed"
   ansible.builtin.command: "kubectl {{ args.name }} {{ args.install_check_arg }} 2>&1"
   environment:
+    # kubectl is install via asdf
     # require re-login shell for 1st install, let's manual export shellenv and use it
-    PATH: "{{ ansible_home }}/.krew/bin:{{ ansible_env.PATH }}"
+    PATH: "{{ ansible_home }}/.asdf/shims:{{ ansible_home }}/.asdf/bin:{{ ansible_home }}/.krew/bin:{{ ansible_env.PATH }}"
   register: kubectl_plugin_exists
   changed_when: false
   ignore_errors: true
@@ -11,6 +12,7 @@
 - name: "kubectl_plugin ({{ args.name }}) - install"
   ansible.builtin.command: kubectl krew install {{ args.name }}
   environment:
+    # kubectl is install via asdf
     # require re-login shell for 1st install, let's manual export shellenv and use it
-    PATH: "{{ ansible_home }}/.krew/bin:{{ ansible_env.PATH }}"
+    PATH: "{{ ansible_home }}/.asdf/shims:{{ ansible_home }}/.asdf/bin:{{ ansible_home }}/.krew/bin:{{ ansible_env.PATH }}"
   when: kubectl_plugin_exists is failed
