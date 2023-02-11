@@ -4,7 +4,7 @@
     pkg: "{{ apt_tools }}"
     update_cache: true
   register: apt
-  failed_when: (apt.rc == 0) or '"Setting in Stop via TCSAFLUSH for stdin failed" not in apt.stdout' # for wsl1 Ubuntu-22.04
+  failed_when: (apt.stderr == "") or '"Setting in Stop via TCSAFLUSH for stdin failed" not in apt.stdout' # for wsl1 Ubuntu-22.04
 
 - name: pip3 - Install pip3 packages
   ansible.builtin.pip:
