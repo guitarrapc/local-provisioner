@@ -69,7 +69,7 @@
       sudo usermod -aG docker $USER
       sudo service docker start
     mode: "0644"
-  when: (docker.require_sysvinit == "1")  and (docker.wsl2_isolated == "1")
+  when: (docker.require_sysvinit == "1" and is_wsl1) or (docker.require_sysvinit == "1" and docker.wsl2_isolated == "1")
 
 - name: "docker - startup profile.d script (wsl1)"
   become: true
