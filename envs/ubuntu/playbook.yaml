@@ -30,5 +30,5 @@
     - { role: "dotfiles", tags: [dotfiles] }
     - { role: "credentials", tags: [credentials] }
     - { role: "needrestart", tags: [needrestart] }
-    - { role: "docker", tags: [docker], when: is_wsl2 == "1" }
+    - { role: "docker", tags: [docker] }
     - { role: "tools", tags: [tools] }
