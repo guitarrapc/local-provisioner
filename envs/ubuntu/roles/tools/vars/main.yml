@@ -23,7 +23,7 @@ asdf_plugins:
   - name: argocd
     source: https://github.com/beardix/asdf-argocd.git
     version_arg: "version --client"
-    version: "2.6.1"
+    version: "2.6.6"
   - name: aws-vault
     source: https://github.com/virtualstaticvoid/asdf-aws-vault.git
     version_arg: "--version"
