@@ -67,7 +67,7 @@ asdf_plugins:
   - name: kubectl
     source: https://github.com/asdf-community/asdf-kubectl.git
     version_arg: "version --client --short"
-    version: "1.24.8"
+    version: "1.25.6"
   - name: lazygit
     source: https://github.com/nklmilojevic/asdf-lazygit.git
     version_arg: "--version"
