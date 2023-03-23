@@ -88,6 +88,10 @@ asdf_plugins:
     source: https://github.com/looztra/asdf-stern
     version_arg: "--version"
     version: "1.23.0"
+  - name: terraform-docs
+    source: https://github.com/looztra/asdf-terraform-docs
+    version_arg: "--version"
+    version: "0.16.0"
   - name: yq
     source: https://github.com/sudermanjr/asdf-yq.git
     version_arg: "--version"
