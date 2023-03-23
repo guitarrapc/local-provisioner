@@ -1,0 +1,12 @@
+- name: "Install terraform-docs bucket"
+  scoop_bucket_install:
+    state: present
+    bucket: terraform-docs
+    source: https://github.com/terraform-docs/scoop-bucket.git
+
+- name: "Install terraform-docs tools"
+  scoop_install:
+    state: present
+    bucket: terraform-docs
+    name:
+      - terraform-docs

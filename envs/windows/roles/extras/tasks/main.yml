@@ -27,7 +27,7 @@
       - vscode
       - vswhere
 
-- name: "Install extras tools"
+- name: "Uninstall extras tools"
   scoop_install:
     state: absent
     bucket: extras

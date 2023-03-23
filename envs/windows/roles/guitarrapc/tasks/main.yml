@@ -19,7 +19,7 @@
       - opa
       - py
 
-- name: "Install guitarrapc tools"
+- name: "Uninstall guitarrapc tools"
   scoop_install:
     state: absent
     bucket: guitarrapc
