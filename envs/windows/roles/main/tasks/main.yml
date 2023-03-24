@@ -20,6 +20,8 @@
       - jq
       - openssl
       - sops
+      - terraform
+      - tflint
       - time
       - unzip
       - vim
