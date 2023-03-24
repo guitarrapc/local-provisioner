@@ -92,6 +92,10 @@ asdf_plugins:
     source: https://github.com/looztra/asdf-terraform-docs
     version_arg: "--version"
     version: "0.16.0"
+  - name: tflint
+    source: https://github.com/skyzyx/asdf-tflint
+    version_arg: "--version"
+    version: "0.45.0"
   - name: yq
     source: https://github.com/sudermanjr/asdf-yq.git
     version_arg: "--version"
