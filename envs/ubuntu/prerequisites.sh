@@ -16,10 +16,15 @@ function hack:wsl1_ubuntu20() {
 }
 
 function install_ansible() {
+  echo "Install Python 3.9"
+  sudo apt install -y software-properties-common
+  sudo add-apt-repository ppa:deadsnakes/ppa
+  sudo apt update
+  sudo apt -y install python3.9
+
   # Install Ansible from ppa for latest release and fast update.
   # `pip3 install --user ansible` is too slow and could not accept.
   echo "Install ansible from ppa."
-  sudo apt install -y software-properties-common
   sudo add-apt-repository -y --update ppa:ansible/ansible
   sudo apt install -y ansible
   # install ansible-lint
