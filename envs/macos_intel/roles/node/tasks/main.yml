@@ -27,6 +27,8 @@
 
 - name: install node.js
   ansible.builtin.command: $SHELL -lc "nodebrew install-binary {{ nodebrew_nodejs_version }}"
+  register: node_install
+  changed_when: node_install.rc != 0
   when: (nodejs_installed is failed) or (nodejs_target_version_exist is failed)
 
 - name: npm update
