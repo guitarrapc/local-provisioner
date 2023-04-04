@@ -8,6 +8,8 @@
 
 - name: install ruby {{ ruby_version }}
   ansible.builtin.command: rbenv install {{ ruby_version }}
+  register: ruby_install
+  changed_when: ruby_install.rc != 0
   when: rbenv_version is failed
 
 - name: install ruby bundler
