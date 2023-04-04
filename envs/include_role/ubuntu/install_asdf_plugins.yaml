@@ -17,6 +17,8 @@
   environment:
     # require re-login shell for 1st install, let's manual export shellenv and use it
     PATH: "{{ ansible_home }}/.asdf/shims:{{ ansible_home }}/.asdf/bin:{{ ansible_env.PATH }}"
+  register: asdf_plugin_install
+  changed_when: asdf_plugin_install.rc != 0
   when: asdf_plugin_exists is failed
 
 - name: "asdf_plugin ({{ args.name }}) - install version ({{ args.version }})"
@@ -26,7 +28,8 @@
   environment:
     # require re-login shell for 1st install, let's manual export shellenv and use it
     PATH: "{{ ansible_home }}/.asdf/shims:{{ ansible_home }}/.asdf/bin:{{ ansible_env.PATH }}"
-  changed_when: false
+  register: asdf_plugin_install_version
+  changed_when: asdf_plugin_install_version.rc != 0
 
 - name: "asdf_plugin ({{ args.name }}) - set global version ({{ args.version }})"
   ansible.builtin.command: "asdf global {{ args.name }} {{ args.version }}"
@@ -35,4 +38,5 @@
   environment:
     # require re-login shell for 1st install, let's manual export shellenv and use it
     PATH: "{{ ansible_home }}/.asdf/shims:{{ ansible_home }}/.asdf/bin:{{ ansible_env.PATH }}"
-  changed_when: false
+  register: asdf_plugin_global_version
+  changed_when: asdf_plugin_global_version.rc != 0

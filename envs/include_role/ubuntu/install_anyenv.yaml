@@ -26,15 +26,18 @@
 
 - name: "anyenv - install goenv"
   ansible.builtin.command: anyenv install goenv --skip-existing
-  changed_when: false
+  register: anyenv_install_goenv
+  changed_when: anyenv_install_goenv.rc != 0
   when: args.goenv == "true"
 
 - name: "anyenv - install nodenv"
   ansible.builtin.command: anyenv install nodenv --skip-existing
-  changed_when: false
+  register: anyenv_install_nodeenv
+  changed_when: anyenv_install_nodeenv.rc != 0
   when: args.nodenv == "true"
 
 - name: "anyenv - install pyenv"
   ansible.builtin.command: anyenv install pyenv --skip-existing
-  changed_when: false
+  register: anyenv_install_pyenv
+  changed_when: anyenv_install_pyenv.rc != 0
   when: args.pyenv == "true"

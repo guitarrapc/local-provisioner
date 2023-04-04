@@ -55,7 +55,8 @@
 - name: "docker - allow use docker without sudo"
   become: true
   ansible.builtin.command: usermod -aG docker "{{ ansible_user_id }}"
-  changed_when: false
+  register: docker_sudo
+  changed_when: docker_sudo.rc != 0
   when: (is_wsl2 == "1") and (docker.wsl2_isolated == "1")
 
 # docker service daemon for SysV Init

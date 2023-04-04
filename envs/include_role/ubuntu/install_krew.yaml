@@ -12,7 +12,7 @@
   args:
     executable: /bin/bash
   register: arch_value
-  changed_when: false
+  changed_when: arch_value.rc != 0
   check_mode: false
 
 - name: "krew - debug ansible_os"
@@ -58,6 +58,8 @@
 
 - name: "krew - install"
   ansible.builtin.command: /tmp/krew/krew-{{ os_value.stdout }}_{{ arch_value.stdout }} install krew
+  register: krew_install
+  changed_when: krew_install.rc != 0
   when: krew_exists is failed
 
 - name: "krew - upgrade"

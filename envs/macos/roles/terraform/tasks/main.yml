@@ -8,4 +8,6 @@
 
 - name: install terraform
   ansible.builtin.command: tfenv install {{ terraform_version }}
+  register: terraform_install
+  changed_when: terraform_install.rc != 0
   when: tfenv_version is failed
