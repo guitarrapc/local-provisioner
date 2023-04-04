@@ -15,6 +15,9 @@ apt_tools:
   - tree
   - unzip
   - whois
+  # trivy requirements
+  - apt-transport-https
+  - lsb-release
 
 asdf:
   version: v0.11.1
@@ -115,6 +118,10 @@ dpkg_install:
     version_arg: "--version"
     version: "1.2.398.0"
     download_url: https://s3.amazonaws.com/session-manager-downloads/plugin/1.2.398.0/ubuntu_64bit/session-manager-plugin.deb
+  - name: trivy
+    version_arg: "--version"
+    version: "0.18.3"
+    download_url: https://github.com/aquasecurity/trivy/releases/download/v0.18.3/trivy_0.18.3_Linux-64bit.deb
 
 git_tools:
   - name: kubectx
