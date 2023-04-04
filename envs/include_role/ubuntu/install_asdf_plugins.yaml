@@ -17,6 +17,8 @@
   environment:
     # require re-login shell for 1st install, let's manual export shellenv and use it
     PATH: "{{ ansible_home }}/.asdf/shims:{{ ansible_home }}/.asdf/bin:{{ ansible_env.PATH }}"
+  register: asdf_plugin_install
+  changed_when: asdf_plugin_install.rc != 0
   when: asdf_plugin_exists is failed
 
 - name: "asdf_plugin ({{ args.name }}) - install version ({{ args.version }})"

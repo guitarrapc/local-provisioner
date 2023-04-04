@@ -58,6 +58,8 @@
 
 - name: "krew - install"
   ansible.builtin.command: /tmp/krew/krew-{{ os_value.stdout }}_{{ arch_value.stdout }} install krew
+  register: krew_install
+  changed_when: krew_install.rc != 0
   when: krew_exists is failed
 
 - name: "krew - upgrade"

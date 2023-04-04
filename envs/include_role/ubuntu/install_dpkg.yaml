@@ -9,9 +9,9 @@
   args:
     executable: /bin/bash
   register: dpkg_exists
-  when: (args.version_arg is defined) and (args.version is defined)
-  changed_when: false
+  changed_when: dpkg_exists.rc != 0
   ignore_errors: true
+  when: (args.version_arg is defined) and (args.version is defined)
 
 - name: "dpkg ({{ args.name }}) - download"
   ansible.builtin.get_url:
