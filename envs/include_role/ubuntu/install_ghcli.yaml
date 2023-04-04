@@ -3,7 +3,7 @@
 - name: "gh - get version"
   ansible.builtin.command: "gh --version"
   register: gh_current
-  changed_when: false
+  changed_when: gh_current.rc != 0
   ignore_errors: true
 
 - name: "gh - current version"
@@ -28,6 +28,8 @@
 
 - name: "gh - download"
   ansible.builtin.command: curl -L "https://github.com/cli/cli/releases/download/v{{ gh_cli.version }}/gh_{{ gh_cli.version }}_linux_amd64.tar.gz" -o /tmp/gh_{{ gh_cli.version }}_linux_amd64.tar.gz
+  register: gh_download
+  changed_when: gh_download.rc != 0
   when: gh_exists is failed
 
 - name: "gh - unzip"

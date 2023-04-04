@@ -12,7 +12,7 @@
   args:
     executable: /bin/bash
   register: arch_value
-  changed_when: false
+  changed_when: arch_value.rc != 0
   check_mode: false
 
 - name: "krew - debug ansible_os"

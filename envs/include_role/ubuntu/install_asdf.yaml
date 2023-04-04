@@ -13,7 +13,7 @@
     # require re-login shell for 1st install, let's manual export shellenv and use it
     PATH: "{{ ansible_home }}/.asdf/shims:{{ ansible_home }}/.asdf/bin:{{ ansible_env.PATH }}"
   register: asdf_debug
-  changed_when: false
+  changed_when: asdf_debug.rc != 0
 
 - name: "asdf - debug output"
   ansible.builtin.debug:

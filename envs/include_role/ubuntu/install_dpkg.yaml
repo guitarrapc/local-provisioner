@@ -23,6 +23,8 @@
 - name: "dpkg ({{ args.name }}) - install"
   become: true
   ansible.builtin.command: dpkg -i /tmp/{{ args.name }}.deb
+  register: dpkg_install
+  changed_when: dpkg_install.rc != 0
   when: dpkg_exists is failed
 
 - name: "dpkg ({{ args.name }}) - remove temp files"

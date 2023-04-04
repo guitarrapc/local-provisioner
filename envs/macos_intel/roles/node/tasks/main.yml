@@ -13,8 +13,8 @@
 - name: check node.js installed
   ansible.builtin.command: $SHELL -lc "which node"
   ignore_errors: true
-  changed_when: nodejs_installed.rc > 0
   register: nodejs_installed
+  changed_when: nodejs_installed.rc != 0
 
 - name: check installed node.js version
   ansible.builtin.shell: set -o pipefail && $SHELL -lc "nodebrew ls | grep {{ nodebrew_nodejs_version }}"
@@ -34,8 +34,8 @@
 - name: npm update
   ansible.builtin.command: $SHELL -lc "npm update -g npm"
   when: nodebrew_npm_update
-  changed_when: npm_updated.stdout != ''
   register: npm_updated
+  changed_when: npm_updated.stdout != ''
 
 - name: install npm packges
   community.general.npm:

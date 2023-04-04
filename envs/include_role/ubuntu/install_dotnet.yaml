@@ -23,7 +23,8 @@
 - name: "dotnet - add repo for Ubuntu"
   become: true
   ansible.builtin.command: dpkg -i /tmp/packages-microsoft-prod.deb
-  changed_when: false
+  register: dotnet_add_repo
+  changed_when: dotnet_add_repo.rc != 0
   when: ansible_distribution_version != "22.04"
 
 - name: "dotnet - install ({{ dotnet.version }})"
