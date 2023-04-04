@@ -18,7 +18,7 @@ function hack:wsl1_ubuntu20() {
 function install_ansible() {
   echo "Install Python 3.9"
   sudo apt install -y software-properties-common
-  sudo add-apt-repository ppa:deadsnakes/ppa
+  sudo add-apt-repository -y ppa:deadsnakes/ppa
   sudo apt update
   sudo apt -y install python3.9
 
