@@ -29,4 +29,4 @@ jobs:
       - name: Install ansible
         run: pip3 install ansible
       - name: Run Ansible Playbook
-        run: . ./install.sh
+        run: ansible-playbook -i hosts playbook.yaml
