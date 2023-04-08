@@ -7,7 +7,7 @@ on:
       - main
     paths:
       - ".github/workflows/install.yaml"
-      - "envs/**/*.yaml"
+      - "envs/**/*"
 
 env:
   TERM: xterm
