@@ -9,6 +9,7 @@
     src: "{{ ansible_home }}/.tfenv/bin/{{ item }}"
     dest: "/usr/local/bin/{{ item }}"
     state: link
+    force: "{{ terraform.force_symlink }}" # true to foce remove current and replace to symlink
   with_items:
     - terraform
     - tfenv

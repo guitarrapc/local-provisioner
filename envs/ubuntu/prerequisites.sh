@@ -1,4 +1,5 @@
-#!/bin/bash -ex
+#!/bin/bash
+set -ex
 
 function hack:wsl1_ubuntu20() {
     if lshw | grep vsyscall32; then
