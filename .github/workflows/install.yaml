@@ -1,12 +1,7 @@
-name: ansible lint
+name: install
 
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - main
-    paths:
-      - "envs/**/*.yaml"
   pull_request:
     branches:
       - main
@@ -17,18 +12,20 @@ env:
   TERM: xterm
 
 jobs:
-  lint:
+  install:
     strategy:
       fail-fast: false
       matrix:
-        os: [macos, macos_intel, raspi, ubuntu]
+        os: [ubuntu]
     runs-on: ubuntu-latest
     timeout-minutes: 5
+    defaults:
+      run:
+        shell: bash
+        working-directory: envs/ubuntu
     steps:
       - uses: actions/checkout@v3
       - name: Install ansible
         run: pip3 install ansible
-      - name: Install ansible-lint
-        run: pip3 install ansible-lint
-      - name: Run ansbile-lint
-        run: ansible-lint ./envs/${{ matrix.os }}/playbook.yaml
+      - name: Run Ansible Playbook
+        run: . ./install.sh
