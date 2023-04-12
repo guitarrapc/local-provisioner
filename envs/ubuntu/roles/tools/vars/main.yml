@@ -4,6 +4,7 @@ apt_tools:
   # - duf # not available below 22.04
   - fd-find
   - git-lfs
+  - graphviz
   - htop
   - hub
   - jq
