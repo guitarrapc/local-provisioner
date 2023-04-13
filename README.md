@@ -26,8 +26,8 @@ run ansible-playbook.
 
 ```shell
 cd ~/github/guitarrapc/local-provisioner/envs/ubuntu
-. ./prerequisites.sh
-. ./run.sh
+bash ./prerequisites.sh
+bash ./run.sh
 ```
 
 ![image](https://user-images.githubusercontent.com/3856350/67872931-0465bd80-fb76-11e9-8700-bdc0e861f556.png)
@@ -38,9 +38,9 @@ run ansible-playbook.
 
 ```shell
 cd ~/github/guitarrapc/local-provisioner/envs/macos
-. ./prerequisites.sh
+bash ./prerequisites.sh
 exec $SHELL -l
-. ./run.sh
+bash ./run.sh
 ```
 
 **macOS Intel**
@@ -49,9 +49,9 @@ run ansible-playbook.
 
 ```shell
 cd ~/github/guitarrapc/local-provisioner/envs/macos_intel
-. ./prerequisites.sh
+bash ./prerequisites.sh
 exec $SHELL -l
-. ./run.sh
+bash ./run.sh
 ```
 
 ![image](https://user-images.githubusercontent.com/3856350/67872838-dda78700-fb75-11e9-9073-a4cc0f37e6d1.png)
