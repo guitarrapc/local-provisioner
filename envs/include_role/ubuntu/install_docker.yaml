@@ -12,22 +12,16 @@
   until: "apt is not failed"
   retries: 2 # wsl1 failed first apt on Ubuntu-22.04
 
-- name: "docker - check official GPG key exists"
-  ansible.builtin.stat:
-    path: "/etc/apt/keyrings/docker.gpg"
-  register: docker_gpg_key_stat_result
-
 - name: "docker - add official GPG key"
   become: true
   ansible.builtin.shell: |
     set -o pipefail && install -m 0755 -d /etc/apt/keyrings
-    set -o pipefail && curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+    set -o pipefail && curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --batch --yes --dearmor -o /etc/apt/keyrings/docker.gpg
     chmod a+r /etc/apt/keyrings/docker.gpg
   args:
     executable: /bin/bash
   register: docker_apt_key
   changed_when: docker_apt_key.rc != 0
-  when: docker_gpg_key_stat_result.stat.exists
 
 - name: "docker - setup repository"
   become: true
