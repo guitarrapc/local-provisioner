@@ -16,7 +16,7 @@
   become: true
   ansible.builtin.shell: |
     set -o pipefail && install -m 0755 -d /etc/apt/keyrings
-    set -o pipefail && curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --batch --yes --dearmor -o /etc/apt/keyrings/docker.gpg
+    set -o pipefail && curl --connect-timeout 1 --max-time 10 --retry 5 --retry-delay 0 --retry-max-time 60 -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --batch --yes --dearmor -o /etc/apt/keyrings/docker.gpg
     chmod a+r /etc/apt/keyrings/docker.gpg
   args:
     executable: /bin/bash
