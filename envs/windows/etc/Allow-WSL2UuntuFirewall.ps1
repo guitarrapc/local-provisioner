@@ -7,5 +7,8 @@ Set-NetFirewallProfile -DisabledInterfaceAliases "vEthernet (WSL)" -Name Private
 $wslAddress = (Get-NetIPAddress -InterfaceAlias "vEthernet (WSL)" -AddressFamily IPv4).IPAddress
 iex "netsh interface portproxy add v4tov4 listenport=2375 connectaddress=127.0.0.1 connectport=2375 listenaddress=$wslAddress protocol=tcp"
 
+# Allow WSL2 to access Windows Kubernetes Cluster
+iex "netsh interface portproxy add v4tov4 listenport=6443 connectaddress=127.0.0.1 connectport=6443 listenaddress=$wslAddress protocol=tcp"
+
 # check result
 netsh interface portproxy show v4tov4
