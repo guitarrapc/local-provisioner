@@ -1,4 +1,5 @@
-#!/bin/bash -ex
+#!/bin/bash
+set -ex
 
 function hack:wsl1_ubuntu20() {
     if lshw | grep vsyscall32; then
@@ -18,9 +19,9 @@ function hack:wsl1_ubuntu20() {
 function install_ansible() {
   echo "Install Python 3.9"
   sudo apt install -y software-properties-common
-  sudo add-apt-repository ppa:deadsnakes/ppa
+  sudo add-apt-repository -y ppa:deadsnakes/ppa
   sudo apt update
-  sudo apt -y install python3.9
+  sudo apt -y install python3.9 python3-pip
 
   # Install Ansible from ppa for latest release and fast update.
   # `pip3 install --user ansible` is too slow and could not accept.

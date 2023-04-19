@@ -18,7 +18,8 @@
 
 - name: "homebrew - eval shellenv"
   ansible.builtin.command: eval $({{ ansible_home }}/.linuxbrew/bin/brew shellenv)
-  changed_when: false
+  register: homebrew_eval
+  changed_when: homebrew_eval.rc != 0
 
 - name: "homebrew - install tools"
   community.general.homebrew:

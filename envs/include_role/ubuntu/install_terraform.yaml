@@ -9,6 +9,7 @@
     src: "{{ ansible_home }}/.tfenv/bin/{{ item }}"
     dest: "/usr/local/bin/{{ item }}"
     state: link
+    force: "{{ terraform.force_symlink }}" # true to foce remove current and replace to symlink
   with_items:
     - terraform
     - tfenv
@@ -23,8 +24,12 @@
 
 - name: "tfenv - install"
   ansible.builtin.command: tfenv install {{ terraform.version }}
+  register: terraform_install
+  changed_when: terraform_install.rc != 0
   when: terraform_version is failed
 
 - name: "tfenv - use version {{ terraform.version }}"
   ansible.builtin.command: tfenv use {{ terraform.version }}
+  register: terraform_use
+  changed_when: terraform_use.rc != 0
   when: terraform_version is failed

@@ -6,7 +6,7 @@
     # require re-login shell for 1st install, let's manual export shellenv and use it
     PATH: "{{ ansible_home }}/.asdf/shims:{{ ansible_home }}/.asdf/bin:{{ ansible_home }}/.krew/bin:{{ ansible_env.PATH }}"
   register: kubectl_plugin_exists
-  changed_when: false
+  changed_when: kubectl_plugin_exists.rc != 0
   ignore_errors: true
 
 - name: "kubectl_plugin ({{ args.name }}) - install"
@@ -15,4 +15,6 @@
     # kubectl is install via asdf
     # require re-login shell for 1st install, let's manual export shellenv and use it
     PATH: "{{ ansible_home }}/.asdf/shims:{{ ansible_home }}/.asdf/bin:{{ ansible_home }}/.krew/bin:{{ ansible_env.PATH }}"
+  register: krew_plugin_install
+  changed_when: krew_plugin_install.rc != 0
   when: kubectl_plugin_exists is failed

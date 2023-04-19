@@ -17,8 +17,8 @@
   ansible.builtin.command: "{{ args.run_command }}"
   args:
     chdir: "{{ args.clone_destination }}"
-  changed_when: false
   register: install_dotfiles
+  changed_when: install_dotfiles.rc != 0
 
 - name: "dotfiles - debug show result"
   ansible.builtin.debug:

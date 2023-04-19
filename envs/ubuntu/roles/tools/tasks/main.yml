@@ -83,9 +83,6 @@
   loop_control:
     loop_var: args
 
-- name: "trivy - Install trivy"
-  ansible.builtin.include_tasks: ../include_role/ubuntu/install_trivy.yaml
-
 # use .devcontainer instead. https://github.com/microsoft/vscode-dev-containers/blob/main/script-library/docs/azcli.md
 # too slow download pacakge..... oh my package.microsoft.com ....
 - name: "azure - Install azure cli"

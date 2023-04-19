@@ -17,7 +17,7 @@ env:
   TERM: xterm
 
 jobs:
-  ansible-playbook:
+  lint:
     strategy:
       fail-fast: false
       matrix:

@@ -1,7 +1,7 @@
 - name: update brew
   ansible.builtin.command: brew update
-  register: result
   ignore_errors: true
+  register: result
   changed_when: result.stdout != 'Already up-to-date.'
 
 - name: "homebrew packages installation"

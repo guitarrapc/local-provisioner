@@ -11,6 +11,8 @@
 
 - name: "awscli - download"
   ansible.builtin.command: curl -L "https://awscli.amazonaws.com/awscli-exe-linux-x86_64-{{ aws_cli.version }}.zip" -o /tmp/awscliv2.zip
+  register: awscli_download
+  changed_when: awscli_download.rc != 0
   when: awscli_exists is failed
 
 - name: "awscli - unzip"
@@ -23,6 +25,8 @@
 - name: "awscli - install"
   become: true
   ansible.builtin.command: /tmp/aws/install --update
+  register: awscli_install
+  changed_when: awscli_install.rc != 0
   when: awscli_exists is failed
 
 - name: "awscli - clean up tmp zip"
