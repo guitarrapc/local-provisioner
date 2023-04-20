@@ -72,6 +72,10 @@ asdf_plugins:
     source: https://github.com/asdf-community/asdf-kubectl.git
     version_arg: "version --client --short"
     version: "1.25.6"
+  - name: kustomize
+    source: https://github.com/Banno/asdf-kustomize.git
+    version_arg: version
+    version: "5.0.1"
   - name: lazygit
     source: https://github.com/nklmilojevic/asdf-lazygit.git
     version_arg: "--version"
