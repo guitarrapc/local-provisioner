@@ -96,6 +96,10 @@ dotfiles | link with [dofiles-linux](https://github.com/guitarrapc/dotfiles-linu
 needrestart | configure needrestart for WSL1 and WSL2. WSL1 will remove needrestart. WSL2 will disable apt package detection.
 tools | miscellaneous tools setup.
 
+Out of scopes
+
+* None.
+
 ### macOS
 
 Role | Descriptions
@@ -108,7 +112,9 @@ pam | pam module for touchid
 ruby | ruby environment setup. using rbenv and just install bundler.
 terraform | terraform environment setup. using tfenv.
 
-* Each Unity Editor (Use Unity Hub)
+Out of scopes
+
+* Unity Editor (Use Unity Hub)
 
 ### Windows
 
@@ -123,9 +129,9 @@ main | install app via scoop's `main` bucket
 Out of scopes
 
 * Docker for Windows.
-* Visual Studio 20xx or higher.
+* Visual Studio or higher.
 * .NET Core SDK
-* Each Unity Editor (Use Unity Hub)
+* Unity Editor (Use Unity Hub)
 
 ## How to modify
 
