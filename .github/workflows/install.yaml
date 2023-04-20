@@ -17,13 +17,13 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu]
+        os: [ubuntu] # todo: macOS and Windows
     runs-on: ubuntu-latest
     timeout-minutes: 5
     defaults:
       run:
         shell: bash
-        working-directory: envs/ubuntu
+        working-directory: envs/${{ matrix.os }}
     steps:
       - uses: actions/checkout@v3
       - name: Install ansible
