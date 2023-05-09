@@ -4,7 +4,7 @@
     key: "{{ item.key }}"
     type: "{{ item.type }}"
     value: "{{ item.value }}"
-    state: "{{ item.state | default('present') }}"
+    state: "{{ item.state }}"
   with_items: "{{ interface_settings }}"
 
 - name: "Set Screen Defaults"
@@ -13,7 +13,7 @@
     key: "{{ item.key }}"
     type: "{{ item.type }}"
     value: "{{ item.value }}"
-    state: "{{ item.state | default('present') }}"
+    state: "{{ item.state }}"
   with_items: "{{ screen_settings }}"
 
 - name: "Set Trackpad Defaults"
@@ -22,7 +22,7 @@
     key: "{{ item.key }}"
     type: "{{ item.type }}"
     value: "{{ item.value }}"
-    state: "{{ item.state | default('present') }}"
+    state: "{{ item.state }}"
   with_items: "{{ trackpad_settings }}"
 
 - name: "Set Finder Defaults"
@@ -31,7 +31,7 @@
     key: "{{ item.key }}"
     type: "{{ item.type }}"
     value: "{{ item.value }}"
-    state: "{{ item.state | default('present') }}"
+    state: "{{ item.state }}"
   with_items: "{{ finder_settings }}"
 
 - name: "Set Dock Defaults"
@@ -40,5 +40,5 @@
     key: "{{ item.key }}"
     type: "{{ item.type }}"
     value: "{{ item.value }}"
-    state: "{{ item.state | default('present') }}"
+    state: "{{ item.state }}"
   with_items: "{{ dock_settings }}"
