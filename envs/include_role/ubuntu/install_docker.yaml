@@ -1,5 +1,14 @@
 # docker
 # see: https://docs.docker.com/engine/install/ubuntu/
+
+# workaround for "Conflicting values set for option Signed-By"
+# see: https://github.com/docker/for-linux/issues/1349
+- name: "docker - delete conflicting package file"
+  become: true
+  ansible.builtin.file:
+    path: "/etc/apt/sources.list.d/download_docker_com_linux_ubuntu.list"
+    state: absent
+
 - name: "docker - make sure install prerequisites"
   become: true
   ansible.builtin.apt:
