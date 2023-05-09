@@ -6,7 +6,6 @@ interface_settings:
       key: AppleInterfaceStyle,
       type: string,
       value: Dark,
-      state: present,
     }
   # Mojave whole Dark Theme (remove value if you want to reset)
   - {
@@ -14,7 +13,6 @@ interface_settings:
       key: AppleInterfaceStyle,
       type: string,
       value: Dark,
-      state: present,
     }
 
 # screen
@@ -25,14 +23,12 @@ screen_settings:
       key: askForPasswordDelay,
       type: int,
       value: 0,
-      state: present,
     }
   - {
       domain: com.apple.screencapture,
       key: disable-shadow,
       type: bool,
       value: true,
-      state: present,
     }
 
 # trackpad
@@ -43,7 +39,6 @@ trackpad_settings:
       key: com.apple.swipescrolldirection,
       type: int,
       value: 0,
-      state: present,
     }
 
 # finder
@@ -53,50 +48,23 @@ finder_settings:
       key: AppleShowAllExtensions,
       type: bool,
       value: true,
-      state: present,
     }
-  - {
-      domain: com.apple.finder,
-      key: FinderSounds,
-      type: bool,
-      value: false,
-      state: present,
-    }
+  - { domain: com.apple.finder, key: FinderSounds, type: bool, value: false }
   - {
       domain: com.apple.finder,
       key: ShowExternalHardDrivesOnDesktop,
       type: bool,
       value: true,
-      state: present,
     }
-  - {
-      domain: com.apple.finder,
-      key: ShowStatusBar,
-      type: bool,
-      value: true,
-      state: present,
-    }
-  - {
-      domain: com.apple.finder,
-      key: ShowTabView,
-      type: bool,
-      value: true,
-      state: present,
-    }
-  - {
-      domain: com.apple.finder,
-      key: ShowPathbar,
-      type: bool,
-      value: true,
-      state: present,
-    }
+  - { domain: com.apple.finder, key: ShowStatusBar, type: bool, value: true }
+  - { domain: com.apple.finder, key: ShowTabView, type: bool, value: true }
+  - { domain: com.apple.finder, key: ShowPathbar, type: bool, value: true }
   # keep folder top on sort
   - {
       domain: com.apple.finder,
       key: _FXSortFoldersFirst,
       type: bool,
       value: true,
-      state: present,
     }
   # search the current folder by default
   - {
@@ -104,7 +72,6 @@ finder_settings:
       key: FXDefaultSearchScope,
       type: string,
       value: SCcf,
-      state: present,
     }
   # no worning on change extentions
   - {
@@ -112,7 +79,6 @@ finder_settings:
       key: FXEnableExtensionChangeWarning,
       type: bool,
       value: false,
-      state: present,
     }
   # Avoid creating .DS_Store files on network or USB volumes
   - {
@@ -120,14 +86,12 @@ finder_settings:
       key: DSDontWriteNetworkStores,
       type: bool,
       value: true,
-      state: present,
     }
   - {
       domain: com.apple.desktopservices,
       key: DSDontWriteUSBStores,
       type: bool,
       value: true,
-      state: present,
     }
   # Use list view in all Finder windows by default
   # Four-letter codes for the other view modes: `icnv`, `clmv`, `Flwv`
@@ -136,7 +100,6 @@ finder_settings:
       key: FXPreferredViewStyle,
       type: string,
       value: Nlsv,
-      state: present,
     }
 
 # dock
@@ -147,7 +110,6 @@ dock_settings:
       key: minimize-to-application,
       type: bool,
       value: true,
-      state: present,
     }
   # Show indicator lights for open applications in the Dock
   - {
@@ -155,16 +117,9 @@ dock_settings:
       key: show-process-indicators,
       type: bool,
       value: true,
-      state: present,
     }
   # Automatically hide and show the Dock
-  - {
-      domain: com.apple.dock,
-      key: autohide,
-      type: bool,
-      value: false,
-      state: present,
-    }
+  - { domain: com.apple.dock, key: autohide, type: bool, value: false }
 
     # Hot corners
     # Possible values:
@@ -183,44 +138,37 @@ dock_settings:
 #       domain: com.apple.dock,
 #       key: wvous-tl-corner,
 #       type: int,
-#       value: 2,
-#       state: present,
-
+#       value: 2
 #   }
 #   - {
 #       domain: com.apple.dock,
 #       key: wvous-tl-modifier,
 #       type: int,
-#       value: 0,
-#       state: present,
+#       value: 0
 #   }
 #   # Top right screen corner → Desktop
 #   - {
 #       domain: com.apple.dock,
 #       key: wvous-tr-corner,
 #       type: int,
-#       value: 4,
-#       state: present,
+#       value: 4
 #   }
 #   - {
 #       domain: com.apple.dock,
 #       key: wvous-tr-modifier,
 #       type: int,
-#       value: 0,
-#       state: present,
+#       value: 0
 #   }
 # Bottom left screen corner → Start screen saver
 #   - {
 #       domain: com.apple.dock,
 #       key: wvous-bl-corner,
 #       type: int,
-#       value: 5,
-#       state: present,
+#       value: 5
 #   }
 #   - {
 #       domain: com.apple.dock,
 #       key: wvous-bl-modifier,
 #       type: int,
-#       value: 0,
-#       state: present,
+#       value: 0
 #   }
