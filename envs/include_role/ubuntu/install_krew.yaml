@@ -52,13 +52,14 @@
     url: "https://github.com/kubernetes-sigs/krew/releases/download/v{{ krew.version }}/krew-linux_amd64.tar.gz"
     dest: "/tmp/krew/krew.tar.gz"
     mode: "0755"
-  when: (krew_exists is failed) or (not krew_download_exists.stat.exists)
+  when: (not ansible_check_mode) and ((krew_exists is failed) or (not krew_download_exists.stat.exists))
 
 - name: "krew - unarchive"
   ansible.builtin.unarchive:
     src: "/tmp/krew/krew.tar.gz"
     dest: /tmp/krew
     remote_src: true
+  when: not ansible_check_mode
 
 - name: "krew - install"
   ansible.builtin.command: /tmp/krew/krew-{{ os_value.stdout }}_{{ arch_value.stdout }} install krew
