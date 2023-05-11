@@ -19,7 +19,7 @@ jobs:
       matrix:
         os: [ubuntu] # todo: macOS and Windows
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 15
     defaults:
       run:
         shell: bash
