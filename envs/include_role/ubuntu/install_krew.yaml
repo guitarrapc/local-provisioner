@@ -35,6 +35,12 @@
   changed_when: false
   ignore_errors: true
 
+- name: "krew - krew already downloaded"
+  become: true
+  ansible.builtin.stat:
+    path: /tmp/krew/krew.tar.gz
+  register: krew_download_exists
+
 - name: "krew - tmp directory"
   ansible.builtin.file:
     path: "/tmp/krew"
@@ -47,7 +53,7 @@
     url: "https://github.com/kubernetes-sigs/krew/releases/download/v{{ krew.version }}/krew-linux_amd64.tar.gz"
     dest: "/tmp/krew/krew.tar.gz"
     mode: "0755"
-  when: krew_exists is failed
+  when: (krew_exists is failed) or (!krew_download_exists.stat.exsts)
 
 - name: "krew - unarchive"
   ansible.builtin.unarchive:
