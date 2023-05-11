@@ -110,6 +110,10 @@ asdf_plugins:
     version: "4.30.8"
 
 binary_install:
+  - name: eks-node-viewer
+    version_arg: "--version"
+    version: "0.2.1"
+    download_url: https://github.com/awslabs/eks-node-viewer/releases/download/v0.2.1/eks-node-viewer_Linux_x86_64
   - name: linkerd
     version_arg: "version --client"
     version: "2.12.0"
