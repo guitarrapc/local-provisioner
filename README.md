@@ -6,12 +6,11 @@ Dev environment setup.
 
 Environment | Version | Method | Note
 ---- | ---- | ---- | ----
-macOS | Intel Monterey | Ansible Playbook |
-macOS-silicon | Ventura<br/>Monterey | Ansible Playbook |
-Windows | 11 22H2<br/>11 21H2<br/>10 21H2 | scoop |
+macOS | Ventura<br/>Monterey | Ansible Playbook | Target to Apple Silicon, don't aim Intel support
 Ubuntu | 22.04<br/>20.04<br/>WSL1<br/>WSL2 | Ansible Playbook | install docker on wsl2.
+Windows | 11 22H2<br/>11 21H2<br/>10 21H2 | scoop |
 
-## Run
+# Run
 
 clone repo setup.
 
@@ -32,7 +31,7 @@ bash ./run.sh
 
 ![image](https://user-images.githubusercontent.com/3856350/67872931-0465bd80-fb76-11e9-8700-bdc0e861f556.png)
 
-**macOS Silicon**
+**macOS**
 
 run ansible-playbook.
 
@@ -43,20 +42,7 @@ exec $SHELL -l
 bash ./run.sh
 ```
 
-**macOS Intel**
-
-run ansible-playbook.
-
-```shell
-cd ~/github/guitarrapc/local-provisioner/envs/macos_intel
-bash ./prerequisites.sh
-exec $SHELL -l
-bash ./run.sh
-```
-
-![image](https://user-images.githubusercontent.com/3856350/67872838-dda78700-fb75-11e9-9073-a4cc0f37e6d1.png)
-
-**Windows 10/11**
+**Windows**
 
 run scoop-playbook.
 
@@ -68,24 +54,29 @@ cd ~/github/guitarrapc/local-provisioner/envs/windows
 
 ![image](https://user-images.githubusercontent.com/3856350/67872580-84d7ee80-fb75-11e9-8c1c-e7d25fc94892.png)
 
-## Test
+# Test
 
-### macOS only!!
-
-If you need spec, use ansible_spec.
-run test at env.
+**macOS**
 
 ```shell
 cd envs/macos
 # check tests
 bundle exec rake -T
-# run all tests
+# run all tests (ansible_spec)
 bundle exec rake all
 ```
 
-## Support status
+**Linux**
 
-### Ubuntu
+No support.
+
+**Windows**
+
+No support.
+
+# Support status
+
+**Ubuntu**
 
 Role | Descriptions
 ---- | ----
@@ -98,62 +89,59 @@ tools | miscellaneous tools setup.
 
 Out of scopes
 
-* None.
+    * None.
 
-### macOS
+**macOS**
 
 Role | Descriptions
 ---- | ----
 defaults | macos defaults
 dotfiles | link with [dofiles](https://github.com/guitarrapc/dotfiles)
-homebrew | homebrew packages
-homebrew_cask | homebrew packages for GUI App
+homebrew | homebrew and cask packages
 pam | pam module for touchid
 ruby | ruby environment setup. using rbenv and just install bundler.
 terraform | terraform environment setup. using tfenv.
 
 Out of scopes
 
-* Unity Editor (Use Unity Hub)
+    * Unity Editor (Use Unity Hub)
 
-### Windows
+**Windows**
 
 Role | Descriptions
 ---- | ----
-dotfiles | NOT YET. link with [dofiles-win](https://github.com/guitarrapc/dotfiles-win)
 ba230t | install app via scoop's `ba230t` bucket
 extras | install app via scoop's `extras` bucket
 guitarrapc | install app via scoop's `guitarrapc` bucket
 main | install app via scoop's `main` bucket
+terraform-docs | install app via scoop's `terraform-docs` bucket
 
 Out of scopes
 
-* Docker for Windows.
-* Visual Studio or higher.
-* .NET Core SDK
-* Unity Editor (Use Unity Hub)
+    * Docker for Windows.
+    * Visual Studio or higher.
+    * .NET SDK
+    * Unity Editor (Use Unity Hub)
 
-## How to modify
+# How to modify
 
 Folk this repository.
 
-macOS will change by modify followings.
+**macOS**
 
-* Modify parameters by open `envs/macos/roles/<role>/vars/main.yml`.
-* Modify logic by open `envs/macos/roles/<role>/tasks/main.yml`.
+    * Modify parameters by open `envs/macos/roles/<role>/vars/main.yml`.
+    * Modify logic by open `envs/macos/roles/<role>/tasks/main.yml`.
 
-Windows will change by modify followings.
+**Ubuntu**
 
-* Modify parameters by open `envs/windows/roles/<role>/tasks/main.yml`.
+    * Modify parameters by open `envs/ubuntu/roles/<role>/vars/main.yml`.
+    * Modify logic by open `envs/ubuntu/roles/<role>/tasks/main.yml`.
 
-macOS / Ubuntu will change by modify followings.
+**Windows**
 
-* Modify parameters by open `envs/ubuntu/roles/<role>/vars/main.yml`.
-* Modify logic by open `envs/ubuntu/roles/<role>/tasks/main.yml`.
+    * Modify parameters by open `envs/windows/roles/<role>/tasks/main.yml`.
 
-## Issues
+# Issues
 
-### Ubuntu
-
-* Ansible apt_key always show changed: https://github.com/ansible/ansible/issues/27798
-* get_url is not controlable or too match differ from original context, so it's warning is ignored.
+* (Ubuntu) Ansible apt_key always show changed: https://github.com/ansible/ansible/issues/27798
+* (Ubuntu) get_url is not controlable or too match differ from original context. Avoid using get_url and suppress warnings.
