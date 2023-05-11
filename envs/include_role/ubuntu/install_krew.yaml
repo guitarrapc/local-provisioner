@@ -53,7 +53,7 @@
     url: "https://github.com/kubernetes-sigs/krew/releases/download/v{{ krew.version }}/krew-linux_amd64.tar.gz"
     dest: "/tmp/krew/krew.tar.gz"
     mode: "0755"
-  when: (krew_exists is failed) or (not krew_download_exists.stat.exsts)
+  when: (krew_exists is failed) or (not krew_download_exists.stat.exists)
 
 - name: "krew - unarchive"
   ansible.builtin.unarchive:
