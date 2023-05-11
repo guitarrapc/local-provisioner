@@ -1,4 +1,0 @@
-bash_completion_packages:
-  - { src: /Applications/Docker.app/Contents/Resources/etc/docker.bash-completion, dest: /usr/local/etc/bash_completion.d/docker }
-  - { src: /Applications/Docker.app/Contents/Resources/etc/docker-machine.bash-completion, dest: /usr/local/etc/bash_completion.d/docker-machine }
-  - { src: /Applications/Docker.app/Contents/Resources/etc/docker-compose.bash-completion, dest: /usr/local/etc/bash_completion.d/docker-compose }
