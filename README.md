@@ -1,4 +1,4 @@
-[![ansible lint](https://github.com/guitarrapc/local-provisioner/actions/workflows/ansible-lint.yaml/badge.svg)](https://github.com/guitarrapc/local-provisioner/actions/workflows/ansible-lint.yaml)
+[![ansible lint](https://github.com/guitarrapc/local-provisioner/actions/workflows/ansible-lint.yaml/badge.svg)](https://github.com/guitarrapc/local-provisioner/actions/workflows/ansible-lint.yaml) [![install](https://github.com/guitarrapc/local-provisioner/actions/workflows/install.yaml/badge.svg)](https://github.com/guitarrapc/local-provisioner/actions/workflows/install.yaml)
 
 # local-provisioner
 
