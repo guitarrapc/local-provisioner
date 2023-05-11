@@ -8,7 +8,7 @@ Environment | Version | Method | Note
 ---- | ---- | ---- | ----
 macOS | Ventura<br/>Monterey | Ansible Playbook | Target to Apple Silicon, don't aim Intel support
 Ubuntu | 22.04<br/>20.04<br/>WSL1<br/>WSL2 | Ansible Playbook | install docker on wsl2.
-Windows | 11 22H2<br/>11 21H2<br/>10 21H2 | scoop |
+Windows | 11<br/>10 | scoop |
 
 # Run
 
@@ -28,8 +28,6 @@ cd ~/github/guitarrapc/local-provisioner/envs/ubuntu
 bash ./prerequisites.sh
 bash ./run.sh
 ```
-
-![image](https://user-images.githubusercontent.com/3856350/67872931-0465bd80-fb76-11e9-8700-bdc0e861f556.png)
 
 **macOS**
 
@@ -51,8 +49,6 @@ cd ~/github/guitarrapc/local-provisioner/envs/windows
 . ./prerequisites.ps1
 . ./run.ps1
 ```
-
-![image](https://user-images.githubusercontent.com/3856350/67872580-84d7ee80-fb75-11e9-8c1c-e7d25fc94892.png)
 
 # Test
 
@@ -89,7 +85,7 @@ tools | miscellaneous tools setup.
 
 Out of scopes
 
-    * None.
+* None.
 
 **macOS**
 
@@ -104,7 +100,7 @@ terraform | terraform environment setup. using tfenv.
 
 Out of scopes
 
-    * Unity Editor (Use Unity Hub)
+* Unity Editor (Use Unity Hub)
 
 **Windows**
 
@@ -118,10 +114,10 @@ terraform-docs | install app via scoop's `terraform-docs` bucket
 
 Out of scopes
 
-    * Docker for Windows.
-    * Visual Studio or higher.
-    * .NET SDK
-    * Unity Editor (Use Unity Hub)
+* Docker for Windows.
+* Visual Studio or higher.
+* .NET SDK
+* Unity Editor (Use Unity Hub)
 
 # How to modify
 
@@ -129,17 +125,17 @@ Folk this repository.
 
 **macOS**
 
-    * Modify parameters by open `envs/macos/roles/<role>/vars/main.yml`.
-    * Modify logic by open `envs/macos/roles/<role>/tasks/main.yml`.
+    * Modify parameters: `envs/macos/roles/<role>/vars/main.yml`.
+    * Modify logics: `envs/macos/roles/<role>/tasks/main.yml`.
 
 **Ubuntu**
 
-    * Modify parameters by open `envs/ubuntu/roles/<role>/vars/main.yml`.
-    * Modify logic by open `envs/ubuntu/roles/<role>/tasks/main.yml`.
+    * Modify parameters: `envs/ubuntu/roles/<role>/vars/main.yml`.
+    * Modify logics: `envs/ubuntu/roles/<role>/tasks/main.yml`.
 
 **Windows**
 
-    * Modify parameters by open `envs/windows/roles/<role>/tasks/main.yml`.
+    * Modify logics: `envs/windows/roles/<role>/tasks/main.yml`.
 
 # Issues
 
