@@ -28,9 +28,13 @@ jobs:
       - uses: actions/checkout@v3
       - name: Install ansible
         run: pip3 install ansible
-      - name: (Pre) Run Ansible Playbook (dry run)
-        run: ansible-playbook -i hosts playbook.yaml --dry-run
-      - name: Run Ansible Playbook
+      - name: (Dryrun) Run Ansible Playbook
+        run: ansible-playbook -i hosts playbook.yaml --check --diff
+      - name: 1st Run Ansible Playbook
         run: ansible-playbook -i hosts playbook.yaml
-      - name: (Post) Run Ansible Playbook (dry run)
-        run: ansible-playbook -i hosts playbook.yaml --dry-run
+      - name: (Dryrun) Run Ansible Playbook
+        run: ansible-playbook -i hosts playbook.yaml --check --diff
+      - name: 2nd Run Ansible Playbook
+        run: ansible-playbook -i hosts playbook.yaml
+      - name: (Dryrun) Run Ansible Playbook
+        run: ansible-playbook -i hosts playbook.yaml --check --diff

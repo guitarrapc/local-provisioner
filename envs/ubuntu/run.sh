@@ -12,4 +12,4 @@ if [[ "${_DRYRUN:=false}" == "true" ]]; then
   ansible_args="--check --diff"
 fi
 
-ansible-playbook -i hosts playbook.yaml -K ${ansible_args}
+ansible-playbook -i hosts playbook.yaml -K ${ansible_args:=""}
