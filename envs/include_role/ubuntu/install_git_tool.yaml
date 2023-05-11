@@ -12,4 +12,4 @@
     dest: "/usr/local/bin/{{ item }}"
     state: link
   with_items: "{{ args.link_binaries }}"
-  when: args.link_binaries is defined
+  when: (not ansible_check_mode) and (args.link_binaries is defined)
