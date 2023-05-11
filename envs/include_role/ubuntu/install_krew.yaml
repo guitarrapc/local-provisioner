@@ -59,7 +59,6 @@
     src: "/tmp/krew/krew.tar.gz"
     dest: /tmp/krew
     remote_src: true
-  when: (krew_exists is failed) or (not krew_download_exists.stat.exists)
 
 - name: "krew - install"
   ansible.builtin.command: /tmp/krew/krew-{{ os_value.stdout }}_{{ arch_value.stdout }} install krew
