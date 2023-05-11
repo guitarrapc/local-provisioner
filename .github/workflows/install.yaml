@@ -19,7 +19,7 @@ jobs:
       matrix:
         os: [ubuntu] # todo: macOS and Windows
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 15
     defaults:
       run:
         shell: bash
@@ -28,5 +28,13 @@ jobs:
       - uses: actions/checkout@v3
       - name: Install ansible
         run: pip3 install ansible
-      - name: Run Ansible Playbook
+      - name: (Dryrun) Run Ansible Playbook
+        run: ansible-playbook -i hosts playbook.yaml --check --diff
+      - name: 1st Run Ansible Playbook
         run: ansible-playbook -i hosts playbook.yaml
+      - name: (Dryrun) Run Ansible Playbook
+        run: ansible-playbook -i hosts playbook.yaml --check --diff
+      - name: 2nd Run Ansible Playbook
+        run: ansible-playbook -i hosts playbook.yaml
+      - name: (Dryrun) Run Ansible Playbook
+        run: ansible-playbook -i hosts playbook.yaml --check --diff

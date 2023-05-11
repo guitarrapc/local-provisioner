@@ -58,6 +58,7 @@
   register: apt
   until: "apt is not failed"
   retries: 2 # wsl1 failed first apt on Ubuntu-22.04
+  when: not ansible_check_mode
 
 # This configuration is for whom want run docker on Hyper-V backend, but using WSL2 docker isolated. If Docker Desktop use wsl2, then docker will be locate in wsl2's /usr/bin/docker.
 # configure iptables to use legacy. see: https://github.com/WhitewaterFoundry/Pengwin/issues/485#issuecomment-518028465

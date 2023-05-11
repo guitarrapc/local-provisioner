@@ -19,11 +19,12 @@
     chdir: "{{ args.clone_destination }}"
   register: install_dotfiles
   changed_when: install_dotfiles.rc != 0
+  when: not ansible_check_mode
 
 - name: "dotfiles - debug show result"
   ansible.builtin.debug:
     msg: "{{ install_dotfiles.stdout_lines }}"
-  when: install_dotfiles.stdout != ""
+  when: (not ansible_check_mode) and (install_dotfiles.stdout != "")
 
 - name: "dotfiles - insert .bash_rc to load custom rc"
   ansible.builtin.blockinfile:
@@ -34,4 +35,4 @@
         source {{ ansible_home }}/.bashrc_custom
       fi
     mode: "0644"
-  when: install_dotfiles is success
+  when: (not ansible_check_mode) and (install_dotfiles is success)
