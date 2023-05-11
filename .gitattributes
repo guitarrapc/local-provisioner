@@ -5,3 +5,5 @@
 .yaml text eol=lf
 .yml text eol=lf
 Gemfile text eol=lf
+
+spec/**  linguist-vendored # don't correct as language file
