@@ -4,6 +4,7 @@
 *.sh text eol=lf
 .yaml text eol=lf
 .yml text eol=lf
-Gemfile text eol=lf
+Gemfile text eol=lf linguist-vendored
+Rakefile text eol=lf linguist-vendored
 
 spec/**  linguist-vendored # don't correct as language file
