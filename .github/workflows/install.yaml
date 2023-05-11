@@ -28,5 +28,9 @@ jobs:
       - uses: actions/checkout@v3
       - name: Install ansible
         run: pip3 install ansible
+      - name: (Pre) Run Ansible Playbook (dry run)
+        run: ansible-playbook -i hosts playbook.yaml --dry-run
       - name: Run Ansible Playbook
         run: ansible-playbook -i hosts playbook.yaml
+      - name: (Post) Run Ansible Playbook (dry run)
+        run: ansible-playbook -i hosts playbook.yaml --dry-run
