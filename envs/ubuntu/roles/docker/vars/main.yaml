@@ -1,5 +1,5 @@
 docker:
-  launch_docker_service: 1 # set 1 if using ubuntu docker service. set 0 if using host windows docker daemon.
+  launch_docker_service: "0" # set 1 if using ubuntu docker service. set 0 if using host windows docker daemon.
 
 docker_compose:
   - name: docker-compose
