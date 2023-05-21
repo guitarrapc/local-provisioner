@@ -32,8 +32,8 @@ homebrew_packages:
   - name: zlib
 
 homebrew_cask_packages:
-  # - name: android-studio # for grpc/android
   - name: aws-vault
+  - name: android-studio # for grpc/android
   - name: cd-to
   - name: docker # docker desktop
   - name: dotnet-sdk
