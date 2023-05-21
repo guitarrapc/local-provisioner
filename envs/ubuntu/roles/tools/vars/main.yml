@@ -173,7 +173,8 @@ krew_plugins:
     install_check_arg: "--help"
 
 pip_tools:
-  - ansible-lint
+  - name: ansible-lint
+    version: "6.16.1"
 
 targz_binary_install:
   - name: cert
