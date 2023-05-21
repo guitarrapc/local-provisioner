@@ -1,125 +1,113 @@
 # interface
 # Dock Dark Mode since High Sierra (remove value if you want to reset)
 interface_settings:
-  - {
-      domain: NSGlobalDomain,
-      key: AppleInterfaceStyle,
-      type: string,
-      value: Dark,
-    }
+  - domain: NSGlobalDomain
+    key: AppleInterfaceStyle
+    type: string
+    value: Dark
   # Mojave whole Dark Theme (remove value if you want to reset)
-  - {
-      domain: "Apple Global Domain",
-      key: AppleInterfaceStyle,
-      type: string,
-      value: Dark,
-    }
+  - domain: "Apple Global Domain"
+    key: AppleInterfaceStyle
+    type: string
+    value: Dark
 
 # screen
 screen_settings:
-  - { domain: com.apple.screensaver, key: askForPassword, type: int, value: 1 }
-  - {
-      domain: com.apple.screensaver,
-      key: askForPasswordDelay,
-      type: int,
-      value: 0,
-    }
-  - {
-      domain: com.apple.screencapture,
-      key: disable-shadow,
-      type: bool,
-      value: true,
-    }
+  - domain: com.apple.screensaver
+    key: askForPassword
+    type: int
+    value: 1
+  - domain: com.apple.screensaver
+    key: askForPasswordDelay
+    type: int
+    value: 0
+  - domain: com.apple.screencapture
+    key: disable-shadow
+    type: bool
+    value: true
 
 # trackpad
 trackpad_settings:
   # Disable Natural scroll
-  - {
-      domain: NSGlobalDomain,
-      key: com.apple.swipescrolldirection,
-      type: int,
-      value: 0,
-    }
+  - domain: NSGlobalDomain
+    key: com.apple.swipescrolldirection
+    type: int
+    value: 0
 
 # finder
 finder_settings:
-  - {
-      domain: NSGlobalDomain,
-      key: AppleShowAllExtensions,
-      type: bool,
-      value: true,
-    }
-  - { domain: com.apple.finder, key: FinderSounds, type: bool, value: false }
-  - {
-      domain: com.apple.finder,
-      key: ShowExternalHardDrivesOnDesktop,
-      type: bool,
-      value: true,
-    }
-  - { domain: com.apple.finder, key: ShowStatusBar, type: bool, value: true }
-  - { domain: com.apple.finder, key: ShowTabView, type: bool, value: true }
-  - { domain: com.apple.finder, key: ShowPathbar, type: bool, value: true }
+  - domain: NSGlobalDomain
+    key: AppleShowAllExtensions
+    type: bool
+    value: true
+  - domain: com.apple.finder
+    key: FinderSounds
+    type: bool
+    value: false
+  - domain: com.apple.finder
+    key: ShowExternalHardDrivesOnDesktop
+    type: bool
+    value: true
+  - domain: com.apple.finder
+    key: ShowStatusBar
+    type: bool
+    value: true
+  - domain: com.apple.finder
+    key: ShowTabView
+    type: bool
+    value: true
+  - domain: com.apple.finder
+    key: ShowPathbar
+    type: bool
+    value: true
   # keep folder top on sort
-  - {
-      domain: com.apple.finder,
-      key: _FXSortFoldersFirst,
-      type: bool,
-      value: true,
-    }
+  - domain: com.apple.finder
+    key: _FXSortFoldersFirst
+    type: bool
+    value: true
   # search the current folder by default
-  - {
-      domain: com.apple.finder,
-      key: FXDefaultSearchScope,
-      type: string,
-      value: SCcf,
-    }
+  - domain: com.apple.finder
+    key: FXDefaultSearchScope
+    type: string
+    value: SCcf
   # no worning on change extentions
-  - {
-      domain: com.apple.finder,
-      key: FXEnableExtensionChangeWarning,
-      type: bool,
-      value: false,
-    }
+  - domain: com.apple.finder
+    key: FXEnableExtensionChangeWarning
+    type: bool
+    value: false
   # Avoid creating .DS_Store files on network or USB volumes
-  - {
-      domain: com.apple.desktopservices,
-      key: DSDontWriteNetworkStores,
-      type: bool,
-      value: true,
-    }
-  - {
-      domain: com.apple.desktopservices,
-      key: DSDontWriteUSBStores,
-      type: bool,
-      value: true,
-    }
+  - domain: com.apple.desktopservices
+    key: DSDontWriteNetworkStores
+    type: bool
+    value: true
+  - domain: com.apple.desktopservices
+    key: DSDontWriteUSBStores
+    type: bool
+    value: true
   # Use list view in all Finder windows by default
   # Four-letter codes for the other view modes: `icnv`, `clmv`, `Flwv`
-  - {
-      domain: com.apple.finder,
-      key: FXPreferredViewStyle,
-      type: string,
-      value: Nlsv,
-    }
+  - domain: com.apple.finder
+    key: FXPreferredViewStyle
+    type: string
+    value: Nlsv
 
 # dock
 dock_settings:
   # Minimize windows into their application’s icon
-  - {
-      domain: com.apple.dock,
-      key: minimize-to-application,
-      type: bool,
-      value: true,
-    }
+  - domain: com.apple.dock
+    key: minimize-to-application
+    type: bool
+    value: true
   # Show indicator lights for open applications in the Dock
-  - {
-      domain: com.apple.dock,
-      key: show-process-indicators,
-      type: bool,
-      value: true,
-    }
+  - domain: com.apple.dock
+    key: show-process-indicators
+    type: bool
+    value: true
   # Automatically hide and show the Dock
-  - { domain: com.apple.dock, key: autohide, type: bool, value: false }
+  - domain: com.apple.dock
+    key: autohide
+    type: bool
+    value: false
 
     # Hot corners
     # Possible values:
@@ -134,41 +122,29 @@ dock_settings:
     # 11: Launchpad
     # 12: Notification Center
     # Top left screen corner → Mission Control
-#   - {
-#       domain: com.apple.dock,
-#       key: wvous-tl-corner,
-#       type: int,
-#       value: 2
-#   }
-#   - {
-#       domain: com.apple.dock,
-#       key: wvous-tl-modifier,
-#       type: int,
-#       value: 0
-#   }
+#   - domain: com.apple.dock
+#     key: wvous-tl-corner
+#     type: int
+#     value: 2
+#   - domain: com.apple.dock
+#     key: wvous-tl-modifier
+#     type: int
+#     value: 0
 #   # Top right screen corner → Desktop
-#   - {
-#       domain: com.apple.dock,
-#       key: wvous-tr-corner,
-#       type: int,
-#       value: 4
-#   }
-#   - {
-#       domain: com.apple.dock,
-#       key: wvous-tr-modifier,
-#       type: int,
-#       value: 0
-#   }
-# Bottom left screen corner → Start screen saver
-#   - {
-#       domain: com.apple.dock,
-#       key: wvous-bl-corner,
-#       type: int,
-#       value: 5
-#   }
-#   - {
-#       domain: com.apple.dock,
-#       key: wvous-bl-modifier,
-#       type: int,
-#       value: 0
-#   }
+#   - domain: com.apple.dock
+#     key: wvous-tr-corner
+#     type: int
+#     value: 4
+#   - domain: com.apple.dock
+#     key: wvous-tr-modifier
+#     type: int
+#     value: 0
+#   # Bottom left screen corner → Start screen saver
+#   - domain: com.apple.dock
+#     key: wvous-bl-corner
+#     type: int
+#     value: 5
+#   - domain: com.apple.dock
+#     key: wvous-bl-modifier
+#     type: int
+#     value: 0
