@@ -5,6 +5,7 @@ skip_list:
   - name[template] # jinja rule is not valid
   - package-latest # Unfortunately I do want update to latest without version specification
   - schema[vars] # macos detect wrong error on defaults
+  - var-naming[non-string] # for macOS only.
   - var-naming[no-role-prefix] # too much. It's nothing worse to follow this rule.
   - yaml[indentation]
   - yaml[line-length] # don't think line-length is important
