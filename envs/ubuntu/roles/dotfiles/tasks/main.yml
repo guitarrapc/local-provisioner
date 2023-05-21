@@ -1,5 +1,5 @@
 - name: "Install dotfiles"
-  ansible.builtin.include_tasks: ../include_role/ubuntu/install_dotfiles.yaml
+  ansible.builtin.include_tasks: ../include_role/all/install_dotfiles.yaml
   with_items: "{{ dotfiles }}"
   loop_control:
     loop_var: args

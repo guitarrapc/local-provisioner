@@ -1,23 +1,5 @@
-- name: Create github directory
-  ansible.builtin.file:
-    path: "{{ base_path }}"
-    state: directory
-    force: true
-    mode: "0755"
-
-- name: Clone dotfiles
-  ansible.builtin.git:
-    repo: "{{ item.repo }}"
-    dest: "{{ item.dest }}"
-    force: true
-  with_items: "{{ repository }}"
-
-- name: Create symlinks
-  ansible.builtin.command: bash -lc "{{ run_dotfiles }}"
-  register: dotfiles_install
-  changed_when: dotfiles_install.rc != 0
-
-- name: "Debug show result"
-  ansible.builtin.debug:
-    msg: "{{ dotfiles_install.stdout_lines }}"
-  when: dotfiles_install.stdout != ""
+- name: "Install dotfiles"
+  ansible.builtin.include_tasks: ../include_role/all/install_dotfiles.yaml
+  with_items: "{{ dotfiles }}"
+  loop_control:
+    loop_var: args
