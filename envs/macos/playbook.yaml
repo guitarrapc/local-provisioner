@@ -1,5 +1,10 @@
 - name: macos setup
   hosts: "local"
+  pre_tasks:
+    - name: Preset ansible_home as execution user HOME path
+      ansible.builtin.set_fact:
+        ansible_home: "{{ ansible_env.HOME }}"
+      tags: always
   roles:
     - { role: "debug", tags: [debug] }
     - { role: "defaults", tags: [defaults] }
