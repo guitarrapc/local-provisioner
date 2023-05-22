@@ -34,7 +34,7 @@ jobs:
         run: ansible-playbook -i hosts playbook.yaml
       - name: git status
         run: git status && git diff || true
-        working-directory: ${{ github.workspace }}/github/guitarrapc/dotfiles/
+        working-directory: /Users/runner/github/guitarrapc/dotfiles/
       - name: (Dryrun) Run Ansible Playbook
         run: ansible-playbook -i hosts playbook.yaml --check --diff
       - name: 2nd Run Ansible Playbook
