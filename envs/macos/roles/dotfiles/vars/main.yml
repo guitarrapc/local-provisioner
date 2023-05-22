@@ -1,7 +1,4 @@
-base_path: /Users/guitarrapc/github/guitarrapc
-repository:
-  - {
-      repo: "https://github.com/guitarrapc/dotfiles.git",
-      dest: "/Users/guitarrapc/github/guitarrapc/dotfiles",
-    }
-run_dotfiles: cd /Users/guitarrapc/github/guitarrapc/dotfiles && ./install.sh
+dotfiles:
+  - repository: "https://github.com/guitarrapc/dotfiles.git"
+    clone_destination: "{{ ansible_home }}/github/guitarrapc/dotfiles"
+    run_command: "./install.sh --force y"

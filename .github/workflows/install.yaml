@@ -17,9 +17,9 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu] # todo: macOS and Windows
-    runs-on: ubuntu-latest
-    timeout-minutes: 15
+        os: [ubuntu, macos] # todo: Windows
+    runs-on: ${{ matrix.os }}-latest
+    timeout-minutes: 30
     defaults:
       run:
         shell: bash

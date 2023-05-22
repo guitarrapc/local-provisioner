@@ -45,10 +45,12 @@
   ansible.builtin.debug:
     msg: "{{ ansible_distribution_release }}"
 
-# wsl check
-- name: "Debug - is_wsl1 or not"
+# Ubuntu on WSL check
+- name: "Debug - is_wsl1 or not (Ubuntu only)"
   ansible.builtin.debug:
     msg: "{{ is_wsl1 }}"
-- name: "Debug - is_wsl2 or not"
+  when: ansible_distribution == "Ubuntu"
+- name: "Debug - is_wsl2 or not (Ubuntu only)"
   ansible.builtin.debug:
     msg: "{{ is_wsl2 }}"
+  when: ansible_distribution == "Ubuntu"

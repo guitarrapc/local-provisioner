@@ -4,3 +4,4 @@
     path: /etc/pam.d/sudo
     insertafter: "^# sudo: auth account password session"
     line: "auth       sufficient     pam_tid.so"
+  when: lookup('env', "CI", default="false") != "true"
