@@ -61,6 +61,7 @@ jobs:
         run: |
           Install-Module PowerShell-Yaml -Force -Scope CurrentUser
           Install-Module ScoopPlaybook -Force -Scope CurrentUser
-      - name: Install Modules
-        run: |
-          ScoopPlaybook
+      - name: 1st Run ScoopPlaybook
+        run: Scoop-Playbook
+      - name: 2nd Run ScoopPlaybook
+        run: Scoop-Playbook
