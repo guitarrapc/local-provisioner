@@ -52,13 +52,7 @@ jobs:
         working-directory: envs/${{ matrix.os }}
     steps:
       - uses: actions/checkout@v3
-      - name: Install Scoop
-        run: |
-          iwr -useb get.scoop.sh -outfile 'install.ps1'
-          .\install.ps1 -RunAsAdmin
-          scoop --version
-      - name: Add PATH
-        run: echo "${env:UserProfile}\scoop\shims" >> $GITHUB_PATH
+      - uses: MinoruSekine/setup-scoop@v1
       - name: Test Scoop installed
         run: scoop --version
       - name: Install Modules
