@@ -13,7 +13,7 @@ env:
   TERM: xterm
 
 jobs:
-  install:
+  ansible:
     strategy:
       fail-fast: false
       matrix:
@@ -38,3 +38,28 @@ jobs:
         run: ansible-playbook -i hosts playbook.yaml
       - name: (Dryrun) Run Ansible Playbook
         run: ansible-playbook -i hosts playbook.yaml --check --diff
+
+  scoop:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows]
+    runs-on: ${{ matrix.os }}-latest
+    timeout-minutes: 30
+    defaults:
+      run:
+        shell: powershell
+        working-directory: envs/${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v3
+      - uses: MinoruSekine/setup-scoop@main # use @main to fix. see https://github.com/MinoruSekine/setup-scoop/issues/7
+      - name: Test Scoop installed
+        run: scoop --version
+      - name: Install Modules
+        run: |
+          Install-Module PowerShell-Yaml -Force -Scope CurrentUser
+          Install-Module ScoopPlaybook -Force -Scope CurrentUser
+      - name: 1st Run ScoopPlaybook
+        run: Scoop-Playbook
+      - name: 2nd Run ScoopPlaybook
+        run: Scoop-Playbook

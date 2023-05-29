@@ -13,8 +13,7 @@
       - fork
       - gcloud
       - gitkraken
-      #- googlechrome # too old and won't update since 91. stop use it and use self update.
-      - hack-font
+      #- googlechrome # dont't want change userprofile location. use self provided.
       - heidisql
       - ilspy
       - kdiff3

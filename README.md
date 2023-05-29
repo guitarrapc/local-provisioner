@@ -45,6 +45,7 @@ bash ./run.sh
 run scoop-playbook.
 
 ```shell
+Set-ExecutionPolicy RemoteSigned -scope CurrentUser
 cd ~/github/guitarrapc/local-provisioner/envs/windows
 . ./prerequisites.ps1
 . ./run.ps1
