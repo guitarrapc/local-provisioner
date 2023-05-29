@@ -52,7 +52,7 @@ jobs:
         working-directory: envs/${{ matrix.os }}
     steps:
       - uses: actions/checkout@v3
-      - uses: MinoruSekine/setup-scoop@v1
+      - uses: MinoruSekine/setup-scoop@main # use @main to fix. see https://github.com/MinoruSekine/setup-scoop/issues/7
       - name: Test Scoop installed
         run: scoop --version
       - name: Install Modules
