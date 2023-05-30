@@ -161,6 +161,8 @@ krew_plugins:
     install_check_arg: "--help"
   - name: lineage # https://github.com/tohjustin/kube-lineage display all dependencies or dependents of an object in a Kubernetes cluster
     install_check_arg: "--help"
+  - name: ktop # https://github.com/vladimirvivien/ktop A top-like tool for your Kubernetes clusters
+    install_check_arg: "--help"
   - name: neat # https://github.com/itaysk/kubectl-neat Clean up Kubernetes yaml and json output to make it readable
     install_check_arg: "--help"
   - name: resource-capacity # https://github.com/robscott/kube-capacity A simple CLI that provides an overview of the resource requests, limits, and utilization in a Kubernetes cluster
