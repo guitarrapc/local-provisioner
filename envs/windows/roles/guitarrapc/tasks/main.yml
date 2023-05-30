@@ -9,6 +9,7 @@
     state: present
     bucket: guitarrapc
     name:
+      - 0xProto
       - bombardier
       - browserouter
       - conftest
