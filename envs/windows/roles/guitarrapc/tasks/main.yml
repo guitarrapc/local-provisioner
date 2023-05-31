@@ -9,12 +9,12 @@
     state: present
     bucket: guitarrapc
     name:
-      - 0xProto
+      # - 0xProto # no more font
       - bombardier
       - browserouter
       - conftest
       - ctop
-      - DejaVuSansMono-Bront
+      # - DejaVuSansMono-Bront # no more font
       - ecspresso
       - ghz
       - googlechrome-stable # fork version and use https://github.com/42wim/chromeupdates as update source.
