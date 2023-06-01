@@ -14,7 +14,7 @@ Windows | 11<br/>10 | scoop |
 
 clone repo setup.
 
-```shell
+```sh
 mkdir -p ~/github/guitarrapc && cd ~/github/guitarrapc
 git clone https://github.com/guitarrapc/local-provisioner
 ```
@@ -23,7 +23,7 @@ git clone https://github.com/guitarrapc/local-provisioner
 
 run ansible-playbook.
 
-```shell
+```sh
 cd ~/github/guitarrapc/local-provisioner/envs/ubuntu
 bash ./prerequisites.sh
 bash ./run.sh
@@ -33,7 +33,7 @@ bash ./run.sh
 
 run ansible-playbook.
 
-```shell
+```sh
 cd ~/github/guitarrapc/local-provisioner/envs/macos
 bash ./prerequisites.sh
 exec $SHELL -l
@@ -44,18 +44,34 @@ bash ./run.sh
 
 run scoop-playbook.
 
-```shell
+```sh
 Set-ExecutionPolicy RemoteSigned -scope CurrentUser
-cd ~/github/guitarrapc/local-provisioner/envs/windows
+cd c:/git/guitarrapc/local-provisioner/envs/windows
 . ./prerequisites.ps1
 . ./run.ps1
+```
+
+run exstra non-scoop tool installation.
+
+```sh
+cd c:/git/guitarrapc/local-provisioner/envs/windows/etc
+. ./install-winget.ps1
+. ./install-winget-play.ps1 # for game playing environment
+. ./install-wsl1.ps1
+. ./install-wsl2.ps1
+```
+
+run extra configs.
+```sh
+cd c:/git/guitarrapc/local-provisioner/envs/windows/etc
+. ./enable_longpath.reg
 ```
 
 # Test
 
 **macOS**
 
-```shell
+```sh
 cd envs/macos
 # check tests
 bundle exec rake -T
@@ -113,12 +129,12 @@ guitarrapc | install app via scoop's `guitarrapc` bucket
 main | install app via scoop's `main` bucket
 terraform-docs | install app via scoop's `terraform-docs` bucket
 
-Out of scopes
+Use winget to install non-scoop apps.
 
 * Docker for Windows.
 * Visual Studio or higher.
-* .NET SDK
-* Unity Editor (Use Unity Hub)
+* Unity Hub
+* Steam and others.
 
 # How to modify
 
