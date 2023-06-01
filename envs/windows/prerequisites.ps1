@@ -5,6 +5,9 @@ function PrintError($message) {
   Write-Host $message -ForegroundColor Red
 }
 
+PrintInfo -message "Installing git via winget."
+winget install -e --id Git.Git
+
 PrintInfo -message "Installing scoop."
 if ($null -eq (Get-Command scoop.ps1*)) {
   iex (new-object net.webclient).downloadstring('https://get.scoop.sh')
@@ -18,7 +21,7 @@ Install-Module "ScoopPlaybook" -Scope CurrentUser -Force -AllowClobber
 PrintInfo -message "Updating scoop to latest"
 scoop update
 
-foreach ($item in @("7zip", "dark", "git", "innounp", "sudo")) {
+foreach ($item in @("7zip", "sudo")) {
   PrintInfo -message "Install/Update scoop package $item"
   scoop install $item
   scoop update $item
