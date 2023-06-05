@@ -6,9 +6,9 @@ Dev environment setup.
 
 Environment | Version | Method | Note
 ---- | ---- | ---- | ----
-macOS | Ventura<br/>Monterey | Ansible Playbook | Target to Apple Silicon and Intel.
-Ubuntu | 22.04<br/>20.04<br/>WSL1<br/>WSL2 | Ansible Playbook | install docker on wsl2.
-Windows | 11<br/>10 | scoop |
+[macOS](envs/macos/README.md) | Ventura<br/>Monterey | Ansible Playbook | Target to Apple Silicon and Intel.
+[Ubuntu](envs/ubuntu/README.md) | 22.04<br/>20.04<br/>WSL1<br/>WSL2 | Ansible Playbook | install docker on wsl2.
+[Windows](envs/windows/README.md) | 11<br/>10 | scoop |
 
 # Run
 
