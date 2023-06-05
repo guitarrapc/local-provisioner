@@ -178,7 +178,7 @@ pip_tools:
   - name: ansible-lint
     version: "6.16.1"
   - name: ansible-playbook-grapher # require: graphviz
-    verseion: "2.0.0"
+    version: "2.0.0"
 
 targz_binary_install:
   - name: cert
