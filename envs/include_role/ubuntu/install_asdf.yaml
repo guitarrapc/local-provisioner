@@ -1,3 +1,19 @@
+# Install asdf. This installed [asdf](https://asdf-vm.com/) and sets up the environment.
+# See below for an example of how to use this role.
+#
+# ```vars/main.yaml
+# asdf:
+#   version: v0.11.1
+# ```
+#
+# ```roles/main.yaml
+# - name: "asdf - Install asdf"
+#   ansible.builtin.include_tasks: ../include_role/ubuntu/install_asdf.yaml
+#   with_items: "{{ asdf }}"
+#   loop_control:
+#     loop_var: args
+# ```
+
 - name: "asdf - Clone & Fetch repo"
   ansible.builtin.git:
     repo: "https://github.com/asdf-vm/asdf"

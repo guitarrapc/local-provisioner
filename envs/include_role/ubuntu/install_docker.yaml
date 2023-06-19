@@ -1,4 +1,4 @@
-# docker
+# Install docker.
 # see: https://docs.docker.com/engine/install/ubuntu/
 
 # workaround for "Conflicting values set for option Signed-By"

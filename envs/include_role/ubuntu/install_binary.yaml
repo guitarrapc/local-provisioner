@@ -1,15 +1,24 @@
-# usage pattern 1: use version args for version detection.
+# Install binary packages. These are packages that are installed by downloading a binary and then copying it to the destination.
+# See below for an example of how to use this role.
+# ----------------
+# ```vars/main.yaml
 # - name: NAME_OF_BINARY
 #   version_arg: "--version"
-#   version: "1.0.0"
+#   version: "1.0.0" # use version args for version detection.
 #   download_url: https://github.com/owner/repo/releases/download/verison/binary_name
-
-# usage pattern 2: use checksum for verison detection.
 # - name: NAME_OF_BINARY
 #   checksum_type: sha256sum
-#   checksum: 68c7301c41b1bd1d89668bf27d5314a10b8330f694e711401fe1494d2c9780c2
+#   checksum: 68c7301c41b1bd1d89668bf27d5314a10b8330f694e711401fe1494d2c9780c2 # use checksum for verison detection.
 #   download_url: https://github.com/owner/repo/releases/download/verison/binary_name
-
+# ```
+#
+# ```tasks/main.yaml
+# - name: "binary - Install tools"
+#   ansible.builtin.include_tasks: ../include_role/ubuntu/install_binary.yaml
+#   with_items: "{{ binary_install }}"
+#   loop_control:
+#     loop_var: args
+# ```
 - name: "binary ({{ args.name }}) - check installed"
   ansible.builtin.shell: "set -o pipefail && {{ args.name }} {{ args.version_arg }} 2>&1 | grep {{ args.version }}"
   args:

@@ -1,3 +1,10 @@
+# Configure needrestart for WSL Ubuntu. This is needed for WSL2 to installing packages unattended.
+# ----------------
+# ```roles/main.yaml
+# - name: "Configure needrestart"
+#   ansible.builtin.include_tasks: ../include_role/ubuntu/configure_needrestart.yaml
+# ```
+
 - name: "needrestart - check OS is using needrestart"
   become: true
   ansible.builtin.stat:

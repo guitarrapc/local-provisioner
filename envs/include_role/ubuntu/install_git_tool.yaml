@@ -1,3 +1,25 @@
+# Install Git clone tools. These are tools that are installed by cloning a git repo and then creating symlinks to the binaries.
+# See below for an example of how to use this role.
+# ----------------
+# ```vars/main.yaml
+# git_tools:
+#   - name: kubectx
+#     git_https_url: https://github.com/ahmetb/kubectx.git
+#     link_binaries:
+#       - kubectx
+#       - kubens
+#   - name: kube-ps1
+#     git_https_url: https://github.com/jonmosco/kube-ps1.git
+# ```
+#
+# ```tasks/main.yaml
+# - name: "git clone - Install git tools"
+#   ansible.builtin.include_tasks: ../include_role/ubuntu/install_git_tool.yaml
+#   with_items: "{{ git_tools }}"
+#   loop_control:
+#     loop_var: args
+# ```
+
 - name: "git_tool - ({{ args.name }}) - clone"
   become: true
   ansible.builtin.git:

@@ -1,3 +1,20 @@
+# Install dotnet SDK.
+# See below for an example of how to use this role.
+# ----------------
+# ```vars/main.yaml
+# dotnet:
+#   version: "dotnet-sdk-6.0"
+# ```
+#
+# ```roles.mainyaml
+# - name: ".NET - Install dotnet"
+#   ansible.builtin.include_tasks: ../include_role/ubuntu/install_dotnet.yaml
+#   with_items: "{{ dotnet }}"
+#   loop_control:
+#     loop_var: args
+#   when: ansible_distribution_version != "22.04"
+# ```
+
 # ref: https://dotnet.microsoft.com/download/linux-package-manager/ubuntu18-04/sdk-current
 # ref: https://github.com/ocha/ansible-role-dotnet-core
 - name: "dotnet - make sure HTTPS is supported by apt"
