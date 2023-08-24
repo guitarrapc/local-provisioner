@@ -1,15 +1,18 @@
+function ReloadEnvironmentVariables {
+  echo "Reload environment variables"
+  $machinePath = [Environment]::GetEnvironmentVariable("PATH", "machine")
+  $userPath = [Environment]::GetEnvironmentVariable("PATH", "user")
+  $newPath = "$userPath;$machinePath"
+  [Environment]::SetEnvironmentVariable("PATH", "$newPath", "process")
+}
+
 echo "Follow up scoop app"
 . "${env:UserProfile}/scoop/apps/vscode/current/install-context.reg"
 
 echo "Install winget tools"
 sudo ./install-winget.ps1
 sudo ./install-vstools.ps1
-
-echo "Reload environment variables"
-$machinePath = [Environment]::GetEnvironmentVariable("PATH", "machine")
-$userPath = [Environment]::GetEnvironmentVariable("PATH", "user")
-$newPath = "$userPath;$machinePath"
-[Environment]::SetEnvironmentVariable("PATH", "$newPath", "process")
+ReloadEnvironmentVariables
 
 echo "dotnet fix"
 ./add-nugetorg.ps1
