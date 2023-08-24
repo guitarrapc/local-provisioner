@@ -1,0 +1,4 @@
+# ref: https://gist.github.com/guitarrapc/6032e8b3aa7e67801edff3142ef9380a
+# ref: https://learn.microsoft.com/en-us/visualstudio/install/workload-component-id-vs-professional?view=vs-2022
+Start-Process "C:\Program Files (x86)\Microsoft Visual Studio\Installer\setup.exe" -ArgumentList 'modify --quiet --force --norestart --productId "Microsoft.VisualStudio.Product.Professional" --channelId "VisualStudio.17.Release" --add "Microsoft.VisualStudio.Workload.NetWeb"' -Wait
+Start-Process "C:\Program Files (x86)\Microsoft Visual Studio\Installer\setup.exe" -ArgumentList 'modify --quiet --force --norestart --productId "Microsoft.VisualStudio.Product.Professional" --channelId "VisualStudio.17.Release" --add "Microsoft.VisualStudio.Workload.ManagedGame"' -Wait
