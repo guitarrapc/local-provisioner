@@ -43,7 +43,7 @@ asdf_plugins:
   - name: conftest
     source: https://github.com/dhoeric/asdf-conftest.git
     version_arg: "--version"
-    version: "0.39.0"
+    version: "0.45.0"
   - name: ctop
     source: https://github.com/neohsu/asdf-ctop.git
     version_arg: "-v"
