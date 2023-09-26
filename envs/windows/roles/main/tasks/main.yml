@@ -4,8 +4,9 @@
     state: present
     bucket: main
     name:
-      - git
       - 7zip
+      - innounp
+      - dark
       - sudo
 
 - name: "Install linux tools"

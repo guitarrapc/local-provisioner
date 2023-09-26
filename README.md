@@ -4,26 +4,21 @@
 
 Dev environment setup.
 
-Environment | Version | Method | Note
----- | ---- | ---- | ----
-[macOS](envs/macos/README.md) | Ventura<br/>Monterey | Ansible Playbook | Target to Apple Silicon and Intel.
-[Ubuntu](envs/ubuntu/README.md) | 22.04<br/>20.04<br/>WSL1<br/>WSL2 | Ansible Playbook | install docker on wsl2.
-[Windows](envs/windows/README.md) | 11<br/>10 | scoop |
+| Environment | Version | Method | Note |
+| ---- | ---- | ---- | ---- |
+| [macOS](envs/macos/README.md) | Ventura<br/>Monterey | Ansible Playbook | Target to Apple Silicon and Intel. |
+| [Ubuntu](envs/ubuntu/README.md) | 22.04<br/>20.04<br/>WSL1<br/>WSL2 | Ansible Playbook | install docker on wsl2. |
+| [Windows](envs/windows/README.md) | 11<br/>10 | scoop & winget | scoop for portal app, winget for installer app. |
 
 # Run
 
-clone repo setup.
+**Ubuntu**
+
+clone repo and run ansible-playbook.
 
 ```sh
 mkdir -p ~/github/guitarrapc && cd ~/github/guitarrapc
 git clone https://github.com/guitarrapc/local-provisioner
-```
-
-**Ubuntu**
-
-run ansible-playbook.
-
-```sh
 cd ~/github/guitarrapc/local-provisioner/envs/ubuntu
 bash ./prerequisites.sh
 bash ./run.sh
@@ -31,9 +26,11 @@ bash ./run.sh
 
 **macOS**
 
-run ansible-playbook.
+clone repo and run ansible-playbook.
 
 ```sh
+mkdir -p ~/github/guitarrapc && cd ~/github/guitarrapc
+git clone https://github.com/guitarrapc/local-provisioner
 cd ~/github/guitarrapc/local-provisioner/envs/macos
 bash ./prerequisites.sh
 exec $SHELL -l
@@ -42,11 +39,17 @@ bash ./run.sh
 
 **Windows**
 
-run scoop-playbook.
+> [!NOTE] Enable Windows Developer mode beforehand.
+
+Install git, then clone repo and run scoop-playbook.
 
 ```sh
-Set-ExecutionPolicy RemoteSigned -scope CurrentUser
-cd c:/git/guitarrapc/local-provisioner/envs/windows
+winget list --accept-source-agreements
+winget install -e --id Git.Git --accept-package-agreements
+mkdir c:/github/guitarrapc
+cd c:/github/guitarrapc
+git clone https://github.com/guitarrapc/local-provisioner
+cd c:/github/guitarrapc/local-provisioner/envs/windows
 . ./prerequisites.ps1
 . ./run.ps1
 ```
@@ -54,8 +57,8 @@ cd c:/git/guitarrapc/local-provisioner/envs/windows
 run exstra non-scoop tool installation.
 
 ```sh
-cd c:/git/guitarrapc/local-provisioner/envs/windows/etc
-. ./install-winget.ps1
+cd c:/github/guitarrapc/local-provisioner/envs/windows/etc
+. ./run.ps1
 . ./install-winget-play.ps1 # for game playing environment
 . ./install-wsl1.ps1
 . ./install-wsl2.ps1
@@ -63,7 +66,7 @@ cd c:/git/guitarrapc/local-provisioner/envs/windows/etc
 
 run extra configs.
 ```sh
-cd c:/git/guitarrapc/local-provisioner/envs/windows/etc
+cd c:/github/guitarrapc/local-provisioner/envs/windows/etc
 . ./enable_longpath.reg
 ```
 
