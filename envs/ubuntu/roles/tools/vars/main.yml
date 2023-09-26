@@ -67,7 +67,7 @@ asdf_plugins:
   - name: helm
     source: https://github.com/Antiarchitect/asdf-helm.git
     version_arg: "version --short"
-    version: "3.11.1"
+    version: "3.12.3"
   - name: kubectl
     source: https://github.com/asdf-community/asdf-kubectl.git
     version_arg: "version --client --short"
