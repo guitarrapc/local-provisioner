@@ -4,7 +4,7 @@ apt_tools:
   # - duf # not available below 22.04
   - fd-find
   - git-lfs
-  - graphviz #require for terraform graph and ansible-playbook-graph
+  - graphviz # require for terraform graph and ansible-playbook-graph
   - htop
   - hub
   - jq
