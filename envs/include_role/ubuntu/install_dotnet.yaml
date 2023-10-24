@@ -8,4 +8,4 @@
   changed_when: false
 
 - name: "dotnet - install ({{ dotnet.version }})"
-  ansible.builtin.command: "DOTNET_ROOT={{ ansible_home }}/.dotnet && /tmp/dotnet-install.sh --channel {{ dotnet.version }}"
+  ansible.builtin.shell: "DOTNET_ROOT={{ ansible_home }}/.dotnet && /tmp/dotnet-install.sh --channel {{ dotnet.version }}"
