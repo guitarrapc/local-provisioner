@@ -192,6 +192,25 @@ targz_binary_install:
     copy_root: "circleci-cli_0.1.22426_linux_amd64/"
     binaries:
       - circleci
+  - name: pulumi
+    version_arg: "version"
+    version: "v3.90.0"
+    download_url: https://get.pulumi.com/releases/sdk/pulumi-v3.90.0-linux-x64.tar.gz
+    copy_root: "pulumi/"
+    binaries:
+      - pulumi
+      - pulumi-analyzer-policy
+      - pulumi-analyzer-policy-python
+      - pulumi-language-dotnet
+      - pulumi-language-go
+      - pulumi-language-java
+      - pulumi-language-nodejs
+      - pulumi-language-python
+      - pulumi-language-python-exec
+      - pulumi-language-yaml
+      - pulumi-resource-pulumi-nodejs
+      - pulumi-resource-pulumi-python
+      - pulumi-watch
   - name: tldr
     version_arg: "--version"
     version: "0.6.1"
