@@ -7,5 +7,6 @@ skip_list:
   - schema[vars] # macos detect wrong error on defaults
   - var-naming[non-string] # for macOS only.
   - var-naming[no-role-prefix] # too much. It's nothing worse to follow this rule.
+  - yaml[comment] # too noisy. I don't want to comment new line every time. inline comment is useful.
   - yaml[indentation]
   - yaml[line-length] # don't think line-length is important
