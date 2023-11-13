@@ -40,6 +40,7 @@
       - bazel
       - chromedriver
       - dive
+      - gh
       - hub
       - hugo
       - hugo-extended
