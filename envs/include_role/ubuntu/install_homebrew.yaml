@@ -1,3 +1,20 @@
+# Install binary from homebrew (linuxbrew). This is useful when you are using homebrew for package manager.
+# Unfortunately, homebrew is too slow.... may be remove in future. packages should not depends on brew.
+#
+# See below for an example of how to use this role.
+# ```yaml
+# homebrew:
+#   - packages:
+#       - { name: "hello", state: "present" }
+#
+# ```yaml
+# - name: "Install homebrew"
+#   ansible.builtin.include_tasks: ../include_role/ubuntu/install_homebrew.yaml
+#   with_items: "{{ homebrew }}"
+#   loop_control:
+#     loop_var: args
+# ```
+
 - name: "homebrew - clone"
   ansible.builtin.git:
     repo: https://github.com/Homebrew/brew

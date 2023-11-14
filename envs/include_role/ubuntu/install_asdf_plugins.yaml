@@ -1,3 +1,31 @@
+# Install asdf plugins. These are tools that are installed by [asdf](https://asdf-vm.com/).
+# see: https://github.com/asdf-vm/asdf-plugins
+#
+# See below for an example of how to use this role.
+# ```vars/main.yaml
+# asdf_plugins:
+#   - name: argocd
+#     source: https://github.com/beardix/asdf-argocd.git
+#     version_arg: "version --client"
+#     version: "2.6.6"
+#   - name: aws-vault
+#     source: https://github.com/virtualstaticvoid/asdf-aws-vault.git
+#     version_arg: "--version"
+#     version: "6.6.2"
+#   - name: awscli
+#     source: https://github.com/MetricMike/asdf-awscli.git
+#     version_arg: "--version"
+#     version: "2.9.22"
+# ```
+#
+# ```tasks/main.yaml
+# - name: "asdf - Install asdf plugins"
+#   ansible.builtin.include_tasks: ../include_role/ubuntu/install_asdf_plugins.yaml
+#   with_items: "{{ asdf_plugins }}"
+#   loop_control:
+#     loop_var: args
+# ```
+
 # https://asdf-vm.com/guide/getting-started.html#_6-set-a-version
 - name: "asdf_plugin ({{ args.name }}) - check plugin installed and update"
   ansible.builtin.command: "asdf plugin update {{ args.name }} 2>&1"

@@ -1,4 +1,5 @@
-# aws2
+# todo: we can delete
+# Install aws cli v2
 # install to /usr/local/aws by default.
 # symlink to /usr/local/bin/aws by default.
 - name: "awscli - check exists"
