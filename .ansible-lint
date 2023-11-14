@@ -1,12 +1,66 @@
+enable_list:
+  - args                        # Validating module arguments. (syntax, experimental)
+  - avoid-implicit              # Avoid implicit behaviors (unpredictability)
+  - command-instead-of-module   # Using command rather than module. (command-shell, idiom)
+  - command-instead-of-shell    # Use shell only when shell functionality is required. (autofix, command-shell, idiom)
+  - complexity                  # Rule for limiting number of tasks inside a file. (experimental, idiom)
+  - deprecated-bare-vars        # Using bare variables is deprecated. (deprecations)
+  - deprecated-local-action     # Do not use 'local_action', use 'delegate_to: localhost'. (autofix, deprecations)
+  - deprecated-module           # Deprecated module. (deprecations)
+  - fqcn                        # Use FQCN for builtin actions. (autofix, formatting)
+  - galaxy                      # Rule for checking collection version is greater than 1.0.0 and checking for changelog. (metadata)
+  - ignore-errors               # Use failed_when and specify error conditions instead of using ignore_errors. (unpredictability)
+  - inline-env-var              # Command module does not accept setting environment variables inline. (command-shell, idiom)
+  - internal-error              # Unexpected internal error (core)
+  - jinja                       # Rule that looks inside jinja2 templates. (autofix, formatting)
+  - key-order                   # Ensure specific order of keys in mappings. (autofix, formatting)
+  - latest                      # Result of the command may vary on subsequent runs. (idempotency)
+  - le-lint.readthedocs.io/rules/literal-compare/literal-compare            # Don't compare to literal True/False. (idiom)
+  - load-failure                # Failed to load or parse file. (core, unskippable)
+  - loop-var-prefix             # Role loop_var should use configured prefix. (idiom)
+  - meta-incorrect              # meta/main.yml default values should be changed. (metadata)
+  - meta-no-tags                # Tags must contain lowercase letters and digits only. (metadata)
+  - meta-runtime                # Required ansible version in meta/runtime.yml must be a supported version. (metadata)
+  - meta-video-links            # meta/main.yml video_links should be formatted correctly. (metadata)
+  - name                        # Rule for checking task and play names. (autofix, idiom)
+  - no-changed-when             # Commands should not change things if nothing needs doing. (command-shell, idempotency)
+  - no-free-form                # Rule for detecting discouraged free-form syntax for action modules. (autofix, syntax, risk)
+  - no-handler                  # Tasks that run when changed should likely be handlers. (idiom)
+  - no-jinja-when               # No Jinja2 in when. (autofix, deprecations)
+  - no-log-password             # Password should not be logged. (autofix, opt-in, security, experimental)
+  - no-prompting                # Disallow prompting. (opt-in)
+  - no-relative-paths           # The src argument should not use a relative path. (idiom)
+  - no-same-owner               # Do not preserve the owner and group when transferring files across hosts. (opt-in)
+  - no-tabs                     # Most files should not contain tabs. (formatting)
+  - package-latest              # Package installs should not use latest. (idempotency)
+  - parser-error                # AnsibleParserError. (core)
+  - partial-become              # ``become_user`` should have a corresponding ``become`` at the play or task level. (autofix, unpredictability)
+  - playbook-extension          # Use ".yml" or ".yaml" playbook extension. (formatting)
+  - risky-file-permissions      # File permissions unset or incorrect. (unpredictability)
+  - risky-octal                 # Octal file permissions must contain leading zero or be a string. (formatting)
+  - risky-shell-pipe            # Shells that use pipes should set the pipefail option. (command-shell)
+  - role-name                   # Role name {0} does not match ``^*$`` pattern. (deprecations, metadata)
+  - run-once                    # Run once should use strategy other than free. (idiom)
+  - sanity                      # Ignore entries in sanity ignore files must match an allow list. (idiom)
+  - schema                      # Perform JSON Schema Validation for known lintable kinds. (core)
+  - syntax-check                # Ansible syntax check failed. (core, unskippable)
+  - var-naming                  # All variables should be named using only lowercase and underscores. (idiom)
+  - warning                     # Other warnings detected during run. (core, experimental)
+  - yaml                        # Violations reported by yamllint. (autofix, formatting, yaml)
+
 skip_list:
   - args[module]
-  - latest[git] # Result of the command may vary on subsequent runs. what!?
-  - name[casing] # Upper letter rule
-  - name[template] # jinja rule is not valid
-  - package-latest # Unfortunately I do want update to latest without version specification
-  - schema[vars] # macos detect wrong error on defaults
-  - var-naming[non-string] # for macOS only.
-  - var-naming[no-role-prefix] # too much. It's nothing worse to follow this rule.
-  - yaml[comment] # too noisy. I don't want to comment new line every time. inline comment is useful.
+  - empty-string-compare        # Don't compare to empty string. (idiom, opt-in)
+  - latest[git]                 # Result of the command may vary on subsequent runs. what!?
+  - name[casing]                # Upper letter rule
+  - name[template]              # jinja rule is not valid
+  - only-builtins               # Use only builtin actions. (opt-in, experimental)
+  - package-latest              # Unfortunately I do want update to latest without version specification
+  - schema[vars]                # macos detect wrong error on defaults
+  - var-naming[non-string]      # for macOS only.
+  - var-naming[no-role-prefix]  # too much. It's nothing worse to follow this rule.
+  - yaml[comment]               # too noisy. I don't want to comment new line every time. inline comment is useful.
   - yaml[indentation]
-  - yaml[line-length] # don't think line-length is important
+  - yaml[line-length]           # don't think line-length is important
+
+offline: true
