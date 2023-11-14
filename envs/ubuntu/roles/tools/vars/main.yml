@@ -4,7 +4,7 @@ apt_tools:
   # - duf # not available below 22.04
   - fd-find
   - git-lfs
-  - graphviz #require for terraform graph and ansible-playbook-graph
+  - graphviz # require for terraform graph and ansible-playbook-graph
   - htop
   - hub
   - jq
@@ -16,9 +16,6 @@ apt_tools:
   - tree
   - unzip
   - whois
-  # trivy requirements
-  - apt-transport-https
-  - lsb-release
 
 asdf:
   version: v0.11.1
@@ -43,7 +40,7 @@ asdf_plugins:
   - name: conftest
     source: https://github.com/dhoeric/asdf-conftest.git
     version_arg: "--version"
-    version: "0.39.0"
+    version: "0.45.0"
   - name: ctop
     source: https://github.com/neohsu/asdf-ctop.git
     version_arg: "-v"
@@ -67,11 +64,11 @@ asdf_plugins:
   - name: helm
     source: https://github.com/Antiarchitect/asdf-helm.git
     version_arg: "version --short"
-    version: "3.11.1"
+    version: "3.12.3"
   - name: kubectl
     source: https://github.com/asdf-community/asdf-kubectl.git
     version_arg: "version --client --short"
-    version: "1.25.6"
+    version: "1.28.1"
   - name: kustomize
     source: https://github.com/Banno/asdf-kustomize.git
     version_arg: version
@@ -124,17 +121,13 @@ binary_install:
     download_url: https://github.com/linkerd/linkerd2/releases/download/stable-2.12.0/linkerd2-cli-stable-2.12.0-linux-amd64
 
 dotnet:
-  version: "dotnet-sdk-6.0"
+  version: "7.0"
 
 dpkg_install:
   - name: session-manager-plugin
     version_arg: "--version"
     version: "1.2.398.0"
     download_url: https://s3.amazonaws.com/session-manager-downloads/plugin/1.2.398.0/ubuntu_64bit/session-manager-plugin.deb
-  - name: trivy
-    version_arg: "--version"
-    version: "0.18.3"
-    download_url: https://github.com/aquasecurity/trivy/releases/download/v0.18.3/trivy_0.18.3_Linux-64bit.deb
 
 git_tools:
   - name: kubectx
@@ -199,6 +192,25 @@ targz_binary_install:
     copy_root: "circleci-cli_0.1.22426_linux_amd64/"
     binaries:
       - circleci
+  - name: pulumi
+    version_arg: "version"
+    version: "v3.90.0"
+    download_url: https://get.pulumi.com/releases/sdk/pulumi-v3.90.0-linux-x64.tar.gz
+    copy_root: "pulumi/"
+    binaries:
+      - pulumi
+      - pulumi-analyzer-policy
+      - pulumi-analyzer-policy-python
+      - pulumi-language-dotnet
+      - pulumi-language-go
+      - pulumi-language-java
+      - pulumi-language-nodejs
+      - pulumi-language-python
+      - pulumi-language-python-exec
+      - pulumi-language-yaml
+      - pulumi-resource-pulumi-nodejs
+      - pulumi-resource-pulumi-python
+      - pulumi-watch
   - name: tldr
     version_arg: "--version"
     version: "0.6.1"
@@ -206,6 +218,13 @@ targz_binary_install:
     copy_root: ""
     binaries:
       - tldr
+  - name: trivy
+    version_arg: "--version"
+    version: "0.45.1"
+    download_url: https://github.com/aquasecurity/trivy/releases/download/v0.45.1/trivy_0.45.1_Linux-64bit.tar.gz
+    copy_root: ""
+    binaries:
+      - trivy
 
 terraform:
   version: "1.5.6"

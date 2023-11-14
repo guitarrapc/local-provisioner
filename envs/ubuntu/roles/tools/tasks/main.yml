@@ -58,7 +58,6 @@
   with_items: "{{ dotnet }}"
   loop_control:
     loop_var: args
-  when: ansible_distribution_version != "22.04"
 
 - name: "krew - Install krew binary"
   ansible.builtin.include_tasks: ../include_role/ubuntu/install_krew.yaml

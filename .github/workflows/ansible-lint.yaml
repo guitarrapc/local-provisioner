@@ -6,11 +6,15 @@ on:
     branches:
       - main
     paths:
+      - .github/workflows/ansible-lint.yaml
+      - .ansible-lint
       - "envs/**/*.yaml"
   pull_request:
     branches:
       - main
     paths:
+      - .github/workflows/ansible-lint.yaml
+      - .ansible-lint
       - "envs/**/*.yaml"
 
 env:
@@ -29,6 +33,8 @@ jobs:
       - name: Install ansible
         run: pip3 install ansible
       - name: Install ansible-lint
-        run: pip3 install ansible-lint
+        run: |
+          pip3 install ansible-lint
+          ansible-lint --version
       - name: Run ansbile-lint
         run: ansible-lint ./envs/${{ matrix.os }}/playbook.yaml
