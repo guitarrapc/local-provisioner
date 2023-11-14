@@ -1,4 +1,20 @@
-# ref: https://learn.microsoft.com/ja-jp/dotnet/core/install/linux-scripted-manual
+# Install dotnet SDK.
+# see: https://learn.microsoft.com/ja-jp/dotnet/core/install/linux-scripted-manual
+#
+# See below for an example of how to use this role.
+# ```vars/main.yaml
+# dotnet:
+#   version: "7.0"
+# ```
+#
+# ```tasks/main.yaml
+# - name: ".NET - Install dotnet"
+#   ansible.builtin.include_tasks: ../include_role/ubuntu/install_dotnet.yaml
+#   with_items: "{{ dotnet }}"
+#   loop_control:
+#     loop_var: args
+# ```
+
 - name: "dotnet - download script"
   become: true
   ansible.builtin.get_url:

@@ -1,6 +1,6 @@
 # Install latest git. This is needed for installing git tools due to default apt not provide latest version.
+#
 # See below for an example of how to use this role.
-# ----------------
 # ```yaml
 # - name: "git - Install git cli"
 #   ansible.builtin.include_tasks: ../include_role/ubuntu/install_git.yaml

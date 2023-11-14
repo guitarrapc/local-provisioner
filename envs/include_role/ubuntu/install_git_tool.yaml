@@ -1,6 +1,6 @@
 # Install Git clone tools. These are tools that are installed by cloning a git repo and then creating symlinks to the binaries.
+#
 # See below for an example of how to use this role.
-# ----------------
 # ```vars/main.yaml
 # git_tools:
 #   - name: kubectx

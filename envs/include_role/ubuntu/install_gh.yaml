@@ -1,4 +1,4 @@
-# TODO: change to asdf.
+# TODO: moved to asdf. we can delete this.
 # gh
 # install to /opt/gh, then symlink to /usr/local/bin/gh.
 - name: "gh - get version"

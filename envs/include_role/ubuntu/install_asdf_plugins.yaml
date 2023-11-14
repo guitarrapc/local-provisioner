@@ -1,6 +1,7 @@
 # Install asdf plugins. These are tools that are installed by [asdf](https://asdf-vm.com/).
+# see: https://github.com/asdf-vm/asdf-plugins
+#
 # See below for an example of how to use this role.
-# ----------------
 # ```vars/main.yaml
 # asdf_plugins:
 #   - name: argocd

@@ -1,6 +1,6 @@
 # Install binary packages. These are packages that are installed by downloading a binary and then copying it to the destination.
+#
 # See below for an example of how to use this role.
-# ----------------
 # ```vars/main.yaml
 # - name: NAME_OF_BINARY
 #   version_arg: "--version"

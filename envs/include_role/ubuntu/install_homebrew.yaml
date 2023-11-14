@@ -1,7 +1,7 @@
 # Install binary from homebrew (linuxbrew). This is useful when you are using homebrew for package manager.
 # Unfortunately, homebrew is too slow.... may be remove in future. packages should not depends on brew.
+#
 # See below for an example of how to use this role.
-# ----------------
 # ```yaml
 # homebrew:
 #   - packages:

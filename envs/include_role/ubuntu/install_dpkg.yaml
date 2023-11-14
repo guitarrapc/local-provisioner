@@ -1,6 +1,6 @@
 # Install dpkg packages. These are packages that are installed by downloading a .deb file and then installing it with dpkg.
+#
 # See below for an example of how to use this role.
-# ----------------
 # ```vars/main.yaml
 # dpkg_install:
 #   - name: session-manager-plugin
