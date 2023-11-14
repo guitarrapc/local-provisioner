@@ -32,7 +32,6 @@ enable_list:
   - no-relative-paths           # The src argument should not use a relative path. (idiom)
   - no-same-owner               # Do not preserve the owner and group when transferring files across hosts. (opt-in)
   - no-tabs                     # Most files should not contain tabs. (formatting)
-  - only-builtins               # Use only builtin actions. (opt-in, experimental)
   - package-latest              # Package installs should not use latest. (idempotency)
   - parser-error                # AnsibleParserError. (core)
   - partial-become              # ``become_user`` should have a corresponding ``become`` at the play or task level. (autofix, unpredictability)
@@ -55,6 +54,7 @@ skip_list:
   - latest[git]                 # Result of the command may vary on subsequent runs. what!?
   - name[casing]                # Upper letter rule
   - name[template]              # jinja rule is not valid
+  - only-builtins               # Use only builtin actions. (opt-in, experimental)
   - package-latest              # Unfortunately I do want update to latest without version specification
   - schema[vars]                # macos detect wrong error on defaults
   - var-naming[non-string]      # for macOS only.
