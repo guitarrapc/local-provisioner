@@ -19,6 +19,7 @@ homebrew_packages:
   - name: hugo
   - name: jq
   - name: kubectl
+  - name: libyaml # for ruby installation by rbenv on M1 and other. see: https://qiita.com/notakaos/items/e3e30443b1e57f84e7d8
   - name: nodenv
   - name: pyenv
   - name: rbenv

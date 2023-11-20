@@ -1,6 +1,6 @@
-# docker
+# Install docker.
 # see: https://docs.docker.com/engine/install/ubuntu/
-
+#
 # workaround for "Conflicting values set for option Signed-By"
 # see: https://github.com/docker/for-linux/issues/1349
 - name: "docker - delete conflicting package file"

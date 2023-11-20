@@ -1,4 +1,25 @@
-# krew: https://krew.sigs.k8s.io/docs/user-guide/setup/install/
+# Install kubectl plugin via krew.
+#   * Dependencies: install_krew.yaml
+#
+# See below for an example of how to use this role.
+# ```yaml
+# krew_plugins:
+#   - name: explore # https://github.com/keisku/kubectl-explore A better kubectl explain with the fuzzy finder
+#     install_check_arg: "--help"
+#   - name: fuzzy # https://github.com/d-kuro/kubectl-fuzzy Instead of specifying full resource names to kubectl commands, you can choose them from an interactive list that you can filter by typing a few characters.
+#     install_check_arg: "--help"
+#   - name: get-all # https://github.com/corneliusweig/ketall Like `kubectl get all`, but get really all resources
+#     install_check_arg: "--help"
+# ```
+#
+# ```yaml
+# - name: "krew Plugins - Install krew kubectl plugins"
+#   ansible.builtin.include_tasks: ../include_role/ubuntu/install_krew_plugin.yaml
+#   with_items: "{{ krew_plugins }}"
+#   loop_control:
+#     loop_var: args
+# ```
+
 - name: "kubectl_plugin ({{ args.name }}) - check installed"
   ansible.builtin.command: "kubectl {{ args.name }} {{ args.install_check_arg }} 2>&1"
   environment:
