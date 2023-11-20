@@ -32,7 +32,7 @@ function install_ansible() {
   pip3 install --user ansible-lint
 }
 
-if ! which ansible; then
+if ! command -v ansible; then
     echo Ansible not found, install it.
     sudo apt update -y
     sudo apt upgrade -y
