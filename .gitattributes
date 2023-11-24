@@ -9,7 +9,6 @@
 *.rspec text eol=lf linguist-vendored
 Gemfile text eol=lf linguist-vendored
 Rakefile text eol=lf linguist-vendored
-# don't correct as language file
 *.rb text eol=lf  linguist-vendored
 
 envs/windows/etc/** linguist-vendored
