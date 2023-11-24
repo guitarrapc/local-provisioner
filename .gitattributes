@@ -5,10 +5,11 @@
 .yaml text eol=lf
 .yml text eol=lf
 
-.ansiblespec text eol=lf linguist-vendored
-.rspec text eol=lf linguist-vendored
+*.ansiblespec text eol=lf linguist-vendored
+*.rspec text eol=lf linguist-vendored
 Gemfile text eol=lf linguist-vendored
 Rakefile text eol=lf linguist-vendored
-*.rb text eol=lf  linguist-vendored # don't correct as language file
+# don't correct as language file
+*.rb text eol=lf  linguist-vendored
 
 envs/windows/etc/** linguist-vendored
