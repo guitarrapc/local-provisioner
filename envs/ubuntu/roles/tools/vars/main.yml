@@ -24,7 +24,7 @@ asdf_plugins:
   - name: argocd # https://github.com/argoproj/argo-cd
     source: https://github.com/beardix/asdf-argocd.git
     version_arg: "version --client"
-    version: "2.9.1"
+    version: "2.9.3"
   - name: aws-vault # https://github.com/99designs/aws-vault
     source: https://github.com/virtualstaticvoid/asdf-aws-vault.git
     version_arg: "--version"
