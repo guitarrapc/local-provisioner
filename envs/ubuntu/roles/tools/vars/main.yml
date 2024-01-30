@@ -142,6 +142,9 @@ git_tools:
   - name: kube-ps1
     git_https_url: https://github.com/jonmosco/kube-ps1.git
 
+go:
+  version: "1.21"
+
 homebrew:
   - packages:
       - { name: "hello", state: "present" }
