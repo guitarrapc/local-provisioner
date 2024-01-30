@@ -59,6 +59,12 @@
   loop_control:
     loop_var: args
 
+- name: "Go - Install go"
+  ansible.builtin.include_tasks: ../include_role/ubuntu/install_go.yaml
+  with_items: "{{ go }}"
+  loop_control:
+    loop_var: args
+
 - name: "krew - Install krew binary"
   ansible.builtin.include_tasks: ../include_role/ubuntu/install_krew.yaml
   with_items: "{{ krew }}"

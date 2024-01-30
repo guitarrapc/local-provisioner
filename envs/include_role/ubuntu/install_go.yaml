@@ -1,0 +1,23 @@
+# Install latest golang. https://launchpad.net/%7Elongsleep/+archive/ubuntu/golang-backports
+#
+# See below for an example of how to use this role.
+# ```yaml
+# - name: "Go - Install go"
+#   ansible.builtin.include_tasks: ../include_role/ubuntu/install_go.yaml
+# ```
+
+- name: "go - Add ppa:longsleep/golang-backports ppa repository"
+  become: true
+  ansible.builtin.apt_repository:
+    repo: ppa:longsleep/golang-backports
+    update_cache: true
+
+- name: "go - Install go"
+  become: true
+  ansible.builtin.apt:
+    name: "golang-{{ go.version }}"
+    state: latest
+    update_cache: true
+  register: apt
+  until: "apt is not failed"
+  retries: 2 # wsl1 failed first apt on Ubuntu-22.04
