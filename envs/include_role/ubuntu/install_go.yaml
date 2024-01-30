@@ -15,7 +15,7 @@
 - name: "go - Install go"
   become: true
   ansible.builtin.apt:
-    name: "go-{{ args.version }}"
+    name: "go-{{ go.version }}"
     state: latest
     update_cache: true
   register: apt
