@@ -68,7 +68,7 @@ asdf_plugins:
   - name: kubectl
     source: https://github.com/asdf-community/asdf-kubectl.git
     version_arg: "version --client --short"
-    version: "1.28.1"
+    version: "1.29.0"
   - name: kustomize # https://github.com/kubernetes-sigs/kustomize
     source: https://github.com/Banno/asdf-kustomize.git
     version_arg: version
