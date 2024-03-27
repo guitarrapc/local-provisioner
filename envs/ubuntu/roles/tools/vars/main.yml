@@ -49,7 +49,7 @@ asdf_plugins:
     source: https://github.com/elementalvoid/asdf-eksctl.git
     version_arg: "version"
     version: "0.164.0"
-  - name: github-cli # https://github.com/cli/cli
+  - name: gh # https://github.com/cli/cli
     source: https://github.com/bartlomiejdanek/asdf-github-cli.git
     version_arg: ""
     version: "2.39.1"
