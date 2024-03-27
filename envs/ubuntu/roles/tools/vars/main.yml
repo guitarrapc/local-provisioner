@@ -29,7 +29,7 @@ asdf_plugins:
     source: https://github.com/virtualstaticvoid/asdf-aws-vault.git
     version_arg: "--version"
     version: "7.2.0"
-  - name: awscli # see docker for specific release. https://github.com/aws/aws-cli
+  - name: aws # see docker for specific release. https://github.com/aws/aws-cli
     source: https://github.com/MetricMike/asdf-awscli.git
     version_arg: "--version"
     version: "2.13.37"
