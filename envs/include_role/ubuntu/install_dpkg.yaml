@@ -21,7 +21,7 @@
 #     loop_var: args
 # ```
 
-- name: "dpkg ({{ args.name }}) - check installed"
+- name: "dpkg ({{ args.name }}) - check already installed"
   ansible.builtin.shell: "set -o pipefail && {{ args.name }} {{ args.version_arg }} 2>&1 | head -n 1 | grep {{ args.version }}"
   args:
     executable: /bin/bash
@@ -48,4 +48,11 @@
   ansible.builtin.file:
     state: absent
     path: /tmp/{{ args.name }}.deb
+  when: dpkg_exists is failed
+
+- name: "dpkg ({{ args.name }}) - check installed"
+  ansible.builtin.shell: "set -o pipefail && {{ args.name }} {{ args.version_arg }} 2>&1 | head -n 1 | grep {{ args.version }}"
+  args:
+    executable: /bin/bash
+  changed_when: false
   when: dpkg_exists is failed

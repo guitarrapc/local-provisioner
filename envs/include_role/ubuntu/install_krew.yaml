@@ -30,7 +30,7 @@
     mode: "0755"
 
 # krew: https://krew.sigs.k8s.io/docs/user-guide/setup/install/
-- name: "krew - check installed"
+- name: "krew - check already installed"
   ansible.builtin.shell: "set -o pipefail && kubectl krew version | grep {{ krew.version }}"
   args:
     executable: /bin/bash
@@ -86,3 +86,13 @@
         export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
       fi
     mode: "0644"
+
+- name: "krew - check installed"
+  ansible.builtin.shell: "set -o pipefail && kubectl krew version | grep {{ krew.version }}"
+  args:
+    executable: /bin/bash
+  environment:
+    # require re-login shell for 1st install, let's manual export shellenv and use it
+    PATH: "{{ ansible_home }}/.asdf/shims:{{ ansible_home }}/.asdf/bin:{{ ansible_home }}/.krew/bin:{{ ansible_env.PATH }}"
+  changed_when: false
+  when: krew_exists is failed

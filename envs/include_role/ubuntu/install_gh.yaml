@@ -1,17 +1,7 @@
 # TODO: moved to asdf. we can delete this.
 # gh
 # install to /opt/gh, then symlink to /usr/local/bin/gh.
-- name: "gh - get version"
-  ansible.builtin.command: "gh --version"
-  register: gh_current
-  changed_when: gh_current.rc != 0
-  ignore_errors: true
-
-- name: "gh - current version"
-  ansible.builtin.debug:
-    msg: "{{ gh_current.stdout_lines }}"
-
-- name: "gh - check exists"
+- name: "gh - check already installed"
   ansible.builtin.shell: set -o pipefail && gh --version 2>&1 | head -n 1 | grep "{{ args.version }}"
   args:
     executable: /bin/bash
@@ -54,4 +44,13 @@
   ansible.builtin.file:
     path: /tmp/gh.tar.gz
     state: absent
+  when: gh_exists is failed
+
+- name: "gh - check installed"
+  ansible.builtin.shell: set -o pipefail && gh --version 2>&1 | head -n 1 | grep "{{ args.version }}"
+  args:
+    executable: /bin/bash
+  environment:
+    PATH: "/usr/local/bin:{{ ansible_env.PATH }}"
+  changed_when: false
   when: gh_exists is failed

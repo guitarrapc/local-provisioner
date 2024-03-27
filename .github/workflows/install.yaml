@@ -15,7 +15,7 @@ env:
 jobs:
   ansible:
     strategy:
-      fail-fast: false
+      fail-fast: ${{ github.event_name == 'pull_request' }}
       matrix:
         os: [ubuntu, macos] # todo: Windows
     runs-on: ${{ matrix.os }}-latest

@@ -26,6 +26,17 @@
 #     loop_var: args
 # ```
 
+- name: "asdf_plugin ({{ args.name }}) - check alrady installed"
+  ansible.builtin.shell: "set -o pipefail && {{ args.name }} {{ args.version_arg }} 2>&1 | grep {{ args.version }}"
+  args:
+    executable: /bin/bash
+  environment:
+    # require re-login shell for 1st install, let's manual export shellenv and use it
+    PATH: "{{ ansible_home }}/.asdf/shims:{{ ansible_home }}/.asdf/bin:{{ ansible_env.PATH }}"
+  register: asdf_exists
+  changed_when: false
+  ignore_errors: true
+
 # https://asdf-vm.com/guide/getting-started.html#_6-set-a-version
 - name: "asdf_plugin ({{ args.name }}) - check plugin installed and update"
   ansible.builtin.command: "asdf plugin update {{ args.name }} 2>&1"
@@ -37,6 +48,7 @@
   register: asdf_plugin_exists
   changed_when: false
   ignore_errors: true
+  when: asdf_exists is failed
 
 - name: "asdf_plugin ({{ args.name }}) - install plugin"
   ansible.builtin.command: "asdf plugin add {{ args.name }} {{ args.source }}"
@@ -58,6 +70,7 @@
     PATH: "{{ ansible_home }}/.asdf/shims:{{ ansible_home }}/.asdf/bin:{{ ansible_env.PATH }}"
   register: asdf_plugin_install_version
   changed_when: asdf_plugin_install_version.rc != 0
+  when: asdf_exists is failed
 
 - name: "asdf_plugin ({{ args.name }}) - set global version ({{ args.version }})"
   ansible.builtin.command: "asdf global {{ args.name }} {{ args.version }}"
@@ -68,3 +81,14 @@
     PATH: "{{ ansible_home }}/.asdf/shims:{{ ansible_home }}/.asdf/bin:{{ ansible_env.PATH }}"
   register: asdf_plugin_global_version
   changed_when: asdf_plugin_global_version.rc != 0
+  when: asdf_exists is failed
+
+- name: "asdf_plugin ({{ args.name }}) - check installed"
+  ansible.builtin.shell: "set -o pipefail && {{ args.name }} {{ args.version_arg }} 2>&1 | grep {{ args.version }}"
+  args:
+    executable: /bin/bash
+  environment:
+    # require re-login shell for 1st install, let's manual export shellenv and use it
+    PATH: "{{ ansible_home }}/.asdf/shims:{{ ansible_home }}/.asdf/bin:{{ ansible_env.PATH }}"
+  changed_when: false
+  when: asdf_exists is failed
