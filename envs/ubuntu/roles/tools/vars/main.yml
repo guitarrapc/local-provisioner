@@ -55,7 +55,7 @@ asdf_plugins:
     version: "2.39.1"
   - name: grpc-health-probe # https://github.com/grpc-ecosystem/grpc-health-probe
     source: https://github.com/zufardhiyaulhaq/asdf-grpc-health-probe.git
-    version_arg: ""
+    version_arg: "--version"
     version: "0.4.22"
   - name: grpcurl # https://github.com/fullstorydev/grpcurl
     source: https://github.com/asdf-community/asdf-grpcurl.git
