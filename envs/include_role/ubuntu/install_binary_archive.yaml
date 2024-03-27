@@ -45,13 +45,13 @@
 - name: "binary_archive ({{ args.name }}) - download"
   ansible.builtin.get_url:
     url: "{{ args.download_url }}"
-    dest: "/tmp/{{ args.name }}/{{ args.download_url || basename }}"
+    dest: "/tmp/{{ args.name }}/{{ args.download_url | basename }}"
     mode: "0755"
   when: binary_archive_exists is failed
 
 - name: "binary_archive ({{ args.name }}) - unarchive"
   ansible.builtin.unarchive:
-    src: "/tmp/{{ args.name }}/{{ args.download_url || basename }}"
+    src: "/tmp/{{ args.name }}/{{ args.download_url | basename }}"
     dest: /tmp/{{ args.name }}
     remote_src: true
   when: binary_archive_exists is failed
