@@ -67,11 +67,11 @@ asdf_plugins:
     version: "3.13.2"
   - name: kubectl
     source: https://github.com/asdf-community/asdf-kubectl.git
-    version_arg: "version --client --short"
+    version_arg: "version --client"
     version: "1.29.0"
   - name: kustomize # https://github.com/kubernetes-sigs/kustomize
     source: https://github.com/Banno/asdf-kustomize.git
-    version_arg: version
+    version_arg: "version"
     version: "5.2.1"
   - name: lazygit # https://github.com/jesseduffield/lazygit
     source: https://github.com/nklmilojevic/asdf-lazygit.git
