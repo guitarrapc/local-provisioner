@@ -140,7 +140,7 @@ binary_archive:
     binaries:
       - circleci
   - name: jnv # https://github.com/CircleCI-Public/circleci-cli
-    version_arg: "version"
+    version_arg: "--version"
     version: "0.2.0"
     download_url: https://github.com/ynqa/jnv/releases/download/v0.2.0/jnv-x86_64-unknown-linux-gnu.tar.xz
     copy_root: "jnv-x86_64-unknown-linux-gnu/"
