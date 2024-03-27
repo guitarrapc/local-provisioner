@@ -51,7 +51,7 @@ asdf_plugins:
     version: "0.164.0"
   - name: gh # https://github.com/cli/cli
     source: https://github.com/bartlomiejdanek/asdf-github-cli.git
-    version_arg: ""
+    version_arg: "version"
     version: "2.39.1"
   - name: grpc-health-probe # https://github.com/grpc-ecosystem/grpc-health-probe
     source: https://github.com/zufardhiyaulhaq/asdf-grpc-health-probe.git
