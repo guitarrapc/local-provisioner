@@ -18,13 +18,13 @@
 
 - name: "binary - Install tools"
   ansible.builtin.include_tasks: ../include_role/ubuntu/install_binary.yaml
-  with_items: "{{ binary_install }}"
+  with_items: "{{ binary }}"
   loop_control:
     loop_var: args
 
-- name: ".tar.gz - Install tools"
-  ansible.builtin.include_tasks: ../include_role/ubuntu/install_binary_targz.yaml
-  with_items: "{{ targz_binary_install }}"
+- name: "binary archive - Install tools"
+  ansible.builtin.include_tasks: ../include_role/ubuntu/install_binary_archive.yaml
+  with_items: "{{ binary_archive }}"
   loop_control:
     loop_var: args
 

@@ -2,7 +2,7 @@
 #
 # See below for an example of how to use this role.
 # ```vars/main.yaml
-# targz_binary_install:
+# binary_archive:
 #   - name: cert
 #     version_arg: "-v"
 #     version: "0.15.0"
@@ -20,43 +20,43 @@
 # ```
 #
 # ```yaml
-# - name: ".tar.gz - Install tools"
-#   ansible.builtin.include_tasks: ../include_role/ubuntu/install_binary_targz.yaml
-#   with_items: "{{ targz_binary_install }}"
+# - name: "binary archive - Install tools"
+#   ansible.builtin.include_tasks: ../include_role/ubuntu/install_binary_archive.yaml
+#   with_items: "{{ binary_archive }}"
 #   loop_control:
 #     loop_var: args
 # ```
 
-- name: "binary_targz ({{ args.name }}) - check installed"
+- name: "binary_archive ({{ args.name }}) - check installed"
   ansible.builtin.shell: "set -o pipefail && {{ args.name }} {{ args.version_arg }} 2>&1 | grep {{ args.version }}"
   args:
     executable: /bin/bash
-  register: binary_targz_exists
+  register: binary_archive_exists
   changed_when: false
   ignore_errors: true
 
-- name: "binary_targz ({{ args.name }}) - tmp directory"
+- name: "binary_archive ({{ args.name }}) - tmp directory"
   ansible.builtin.file:
     path: "/tmp/{{ args.name }}"
     state: directory
     mode: "0755"
-  when: binary_targz_exists is failed
+  when: binary_archive_exists is failed
 
-- name: "binary_targz ({{ args.name }}) - download"
+- name: "binary_archive ({{ args.name }}) - download"
   ansible.builtin.get_url:
     url: "{{ args.download_url }}"
-    dest: "/tmp/{{ args.name }}/{{ args.name }}.tar.gz"
+    dest: "/tmp/{{ args.name }}/{{ args.download_url || basename }}"
     mode: "0755"
-  when: binary_targz_exists is failed
+  when: binary_archive_exists is failed
 
-- name: "binary_targz ({{ args.name }}) - unarchive"
+- name: "binary_archive ({{ args.name }}) - unarchive"
   ansible.builtin.unarchive:
-    src: "/tmp/{{ args.name }}/{{ args.name }}.tar.gz"
+    src: "/tmp/{{ args.name }}/{{ args.download_url || basename }}"
     dest: /tmp/{{ args.name }}
     remote_src: true
-  when: binary_targz_exists is failed
+  when: binary_archive_exists is failed
 
-- name: "binary_targz ({{ args.name }}) - copy"
+- name: "binary_archive ({{ args.name }}) - copy"
   become: true
   ansible.builtin.copy:
     src: "/tmp/{{ args.name }}/{{ args.copy_root }}{{ item }}"
@@ -64,10 +64,10 @@
     mode: "a+x"
     remote_src: true
   with_items: "{{ args.binaries }}"
-  when: binary_targz_exists is failed
+  when: binary_archive_exists is failed
 
-- name: "binary_targz ({{ args.name }}) - remove temp files"
+- name: "binary_archive ({{ args.name }}) - remove temp files"
   ansible.builtin.file:
     state: absent
     path: /tmp/{{ args.name }}
-  when: binary_targz_exists is failed
+  when: binary_archive_exists is failed

@@ -110,7 +110,7 @@ asdf_plugins:
     version_arg: "--version"
     version: "4.40.2"
 
-binary_install:
+binary:
   - name: eks-node-viewer # `eks-node-viewer --version` https://github.com/awslabs/eks-node-viewer
     version_arg: "--version"
     version: "0.2.1"
@@ -123,6 +123,55 @@ binary_install:
     version_arg: "version --client"
     version: "2.12.0"
     download_url: https://github.com/linkerd/linkerd2/releases/download/stable-2.14.4/linkerd2-cli-stable-2.14.4-linux-amd64
+
+binary_archive:
+  - name: cert
+    version_arg: "-v"
+    version: "1.0.0"
+    download_url: https://github.com/genkiroid/cert/releases/download/1.0.0/cert_1.0.0_linux_64bit.tar.gz
+    copy_root: ""
+    binaries:
+      - cert
+  - name: circleci # https://github.com/CircleCI-Public/circleci-cli
+    version_arg: "version"
+    version: "0.1.29314"
+    download_url: https://github.com/CircleCI-Public/circleci-cli/releases/download/v0.1.29314/circleci-cli_0.1.29314_linux_amd64.tar.gz
+    copy_root: "circleci-cli_0.1.29314_linux_amd64/"
+    binaries:
+      - circleci
+  - name: pulumi # https://github.com/pulumi/pulumi
+    version_arg: "version"
+    version: "v3.94.2"
+    download_url: https://get.pulumi.com/releases/sdk/pulumi-v3.90.0-linux-x64.tar.gz
+    copy_root: "pulumi/"
+    binaries:
+      - pulumi
+      - pulumi-analyzer-policy
+      - pulumi-analyzer-policy-python
+      - pulumi-language-dotnet
+      - pulumi-language-go
+      - pulumi-language-java
+      - pulumi-language-nodejs
+      - pulumi-language-python
+      - pulumi-language-python-exec
+      - pulumi-language-yaml
+      - pulumi-resource-pulumi-nodejs
+      - pulumi-resource-pulumi-python
+      - pulumi-watch
+  - name: tldr # https://github.com/isacikgoz/tldr
+    version_arg: "--version"
+    version: "0.6.1"
+    download_url: https://github.com/isacikgoz/tldr/releases/download/v0.6.1/tldr_0.6.1_linux_amd64.tar.gz
+    copy_root: ""
+    binaries:
+      - tldr
+  - name: trivy # https://github.com/aquasecurity/trivy
+    version_arg: "--version"
+    version: "0.47.0"
+    download_url: https://github.com/aquasecurity/trivy/releases/download/v0.47.0/trivy_0.47.0_Linux-64bit.tar.gz
+    copy_root: ""
+    binaries:
+      - trivy
 
 dotnet:
   version: "8.0"
@@ -183,55 +232,6 @@ pip_tools:
     version: "6.22.0"
   - name: ansible-playbook-grapher # require: graphviz https://github.com/haidaraM/ansible-playbook-grapher
     version: "2.1.0"
-
-targz_binary_install:
-  - name: cert
-    version_arg: "-v"
-    version: "1.0.0"
-    download_url: https://github.com/genkiroid/cert/releases/download/1.0.0/cert_1.0.0_linux_64bit.tar.gz
-    copy_root: ""
-    binaries:
-      - cert
-  - name: circleci # https://github.com/CircleCI-Public/circleci-cli
-    version_arg: "version"
-    version: "0.1.29314"
-    download_url: https://github.com/CircleCI-Public/circleci-cli/releases/download/v0.1.29314/circleci-cli_0.1.29314_linux_amd64.tar.gz
-    copy_root: "circleci-cli_0.1.29314_linux_amd64/"
-    binaries:
-      - circleci
-  - name: pulumi # https://github.com/pulumi/pulumi
-    version_arg: "version"
-    version: "v3.94.2"
-    download_url: https://get.pulumi.com/releases/sdk/pulumi-v3.90.0-linux-x64.tar.gz
-    copy_root: "pulumi/"
-    binaries:
-      - pulumi
-      - pulumi-analyzer-policy
-      - pulumi-analyzer-policy-python
-      - pulumi-language-dotnet
-      - pulumi-language-go
-      - pulumi-language-java
-      - pulumi-language-nodejs
-      - pulumi-language-python
-      - pulumi-language-python-exec
-      - pulumi-language-yaml
-      - pulumi-resource-pulumi-nodejs
-      - pulumi-resource-pulumi-python
-      - pulumi-watch
-  - name: tldr # https://github.com/isacikgoz/tldr
-    version_arg: "--version"
-    version: "0.6.1"
-    download_url: https://github.com/isacikgoz/tldr/releases/download/v0.6.1/tldr_0.6.1_linux_amd64.tar.gz
-    copy_root: ""
-    binaries:
-      - tldr
-  - name: trivy # https://github.com/aquasecurity/trivy
-    version_arg: "--version"
-    version: "0.47.0"
-    download_url: https://github.com/aquasecurity/trivy/releases/download/v0.47.0/trivy_0.47.0_Linux-64bit.tar.gz
-    copy_root: ""
-    binaries:
-      - trivy
 
 terraform: # https://github.com/hashicorp/terraform
   version: "1.5.6"
