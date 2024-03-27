@@ -76,4 +76,7 @@
   ansible.builtin.shell: "set -o pipefail && {{ args.name }} {{ args.version_arg }} 2>&1 | grep {{ args.version }}"
   args:
     executable: /bin/bash
+  environment:
+    PATH: "{{ args.dest_override | default('/usr/local/bin/') }}:{{ ansible_env.PATH }}"
+  changed_when: false
   when: binary_archive_exists is failed

@@ -15,7 +15,7 @@
     - terraform
     - tfenv
 
-- name: "tfenv - check installed"
+- name: "tfenv - check already installed"
   ansible.builtin.shell: set -o pipefail && tfenv list | grep {{ terraform.version }}
   args:
     executable: /bin/bash
@@ -33,4 +33,13 @@
   ansible.builtin.command: tfenv use {{ terraform.version }}
   register: terraform_use
   changed_when: terraform_use.rc != 0
+  when: terraform_version is failed
+
+- name: "tfenv - check installed"
+  ansible.builtin.shell: set -o pipefail && tfenv list | grep {{ terraform.version }}
+  args:
+    executable: /bin/bash
+  environment:
+    PATH: "/usr/local/bin:{{ ansible_env.PATH }}"
+  changed_when: false
   when: terraform_version is failed
