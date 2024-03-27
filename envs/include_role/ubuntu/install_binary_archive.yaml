@@ -77,6 +77,6 @@
   args:
     executable: /bin/bash
   environment:
-    PATH: "{{ args.dest_override | default('/usr/local/bin/') }}:{{ ansible_env.PATH }}"
+    PATH: "{{ args.dest_override | default('/usr/local/bin') }}:{{ ansible_env.PATH }}"
   changed_when: false
   when: binary_archive_exists is failed
