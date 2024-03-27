@@ -139,6 +139,13 @@ binary_archive:
     copy_root: "circleci-cli_0.1.29314_linux_amd64/"
     binaries:
       - circleci
+  - name: jnv # https://github.com/CircleCI-Public/circleci-cli
+    version_arg: "--version"
+    version: "0.2.0"
+    download_url: https://github.com/ynqa/jnv/releases/download/v0.2.0/jnv-x86_64-unknown-linux-gnu.tar.xz
+    copy_root: "jnv-x86_64-unknown-linux-gnu/"
+    binaries:
+      - jnv
   - name: pulumi # https://github.com/pulumi/pulumi
     version_arg: "version"
     version: "v3.94.2"
