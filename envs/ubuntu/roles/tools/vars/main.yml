@@ -96,7 +96,7 @@ asdf_plugins:
   - name: terraform-docs # https://github.com/terraform-docs/terraform-docs
     source: https://github.com/looztra/asdf-terraform-docs
     version_arg: "--version"
-    version: "0.16.0"
+    version: "0.17.0"
   - name: terraformer # https://github.com/GoogleCloudPlatform/terraformer
     source: https://github.com/jmcvetta/asdf-terraformer
     version_arg: "--version"
