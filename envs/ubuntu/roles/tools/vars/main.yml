@@ -104,7 +104,7 @@ asdf_plugins:
   - name: tflint # https://github.com/terraform-linters/tflint
     source: https://github.com/skyzyx/asdf-tflint
     version_arg: "--version"
-    version: "0.49.0"
+    version: "0.51.1"
   - name: yq # https://github.com/mikefarah/yq
     source: https://github.com/sudermanjr/asdf-yq.git
     version_arg: "--version"
