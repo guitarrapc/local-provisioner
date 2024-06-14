@@ -29,4 +29,4 @@ foreach ($adapter in $adapters) {
 # check result
 netsh interface portproxy show v4tov4
 
-pause
+Start-Sleep -Seconds 3
