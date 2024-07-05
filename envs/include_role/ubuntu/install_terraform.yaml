@@ -1,42 +1,67 @@
-# TODO: change tfenv to asdf.
-- name: "tfenv - Clone & Fetch repo"
+# pre
+- name: "terraform (tfenv) - Clone & Fetch repo"
   ansible.builtin.git:
     repo: "https://github.com/tfutils/tfenv.git"
     dest: "{{ ansible_home }}/.tfenv"
+  when: args.system == "tfenv"
 
-- name: "tfenv - Create symlinks"
+- name: "terraform (tfenv) - Create symlinks"
   become: true
   ansible.builtin.file:
     src: "{{ ansible_home }}/.tfenv/bin/{{ item }}"
     dest: "/usr/local/bin/{{ item }}"
     state: link
-    force: "{{ terraform.force_symlink }}" # true to foce remove current and replace to symlink
+    force: "{{ args.force_symlink }}" # true to foce remove current and replace to symlink
+  when: args.system == "tfenv"
   with_items:
     - terraform
     - tfenv
 
-- name: "tfenv - check already installed"
-  ansible.builtin.shell: set -o pipefail && tfenv list | grep {{ terraform.version }}
+# check
+- name: "terraform - check already installed"
+  ansible.builtin.shell: set -o pipefail && terraform --version | grep {{ args.version }}
   args:
     executable: /bin/bash
   register: terraform_version
   changed_when: false
   ignore_errors: true
 
-- name: "tfenv - install"
-  ansible.builtin.command: tfenv install {{ terraform.version }}
+# install via tfenv
+- name: "terraform (tfenv) - install"
+  ansible.builtin.command: tfenv install {{ args.version }}
   register: terraform_install
   changed_when: terraform_install.rc != 0
-  when: terraform_version is failed
+  when: args.system == "tfenv" and terraform_version is failed
 
-- name: "tfenv - use version {{ terraform.version }}"
-  ansible.builtin.command: tfenv use {{ terraform.version }}
+- name: "terraform (tfenv) - use version {{ args.version }}"
+  ansible.builtin.command: tfenv use {{ args.version }}
   register: terraform_use
   changed_when: terraform_use.rc != 0
-  when: terraform_version is failed
+  when: args.system == "tfenv" and terraform_version is failed
 
-- name: "tfenv - check installed"
-  ansible.builtin.shell: set -o pipefail && tfenv list | grep {{ terraform.version }}
+# install via tenv
+- name: "terraform (tenv) - remove terraform symlink by tfenv"
+  become: true
+  ansible.builtin.file:
+    path: "/usr/local/bin/terraform"
+    state: absent
+  when: args.system == "tenv"
+
+- name: "terraform (tenv) - install"
+  ansible.builtin.command: tenv tf install {{ args.version }}
+  register: terraform_install
+  changed_when: terraform_install.rc != 0
+  when: args.system == "tenv" and terraform_version is failed
+
+- name: "terraform (tenv) - use version {{ args.version }}"
+  ansible.builtin.command: tenv tf use {{ args.version }}
+  register: terraform_use
+  changed_when: terraform_use.rc != 0
+  when: args.system == "tenv" and terraform_version is failed
+
+# after
+- name: "terraform - check installed"
+  ansible.builtin.shell: set -o pipefail && terraform --version | grep {{ args.version }}
   args:
     executable: /bin/bash
   environment:

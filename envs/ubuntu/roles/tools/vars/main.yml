@@ -188,6 +188,10 @@ dpkg_install:
     version_arg: "--version"
     version: "1.2.497.0"
     download_url: https://s3.amazonaws.com/session-manager-downloads/plugin/1.2.497.0/ubuntu_64bit/session-manager-plugin.deb
+  - name: tenv # https://github.com/tofuutils/tenv
+    version_arg: "--version"
+    version: "2.3.0"
+    download_url: https://github.com/tofuutils/tenv/releases/latest/download/tenv_v2.3.0_amd64.deb
 
 git_tools:
   - name: kubectx
@@ -241,5 +245,6 @@ pip_tools:
     version: "2.1.0"
 
 terraform: # https://github.com/hashicorp/terraform
-  version: "1.5.6"
-  force_symlink: true
+  - version: "1.8.5"
+    force_symlink: true
+    system: tenv # tenv or tfenv
