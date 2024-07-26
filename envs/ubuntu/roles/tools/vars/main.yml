@@ -99,9 +99,9 @@ asdf_plugins:
     version_arg: "--version"
     version: "0.17.0"
   - name: terraformer # https://github.com/GoogleCloudPlatform/terraformer
-    source: https://github.com/jmcvetta/asdf-terraformer
+    source: https://github.com/gr1m0h/asdf-terraformer
     version_arg: "--version"
-    version: "1.0.0"
+    version: "0.8.24"
   - name: tflint # https://github.com/terraform-linters/tflint
     source: https://github.com/skyzyx/asdf-tflint
     version_arg: "--version"
