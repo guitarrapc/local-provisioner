@@ -12,6 +12,7 @@ apt_tools:
   - peco
   - pkg-config
   - python3-pip
+  - shellcheck
   - sshpass
   - tree
   - unzip
