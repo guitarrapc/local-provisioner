@@ -3,9 +3,10 @@ $ErrorActionPreference = 'Stop'
 
 # remove current entry
 foreach ($item in $(netsh interface portproxy show v4tov4 | grep "127.0.0.1")) {
-  $listenaddress = echo $item | cut -d" " -f1
-  $port = echo $item | cut -d" " -f5
-  echo "Removing ${listenaddress}:${port}"
+  $line = $($item -replace " {2,}", " ")
+  $listenaddress = $line.Split(" ")[2]
+  $port = $line.Split(" ")[3]
+  Write-Output "Removing ${listenaddress}:${port}"
   netsh interface portproxy delete v4tov4 listenport=$port listenaddress=$listenaddress
 }
 
