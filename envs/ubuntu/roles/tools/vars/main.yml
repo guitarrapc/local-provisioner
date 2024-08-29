@@ -123,7 +123,7 @@ binary:
   - name: linkerd # `linkerd version --client` https://github.com/linkerd/linkerd2
     version_arg: "version --client"
     version: "2.14.10"
-    download_url: https://github.com/linkerd/linkerd2/releases/download/stable-2.14.4/linkerd2-cli-stable-2.14.10-linux-amd64
+    download_url: https://github.com/linkerd/linkerd2/releases/download/stable-2.14.10/linkerd2-cli-stable-2.14.10-linux-amd64
 
 binary_archive:
   - name: cert # https://github.com/genkiroid/cert

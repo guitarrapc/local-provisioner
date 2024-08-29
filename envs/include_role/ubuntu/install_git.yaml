@@ -9,7 +9,8 @@
 - name: "git - Add ppa:git-core ppa repository"
   become: true
   ansible.builtin.apt_repository:
-    repo: ppa:git-core/ppa
+    repo: "ppa:git-core/ppa"
+    state: present
 
 - name: "git - Install latest git"
   become: true
