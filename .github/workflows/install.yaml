@@ -24,6 +24,8 @@ jobs:
       - uses: actions/checkout@v3
       - name: Install ansible
         run: pip3 install ansible
+      - name: ansible version
+        run: ansible --version
       - name: (Dryrun) Run Ansible Playbook
         run: ansible-playbook -i hosts playbook.yaml --check --diff
       - name: 1st Run Ansible Playbook
@@ -46,6 +48,8 @@ jobs:
       - uses: actions/checkout@v3
       - name: Install ansible
         run: brew install ansible
+      - name: ansible version
+        run: ansible --version
       - name: (Dryrun) Run Ansible Playbook
         run: ansible-playbook -i hosts playbook.yaml --check --diff
       - name: 1st Run Ansible Playbook
@@ -67,7 +71,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: MinoruSekine/setup-scoop@main # use @main to fix. see https://github.com/MinoruSekine/setup-scoop/issues/7
-      - name: Test Scoop installed
+      - name: scoop version
         run: scoop --version
       - name: Install Modules
         run: |
