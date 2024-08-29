@@ -1,8 +1,8 @@
 #!/bin/bash
 set -eu -o pipefail
 
-required_python3_version="3.12"
-required_ansible_version="2.16.8"
+required_python3_version="3.13"
+required_ansible_version="2.17.3"
 
 # update apt
 sudo apt update -y
