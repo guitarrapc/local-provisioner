@@ -10,7 +10,7 @@
   become: true
   ansible.builtin.apt_repository:
     repo: ppa:longsleep/golang-backports
-    update_cache: true
+    state: present
 
 - name: "go - Install go"
   become: true
