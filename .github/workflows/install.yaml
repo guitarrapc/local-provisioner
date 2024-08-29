@@ -13,17 +13,13 @@ env:
   TERM: xterm
 
 jobs:
-  ansible:
-    strategy:
-      fail-fast: ${{ github.event_name == 'pull_request' }}
-      matrix:
-        os: [ubuntu, macos] # todo: Windows
-    runs-on: ${{ matrix.os }}-latest
+  linux:
+    runs-on: ubuntu-latest
     timeout-minutes: 45
     defaults:
       run:
         shell: bash
-        working-directory: envs/${{ matrix.os }}
+        working-directory: envs/ubuntu
     steps:
       - uses: actions/checkout@v3
       - name: Install ansible
@@ -39,17 +35,35 @@ jobs:
       - name: (Dryrun) Run Ansible Playbook
         run: ansible-playbook -i hosts playbook.yaml --check --diff
 
-  scoop:
-    strategy:
-      fail-fast: false
-      matrix:
-        os: [windows]
-    runs-on: ${{ matrix.os }}-latest
+  macos:
+    runs-on: macos-latest
+    timeout-minutes: 45
+    defaults:
+      run:
+        shell: bash
+        working-directory: envs/macos
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install ansible
+        run: brew install ansible
+      - name: (Dryrun) Run Ansible Playbook
+        run: ansible-playbook -i hosts playbook.yaml --check --diff
+      - name: 1st Run Ansible Playbook
+        run: ansible-playbook -i hosts playbook.yaml
+      - name: (Dryrun) Run Ansible Playbook
+        run: ansible-playbook -i hosts playbook.yaml --check --diff
+      - name: 2nd Run Ansible Playbook
+        run: ansible-playbook -i hosts playbook.yaml
+      - name: (Dryrun) Run Ansible Playbook
+        run: ansible-playbook -i hosts playbook.yaml --check --diff
+
+  windows:
+    runs-on: windows-latest
     timeout-minutes: 30
     defaults:
       run:
         shell: powershell
-        working-directory: envs/${{ matrix.os }}
+        working-directory: envs/windows
     steps:
       - uses: actions/checkout@v3
       - uses: MinoruSekine/setup-scoop@main # use @main to fix. see https://github.com/MinoruSekine/setup-scoop/issues/7
