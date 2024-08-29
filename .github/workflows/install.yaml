@@ -27,7 +27,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Install ansible
-        run: pip3 install ansible
+        run: sudo apt update && sudo apt install -y ansible
       - name: ansible version
         run: ansible --version
       - name: (Dryrun) Run Ansible Playbook
