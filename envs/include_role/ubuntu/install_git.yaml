@@ -10,7 +10,6 @@
   become: true
   ansible.builtin.apt_repository:
     repo: ppa:git-core/ppa
-    update_cache: true
 
 - name: "git - Install latest git"
   become: true
