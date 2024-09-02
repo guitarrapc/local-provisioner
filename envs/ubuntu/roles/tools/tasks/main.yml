@@ -7,7 +7,7 @@
   until: "apt is not failed"
   retries: 2 # wsl1 failed first apt on Ubuntu-22.04
 
-- name: pip3 - Install pip3 packages
+- name: "pip3 - Install pip3 packages"
   ansible.builtin.pip:
     name: "{{ item.name }}"
     version: "{{ item.version }}"
@@ -40,7 +40,10 @@
   loop_control:
     loop_var: args
 
-# each packages
+- name: "aqua - Install aqua global tools"
+  ansible.builtin.include_tasks: ../include_role/ubuntu/install_aqua.yaml
+  when: aqua.global == "true"
+
 - name: "asdf - Install asdf"
   ansible.builtin.include_tasks: ../include_role/ubuntu/install_asdf.yaml
   with_items: "{{ asdf }}"
