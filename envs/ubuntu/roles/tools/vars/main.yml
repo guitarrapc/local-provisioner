@@ -1,5 +1,5 @@
 feature_enabed:
-  apt: "true"
+  apts: "true"
   aqua: "true"
   azcli: "true"
   binary: "true"
@@ -13,7 +13,7 @@ feature_enabed:
   pip3: "true"
   terraform: "true"
 
-apt:
+apts:
   - apache2-utils
   - fd-find
   - git-lfs

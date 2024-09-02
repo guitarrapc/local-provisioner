@@ -1,12 +1,12 @@
 - name: "apt - Install tools"
   become: true
   ansible.builtin.apt:
-    pkg: "{{ apt }}"
+    pkg: "{{ apts }}"
     update_cache: true
   register: apt_result
   until: "apt_result is not failed"
   retries: 2 # wsl1 failed first apt on Ubuntu-22.04
-  when: feature_enabed.apt == "true"
+  when: feature_enabed.apts == "true"
 
 - name: "pip3 - Install pip3 packages"
   ansible.builtin.pip:
