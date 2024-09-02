@@ -114,5 +114,6 @@ pip3:
 
 terraform: # https://github.com/hashicorp/terraform
   - version: "1.8.5"
-    force_symlink: true
     system: tenv # tenv or tfenv
+    tfenv:
+      force_symlink: true
