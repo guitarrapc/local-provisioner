@@ -1,5 +1,5 @@
 feature_enabed:
-  apt_tools: "true"
+  apt: "true"
   aqua: "true"
   azcli: "true"
   binary: "true"
@@ -13,7 +13,7 @@ feature_enabed:
   pip3: "true"
   terraform: "true"
 
-apt_tools:
+apt:
   - apache2-utils
   - fd-find
   - git-lfs
@@ -30,7 +30,7 @@ apt_tools:
   - whois
 
 aqua:
-  global_path: "{{ ansible_home }}/.config/aquaproj-aqua/aqua.yaml"
+  global_path: "{{ ansible_home }}/.config/aquaproj-aqua/aqua.yaml" # placed via dotfiles
 
 binary:
   - name: linkerd # `linkerd version --client` https://github.com/linkerd/linkerd2

@@ -1,12 +1,12 @@
 - name: "apt - Install tools"
   become: true
   ansible.builtin.apt:
-    pkg: "{{ apt_tools }}"
+    pkg: "{{ apt }}"
     update_cache: true
   register: apt
   until: "apt is not failed"
   retries: 2 # wsl1 failed first apt on Ubuntu-22.04
-  when: feature_enabed.apt_tools == "true"
+  when: feature_enabed.apt == "true"
 
 - name: "pip3 - Install pip3 packages"
   ansible.builtin.pip:
@@ -19,14 +19,14 @@
   ansible.builtin.include_tasks: ../include_role/ubuntu/install_git.yaml
   when: feature_enabed.git == "true"
 
-- name: "binary - Install tools"
+- name: "binary - Install binary tools"
   ansible.builtin.include_tasks: ../include_role/ubuntu/install_binary.yaml
   with_items: "{{ binary }}"
   loop_control:
     loop_var: args
   when: feature_enabed.binary == "true"
 
-- name: "binary archive - Install tools"
+- name: "binary archive - Install binary archive tools"
   ansible.builtin.include_tasks: ../include_role/ubuntu/install_binary_archive.yaml
   with_items: "{{ binary_archive }}"
   loop_control:
@@ -65,14 +65,14 @@
     loop_var: args
   when: feature_enabed.go == "true"
 
-- name: "krew - Install krew binary"
+- name: "krew - Install krew"
   ansible.builtin.include_tasks: ../include_role/ubuntu/install_krew.yaml
   with_items: "{{ krew }}"
   loop_control:
     loop_var: args
   when: feature_enabed.krew == "true"
 
-- name: "krew Plugins - Install krew kubectl plugins"
+- name: "krew Plugins - Install krew plugins for kubectl"
   ansible.builtin.include_tasks: ../include_role/ubuntu/install_krew_plugin.yaml
   with_items: "{{ krew_plugins }}"
   loop_control:
