@@ -67,12 +67,7 @@
   with_items: "{{ krew_plugins }}"
   loop_control:
     loop_var: args
-
-- name: "terraform - Install terraform"
-  ansible.builtin.include_tasks: ../include_role/ubuntu/install_terraform.yaml
-  with_items: "{{ terraform }}"
-  loop_control:
-    loop_var: args
+  when: feature_enabed.krew == true
 
 # use .devcontainer instead. https://github.com/microsoft/vscode-dev-containers/blob/main/script-library/docs/azcli.md
 # too slow download pacakge..... oh my package.microsoft.com ....
