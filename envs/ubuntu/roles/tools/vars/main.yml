@@ -1,17 +1,17 @@
 feature_enabed:
-  apt_tools: true
-  aqua: true
-  azcli: true
-  binary: true
-  binary_archive: true
-  dotnet: true
-  dpkg: true
-  git: true
-  git_tools: true
-  go: true
-  krew: true
-  pip3: true
-  terraform: true
+  apt_tools: "true"
+  aqua: "true"
+  azcli: "true"
+  binary: "true"
+  binary_archive: "true"
+  dotnet: "true"
+  dpkg: "true"
+  git: "true"
+  git_tools: "true"
+  go: "true"
+  krew: "true"
+  pip3: "true"
+  terraform: "true"
 
 apt_tools:
   - apache2-utils
