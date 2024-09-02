@@ -44,18 +44,6 @@
   ansible.builtin.include_tasks: ../include_role/ubuntu/install_aqua.yaml
   when: aqua.global == "true"
 
-- name: "asdf - Install asdf"
-  ansible.builtin.include_tasks: ../include_role/ubuntu/install_asdf.yaml
-  with_items: "{{ asdf }}"
-  loop_control:
-    loop_var: args
-
-- name: "asdf - Install asdf plugins"
-  ansible.builtin.include_tasks: ../include_role/ubuntu/install_asdf_plugins.yaml
-  with_items: "{{ asdf_plugins }}"
-  loop_control:
-    loop_var: args
-
 - name: ".NET - Install dotnet"
   ansible.builtin.include_tasks: ../include_role/ubuntu/install_dotnet.yaml
   with_items: "{{ dotnet }}"
