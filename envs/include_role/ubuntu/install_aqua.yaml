@@ -34,3 +34,8 @@
   ansible.builtin.debug:
     msg: "{{ list_aqua_globaltools.stdout_lines }}"
   when: (list_aqua_globaltools.stdout != "")
+#
+# use following environment variables to use aqua tools in ansible
+# environment:
+#   PATH: "{{ ansible_home }}/.local/share/aquaproj-aqua/bin:{{ ansible_env.PATH }}"
+#   AQUA_GLOBAL_CONFIG: "{{ ansible_home }}/.config/aquaproj-aqua/aqua.yaml"

@@ -1,7 +1,20 @@
+feature_enabed:
+  apt_tools: true
+  aqua: true
+  azcli: true
+  binary: true
+  binary_archive: true
+  dotnet: true
+  dpkg: true
+  git: true
+  git_tools: true
+  go: true
+  krew: true
+  pip3: true
+  terraform: true
+
 apt_tools:
   - apache2-utils
-  - direnv
-  # - duf # not available below 22.04
   - fd-find
   - git-lfs
   - graphviz # require for terraform graph and ansible-playbook-graph
@@ -9,28 +22,17 @@ apt_tools:
   - hub
   - jq
   - moreutils
-  - peco
   - pkg-config
   - python3-pip
-  - shellcheck
   - sshpass
   - tree
   - unzip
   - whois
 
 aqua:
-  global: "true"
   global_path: "{{ ansible_home }}/.config/aquaproj-aqua/aqua.yaml"
 
 binary:
-  - name: eks-node-viewer # `eks-node-viewer --version` https://github.com/awslabs/eks-node-viewer
-    version_arg: "--version"
-    version: "0.6.0"
-    download_url: https://github.com/awslabs/eks-node-viewer/releases/download/v0.6.0/eks-node-viewer_Linux_x86_64
-  - name: kubectl-argo-rollouts # `kubectl argo rollouts version` https://argoproj.github.io/argo-rollouts/installation/#kubectl-plugin-installation
-    version_arg: "version"
-    version: "1.7.2"
-    download_url: https://github.com/argoproj/argo-rollouts/releases/download/v1.7.2/kubectl-argo-rollouts-linux-amd64
   - name: linkerd # `linkerd version --client` https://github.com/linkerd/linkerd2
     version_arg: "version --client"
     version: "2.14.10"
@@ -51,39 +53,6 @@ binary_archive:
     copy_root: ""
     binaries:
       - cert
-  - name: circleci # https://github.com/CircleCI-Public/circleci-cli
-    version_arg: "version"
-    version: "0.1.30995"
-    download_url: https://github.com/CircleCI-Public/circleci-cli/releases/download/v0.1.30995/circleci-cli_0.1.30995_linux_amd64.tar.gz
-    copy_root: "circleci-cli_0.1.30995_linux_amd64/"
-    binaries:
-      - circleci
-  - name: jnv # https://github.com/ynqa/jnv
-    version_arg: "--version"
-    version: "0.4.0"
-    download_url: https://github.com/ynqa/jnv/releases/download/v0.4.0/jnv-x86_64-unknown-linux-gnu.tar.xz
-    copy_root: "jnv-x86_64-unknown-linux-gnu/"
-    binaries:
-      - jnv
-  - name: pulumi # https://github.com/pulumi/pulumi
-    version_arg: "version"
-    version: "v3.130.0"
-    download_url: https://get.pulumi.com/releases/sdk/pulumi-v3.130.0-linux-x64.tar.gz
-    copy_root: "pulumi/"
-    binaries:
-      - pulumi
-      - pulumi-analyzer-policy
-      - pulumi-analyzer-policy-python
-      - pulumi-language-dotnet
-      - pulumi-language-go
-      - pulumi-language-java
-      - pulumi-language-nodejs
-      - pulumi-language-python
-      - pulumi-language-python-exec
-      - pulumi-language-yaml
-      - pulumi-resource-pulumi-nodejs
-      - pulumi-resource-pulumi-python
-      - pulumi-watch
   - name: tldr # https://github.com/isacikgoz/tldr
     version_arg: "--version"
     version: "0.6.1"
@@ -91,42 +60,22 @@ binary_archive:
     copy_root: ""
     binaries:
       - tldr
-  - name: trivy # https://github.com/aquasecurity/trivy
-    version_arg: "--version"
-    version: "0.54.1"
-    download_url: https://github.com/aquasecurity/trivy/releases/download/v0.54.1/trivy_0.54.1_Linux-64bit.tar.gz
-    copy_root: ""
-    binaries:
-      - trivy
 
 dotnet:
   version: "8.0"
 
-dpkg_install:
+dpkg:
   - name: session-manager-plugin # https://github.com/aws/session-manager-plugin
     version_arg: "--version"
     version: "1.2.650.0"
     download_url: https://s3.amazonaws.com/session-manager-downloads/plugin/1.2.650.0/ubuntu_64bit/session-manager-plugin.deb
-  - name: tenv # https://github.com/tofuutils/tenv
-    version_arg: "--version"
-    version: "3.1.0"
-    download_url: https://github.com/tofuutils/tenv/releases/download/v3.1.0/tenv_v3.1.0_amd64.deb
 
 git_tools:
-  - name: kubectx
-    git_https_url: https://github.com/ahmetb/kubectx.git
-    link_binaries:
-      - kubectx
-      - kubens
   - name: kube-ps1
     git_https_url: https://github.com/jonmosco/kube-ps1.git
 
 go:
   version: "go" # install latest
-
-homebrew:
-  - packages:
-      - { name: "hello", state: "present" }
 
 krew: # https://github.com/kubernetes-sigs/krew
   version: "0.4.4"
@@ -157,7 +106,7 @@ krew_plugins:
   - name: who-can # https://github.com/aquasecurity/kubectl-who-can Show who has RBAC permissions to perform actions on different resources in Kubernetes
     install_check_arg: "--help"
 
-pip_tools:
+pip3:
   - name: ansible-lint # https://github.com/ansible/ansible-lint
     version: "24.7.0"
   - name: ansible-playbook-grapher # require: graphviz https://github.com/haidaraM/ansible-playbook-grapher
