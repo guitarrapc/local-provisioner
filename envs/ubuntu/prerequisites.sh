@@ -8,7 +8,7 @@ required_ansible_version="2.17.3"
 sudo apt update -y
 sudo apt autoremove -y
 
-function hack:wsl1_ubuntu20() {
+function hack:wsl1_ubuntu20 {
     if lshw | grep vsyscall32; then
       is_wsl2=1
     else
@@ -27,7 +27,7 @@ function hack:wsl1_ubuntu20() {
     fi
 }
 
-function install_python3() {
+function install_python3 {
   echo "Install Python ${required_python3_version}"
   sudo apt install -y software-properties-common
   sudo add-apt-repository -y ppa:deadsnakes/ppa
@@ -35,7 +35,7 @@ function install_python3() {
   sudo apt -y install "python${required_python3_version}" "python3-pip"
 }
 
-function install_ansible() {
+function install_ansible {
   # Install Ansible from ppa for latest release and fast update.
   # `pip3 install --user ansible` is too slow and could not accept.
   echo "Install ansible from ppa."
@@ -49,6 +49,7 @@ function install_ansible() {
   pip3 install --user ansible-lint
 }
 
+echo "# Checking pip3 installed."
 if ! command -v "python${required_python3_version}" > /dev/null 2>&1; then
   echo "python${required_python3_version} not found, install it."
   install_python3
@@ -56,6 +57,7 @@ else
   echo "python${required_python3_version} found."
 fi
 
+echo "# Checking ansible installed."
 if ! command -v ansible > /dev/null 2>&1 || ! ansible --version | grep "${required_ansible_version}" > /dev/null 2>&1; then
   echo "Ansible not found, install it."
   install_ansible

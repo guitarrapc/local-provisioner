@@ -1,0 +1,41 @@
+# Install aqua global tools
+# see: https://aquaproj.github.io/docs/
+
+# See below for an example of how to use this role.
+# ```vars/main.yaml
+# aqua:
+#   - config_dir: roles/tools/files/aqua.yaml
+# ```
+#
+# ```roles/main.yaml
+# - name: "aqua - Install aqua tools"
+#   ansible.builtin.include_tasks: ../include_role/ubuntu/install_aqua.yaml
+#   with_items: "{{ aqua }}"
+#   loop_control:
+#     loop_var: args
+# ```
+
+# need place aqua global config. This is achieved by https://github.com/guitarrapc/dotfiles-linux/blob/master/HOME/.config/aquaproj-aqua/aqua.yaml
+- name: "aqua - install tools (global)"
+  ansible.builtin.command: aqua i -a
+  args:
+    chdir: "{{ ansible_home }}/"
+  environment:
+    AQUA_GLOBAL_CONFIG: "{{ aqua.global_path }}"
+  register: install_aqua_globaltools
+  changed_when: install_aqua_globaltools.rc != 0
+
+- name: "aqua - list global tools"
+  ansible.builtin.command: aqua list -a -installed
+  register: list_aqua_globaltools
+  changed_when: false
+
+- name: "dotfiles - debug show result"
+  ansible.builtin.debug:
+    msg: "{{ list_aqua_globaltools.stdout_lines }}"
+  when: (list_aqua_globaltools.stdout != "")
+#
+# use following environment variables to use aqua tools in ansible
+# environment:
+#   PATH: "{{ ansible_home }}/.local/share/aquaproj-aqua/bin:{{ ansible_env.PATH }}"
+#   AQUA_GLOBAL_CONFIG: "{{ ansible_home }}/.config/aquaproj-aqua/aqua.yaml"

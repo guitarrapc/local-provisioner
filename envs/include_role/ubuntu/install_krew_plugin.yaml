@@ -25,7 +25,8 @@
   environment:
     # kubectl is install via asdf
     # require re-login shell for 1st install, let's manual export shellenv and use it
-    PATH: "{{ ansible_home }}/.asdf/shims:{{ ansible_home }}/.asdf/bin:{{ ansible_home }}/.krew/bin:{{ ansible_env.PATH }}"
+    PATH: "{{ ansible_home }}/.local/share/aquaproj-aqua/bin:{{ ansible_home }}/.krew/bin:{{ ansible_env.PATH }}"
+    AQUA_GLOBAL_CONFIG: "{{ ansible_home }}/.config/aquaproj-aqua/aqua.yaml"
   register: kubectl_plugin_exists
   changed_when: kubectl_plugin_exists.rc != 0
   ignore_errors: true
@@ -35,7 +36,8 @@
   environment:
     # kubectl is install via asdf
     # require re-login shell for 1st install, let's manual export shellenv and use it
-    PATH: "{{ ansible_home }}/.asdf/shims:{{ ansible_home }}/.asdf/bin:{{ ansible_home }}/.krew/bin:{{ ansible_env.PATH }}"
+    PATH: "{{ ansible_home }}/.local/share/aquaproj-aqua/bin:{{ ansible_home }}/.krew/bin:{{ ansible_env.PATH }}"
+    AQUA_GLOBAL_CONFIG: "{{ ansible_home }}/.config/aquaproj-aqua/aqua.yaml"
   register: krew_plugin_install
   changed_when: krew_plugin_install.rc != 0
   when: kubectl_plugin_exists is failed
@@ -45,6 +47,7 @@
   environment:
     # kubectl is install via asdf
     # require re-login shell for 1st install, let's manual export shellenv and use it
-    PATH: "{{ ansible_home }}/.asdf/shims:{{ ansible_home }}/.asdf/bin:{{ ansible_home }}/.krew/bin:{{ ansible_env.PATH }}"
+    PATH: "{{ ansible_home }}/.local/share/aquaproj-aqua/bin:{{ ansible_home }}/.krew/bin:{{ ansible_env.PATH }}"
+    AQUA_GLOBAL_CONFIG: "{{ ansible_home }}/.config/aquaproj-aqua/aqua.yaml"
   changed_when: false
   when: kubectl_plugin_exists is failed
