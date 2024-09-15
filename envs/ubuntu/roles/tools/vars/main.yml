@@ -73,6 +73,11 @@ dpkg:
 git_tools:
   - name: kube-ps1
     git_https_url: https://github.com/jonmosco/kube-ps1.git
+  - name: kubectx
+    git_https_url: https://github.com/ahmetb/kubectx.git
+    link_binaries:
+      - kubectx
+      - kubens
 
 go:
   version: "go" # install latest
