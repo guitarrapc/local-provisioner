@@ -46,7 +46,8 @@
       - gibo
       - git-lfs
       - helm
-      - kubeval
+      - kubens
+      - kubectx
       - mysql-workbench
       - ngrok
       - nvm
