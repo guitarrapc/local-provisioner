@@ -6,8 +6,8 @@ Dev environment setup.
 
 | Environment | Version | Method | Note |
 | ---- | ---- | ---- | ---- |
-| [macOS](envs/macos/README.md) | Ventura<br/>Monterey | Ansible Playbook | Target to Apple Silicon and Intel. |
-| [Ubuntu](envs/ubuntu/README.md) | 22.04<br/>20.04<br/>WSL1<br/>WSL2 | Ansible Playbook | install docker on wsl2. |
+| [macOS](envs/macos/README.md) | Sequoia(15.0)<br/>Sonoma(14.0) | Ansible Playbook | Target to Apple Silicon and Intel. |
+| [Ubuntu](envs/ubuntu/README.md) | 24.04 (WSL1/WSL2)<br/>22.04 (WSL1/WSL2) | Ansible Playbook | install docker on wsl2. |
 | [Windows](envs/windows/README.md) | 11<br/>10 | scoop & winget | scoop for portal app, winget for installer app. |
 
 # Run
@@ -124,6 +124,8 @@ Out of scopes
 
 **Windows**
 
+Scope for following.
+
 Role | Descriptions
 ---- | ----
 ba230t | install app via scoop's `ba230t` bucket
@@ -132,12 +134,13 @@ guitarrapc | install app via scoop's `guitarrapc` bucket
 main | install app via scoop's `main` bucket
 terraform-docs | install app via scoop's `terraform-docs` bucket
 
-Use winget to install non-scoop apps.
+winget for following
 
-* Docker for Windows.
-* Visual Studio or higher.
+* Docker for Windows
+* Visual Studio or higher
 * Unity Hub
-* Steam and others.
+* Steam
+* other apps
 
 # How to modify
 
@@ -145,17 +148,18 @@ Folk this repository.
 
 **macOS**
 
-    * Modify parameters: `envs/macos/roles/<role>/vars/main.yml`.
-    * Modify logics: `envs/macos/roles/<role>/tasks/main.yml`.
+* Modify parameters: `envs/macos/roles/<role>/vars/main.yml`.
+* Modify logics: `envs/macos/roles/<role>/tasks/main.yml`.
 
 **Ubuntu**
 
-    * Modify parameters: `envs/ubuntu/roles/<role>/vars/main.yml`.
-    * Modify logics: `envs/ubuntu/roles/<role>/tasks/main.yml`.
+* Modify parameters: `envs/ubuntu/roles/<role>/vars/main.yml`.
+* Modify logics: `envs/ubuntu/roles/<role>/tasks/main.yml`.
+* Modify reuse logics: `envs/include_roleroles/ubuntu/<role>.yml`.
 
 **Windows**
 
-    * Modify logics: `envs/windows/roles/<role>/tasks/main.yml`.
+* Modify logics: `envs/windows/roles/<role>/tasks/main.yml`.
 
 # Issues
 

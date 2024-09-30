@@ -8,10 +8,9 @@
   retries: 2 # wsl1 failed first apt on Ubuntu-22.04
   when: feature_enabed.apts == "true"
 
-- name: "pip3 - Install pip3 packages"
-  ansible.builtin.pip:
-    name: "{{ item.name }}"
-    version: "{{ item.version }}"
+- name: "pip3 - Install pip3 packages with pipx"
+  community.general.pipx:
+    name: "{{ item.name }}=={{ item.version }}"
   with_items: "{{ pip3 }}"
   when: feature_enabed.pip3 == "true"
 
