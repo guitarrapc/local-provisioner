@@ -27,6 +27,7 @@ apts:
   - sshpass
   - tree
   - unzip
+  - yamllint
   - whois
 
 aqua:
