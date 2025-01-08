@@ -9,11 +9,9 @@
     state: present
     bucket: extras
     name:
-      - everything
       - fork
       - gcloud
       - gitkraken
-      #- googlechrome # dont't want change userprofile location. use self provided.
       - heidisql
       - ilspy
       - kdiff3
@@ -30,4 +28,6 @@
     state: absent
     bucket: extras
     name:
+      - everything # disable by default
+      - googlechrome # dont't want change userprofile location. use self provided.
       - wiztree # commercial use is now required payment.

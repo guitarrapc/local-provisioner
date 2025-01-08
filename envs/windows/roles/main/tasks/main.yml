@@ -21,7 +21,7 @@
       - jq
       - openssl
       - sops
-      - terraform
+      - tenv
       - tflint
       - time
       - unzip
@@ -37,7 +37,6 @@
       - aws
       - aws-vault
       - azure-cli
-      - bazel
       - chromedriver
       - dive
       - gh
@@ -48,8 +47,6 @@
       - helm
       - kubens
       - kubectx
-      - mysql-workbench
-      - ngrok
       - nvm
       - shellcheck
       - pwsh
@@ -60,3 +57,13 @@
     bucket: main
     name:
       - python
+
+- name: "UnInstall tools"
+  scoop_install:
+    state: present
+    bucket: main
+    name:
+      - bazel # dont't use currently
+      - terraform # use tenv instead
+      - mysql-workbench # dont't use currently
+      - ngrok
