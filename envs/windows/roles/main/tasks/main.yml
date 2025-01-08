@@ -60,7 +60,7 @@
 
 - name: "UnInstall tools"
   scoop_install:
-    state: present
+    state: absent
     bucket: main
     name:
       - bazel # dont't use currently
