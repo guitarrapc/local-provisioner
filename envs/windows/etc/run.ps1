@@ -1,3 +1,4 @@
+#Requires -RunAsAdministrator
 function ReloadEnvironmentVariables {
   echo "Reload environment variables"
   $machinePath = [Environment]::GetEnvironmentVariable("PATH", "machine")
@@ -10,8 +11,8 @@ echo "Follow up scoop app"
 . "${env:UserProfile}/scoop/apps/vscode/current/install-context.reg"
 
 echo "Install winget tools"
-sudo ./install-winget.ps1
-sudo ./install-vstools.ps1
+./install-winget.ps1
+./install-vstools.ps1
 ReloadEnvironmentVariables
 
 echo "dotnet fix"
@@ -20,11 +21,12 @@ echo "dotnet fix"
 echo "Set Windows"
 . ./enable_longpath.reg
 ./Set-GoModuleEnv.ps1
-sudo ./Set-ConnectionProfile.ps1
+./Set-ConnectionProfile.ps1
+./disable-faststartup.ps1
 
 echo "Set Windows Defender"
-sudo ./add-windowsdefender-exclude-visualstudio.ps1
-sudo ./Set-MpExcludeScoop.ps1
+./add-windowsdefender-exclude-visualstudio.ps1
+./Set-MpExcludeScoop.ps1
 
 echo "Install Windows features"
-sudo ./install-windowsfeature.ps1
+./install-windowsfeature.ps1
