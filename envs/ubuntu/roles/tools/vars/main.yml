@@ -63,7 +63,8 @@ binary_archive:
       - tldr
 
 dotnet:
-  version: "8.0"
+  - version: "8.0"
+  - version: "9.0"
 
 dpkg:
   - name: session-manager-plugin # https://github.com/aws/session-manager-plugin
