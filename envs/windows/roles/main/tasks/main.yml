@@ -6,8 +6,6 @@
     bucket: main
     name:
       - 7zip
-      - innounp
-      - dark
 
 - name: "Install linux tools"
   scoop_install:
@@ -43,7 +41,6 @@
       - hugo
       - hugo-extended
       - gibo
-      - git-lfs
       - helm
       - kubens
       - kubectx

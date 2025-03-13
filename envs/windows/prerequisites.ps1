@@ -16,7 +16,7 @@ PrintInfo -message "# Updating scoop to latest..."
 scoop update
 
 PrintInfo -message "# Checking fundamental packages are installed..."
-foreach ($item in @("7zip", "innounp", "dark")) {
+foreach ($item in @("7zip")) {
   PrintInfo -message "* Install/Update scoop package $item"
   scoop install $item
   scoop update $item
