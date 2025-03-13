@@ -20,6 +20,7 @@ echo "dotnet fix"
 
 echo "Set Windows"
 . ./enable_longpath.reg
+./install-windowsfeature.ps1
 ./Set-GoModuleEnv.ps1
 ./Set-ConnectionProfile.ps1
 ./disable-faststartup.ps1
@@ -27,6 +28,3 @@ echo "Set Windows"
 echo "Set Windows Defender"
 ./add-windowsdefender-exclude-visualstudio.ps1
 ./Set-MpExcludeScoop.ps1
-
-echo "Install Windows features"
-./install-windowsfeature.ps1
