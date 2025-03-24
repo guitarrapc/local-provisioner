@@ -20,7 +20,6 @@
       - msbuild-structured-log-viewer
       - streamdeck
       - slack
-      - vscode
       - vswhere
 
 - name: "Uninstall extras tools"

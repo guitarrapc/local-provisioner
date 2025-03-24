@@ -7,9 +7,6 @@ function ReloadEnvironmentVariables {
   [Environment]::SetEnvironmentVariable("PATH", "$newPath", "process")
 }
 
-echo "Follow up scoop app"
-. "${env:UserProfile}/scoop/apps/vscode/current/install-context.reg"
-
 echo "Install winget tools"
 ./install-winget.ps1
 ./install-vstools.ps1
