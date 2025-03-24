@@ -15,7 +15,6 @@
       - busybox
       - duf
       - fd
-      - figlet
       - jq
       - openssl
       - sops
