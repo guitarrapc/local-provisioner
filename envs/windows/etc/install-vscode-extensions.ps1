@@ -8,7 +8,6 @@ code --install-extension github.copilot-chat
 code --install-extension github.vscode-github-actions
 code --install-extension hashicorp.terraform
 code --install-extension ms-azuretools.vscode-docker
-code --install-extension ms-dotnettools.vscode-dotnet-runtime
 code --install-extension ms-kubernetes-tools.vscode-kubernetes-tools
 code --install-extension ms-vscode-remote.remote-containers
 code --install-extension redhat.vscode-yaml
