@@ -1,0 +1,17 @@
+# code --list-extensions
+code --install-extension bierner.markdown-mermaid
+code --install-extension biomejs.biome
+code --install-extension bpruitt-goddard.mermaid-markdown-syntax-highlighting
+code --install-extension editorconfig.editorconfig
+code --install-extension github.copilot
+code --install-extension github.copilot-chat
+code --install-extension github.vscode-github-actions
+code --install-extension hashicorp.terraform
+code --install-extension ms-azuretools.vscode-docker
+code --install-extension ms-dotnettools.vscode-dotnet-runtime
+code --install-extension ms-kubernetes-tools.vscode-kubernetes-tools
+code --install-extension ms-vscode-remote.remote-containers
+code --install-extension redhat.vscode-yaml
+code --install-extension sohamkamani.code-eol
+code --install-extension taichi.vscode-textlint
+code --install-extension timonwong.shellcheck
