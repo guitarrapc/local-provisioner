@@ -24,7 +24,7 @@ jobs:
         runs-on: [ubuntu-22.04, ubuntu-24.04]
     runs-on: ${{ matrix.runs-on }}
     permissions:
-      contents: write
+      contents: read
     timeout-minutes: 20
     defaults:
       run:
@@ -56,7 +56,7 @@ jobs:
         runs-on: [macos-15, macos-14]
     runs-on: ${{ matrix.runs-on }}
     permissions:
-      contents: write
+      contents: read
     timeout-minutes: 20
     defaults:
       run:
@@ -85,7 +85,7 @@ jobs:
     runs-on: windows-latest
     timeout-minutes: 20
     permissions:
-      contents: write
+      contents: read
     defaults:
       run:
         shell: powershell
