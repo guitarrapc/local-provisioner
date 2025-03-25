@@ -9,5 +9,6 @@
     state: present
     bucket: suzuki-shunsuke
     name:
-      - ghalint
       - disable-checkout-persist-credentials
+      - ghalint
+      - pinact
