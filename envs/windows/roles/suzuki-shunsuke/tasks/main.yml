@@ -10,3 +10,4 @@
     bucket: suzuki-shunsuke
     name:
       - ghalint
+      - disable-checkout-persist-credentials
