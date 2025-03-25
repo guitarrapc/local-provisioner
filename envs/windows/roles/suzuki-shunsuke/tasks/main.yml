@@ -1,0 +1,12 @@
+- name: "Install suzuki-shunsuke bucket"
+  scoop_bucket_install:
+    state: present
+    bucket: suzuki-shunsuke
+    source: https://github.com/suzuki-shunsuke/scoop-bucket
+
+- name: "Install suzuki-shunsuke tools"
+  scoop_install:
+    state: present
+    bucket: suzuki-shunsuke
+    name:
+      - ghalint

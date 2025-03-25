@@ -4,5 +4,6 @@ roles:
   - extras
   - ba230t
   - guitarrapc
+  - suzuki-shunsuke
   - terraform-docs
 # see: https://github.com/rasa/scoop-directory/blob/master/by-apps.md

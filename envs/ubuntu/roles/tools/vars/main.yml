@@ -85,7 +85,7 @@ go:
   version: "go" # install latest
 
 krew: # https://github.com/kubernetes-sigs/krew
-  version: "0.4.4"
+  version: "0.4.5"
 
 krew_plugins:
   - name: explore # https://github.com/keisku/kubectl-explore A better kubectl explain with the fuzzy finder
