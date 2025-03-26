@@ -82,7 +82,8 @@ git_tools:
       - kubens
 
 go:
-  version: "go" # install latest
+  version: "1.24.1"
+  force_reinstall: false
 
 krew: # https://github.com/kubernetes-sigs/krew
   version: "0.4.5"

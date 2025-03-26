@@ -1,4 +1,4 @@
-# Install latest golang. https://launchpad.net/%7Elongsleep/+archive/ubuntu/golang-backports
+# Install golang from official site. https://go.dev/doc/install
 #
 # See below for an example of how to use this role.
 # ```yaml
@@ -6,27 +6,49 @@
 #   ansible.builtin.include_tasks: ../include_role/ubuntu/install_go.yaml
 # ```
 
-- name: "go - Add Golang PPA GPG key"
-  become: true
-  ansible.builtin.apt_key:
-    id: "C631127F87FA12D1"
-    keyserver: "keyserver.ubuntu.com"
-    keyring: /etc/apt/trusted.gpg.d/longsleep.gpg
-    state: present
+- name: "go - Create temporary directory for download"
+  ansible.builtin.tempfile:
+    state: directory
+    prefix: golang_install
+  register: temp_dir
 
-- name: "go - Add Golang PPA repository with keyring"
-  become: true
-  ansible.builtin.apt_repository:
-    repo: "deb [signed-by=/etc/apt/trusted.gpg.d/longsleep.gpg] http://ppa.launchpad.net/longsleep/golang-backports/ubuntu {{ ansible_distribution_release }} main"
-    filename: "longsleep-golang-backports"
-    state: present
+- name: "go - Download Go tarball"
+  ansible.builtin.get_url:
+    url: "https://go.dev/dl/go{{ go.version }}.linux-amd64.tar.gz"
+    dest: "{{ temp_dir.path }}/go.tar.gz"
+    mode: "0644"
+  register: download_result
+  until: download_result is not failed
+  retries: 3
+  delay: 2
 
-- name: "go - Install go"
+- name: "go - Remove previous Go installation if exists"
   become: true
-  ansible.builtin.apt:
-    name: "golang-{{ go.version }}"
-    state: latest
-    update_cache: true
-  register: apt
-  until: "apt is not failed"
-  retries: 2 # wsl1 failed first apt on Ubuntu-22.04
+  ansible.builtin.file:
+    path: "/usr/local/go"
+    state: absent
+  when: go.force_reinstall | default(false)
+
+- name: "go - Extract Go tarball to /usr/local"
+  become: true
+  ansible.builtin.unarchive:
+    src: "{{ temp_dir.path }}/go.tar.gz"
+    dest: "/usr/local"
+    remote_src: true
+    creates: "/usr/local/go/bin/go"
+
+- name: "go - Add Go to system PATH in /etc/profile.d"
+  become: true
+  ansible.builtin.copy:
+    dest: "/etc/profile.d/profile_andible_init_go.sh"
+    content: |
+      export PATH=$PATH:/usr/local/go/bin
+      export GOPATH=$HOME/go
+      export PATH=$PATH:$GOPATH/bin
+    mode: "0644"
+  register: go_path
+
+- name: "go - Clean up temporary directory"
+  ansible.builtin.file:
+    path: "{{ temp_dir.path }}"
+    state: absent
