@@ -21,6 +21,8 @@
     url: "https://dot.net/v1/dotnet-install.sh"
     dest: "/tmp/dotnet-install.sh"
     mode: "a+x"
+    timeout: 20
+  retries: 10
   changed_when: false
 
 - name: "dotnet - install ({{ dotnet.version }})"
