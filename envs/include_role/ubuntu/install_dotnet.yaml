@@ -16,11 +16,17 @@
 # ```
 
 - name: "dotnet - check if SDK version is already installed"
-  ansible.builtin.shell: "set -o pipefail && which dotnet && dotnet --list-sdks | grep -q '{{ args.version }}'"
+  ansible.builtin.shell: "set -o pipefail && which dotnet && dotnet --list-sdks | grep '{{ args.version }}'"
   register: dotnet_check
   changed_when: false
   ignore_errors: true
   failed_when: false
+
+- name: "dotnet - check if script file exists"
+  ansible.builtin.stat:
+    path: "/tmp/dotnet-install.sh"
+  register: script_file
+  when: dotnet_check.rc != 0
 
 - name: "dotnet - download script"
   become: true
@@ -31,7 +37,7 @@
     timeout: 20
   retries: 10
   changed_when: false
-  when: dotnet_check.rc != 0
+  when: dotnet_check.rc != 0 and (script_file.skipped is defined or not script_file.stat.exists)
 
 - name: "dotnet - install ({{ args.version }})"
   ansible.builtin.shell: "DOTNET_ROOT={{ ansible_home }}/.dotnet && /tmp/dotnet-install.sh --channel {{ args.version }}"

@@ -14,13 +14,11 @@
     keyring: /etc/apt/trusted.gpg.d/longsleep.gpg
     state: present
 
-- name: "go - Add ppa:longsleep/golang-backports ppa repository"
+- name: "go - Add Golang PPA repository with keyring"
   become: true
   ansible.builtin.apt_repository:
-    # not ppa shorhand, write with deb
-    repo: "deb http://ppa.launchpad.net/longsleep/golang-backports/ubuntu {{ ansible_distribution_release }} main"
+    repo: "deb [signed-by=/etc/apt/trusted.gpg.d/longsleep.gpg] http://ppa.launchpad.net/longsleep/golang-backports/ubuntu {{ ansible_distribution_release }} main"
     filename: "longsleep-golang-backports"
-    keyring: /etc/apt/trusted.gpg.d/longsleep.gpg
     state: present
 
 - name: "go - Install go"
