@@ -6,10 +6,20 @@
 #   ansible.builtin.include_tasks: ../include_role/ubuntu/install_go.yaml
 # ```
 
+- name: "go - Add Golang PPA GPG key"
+  become: true
+  ansible.builtin.apt_key:
+    url: "http://keyserver.ubuntu.com/pks/lookup?op=get&search=0x876B22BA887CA916"
+    keyring: /etc/apt/trusted.gpg.d/longsleep.gpg
+    state: present
+
 - name: "go - Add ppa:longsleep/golang-backports ppa repository"
   become: true
   ansible.builtin.apt_repository:
-    repo: ppa:longsleep/golang-backports
+    # not ppa shorhand, write with deb
+    repo: "deb http://ppa.launchpad.net/longsleep/golang-backports/ubuntu {{ ansible_distribution_release }} main"
+    filename: "longsleep-golang-backports"
+    keyring: /etc/apt/trusted.gpg.d/longsleep.gpg
     state: present
 
 - name: "go - Install go"
