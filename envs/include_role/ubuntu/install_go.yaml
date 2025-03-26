@@ -9,7 +9,8 @@
 - name: "go - Add Golang PPA GPG key"
   become: true
   ansible.builtin.apt_key:
-    url: "http://keyserver.ubuntu.com/pks/lookup?op=get&search=0x876B22BA887CA916"
+    id: "C631127F87FA12D1"
+    keyserver: "keyserver.ubuntu.com"
     keyring: /etc/apt/trusted.gpg.d/longsleep.gpg
     state: present
 
