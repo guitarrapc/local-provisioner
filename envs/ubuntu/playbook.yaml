@@ -17,10 +17,19 @@
       set_fact:
         is_wsl1: "{{ 'Microsoft' in kernel_version.stdout }}"
       tags: always
+    - name: Check for Docker Desktop integration
+      ansible.builtin.stat:
+        path: "/mnt/wsl/docker-desktop"
+      register: docker_desktop_integration
+      tags: always
   roles:
     - { role: "debug", tags: [debug] }
     - { role: "dotfiles", tags: [dotfiles] }
     - { role: "credentials", tags: [credentials] }
     - { role: "needrestart", tags: [needrestart] }
-    - { role: "docker", tags: [docker] }
+    - {
+        role: "docker",
+        tags: [docker],
+        when: is_wsl1 or (is_wsl2 and (not docker_desktop_integration)),
+      }
     - { role: "tools", tags: [tools] }

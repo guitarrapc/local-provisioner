@@ -54,3 +54,9 @@
   ansible.builtin.debug:
     msg: "{{ is_wsl2 }}"
   when: ansible_distribution == "Ubuntu"
+
+# Docker Desktop integration check
+- name: "Debug - docker_desktop_integration"
+  ansible.builtin.debug:
+    msg: "{{ docker_desktop_integration.stat.exists }}"
+  when: ansible_distribution == "Ubuntu"
