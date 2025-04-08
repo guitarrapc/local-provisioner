@@ -14,7 +14,10 @@ Dev environment setup.
 
 **Ubuntu**
 
-clone repo and run ansible-playbook.
+git clone repo and run ansible-playbook.
+
+> [!NOTE]
+> Docker will not be installed on WSL2 if Docker Dekstop integration is enabled.
 
 ```sh
 mkdir -p ~/github/guitarrapc && cd ~/github/guitarrapc
@@ -26,7 +29,7 @@ bash ./run.sh
 
 **macOS**
 
-clone repo and run ansible-playbook.
+git clone repo and run ansible-playbook.
 
 ```sh
 mkdir -p ~/github/guitarrapc && cd ~/github/guitarrapc
@@ -41,7 +44,7 @@ bash ./run.sh
 
 > [!NOTE] Enable Windows Developer mode beforehand.
 
-Install git, then clone repo and run scoop-playbook.
+Install git, git clone repo and run scoop-playbook.
 
 ```sh
 winget list --accept-source-agreements

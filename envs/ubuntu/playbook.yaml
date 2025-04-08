@@ -5,30 +5,32 @@
       ansible.builtin.set_fact:
         ansible_home: "{{ ansible_env.HOME }}"
       tags: always
-    - name: Get WSL1
-      ansible.builtin.shell: grep "Microsoft" /proc/version > /dev/null 2>&1 && echo 1 || echo 0
-      register: wsl1_exists
-      changed_when: false
-      check_mode: false
+    - name: Detect WSL version
+      ansible.builtin.command: uname -r
+      register: kernel_version
+      changed_when: kernel_version.rc != 0
       tags: always
-    - name: Preset WSL1 or not
+    - name: Set is_wsl2 variable
       ansible.builtin.set_fact:
-        is_wsl1: "{{ wsl1_exists.stdout }}"
+        is_wsl2: "{{ 'WSL2' in kernel_version.stdout or 'microsoft-standard' in kernel_version.stdout }}"
       tags: always
-    - name: Get WSL2
-      ansible.builtin.shell: grep "microsoft-standard" /proc/version > /dev/null 2>&1 && echo 1 || echo 0
-      register: wsl2_exists
-      changed_when: false
-      check_mode: false
-      tags: always
-    - name: Preset WSL2 or not
+    - name: Set is_wsl1 variable
       ansible.builtin.set_fact:
-        is_wsl2: "{{ wsl2_exists.stdout }}"
+        is_wsl1: "{{ 'Microsoft' in kernel_version.stdout }}"
+      tags: always
+    - name: Check for Docker Desktop integration
+      ansible.builtin.stat:
+        path: "/mnt/wsl/docker-desktop"
+      register: docker_desktop_integration
       tags: always
   roles:
     - { role: "debug", tags: [debug] }
     - { role: "dotfiles", tags: [dotfiles] }
     - { role: "credentials", tags: [credentials] }
     - { role: "needrestart", tags: [needrestart] }
-    # - { role: "docker", tags: [docker] }
+    - {
+        role: "docker",
+        tags: [docker],
+        when: is_wsl1 or (is_wsl2 and (not docker_desktop_integration)),
+      }
     - { role: "tools", tags: [tools] }

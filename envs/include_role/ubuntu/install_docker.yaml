@@ -101,4 +101,4 @@
       # wsl1 using windows docker-compose. wsl2 don't need this line.
       export DOCKER_HOST=tcp://localhost:2375
     mode: "0644"
-  when: (is_wsl1 == "1") and (docker.launch_docker_service == "0")
+  when: is_wsl1 and (docker.launch_docker_service == "0")
