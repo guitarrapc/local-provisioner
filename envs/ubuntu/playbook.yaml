@@ -8,13 +8,14 @@
     - name: Detect WSL version
       ansible.builtin.command: uname -r
       register: kernel_version
+      changed_when: kernel_version.rc != 0
       tags: always
     - name: Set is_wsl2 variable
-      set_fact:
+      ansible.builtin.set_fact:
         is_wsl2: "{{ 'WSL2' in kernel_version.stdout or 'microsoft-standard' in kernel_version.stdout }}"
       tags: always
     - name: Set is_wsl1 variable
-      set_fact:
+      ansible.builtin.set_fact:
         is_wsl1: "{{ 'Microsoft' in kernel_version.stdout }}"
       tags: always
     - name: Check for Docker Desktop integration
