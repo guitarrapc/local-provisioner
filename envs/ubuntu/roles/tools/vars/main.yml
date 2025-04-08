@@ -15,11 +15,9 @@ feature_enabed:
 
 apts:
   - apache2-utils
-  - fd-find
   - git-lfs
   - graphviz # require for terraform graph and ansible-playbook-graph
   - htop
-  - hub
   - jq
   - moreutils
   - pkg-config

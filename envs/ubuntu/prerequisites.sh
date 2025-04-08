@@ -1,7 +1,7 @@
 #!/bin/bash
 set -eu -o pipefail
 
-required_python3_version="3.13"
+required_python3_version="3.11"
 
 function update_apt {
   sudo apt update -y
