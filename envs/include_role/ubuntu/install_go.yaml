@@ -21,6 +21,7 @@
   until: download_result is not failed
   retries: 3
   delay: 2
+  when: not ansible_check_mode
 
 - name: "go - Remove previous Go installation if exists"
   become: true
@@ -36,6 +37,7 @@
     dest: "/usr/local"
     remote_src: true
     creates: "/usr/local/go/bin/go"
+  when: not ansible_check_mode
 
 - name: "go - Add Go to system PATH in /etc/profile.d"
   become: true
@@ -52,3 +54,4 @@
   ansible.builtin.file:
     path: "{{ temp_dir.path }}"
     state: absent
+  when: not ansible_check_mode
