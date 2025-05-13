@@ -30,7 +30,7 @@
   register: list_aqua_globaltools
   changed_when: false
 
-- name: "dotfiles - debug show result"
+- name: "aqua - debug show result"
   ansible.builtin.debug:
     msg: "{{ list_aqua_globaltools.stdout_lines }}"
   when: (list_aqua_globaltools.stdout != "")
