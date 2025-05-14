@@ -32,6 +32,10 @@ aqua:
   global_path: "{{ ansible_home }}/.config/aquaproj-aqua/aqua.yaml" # placed via dotfiles
 
 binary:
+  - name: cosign # `cosign version` https://github.com/linkerd/linkerd2
+    version_arg: "version"
+    version: "2.5.0"
+    download_url: https://github.com/sigstore/cosign/releases/download/v2.5.0/cosign-linux-amd64
   - name: linkerd # `linkerd version --client` https://github.com/linkerd/linkerd2
     version_arg: "version --client"
     version: "2.14.10"
