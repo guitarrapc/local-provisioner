@@ -82,7 +82,7 @@ jobs:
         run: ansible-playbook -i hosts playbook.yaml --check --diff
 
   windows:
-    runs-on: windows-latest
+    runs-on: windows-2025
     timeout-minutes: 20
     permissions:
       contents: read
