@@ -47,5 +47,5 @@ end
 
 
 describe file('/Users/guitarrapc/.ssh/config') do
-    it { should be_linked_to '/Users/guitarrapc/github/guitarrapc/dotfiles/home/.ssh/config' }
+    it { should be_linked_to '/Users/guitarrapc/github/guitarrapc/dotfiles/HOME/.ssh/config' }
 end

@@ -2,4 +2,9 @@
 
 # ansible spec
 bundle install --path vendor/bundle
-bundle exec ansiblespec-init
+
+# create .ansiblespec
+# bundle exec ansiblespec-init
+
+bundle exec rake -T
+bundle exec rake all
