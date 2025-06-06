@@ -25,9 +25,14 @@ brew doctor
 
 # ansible
 echo "check ansible is installed"
-which ansible > /dev/null 2>&1
-if [ $? -ne 0 ]; then
+if ! which ansible; then
     echo Ansible not found, install it.
     brew install ansible
+fi
+brew upgrade ansible
+
+if ! which ansible-lint; then
+    echo Ansible Lint not found, install it.
     brew install ansible-lint
 fi
+brew upgrade ansible-lint

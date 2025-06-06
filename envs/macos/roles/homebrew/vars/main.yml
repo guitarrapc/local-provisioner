@@ -1,26 +1,18 @@
 homebrew_packages:
-  - name: autoconf
   - name: awscli
   #  [⌘ + ⌥ + drag & drop] to put shortcut on terminal
   - name: bash-completion
-  - name: bat
-  - name: carthage
   - name: ctop
-  - name: direnv
-  - name: duf
-  - name: fd
-  - name: freetype
   - name: gibo
+  - name: gh
   - name: git
   - name: git-lfs
   - name: go
-  - name: java # for grpc/android
-  - name: hub
-  - name: hugo
   - name: jq
   - name: kubectl
   - name: libyaml # for ruby installation by rbenv on M1 and other. see: https://qiita.com/notakaos/items/e3e30443b1e57f84e7d8
   - name: nodenv
+  - name: powershell
   - name: pyenv
   - name: rbenv
   - name: ruby-build
@@ -28,21 +20,16 @@ homebrew_packages:
   - name: stern
   - name: tenv
   - name: tree
-  - name: yarn
   - name: yq
   - name: zlib
 
 homebrew_cask_packages:
   - name: aws-vault
-  - name: android-studio # for grpc/android
   - name: cd-to
   - name: docker # docker desktop
   - name: dotnet-sdk
   - name: google-chrome
   - name: gitkraken
-  - name: kindle
-  - name: krisp
-  # - name: powershell # # require Rosetta2
   - name: slack
   - name: unity-hub
   - name: visual-studio-code
