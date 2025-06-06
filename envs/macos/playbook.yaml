@@ -7,8 +7,6 @@
       tags: always
   roles:
     - { role: "debug", tags: [debug] }
-    - { role: "defaults", tags: [defaults] }
-    - { role: "pam", tags: [pam] }
     - { role: "dotfiles", tags: [dotfiles] }
-    - { role: "homebrew", tags: [homebrew] }
-    - { role: "ruby", tags: [ruby] }
+    - { role: "os_settings", tags: [os_settings] }
+    - { role: "tools", tags: [tools] }

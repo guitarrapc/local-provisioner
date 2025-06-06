@@ -34,3 +34,5 @@ homebrew_cask_packages:
   - name: unity-hub
   - name: visual-studio-code
   - name: zoom
+
+ruby_version: "3.4.4"

@@ -1,3 +1,4 @@
+# defaults
 - name: "Set Interface Defaults"
   community.general.osx_defaults:
     domain: "{{ item.domain }}"
@@ -42,3 +43,12 @@
     value: "{{ item.value }}"
     state: "{{ item.state | default('present') }}"
   with_items: "{{ dock_settings }}"
+
+# pam
+- name: enable touchid for sudo Authentication
+  become: true
+  ansible.builtin.lineinfile:
+    path: /etc/pam.d/sudo
+    insertafter: "^# sudo: auth account password session"
+    line: "auth       sufficient     pam_tid.so"
+  when: lookup('env', "CI", default="false") != "true"

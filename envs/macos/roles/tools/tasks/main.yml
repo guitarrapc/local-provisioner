@@ -1,3 +1,4 @@
+# brew
 - name: update brew
   ansible.builtin.command: brew update
   register: result
@@ -16,3 +17,23 @@
     state: "{{ item.state | default('present') }}"
   with_items: "{{ homebrew_cask_packages }}"
   when: lookup('env', "CI", default="false") != "true"
+
+# ruby
+- name: check ruby installed
+  ansible.builtin.shell: set -o pipefail && rbenv versions | grep {{ ruby_version }}
+  args:
+    executable: /bin/bash
+  register: rbenv_version
+  changed_when: false
+  ignore_errors: true
+
+- name: install ruby {{ ruby_version }}
+  ansible.builtin.command: rbenv install {{ ruby_version }}
+  register: ruby_install
+  changed_when: ruby_install.rc != 0
+  when: rbenv_version is failed
+
+- name: install ruby bundler
+  community.general.gem:
+    name: bundler
+  when: rbenv_version is success
