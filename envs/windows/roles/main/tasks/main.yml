@@ -34,12 +34,10 @@
       - aws
       - aws-vault
       - azure-cli
-      - chromedriver
       - dive
       - gh
-      - hugo
-      - hugo-extended
       - gibo
+      - golangci-lint
       - helm
       - kubens
       - kubectx
