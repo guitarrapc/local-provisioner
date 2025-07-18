@@ -3,6 +3,7 @@ homebrew_packages:
   #  [⌘ + ⌥ + drag & drop] to put shortcut on terminal
   - name: bash-completion
   - name: ctop
+  - name: dos2unix # find . -name "*.swift" -not -path "./DerivedData/*" -not -path "./.build/*" -exec dos2unix {} \;
   - name: gibo
   - name: gh
   - name: git
@@ -18,6 +19,7 @@ homebrew_packages:
   - name: ruby-build
   - name: shellcheck
   - name: stern
+  - name: swiftlint # swiftlint --reporter emoji --quiet --config .swiftlint.yml --fix
   - name: tenv
   - name: tree
   - name: yq
