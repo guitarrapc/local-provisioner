@@ -2,6 +2,12 @@
 
 # follow the tartlet guide: https://github.com/shapehq/tartelet/wiki/Configuring-Tartelet
 
+function header {
+    echo "=============================="
+    echo "$1"
+    echo "=============================="
+}
+
 # add runner user
 header "Adding runner user"
 if ! id "runner" &>/dev/null; then
