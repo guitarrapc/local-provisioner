@@ -22,7 +22,7 @@ homebrew_packages:
   - name: shellcheck
   - name: stern
   - name: swiftlint # swiftlint --reporter emoji --quiet --config .swiftlint.yml --fix
-  - name: tarl
+  - name: cirruslabs/cli/tart
   - name: tenv
   - name: tree
   - name: yq
