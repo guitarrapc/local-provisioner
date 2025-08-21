@@ -24,7 +24,7 @@ if ! id "runner" &>/dev/null; then
     done
 
     # Create the user
-    sudo sysadminctl -addUser runner -fullName "Runner" -home /Users/runner -shell /bin/zsh -admin -password "runner"
+    sudo sysadminctl -addUser runner -fullName runner -home /Users/runner -shell /bin/zsh -admin -password "runner"
     if [ -L /Users/runner ]; then
       sudo rm /Users/runner
     fi
@@ -33,7 +33,6 @@ if ! id "runner" &>/dev/null; then
 
     # Add to admin group for sudo access
     sudo dscl . append /Groups/admin GroupMembership runner
-
 
     echo "Runner user created successfully with UID $next_uid"
 else
@@ -69,6 +68,12 @@ sudo defaults write /Library/Preferences/com.apple.SoftwareUpdate AutomaticallyI
 sudo defaults write /Library/Preferences/com.apple.commerce AutoUpdate -bool false
 # Disable system data files updates
 sudo defaults write /Library/Preferences/com.apple.SoftwareUpdate SystemDataInstall -bool false
+
+# Enable remote login (SSH)
+header "Enabling remote login (SSH)"
+if ! sudo systemsetup -getremotelogin | grep -q "On"; then
+    sudo systemsetup -setremotelogin on
+fi
 
 # auto login by runner
 header "Configuring auto login for runner user"
@@ -109,10 +114,4 @@ if ! sudo grep -q "%admin.*ALL = (ALL) NOPASSWD: ALL" /etc/sudoers; then
 
     # Clean up temporary file
     sudo rm -f "$TEMP_SUDOERS"
-fi
-
-# Enable remote login (SSH)
-header "Enabling remote login (SSH)"
-if ! sudo systemsetup -getremotelogin | grep -q "On"; then
-    sudo systemsetup -setremotelogin on
 fi
