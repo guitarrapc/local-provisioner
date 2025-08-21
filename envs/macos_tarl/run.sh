@@ -25,6 +25,10 @@ sudo defaults write /Library/Preferences/com.apple.SoftwareUpdate AutomaticallyI
 sudo defaults write /Library/Preferences/com.apple.commerce AutoUpdate -bool false
 # Disable system data files updates
 sudo defaults write /Library/Preferences/com.apple.SoftwareUpdate SystemDataInstall -bool false
+# Disable automatic installation of security updates and system files
+sudo defaults write /Library/Preferences/com.apple.SoftwareUpdate CriticalUpdateInstall -bool false
+# Disable Install Security Responses and system files
+sudo defaults write /Library/Preferences/com.apple.SoftwareUpdate InstallSecurityResponsesAndSystemFiles -bool false
 
 # run command only if current user is runner
 header "check current user is runner"
@@ -37,13 +41,9 @@ fi
 
 # brew
 header "Installing brew"
-if [ ! -d /opt/homebrew ]; then
-    sudo mkdir -p /opt/homebrew
-    sudo chown -R runner /opt/homebrew
-    sudo chgrp -R admin /opt/homebrew
-    sudo chmod -R g+w /opt/homebrew
-    sudo find /opt/homebrew -type d -exec chmod g+ws {} \;
-    sudo -u runner mkdir -p /Users/runner/Library/Caches/Homebrew
+sudo mkdir -p /opt/homebrew
+if [[ "$(stat -f '%Su:%Sg' -L /opt/homebrew)" != "runner:admin" ]]; then
+    sudo chown -R runner:admin /opt/homebrew
 fi
 if ! which brew; then
     echo Homebrew not found, install it.
