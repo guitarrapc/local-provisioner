@@ -1,11 +1,13 @@
 homebrew_packages:
+  - name: actionlint
+  - name: ansible-lint
   - name: awscli
   #  [⌘ + ⌥ + drag & drop] to put shortcut on terminal
   - name: bash-completion
   - name: ctop
   - name: dos2unix # find . -name "*.swift" -not -path "./DerivedData/*" -not -path "./.build/*" -exec dos2unix {} \;
-  - name: gibo
   - name: gh
+  - name: gibo
   - name: git
   - name: git-lfs
   - name: go
@@ -31,8 +33,9 @@ homebrew_cask_packages:
   - name: cd-to
   - name: docker # docker desktop
   - name: dotnet-sdk
-  - name: google-chrome
   - name: gitkraken
+  - name: google-chrome
+  - name: powershell
   - name: slack
   - name: unity-hub
   - name: visual-studio-code
