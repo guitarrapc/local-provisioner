@@ -23,18 +23,9 @@ if ! id "runner" &>/dev/null; then
     done
 
     # Create the user
-    sudo dscl . create /Users/runner
-    sudo dscl . create /Users/runner UserShell /bin/zsh
-    sudo dscl . create /Users/runner RealName "Runner User"
-    sudo dscl . create /Users/runner UniqueID $next_uid
-    sudo dscl . create /Users/runner PrimaryGroupID 20
-    sudo dscl . create /Users/runner NFSHomeDirectory /Users/runner
-
-    # Set password
-    echo "runner" | sudo dscl . passwd /Users/runner
-
-    # Create home directory
-    sudo createhomedir -c -u runner
+    sudo sysadminctl -addUser runner -fullName "Runner" -home /Users/runner -shell /bin/zsh -admin -password "runner"
+    sudo createhomedir -c -u runner >/dev/null 2>&1 || true
+    sudo chown -R runner:staff /Users/runner
 
     # Add to admin group for sudo access
     sudo dscl . append /Groups/admin GroupMembership runner
@@ -42,6 +33,15 @@ if ! id "runner" &>/dev/null; then
     echo "Runner user created successfully with UID $next_uid"
 else
     echo "Runner user already exists, skipping creation"
+fi
+
+header "Allow /opt/homebrew for runner user"
+if [ ! -d /opt/homebrew ]; then
+    sudo mkdir -p /opt/homebrew
+    sudo chgrp -R admin /opt/homebrew
+    sudo chmod -R g+w /opt/homebrew
+    sudo find /opt/homebrew -type d -exec chmod g+ws {} \;
+    sudo -u runner mkdir -p /Users/runner/Library/Caches/Homebrew
 fi
 
 # Disable initial setup assistant
