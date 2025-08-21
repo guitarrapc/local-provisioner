@@ -19,7 +19,6 @@ if [ $? -ne 0 ]; then
     echo Homebrew not found, install it.
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
-eval "$(/opt/homebrew/bin/brew shellenv)"
 brew update
 brew doctor
 
