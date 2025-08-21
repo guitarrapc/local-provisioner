@@ -4,19 +4,21 @@
   register: result
   ignore_errors: true
   changed_when: result.stdout != 'Already up-to-date.'
+  when: feature_enabled.brew == "true"
 
 - name: "homebrew packages installation"
   community.general.homebrew:
     name: "{{ item.name }}"
     state: "{{ item.state | default('present') }}"
   with_items: "{{ homebrew_packages }}"
+  when: feature_enabled.brew == "true"
 
 - name: "homebrew cask packages installation"
   community.general.homebrew_cask:
     name: "{{ item.name }}"
     state: "{{ item.state | default('present') }}"
   with_items: "{{ homebrew_cask_packages }}"
-  when: lookup('env', "CI", default="false") != "true"
+  when: feature_enabled.brew == "true" and lookup('env', "CI", default="false") != "true"
 
 # ruby
 - name: check ruby installed
@@ -26,14 +28,23 @@
   register: rbenv_version
   changed_when: false
   ignore_errors: true
+  when: feature_enabled.ruby == "true"
 
 - name: install ruby {{ ruby_version }}
   ansible.builtin.command: rbenv install {{ ruby_version }}
   register: ruby_install
   changed_when: ruby_install.rc != 0
-  when: rbenv_version is failed
+  when: feature_enabled.ruby == "true" and rbenv_version is failed
 
 - name: install ruby bundler
   community.general.gem:
     name: bundler
-  when: rbenv_version is success
+  when: feature_enabled.ruby == "true" and rbenv_version is success
+
+# apps
+- name: "Install app archive tools"
+  ansible.builtin.include_tasks: ../include_role/macos/install_app_archive.yaml
+  with_items: "{{ app_archive }}"
+  loop_control:
+    loop_var: args
+  when: feature_enabled.app_archive == "true"

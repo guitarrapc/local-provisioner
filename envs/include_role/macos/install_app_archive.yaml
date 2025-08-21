@@ -1,0 +1,37 @@
+# Install app from zip.
+#
+
+- name: "app_archive - ({{ args.name }}) - check already exists"
+  ansible.builtin.stat:
+    path: "{{ ansible_home }}/Applications/{{ args.name }}"
+  register: app_archive_exists
+
+- name: "app_archive ({{ args.name }}) - tmp directory"
+  ansible.builtin.file:
+    path: "{{ ansible_home }}/Downloads/{{ args.name }}"
+    state: directory
+    mode: "0755"
+  when: not app_archive_exists.stat.exists
+
+- name: "app_archive ({{ args.name }}) - download"
+  ansible.builtin.get_url:
+    url: "{{ args.download_url }}"
+    dest: "{{ ansible_home }}/Downloads/{{ args.name }}/{{ args.download_url | basename }}"
+    mode: "0755"
+  when: not app_archive_exists.stat.exists
+
+- name: "app_archive ({{ args.name }}) - unarchive"
+  ansible.builtin.unarchive:
+    src: "{{ ansible_home }}/Downloads/{{ args.name }}/{{ args.download_url | basename }}"
+    dest: "{{ ansible_home }}/Downloads/{{ args.name }}"
+    remote_src: true
+  when: not app_archive_exists.stat.exists
+
+- name: "app_archive ({{ args.name }}) - copy"
+  ansible.builtin.copy:
+    src: "{{ ansible_home }}/Downloads/{{ args.name }}/{{ args.copy_root }}{{ item }}"
+    dest: "{{ ansible_home }}/Applications/"
+    mode: "a+x"
+    remote_src: true
+  with_items: "{{ args.apps }}"
+  when: not app_archive_exists.stat.exists
