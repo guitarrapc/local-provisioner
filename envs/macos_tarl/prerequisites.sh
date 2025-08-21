@@ -1,4 +1,5 @@
 #!/bin/bash
+set -euo pipefail
 
 # follow the tartlet guide: https://github.com/shapehq/tartelet/wiki/Configuring-Tartelet
 
@@ -24,11 +25,15 @@ if ! id "runner" &>/dev/null; then
 
     # Create the user
     sudo sysadminctl -addUser runner -fullName "Runner" -home /Users/runner -shell /bin/zsh -admin -password "runner"
+    if [ -L /Users/runner ]; then
+      sudo rm /Users/runner
+    fi
     sudo createhomedir -c -u runner >/dev/null 2>&1 || true
     sudo chown -R runner:staff /Users/runner
 
     # Add to admin group for sudo access
     sudo dscl . append /Groups/admin GroupMembership runner
+
 
     echo "Runner user created successfully with UID $next_uid"
 else

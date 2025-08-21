@@ -1,4 +1,5 @@
 #!/bin/bash
+set -euo pipefail
 
 # follow to the tartlet guide: https://github.com/shapehq/tartelet/wiki/Configuring-the-Virtual-Machine-to-Build-iOS-Apps
 
