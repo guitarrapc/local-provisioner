@@ -24,7 +24,7 @@ bash ./prerequisites.sh
 4. Logout and login as runner user (password: `runner`), then setup tools.
 
 ```sh
-mkdir github/guitarrapc
+mkdir -p github/guitarrapc
 cd github/guitarrapc
 git clone https://github.com/guitarrapc/local-provisioner
 cd local-provisioner/envs/macos_tarl
