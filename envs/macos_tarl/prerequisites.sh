@@ -56,19 +56,6 @@ sudo defaults write /Library/Preferences/com.apple.SetupAssistant DidSeeCloudSet
 sudo defaults write /Library/Preferences/com.apple.SetupAssistant GestureMovieSeen none
 sudo defaults write /Library/Preferences/com.apple.SetupAssistant LastSeenCloudProductVersion -string "$(sw_vers -productVersion)"
 
-# Disable macOS automatic update
-header "Disabling macOS automatic updates"
-# Disable automatic check for updates
-sudo defaults write /Library/Preferences/com.apple.SoftwareUpdate AutomaticCheckEnabled -bool false
-# Disable automatic download of updates
-sudo defaults write /Library/Preferences/com.apple.SoftwareUpdate AutomaticDownload -bool false
-# Disable automatic installation of macOS updates
-sudo defaults write /Library/Preferences/com.apple.SoftwareUpdate AutomaticallyInstallMacOSUpdates -bool false
-# Disable automatic installation of app updates from App Store
-sudo defaults write /Library/Preferences/com.apple.commerce AutoUpdate -bool false
-# Disable system data files updates
-sudo defaults write /Library/Preferences/com.apple.SoftwareUpdate SystemDataInstall -bool false
-
 # Enable remote login (SSH)
 header "Enabling remote login (SSH)"
 if ! sudo systemsetup -getremotelogin | grep -q "On"; then

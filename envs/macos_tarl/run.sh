@@ -13,6 +13,18 @@ function header {
     echo "=============================="
 }
 
+# Disable macOS automatic update
+header "Disabling macOS automatic updates"
+# Disable automatic check for updates
+sudo defaults write /Library/Preferences/com.apple.SoftwareUpdate AutomaticCheckEnabled -bool false
+# Disable automatic download of updates
+sudo defaults write /Library/Preferences/com.apple.SoftwareUpdate AutomaticDownload -bool false
+# Disable automatic installation of macOS updates
+sudo defaults write /Library/Preferences/com.apple.SoftwareUpdate AutomaticallyInstallMacOSUpdates -bool false
+# Disable automatic installation of app updates from App Store
+sudo defaults write /Library/Preferences/com.apple.commerce AutoUpdate -bool false
+# Disable system data files updates
+sudo defaults write /Library/Preferences/com.apple.SoftwareUpdate SystemDataInstall -bool false
 
 # run command only if current user is runner
 header "check current user is runner"
