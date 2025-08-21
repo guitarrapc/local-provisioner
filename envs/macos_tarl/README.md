@@ -31,6 +31,13 @@ cd local-provisioner/envs/macos_tarl
 bash ./run.sh
 ```
 
+Copy ssh public key to your GitHub Actions or Organization.
+
+```sh
+ssh runner@$(tart ip runner)
+cat ~/.ssh/id_rsa.pub
+```
+
 5. Shutdown macOS.
 
 ## Initial setup
