@@ -39,16 +39,6 @@ else
     echo "Runner user already exists, skipping creation"
 fi
 
-header "Allow /opt/homebrew for runner user"
-if [ ! -d /opt/homebrew ]; then
-    sudo mkdir -p /opt/homebrew
-    sudo chown -R runner /opt/homebrew
-    sudo chgrp -R admin /opt/homebrew
-    sudo chmod -R g+w /opt/homebrew
-    sudo find /opt/homebrew -type d -exec chmod g+ws {} \;
-    sudo -u runner mkdir -p /Users/runner/Library/Caches/Homebrew
-fi
-
 # Disable initial setup assistant
 header "Disabling setup assistant"
 sudo touch /var/db/.AppleSetupDone

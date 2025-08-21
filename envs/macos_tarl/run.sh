@@ -37,6 +37,14 @@ fi
 
 # brew
 header "Installing brew"
+if [ ! -d /opt/homebrew ]; then
+    sudo mkdir -p /opt/homebrew
+    sudo chown -R runner /opt/homebrew
+    sudo chgrp -R admin /opt/homebrew
+    sudo chmod -R g+w /opt/homebrew
+    sudo find /opt/homebrew -type d -exec chmod g+ws {} \;
+    sudo -u runner mkdir -p /Users/runner/Library/Caches/Homebrew
+fi
 if ! which brew; then
     echo Homebrew not found, install it.
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
