@@ -1,6 +1,6 @@
 feature_enabled:
-  brew: "false"
-  ruby: "false"
+  brew: "true"
+  ruby: "true"
   app_archive: "true"
 
 homebrew_packages:
