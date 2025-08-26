@@ -1,16 +1,3 @@
-# interface
-# Dock Dark Mode since High Sierra (remove value if you want to reset)
-interface_settings:
-  - domain: NSGlobalDomain
-    key: AppleInterfaceStyle
-    type: string
-    value: Dark
-  # Mojave whole Dark Theme (remove value if you want to reset)
-  - domain: "Apple Global Domain"
-    key: AppleInterfaceStyle
-    type: string
-    value: Dark
-
 # screen
 screen_settings:
   - domain: com.apple.screensaver
@@ -60,6 +47,11 @@ finder_settings:
     key: ShowPathbar
     type: bool
     value: true
+  # show full path on title bar
+  - domain: com.apple.finder
+    key: _FXShowPosixPathInTitle
+    type: bool
+    value: true
   # keep folder top on sort
   - domain: com.apple.finder
     key: _FXSortFoldersFirst
@@ -103,48 +95,11 @@ dock_settings:
     key: show-process-indicators
     type: bool
     value: true
-  # Automatically hide and show the Dock
-  - domain: com.apple.dock
-    key: autohide
-    type: bool
-    value: false
 
-    # Hot corners
-    # Possible values:
-    #  0: no-op
-    #  2: Mission Control
-    #  3: Show application windows
-    #  4: Desktop
-    #  5: Start screen saver
-    #  6: Disable screen saver
-    #  7: Dashboard
-    # 10: Put display to sleep
-    # 11: Launchpad
-    # 12: Notification Center
-    # Top left screen corner → Mission Control
-#   - domain: com.apple.dock
-#     key: wvous-tl-corner
-#     type: int
-#     value: 2
-#   - domain: com.apple.dock
-#     key: wvous-tl-modifier
-#     type: int
-#     value: 0
-#   # Top right screen corner → Desktop
-#   - domain: com.apple.dock
-#     key: wvous-tr-corner
-#     type: int
-#     value: 4
-#   - domain: com.apple.dock
-#     key: wvous-tr-modifier
-#     type: int
-#     value: 0
-#   # Bottom left screen corner → Start screen saver
-#   - domain: com.apple.dock
-#     key: wvous-bl-corner
-#     type: int
-#     value: 5
-#   - domain: com.apple.dock
-#     key: wvous-bl-modifier
-#     type: int
-#     value: 0
+# terminal
+terminal_settings:
+  # Use utf-8
+  - domain: com.apple.terminal
+    key: StringEncodings
+    type: array
+    value: 4
