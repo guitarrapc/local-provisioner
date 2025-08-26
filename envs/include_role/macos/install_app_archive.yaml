@@ -11,6 +11,7 @@
     path: "{{ ansible_home }}/Downloads/{{ args.name }}"
     state: directory
     mode: "0755"
+  check_mode: no
   when: not app_archive_exists.stat.exists
 
 - name: "app_archive ({{ args.name }}) - download"
