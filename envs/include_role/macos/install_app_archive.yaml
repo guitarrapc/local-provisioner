@@ -26,6 +26,7 @@
     src: "{{ ansible_home }}/Downloads/{{ args.name }}/{{ args.download_url | basename }}"
     dest: "{{ ansible_home }}/Downloads/{{ args.name }}"
     remote_src: true
+  check_mode: false
   when: not app_archive_exists.stat.exists
 
 - name: "app_archive ({{ args.name }}) - copy"
