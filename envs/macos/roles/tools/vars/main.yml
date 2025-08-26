@@ -30,7 +30,6 @@ homebrew_packages:
   - name: shellcheck
   - name: stern
   - name: swiftlint # swiftlint --reporter emoji --quiet --config .swiftlint.yml --fix
-  - name: cirruslabs/cli/tart # use tart to manage vm
   - name: tenv
   - name: tree
   - name: yq
@@ -48,6 +47,9 @@ homebrew_cask_packages:
   - name: unity-hub
   - name: visual-studio-code
   - name: zoom
+
+homebrew_cli_packages:
+  - name: cirruslabs/cli/tart
 
 app_archive:
   - name: Tartelet.app # https://github.com/shapehq/tartelet/wiki/Installing-Tartelet

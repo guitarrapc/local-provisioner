@@ -7,13 +7,6 @@
   changed_when: result.stdout != 'Already up-to-date.'
   when: feature_enabled.brew == "true"
 
-- name: "homebrew: tap packages"
-  community.general.homebrew_tap:
-    name: "{{ item.name }}"
-    state: "{{ item.state | default('present') }}"
-  with_items: "{{ homebrew_packages_tap }}"
-  when: feature_enabled.brew == "true"
-
 - name: "homebrew: install packages"
   community.general.homebrew:
     name: "{{ item.name }}"
@@ -27,6 +20,14 @@
     state: "{{ item.state | default('present') }}"
   with_items: "{{ homebrew_cask_packages }}"
   when: feature_enabled.brew == "true" and lookup('env', "CI", default="false") != "true"
+
+- name: "homebrew: install cli"
+  ansible.builtin.command: brew install "{{ item.name }}"
+  register: brew_cli_result
+  check_mode: no
+  changed_when: brew_cli_result.rc != 0
+  with_items: "{{ homebrew_cli_packages }}"
+  when: feature_enabled.brew == "true"
 
 # ruby
 - name: "ruby: check ruby installed"

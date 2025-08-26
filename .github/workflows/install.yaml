@@ -66,8 +66,6 @@ jobs:
       - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
         with:
           persist-credentials: false
-      - name: Set up Homebrew
-        uses: Homebrew/actions/setup-homebrew@5d8ad5ce3f8a96e9ef5bb236fabd5f58b6ddb87b
       - name: Install ansible
         run: brew install ansible
       - name: ansible version
