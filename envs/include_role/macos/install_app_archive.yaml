@@ -38,3 +38,10 @@
     remote_src: true
   with_items: "{{ args.apps }}"
   when: not app_archive_exists.stat.exists
+
+- name: "app_archive ({{ args.name }}) - remove zip"
+  ansible.builtin.file:
+    path: "{{ ansible_home }}/Downloads/{{ args.name }}"
+    state: absent
+  check_mode: false
+  when: not app_archive_exists.stat.exists
