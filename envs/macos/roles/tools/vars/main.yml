@@ -3,6 +3,9 @@ feature_enabled:
   ruby: "true"
   app_archive: "true"
 
+homebrew_packages_tap:
+  - name: cirruslabs/cli
+
 homebrew_packages:
   - name: actionlint
   - name: ansible-lint

@@ -7,6 +7,13 @@
   changed_when: result.stdout != 'Already up-to-date.'
   when: feature_enabled.brew == "true"
 
+- name: "homebrew: tap packages"
+  community.general.homebrew_tap:
+    name: "{{ item.name }}"
+    state: "{{ item.state | default('present') }}"
+  with_items: "{{ homebrew_packages_tap }}"
+  when: feature_enabled.brew == "true"
+
 - name: "homebrew: install packages"
   community.general.homebrew:
     name: "{{ item.name }}"
