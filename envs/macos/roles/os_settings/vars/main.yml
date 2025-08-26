@@ -102,4 +102,4 @@ terminal_settings:
   - domain: com.apple.terminal
     key: StringEncodings
     type: array
-    value: 4
+    value: [4]
