@@ -6,6 +6,10 @@
   changed_when: result.stdout != 'Already up-to-date.'
   when: feature_enabled.brew == "true"
 
+- name: brew doctor
+  ansible.builtin.command: brew doctor
+  ignore_errors: true
+
 - name: "homebrew packages installation"
   community.general.homebrew:
     name: "{{ item.name }}"
