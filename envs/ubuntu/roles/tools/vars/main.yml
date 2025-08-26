@@ -33,7 +33,7 @@ aqua:
 
 binary:
   - name: argocd # `argocd version` https://github.com/argoproj/argo-cd
-    version_arg: "version"
+    version_arg: "version --client"
     version: "3.1.1"
     download_url: https://github.com/argoproj/argo-cd/releases/download/v3.1.1/argocd-linux-amd64
   - name: cosign # `cosign version` https://github.com/sigstore/cosign
