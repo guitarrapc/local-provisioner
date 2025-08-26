@@ -6,80 +6,80 @@
   register: apt_result
   until: "apt_result is not failed"
   retries: 2 # wsl1 failed first apt on Ubuntu-22.04
-  when: feature_enabed.apts == "true"
+  when: feature_enabled.apts == "true"
 
 - name: "Install pip3 packages with pipx"
   community.general.pipx:
     name: "{{ item.name }}=={{ item.version }}"
   with_items: "{{ pip3 }}"
-  when: feature_enabed.pip3 == "true"
+  when: feature_enabled.pip3 == "true"
 
 - name: "Install git cli"
   ansible.builtin.include_tasks: ../include_role/ubuntu/install_git.yaml
-  when: feature_enabed.git == "true"
+  when: feature_enabled.git == "true"
 
 - name: "Install binary tools"
   ansible.builtin.include_tasks: ../include_role/ubuntu/install_binary.yaml
   with_items: "{{ binary }}"
   loop_control:
     loop_var: args
-  when: feature_enabed.binary == "true"
+  when: feature_enabled.binary == "true"
 
 - name: "Install binary archive tools"
   ansible.builtin.include_tasks: ../include_role/ubuntu/install_binary_archive.yaml
   with_items: "{{ binary_archive }}"
   loop_control:
     loop_var: args
-  when: feature_enabed.binary_archive == "true"
+  when: feature_enabled.binary_archive == "true"
 
 - name: "Install git repository"
   ansible.builtin.include_tasks: ../include_role/ubuntu/install_git_tool.yaml
   with_items: "{{ git_tools }}"
   loop_control:
     loop_var: args
-  when: feature_enabed.git_tools == "true"
+  when: feature_enabled.git_tools == "true"
 
 - name: "Install dpkg tools"
   ansible.builtin.include_tasks: ../include_role/ubuntu/install_dpkg.yaml
   with_items: "{{ dpkg }}"
   loop_control:
     loop_var: args
-  when: feature_enabed.dpkg == "true"
+  when: feature_enabled.dpkg == "true"
 
 - name: "Install aqua global tools"
   ansible.builtin.include_tasks: ../include_role/ubuntu/install_aqua.yaml
-  when: feature_enabed.aqua == "true"
+  when: feature_enabled.aqua == "true"
 
 - name: "Install .NET SDK"
   ansible.builtin.include_tasks: ../include_role/ubuntu/install_dotnet.yaml
   with_items: "{{ dotnet }}"
   loop_control:
     loop_var: args
-  when: feature_enabed.dotnet == "true"
+  when: feature_enabled.dotnet == "true"
 
 - name: "Install go"
   ansible.builtin.include_tasks: ../include_role/ubuntu/install_go.yaml
   with_items: "{{ go }}"
   loop_control:
     loop_var: args
-  when: feature_enabed.go == "true"
+  when: feature_enabled.go == "true"
 
 - name: "Install krew, kubernetes plugin manager"
   ansible.builtin.include_tasks: ../include_role/ubuntu/install_krew.yaml
   with_items: "{{ krew }}"
   loop_control:
     loop_var: args
-  when: feature_enabed.krew == "true"
+  when: feature_enabled.krew == "true"
 
 - name: "Install krew plugins for kubectl"
   ansible.builtin.include_tasks: ../include_role/ubuntu/install_krew_plugin.yaml
   with_items: "{{ krew_plugins }}"
   loop_control:
     loop_var: args
-  when: feature_enabed.krew == "true"
+  when: feature_enabled.krew == "true"
 
 # use .devcontainer instead. https://github.com/microsoft/vscode-dev-containers/blob/main/script-library/docs/azcli.md
 # too slow download pacakge..... oh my package.microsoft.com ....
 - name: "Install azure cli"
   ansible.builtin.include_tasks: ../include_role/ubuntu/install_azurecli.yaml
-  when: feature_enabed.azcli == "true"
+  when: feature_enabled.azcli == "true"

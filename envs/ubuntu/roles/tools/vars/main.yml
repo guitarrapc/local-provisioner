@@ -1,4 +1,4 @@
-feature_enabed:
+feature_enabled:
   apts: "true"
   aqua: "true"
   azcli: "true"
@@ -32,6 +32,10 @@ aqua:
   global_path: "{{ ansible_home }}/.config/aquaproj-aqua/aqua.yaml" # placed via dotfiles
 
 binary:
+  - name: argocd # `argocd version` https://github.com/argoproj/argo-cd
+    version_arg: "version --client"
+    version: "3.1.1"
+    download_url: https://github.com/argoproj/argo-cd/releases/download/v3.1.1/argocd-linux-amd64
   - name: cosign # `cosign version` https://github.com/sigstore/cosign
     version_arg: "version"
     version: "2.5.0"

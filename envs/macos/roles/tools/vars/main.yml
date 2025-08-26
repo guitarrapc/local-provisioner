@@ -3,6 +3,9 @@ feature_enabled:
   ruby: "true"
   app_archive: "true"
 
+homebrew_packages_tap:
+  - name: cirruslabs/cli
+
 homebrew_packages:
   - name: actionlint
   - name: ansible-lint
@@ -27,7 +30,6 @@ homebrew_packages:
   - name: shellcheck
   - name: stern
   - name: swiftlint # swiftlint --reporter emoji --quiet --config .swiftlint.yml --fix
-  - name: cirruslabs/cli/tart # use tart to manage vm
   - name: tenv
   - name: tree
   - name: yq
@@ -46,6 +48,9 @@ homebrew_cask_packages:
   - name: visual-studio-code
   - name: zoom
 
+homebrew_cli_packages:
+  - name: cirruslabs/cli/tart
+
 app_archive:
   - name: Tartelet.app # https://github.com/shapehq/tartelet/wiki/Installing-Tartelet
     download_url: https://github.com/shapehq/tartelet/releases/download/0.12.0/Tartelet.zip
@@ -53,4 +58,4 @@ app_archive:
     apps:
       - Tartelet.app # 末尾に/をつけると中身だけコピーされるので、つけちゃだめ。
 
-ruby_version: "3.4.4"
+ruby_version: "3.4.5"

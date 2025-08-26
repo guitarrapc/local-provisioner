@@ -1,27 +1,34 @@
 # brew
-- name: update brew
+- name: "homebrew: brew update"
   ansible.builtin.command: brew update
   register: result
   ignore_errors: true
   changed_when: result.stdout != 'Already up-to-date.'
   when: feature_enabled.brew == "true"
 
-- name: "homebrew packages installation"
+- name: "homebrew: install packages"
   community.general.homebrew:
     name: "{{ item.name }}"
     state: "{{ item.state | default('present') }}"
   with_items: "{{ homebrew_packages }}"
   when: feature_enabled.brew == "true"
 
-- name: "homebrew cask packages installation"
+- name: "homebrew: install cask packages"
   community.general.homebrew_cask:
     name: "{{ item.name }}"
     state: "{{ item.state | default('present') }}"
   with_items: "{{ homebrew_cask_packages }}"
   when: feature_enabled.brew == "true" and lookup('env', "CI", default="false") != "true"
 
+- name: "homebrew: install cli"
+  ansible.builtin.command: brew install "{{ item.name }}"
+  register: brew_cli_result
+  changed_when: brew_cli_result.rc != 0
+  with_items: "{{ homebrew_cli_packages }}"
+  when: feature_enabled.brew == "true"
+
 # ruby
-- name: check ruby installed
+- name: "ruby: check ruby installed"
   ansible.builtin.shell: set -o pipefail && rbenv versions | grep {{ ruby_version }}
   args:
     executable: /bin/bash
@@ -30,19 +37,19 @@
   ignore_errors: true
   when: feature_enabled.ruby == "true"
 
-- name: install ruby {{ ruby_version }}
+- name: "ruby: install ruby {{ ruby_version }}"
   ansible.builtin.command: rbenv install {{ ruby_version }}
   register: ruby_install
   changed_when: ruby_install.rc != 0
   when: feature_enabled.ruby == "true" and rbenv_version is failed
 
-- name: install ruby bundler
+- name: "ruby: install ruby bundler"
   community.general.gem:
     name: bundler
-  when: feature_enabled.ruby == "true" and rbenv_version is success
+  when: feature_enabled.ruby == "true" and ruby_install is success
 
 # apps
-- name: "Install app archive tools"
+- name: "apps: install app archive tools"
   ansible.builtin.include_tasks: ../include_role/macos/install_app_archive.yaml
   with_items: "{{ app_archive }}"
   loop_control:
