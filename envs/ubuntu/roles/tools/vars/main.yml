@@ -48,10 +48,6 @@ binary:
     version_arg: "version"
     version: "2.5.0"
     download_url: https://github.com/sigstore/cosign/releases/download/v2.5.0/cosign-linux-amd64
-  - name: ctop # `ctop --help` https://github.com/bcicen/ctop
-    version_arg: "--help"
-    version: "0.7.7"
-    download_url: https://github.com/bcicen/ctop/releases/download/v0.7.7/ctop-0.7.7-linux-amd64
   - name: eks-node-viewer # `eks-node-viewer --version` https://github.com/awslabs/eks-node-viewer
     version_arg: "--version"
     version: "0.7.4"
@@ -84,8 +80,8 @@ binary_archive:
     copy_root: ""
     binaries:
       - cert
-  - name: cfft # `cfft --version` https://github.com/fujiwara/cfft
-    version_arg: "--version"
+  - name: cfft # `cfft version` https://github.com/fujiwara/cfft
+    version_arg: "version"
     version: "0.8.2"
     download_url: https://github.com/fujiwara/cfft/releases/download/v0.8.2/cfft_0.8.2_linux_amd64.tar.gz
     copy_root: ""
@@ -140,9 +136,16 @@ binary_archive:
     copy_root: ""
     binaries:
       - pluto
+  - name: step # `step --version` https://github.com/smallstep/cli
+    version_arg: "--version"
+    version: "0.28.7"
+    download_url: https://github.com/smallstep/cli/releases/download/v0.28.7/step_linux_amd64.tar.gz
+    copy_root: "step_linux_amd64/bin/"
+    binaries:
+      - step
   - name: stern # `stern --version` https://github.com/stern/stern
     version_arg: "--version"
-    version: "1.32.5"
+    version: "1.32.0"
     download_url: https://github.com/stern/stern/releases/download/v1.32.0/stern_1.32.0_linux_amd64.tar.gz
     copy_root: ""
     binaries:
@@ -175,13 +178,6 @@ binary_archive:
     copy_root: ""
     binaries:
       - yq_linux_amd64
-  - name: step # `step --version` https://github.com/smallstep/cli
-    version_arg: "--version"
-    version: "0.28.7"
-    download_url: https://github.com/smallstep/cli/releases/download/v0.28.7/step_linux_amd64.tar.gz
-    copy_root: "step_linux_amd64/bin/"
-    binaries:
-      - step
 
 dotnet:
   - version: "8.0"
