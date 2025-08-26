@@ -1,13 +1,4 @@
 # defaults
-- name: "Set Interface Defaults"
-  community.general.osx_defaults:
-    domain: "{{ item.domain }}"
-    key: "{{ item.key }}"
-    type: "{{ item.type }}"
-    value: "{{ item.value }}"
-    state: "{{ item.state | default('present') }}"
-  with_items: "{{ interface_settings }}"
-
 - name: "Set Screen Defaults"
   community.general.osx_defaults:
     domain: "{{ item.domain }}"
@@ -43,6 +34,15 @@
     value: "{{ item.value }}"
     state: "{{ item.state | default('present') }}"
   with_items: "{{ dock_settings }}"
+
+- name: "Set Terminal Defaults"
+  community.general.osx_defaults:
+    domain: "{{ item.domain }}"
+    key: "{{ item.key }}"
+    type: "{{ item.type }}"
+    value: "{{ item.value }}"
+    state: "{{ item.state | default('present') }}"
+  with_items: "{{ terminal_settings }}"
 
 # pam
 - name: enable touchid for sudo Authentication
