@@ -1,4 +1,4 @@
-feature_enabed:
+feature_enabled:
   apts: "true"
   aqua: "true"
   azcli: "true"
