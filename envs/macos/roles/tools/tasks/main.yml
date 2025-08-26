@@ -3,7 +3,6 @@
   ansible.builtin.command: brew update
   register: result
   ignore_errors: true
-  check_mode: no
   changed_when: result.stdout != 'Already up-to-date.'
   when: feature_enabled.brew == "true"
 
@@ -24,7 +23,6 @@
 - name: "homebrew: install cli"
   ansible.builtin.command: brew install "{{ item.name }}"
   register: brew_cli_result
-  check_mode: no
   changed_when: brew_cli_result.rc != 0
   with_items: "{{ homebrew_cli_packages }}"
   when: feature_enabled.brew == "true"
