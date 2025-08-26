@@ -60,7 +60,7 @@
   become: true
   ansible.builtin.copy:
     src: "/tmp/{{ args.name }}/{{ args.copy_root }}{{ item }}"
-    dest: "{{ args.dest_override | default('/usr/local/bin/') }}"
+    dest: "{{ args.dest_override | default('/usr/local/bin/') }}{{ args.name }}"
     mode: "a+x"
     remote_src: true
   with_items: "{{ args.binaries }}"
