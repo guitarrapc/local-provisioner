@@ -58,4 +58,4 @@ app_archive:
     apps:
       - Tartelet.app # 末尾に/をつけると中身だけコピーされるので、つけちゃだめ。
 
-ruby_version: "3.4.4"
+ruby_version: "3.4.5"
