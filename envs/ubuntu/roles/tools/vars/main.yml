@@ -36,10 +36,26 @@ binary:
     version_arg: "version --client"
     version: "3.1.1"
     download_url: https://github.com/argoproj/argo-cd/releases/download/v3.1.1/argocd-linux-amd64
+  - name: aws-vault # `aws-vault --version` https://github.com/99designs/aws-vault
+    version_arg: "--version"
+    version: "7.2.0"
+    download_url: https://github.com/99designs/aws-vault/releases/download/v7.2.0/aws-vault-linux-amd64
+  - name: biome # `biome --version` https://github.com/biomejs/biome
+    version_arg: "--version"
+    version: "2.2.2"
+    download_url: https://github.com/biomejs/biome/releases/download/%40biomejs%2Fbiome%402.2.2/biome-linux-x64
   - name: cosign # `cosign version` https://github.com/sigstore/cosign
     version_arg: "version"
     version: "2.5.0"
     download_url: https://github.com/sigstore/cosign/releases/download/v2.5.0/cosign-linux-amd64
+  - name: eks-node-viewer # `eks-node-viewer --version` https://github.com/awslabs/eks-node-viewer
+    version_arg: "--version"
+    version: "0.7.4"
+    download_url: https://github.com/awslabs/eks-node-viewer/releases/download/v0.7.4/eks-node-viewer_Linux_x86_64
+  - name: grpc-health-probe # `grpc-health-probe --version` https://github.com/grpc-ecosystem/grpc-health-probe
+    version_arg: "--version"
+    version: "0.4.40"
+    download_url: https://github.com/grpc-ecosystem/grpc-health-probe/releases/download/v0.4.40/grpc_health_probe-linux-amd64
   - name: linkerd # `linkerd version --client` https://github.com/linkerd/linkerd2
     version_arg: "version --client"
     version: "2.14.10"
@@ -64,6 +80,104 @@ binary_archive:
     copy_root: ""
     binaries:
       - cert
+  - name: cfft # `cfft version` https://github.com/fujiwara/cfft
+    version_arg: "version"
+    version: "0.8.2"
+    download_url: https://github.com/fujiwara/cfft/releases/download/v0.8.2/cfft_0.8.2_linux_amd64.tar.gz
+    copy_root: ""
+    binaries:
+      - cfft
+  - name: dyff # `dyff --version` https://github.com/homeport/dyff
+    version_arg: "version"
+    version: "1.10.2"
+    download_url: https://github.com/homeport/dyff/releases/download/v1.10.2/dyff_1.10.2_linux_amd64.tar.gz
+    copy_root: ""
+    binaries:
+      - dyff
+  - name: grpcurl # `grpcurl --version` https://github.com/fullstorydev/grpcurl
+    version_arg: "--version"
+    version: "1.9.3"
+    download_url: https://github.com/fullstorydev/grpcurl/releases/download/v1.9.3/grpcurl_1.9.3_linux_x86_64.tar.gz
+    copy_root: ""
+    binaries:
+      - grpcurl
+  - name: helm # `helm version` https://github.com/helm/helm
+    version_arg: "version"
+    version: "3.18.6"
+    download_url: https://get.helm.sh/helm-v3.18.6-linux-amd64.tar.gz
+    copy_root: "linux-amd64/"
+    binaries:
+      - helm
+  - name: kube-score # `kube-score version` https://github.com/zegl/kube-score
+    version_arg: "version"
+    version: "1.20.0"
+    download_url: https://github.com/zegl/kube-score/releases/download/v1.20.0/kube-score_1.20.0_linux_amd64.tar.gz
+    copy_root: ""
+    binaries:
+      - kube-score
+  - name: kubeconform # `kubeconform -v` https://github.com/yannh/kubeconform
+    version_arg: "-v"
+    version: "0.7.0"
+    download_url: https://github.com/yannh/kubeconform/releases/download/v0.7.0/kubeconform-linux-amd64.tar.gz
+    copy_root: ""
+    binaries:
+      - kubeconform
+  - name: peco # `peco --version` https://github.com/peco/peco
+    version_arg: "--version"
+    version: "0.5.11"
+    download_url: https://github.com/peco/peco/releases/download/v0.5.11/peco_linux_amd64.tar.gz
+    copy_root: "peco_linux_amd64/"
+    binaries:
+      - peco
+  - name: pluto # `pluto version` https://github.com/FairwindsOps/pluto
+    version_arg: "version"
+    version: "5.22.5"
+    download_url: https://github.com/FairwindsOps/pluto/releases/download/v5.22.5/pluto_5.22.5_linux_amd64.tar.gz
+    copy_root: ""
+    binaries:
+      - pluto
+  - name: step # `step --version` https://github.com/smallstep/cli
+    version_arg: "--version"
+    version: "0.28.7"
+    download_url: https://github.com/smallstep/cli/releases/download/v0.28.7/step_linux_amd64.tar.gz
+    copy_root: "step_linux_amd64/bin/"
+    binaries:
+      - step
+  - name: stern # `stern --version` https://github.com/stern/stern
+    version_arg: "--version"
+    version: "1.32.0"
+    download_url: https://github.com/stern/stern/releases/download/v1.32.0/stern_1.32.0_linux_amd64.tar.gz
+    copy_root: ""
+    binaries:
+      - stern
+  - name: terraform-docs # `terraform-docs --version` https://github.com/terraform-docs/terraform-docs
+    version_arg: "--version"
+    version: "0.20.0"
+    download_url: https://github.com/terraform-docs/terraform-docs/releases/download/v0.20.0/terraform-docs-v0.20.0-linux-amd64.tar.gz
+    copy_root: ""
+    binaries:
+      - terraform-docs
+  - name: trivy # `trivy --version` https://github.com/aquasecurity/trivy
+    version_arg: "--version"
+    version: "0.65.0"
+    download_url: https://github.com/aquasecurity/trivy/releases/download/v0.65.0/trivy_0.65.0_Linux-64bit.tar.gz
+    copy_root: ""
+    binaries:
+      - trivy
+  - name: vegeta # `vegeta --version` https://github.com/tsenart/vegeta
+    version_arg: "--version"
+    version: "12.12.0"
+    download_url: https://github.com/tsenart/vegeta/releases/download/v12.12.0/vegeta_12.12.0_linux_amd64.tar.gz
+    copy_root: ""
+    binaries:
+      - vegeta
+  - name: yq # `yq --version` https://github.com/mikefarah/yq
+    version_arg: "--version"
+    version: "4.47.1"
+    download_url: https://github.com/mikefarah/yq/releases/download/v4.47.1/yq_linux_amd64.tar.gz
+    copy_root: ""
+    binaries:
+      - yq_linux_amd64
 
 dotnet:
   - version: "8.0"
