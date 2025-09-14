@@ -85,6 +85,11 @@ if ! which xcrun; then
     echo apple commandline tools are not install. install latest.
     xcode-select --install
 fi
+
+# xcode simulators
+xcodebuild -downloadPlatform iOS
+xcrun simctl runtime install "iOS 18.4"
+
 # fix python3 or any xcode tool issue
 # see: prompt keeps popping up asking me to install the command line developer tools - https://developer.apple.com/forums/thread/704099?answerId=727578022#727578022
 xcodebuild -runFirstLaunch
