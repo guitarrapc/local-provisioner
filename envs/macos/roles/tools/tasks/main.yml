@@ -47,7 +47,7 @@
   community.general.gem:
     name: bundler
   # check: true # check not works
-  when: feature_enabled.ruby == "true" and ruby_install is success and ansible_check_mode == false
+  when: feature_enabled.ruby == "true" and ruby_install is success and not ansible_check_mode
 
 # apps
 - name: "apps: install app archive tools"
