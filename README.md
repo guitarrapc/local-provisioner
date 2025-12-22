@@ -73,26 +73,6 @@ cd c:/github/guitarrapc/local-provisioner/envs/windows/etc
 . ./enable_longpath.reg
 ```
 
-# Test
-
-**macOS**
-
-```sh
-cd envs/macos
-# check tests
-bundle exec rake -T
-# run all tests (ansible_spec)
-bundle exec rake all
-```
-
-**Linux**
-
-No support.
-
-**Windows**
-
-No support.
-
 # Support status
 
 **Ubuntu**
@@ -118,7 +98,7 @@ defaults | macos defaults
 dotfiles | link with [dofiles](https://github.com/guitarrapc/dotfiles)
 homebrew | homebrew and cask packages
 pam | pam module for touchid
-ruby | ruby environment setup. using rbenv and just install bundler.
+ruby | ruby environment setup.
 terraform | terraform environment setup. using tfenv.
 
 Out of scopes

@@ -43,12 +43,6 @@
   changed_when: ruby_install.rc != 0
   when: feature_enabled.ruby == "true" and rbenv_version is failed
 
-- name: "ruby: install ruby bundler"
-  community.general.gem:
-    name: bundler
-  # check: true # check not works
-  when: feature_enabled.ruby == "true" and ruby_install is success and not ansible_check_mode
-
 # apps
 - name: "apps: install app archive tools"
   ansible.builtin.include_tasks: ../include_role/macos/install_app_archive.yaml
