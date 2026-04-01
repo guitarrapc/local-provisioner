@@ -91,9 +91,9 @@ binary_archive:
     version_arg: "--version"
     version: "2.89.0"
     download_url: https://github.com/cli/cli/releases/download/v2.89.0/gh_2.89.0_linux_amd64.tar.gz
-    copy_root: "bin/"
+    copy_root: ""
     binaries:
-      - gh
+      - bin/gh
   - name: dyff # `dyff --version` https://github.com/homeport/dyff
     version_arg: "version"
     version: "1.10.2"
