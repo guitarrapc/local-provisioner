@@ -56,10 +56,10 @@ binary:
     version_arg: "--version"
     version: "0.4.42"
     download_url: https://github.com/grpc-ecosystem/grpc-health-probe/releases/download/v0.4.42/grpc_health_probe-linux-amd64
-  - name: linkerd # `linkerd version --client` https://github.com/linkerd/linkerd2
+  - name: kubectl # `kubectl version --client` https://dl.k8s.io/
     version_arg: "version --client"
-    version: "2.14.10"
-    download_url: https://github.com/linkerd/linkerd2/releases/download/stable-2.14.10/linkerd2-cli-stable-2.14.10-linux-amd64
+    version: "1.35.1"
+    download_url: https://dl.k8s.io/v1.35.1/bin/linux/amd64/kubectl
   - name: sops # `sops --version` https://github.com/getsops/sops
     version_arg: "--version"
     version: "3.11.0"
@@ -87,6 +87,13 @@ binary_archive:
     copy_root: ""
     binaries:
       - cfft
+  - name: gh # `gh version` https://github.com/cli/cli
+    version_arg: "--version"
+    version: "2.89.0"
+    download_url: https://github.com/cli/cli/releases/download/v2.89.0/gh_2.89.0_linux_amd64.tar.gz
+    copy_root: "bin/"
+    binaries:
+      - gh
   - name: dyff # `dyff --version` https://github.com/homeport/dyff
     version_arg: "version"
     version: "1.10.2"
