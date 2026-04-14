@@ -7,4 +7,4 @@ winget install -e --id Git.Git --accept-package-agreements
 winget install -e --id GitHub.GitLFS --accept-package-agreements
 winget install -e --id Google.Chrome --accept-package-agreements
 winget install -e --id Microsoft.VisualStudioCode --override '/SILENT /mergetasks="!runcode,addcontextmenufiles,addcontextmenufolders"'
-
+winget install -e --id Microsoft.PowerShell

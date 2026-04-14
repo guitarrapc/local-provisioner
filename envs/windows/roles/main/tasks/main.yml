@@ -43,7 +43,6 @@
       - kubectx
       - nvm
       - shellcheck
-      - pwsh
 
 - name: "Install Programming Languages"
   scoop_install:
@@ -61,3 +60,4 @@
       - terraform # use tenv instead
       - mysql-workbench # dont't use currently
       - ngrok
+      - pwsh
