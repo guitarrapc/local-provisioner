@@ -17,6 +17,7 @@
       - fd
       - jq
       - openssl
+      - ripgrep
       - sops
       - tenv
       - tflint
