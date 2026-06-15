@@ -15,6 +15,7 @@ feature_enabled:
 
 apts:
   - apache2-utils
+  - asciinema # use agg to convert asciicast to gif `docker run --rm -u $(id -u):$(id -g) -v $PWD:/data agg demo.cast demo.gif`
   - git-lfs
   - graphviz # require for terraform graph and ansible-playbook-graph
   - htop
