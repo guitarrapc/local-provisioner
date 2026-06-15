@@ -218,7 +218,7 @@ go: # https://github.com/golang/go
   force_reinstall: false
 
 krew: # https://github.com/kubernetes-sigs/krew
-  version: "0.4.5"
+  version: "0.5.0"
 
 krew_plugins:
   - name: explore # https://github.com/keisku/kubectl-explore A better kubectl explain with the fuzzy finder
