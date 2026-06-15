@@ -146,8 +146,8 @@ binary_archive:
       - pluto
   - name: seiton # `step --version` https://github.com/guitarrapc/seiton
     version_arg: "--version"
-    version: "0.9.27"
-    download_url: https://github.com/guitarrapc/seiton/releases/download/v0.9.27/seiton-linux-amd64.tar.gz
+    version: "1.0.0"
+    download_url: https://github.com/guitarrapc/seiton/releases/download/v1.0.0/seiton-linux-amd64.tar.gz
     copy_root: ""
     binaries:
       - seiton
