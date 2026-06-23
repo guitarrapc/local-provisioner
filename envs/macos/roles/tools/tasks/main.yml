@@ -20,6 +20,20 @@
   with_items: "{{ homebrew_cask_packages }}"
   when: feature_enabled.brew == "true" and lookup('env', "CI", default="false") != "true"
 
+- name: "homebrew: tap packages"
+  community.general.homebrew_tap:
+    name: "{{ item.name }}"
+    state: present
+  with_items: "{{ homebrew_packages_tap }}"
+  when: feature_enabled.brew == "true"
+
+- name: "homebrew: trust taps"
+  ansible.builtin.command: brew trust "{{ item.name }}"
+  register: brew_trust_result
+  changed_when: false
+  with_items: "{{ homebrew_packages_tap }}"
+  when: feature_enabled.brew == "true"
+
 - name: "homebrew: install cli"
   ansible.builtin.command: brew install "{{ item.name }}"
   register: brew_cli_result

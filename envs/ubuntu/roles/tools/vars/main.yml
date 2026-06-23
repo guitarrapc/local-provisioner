@@ -181,8 +181,8 @@ binary_archive:
       - terraform-docs
   - name: trivy # `trivy --version` https://github.com/aquasecurity/trivy
     version_arg: "--version"
-    version: "0.67.2"
-    download_url: https://github.com/aquasecurity/trivy/releases/download/v0.67.2/trivy_0.67.2_Linux-64bit.tar.gz
+    version: "0.71.2"
+    download_url: https://github.com/aquasecurity/trivy/releases/download/v0.71.2/trivy_0.71.2_Linux-64bit.tar.gz
     copy_root: ""
     binaries:
       - trivy
