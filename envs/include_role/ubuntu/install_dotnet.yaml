@@ -4,7 +4,7 @@
 # See below for an example of how to use this role.
 # ```vars/main.yaml
 # dotnet:
-#   version: "7.0"
+#   - version: "8.0"
 # ```
 #
 # ```tasks/main.yaml
@@ -15,31 +15,25 @@
 #     loop_var: args
 # ```
 
-- name: "dotnet - check if SDK version is already installed"
-  ansible.builtin.shell: "set -o pipefail && which dotnet && dotnet --list-sdks | grep '{{ args.version }}'"
-  register: dotnet_check
-  changed_when: false
-  ignore_errors: true
-  failed_when: false
-
 - name: "dotnet - check if script file exists"
   ansible.builtin.stat:
     path: "/tmp/dotnet-install.sh"
   register: script_file
-  when: dotnet_check.rc != 0
 
 - name: "dotnet - download script"
   become: true
   ansible.builtin.get_url:
     url: "https://dot.net/v1/dotnet-install.sh"
     dest: "/tmp/dotnet-install.sh"
-    mode: "a+x"
+    mode: "0755"
     timeout: 20
   retries: 10
   changed_when: false
-  when: dotnet_check.rc != 0 and (script_file.skipped is defined or not script_file.stat.exists)
+  when: not script_file.stat.exists
 
 - name: "dotnet - install ({{ args.version }})"
-  ansible.builtin.shell: "DOTNET_ROOT={{ ansible_home }}/.dotnet && /tmp/dotnet-install.sh --channel {{ args.version }}"
+  ansible.builtin.command:
+    cmd: "/tmp/dotnet-install.sh --channel {{ args.version }}"
+  environment:
+    DOTNET_ROOT: "{{ ansible_home }}/.dotnet"
   changed_when: false
-  when: dotnet_check.rc != 0
