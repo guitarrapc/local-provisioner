@@ -151,10 +151,10 @@ binary_archive:
     copy_root: ""
     binaries:
       - pluto
-  - name: scentake # `scentake --version` https://github.com/guitarrapc/scentake
+  - name: scenetake # `scenetake --version` https://github.com/guitarrapc/scenetake
     version_arg: "--version"
     version: "1.4.0"
-    download_url: https://github.com/guitarrapc/scentake/releases/download/v1.4.0/scentake-linux-amd64.tar.gz
+    download_url: https://github.com/guitarrapc/scentake/releases/download/v1.4.0/scenetake-linux-amd64.tar.gz
     copy_root: ""
     binaries:
       - scenetake
