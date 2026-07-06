@@ -132,7 +132,7 @@ binary_archive:
       - kubeconform
   - name: matrix # `matrix --version` https://github.com/guitarrapc/matrix
     version_arg: "--version"
-    version: "1.0.1"
+    version: "1.0.2"
     download_url: https://github.com/guitarrapc/matrix/releases/download/v1.0.1/matrix-linux-amd64.tar.gz
     copy_root: ""
     binaries:
@@ -151,10 +151,17 @@ binary_archive:
     copy_root: ""
     binaries:
       - pluto
-  - name: seiton # `step --version` https://github.com/guitarrapc/seiton
+  - name: scentake # `scentake --version` https://github.com/guitarrapc/scentake
     version_arg: "--version"
-    version: "1.0.0"
-    download_url: https://github.com/guitarrapc/seiton/releases/download/v1.0.0/seiton-linux-amd64.tar.gz
+    version: "1.4.0"
+    download_url: https://github.com/guitarrapc/scentake/releases/download/v1.4.0/scentake-linux-amd64.tar.gz
+    copy_root: ""
+    binaries:
+      - scenetake
+  - name: seiton # `seiton --version` https://github.com/guitarrapc/seiton
+    version_arg: "--version"
+    version: "1.4.0"
+    download_url: https://github.com/guitarrapc/seiton/releases/download/v1.4.0/seiton-linux-amd64.tar.gz
     copy_root: ""
     binaries:
       - seiton
