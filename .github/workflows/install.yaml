@@ -9,14 +9,35 @@ on:
   pull_request:
     branches:
       - main
-    paths:
-      - ".github/workflows/install.yaml"
-      - "envs/**/*"
+    paths-ignore:
+      - "**/*.md"
 
 env:
   TERM: xterm
 
 jobs:
+  lint:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos, raspi, ubuntu]
+    permissions:
+      contents: write
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        with:
+          persist-credentials: false
+      - name: Install ansible
+        run: pip3 install ansible
+      - name: Install ansible-lint
+        run: |
+          pip3 install ansible-lint
+          ansible-lint --version
+      - name: Run ansbile-lint
+        run: ansible-lint ./envs/${{ matrix.os }}/playbook.yaml
+
   linux:
     strategy:
       fail-fast: false
@@ -108,3 +129,11 @@ jobs:
         run: Scoop-Playbook
       - name: 2nd Run ScoopPlaybook
         run: Scoop-Playbook
+
+  complete:
+    needs: [lint, linux, macos, windows]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
+    steps:
+      - name: Lint & Install complete
+        run: echo "Lint & Install complete for all platforms."
