@@ -1,7 +1,7 @@
 name: ansible lint
 
 on:
-  workflow_dispatch: null
+  workflow_dispatch:
   push:
     branches:
       - main
