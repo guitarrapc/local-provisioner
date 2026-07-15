@@ -115,7 +115,7 @@ jobs:
       - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
         with:
           persist-credentials: false
-      - uses: MinoruSekine/setup-scoop@80f7f261b2e62af5d7450c85317b194046aa91f5 # v4.0.1
+      - uses: MinoruSekine/setup-scoop@371e1c778465fed5ee2101c415bead47553e1a07 # v5.0.0
 
       - name: scoop version
         run: scoop --version
