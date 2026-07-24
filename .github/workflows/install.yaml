@@ -133,6 +133,7 @@ jobs:
   complete:
     needs: [lint, linux, macos, windows]
     runs-on: ubuntu-24.04
+    permissions: {}
     timeout-minutes: 3
     steps:
       - name: Lint & Install complete
