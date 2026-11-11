@@ -8,11 +8,31 @@
   retries: 2 # wsl1 failed first apt on Ubuntu-22.04
   when: feature_enabled.apts == "true"
 
+- name: "Get pipx bin directory"
+  ansible.builtin.command: pipx environment --value PIPX_BIN_DIR
+  register: pipx_bin_dir
+  changed_when: false
+  check_mode: false
+  when: feature_enabled.pip3 == "true"
+
+# community.general.pipx requires pipx 1.7.0 or later, but apt pipx can be older. e.g. Ubuntu 24.04 ships pipx 1.4.3.
+# Install the latest pipx with apt pipx, then the module uses it via `executable`.
+- name: "Install latest pipx with pipx"
+  ansible.builtin.command: pipx install pipx
+  args:
+    creates: "{{ pipx_bin_dir.stdout }}/pipx"
+  register: pipx_self_install
+  when: feature_enabled.pip3 == "true"
+
 - name: "Install pip3 packages with pipx"
   community.general.pipx:
     name: "{{ item.name }}=={{ item.version }}"
+    executable: "{{ pipx_bin_dir.stdout }}/pipx"
   with_items: "{{ pip3 }}"
-  when: feature_enabled.pip3 == "true"
+  when:
+    - feature_enabled.pip3 == "true"
+    # On dry-run, latest pipx is not installed yet.
+    - not (ansible_check_mode and pipx_self_install is changed)
 
 - name: "Install git cli"
   ansible.builtin.include_tasks: ../include_role/ubuntu/install_git.yaml
