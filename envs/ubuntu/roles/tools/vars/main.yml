@@ -28,6 +28,7 @@ apts:
   - unzip
   - yamllint
   - whois
+  - zip
 
 aqua:
   global_path: "{{ ansible_home }}/.config/aquaproj-aqua/aqua.yaml" # placed via dotfiles
